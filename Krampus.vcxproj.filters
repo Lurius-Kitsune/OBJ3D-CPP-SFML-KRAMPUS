@@ -37,13 +37,16 @@
     <Filter Include="Source Files\Core\Actors">
       <UniqueIdentifier>{542c48f5-c503-4e43-bd32-b198da1184ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Manager\Texture">
+      <UniqueIdentifier>{ab48a26b-a621-4a05-a45c-1a0df1bdac5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Manager\Actor">
+      <UniqueIdentifier>{ffa3f325-b135-4bbb-9396-a6c018437918}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Source Files\Manager</Filter>
     </ClCompile>
     <ClCompile Include="ShapeObject.cpp">
       <Filter>Source Files\Object\ShapeObject</Filter>
@@ -67,15 +70,15 @@
       <Filter>Source Files\Core\Components</Filter>
     </ClCompile>
     <ClCompile Include="ActorManager.cpp">
-      <Filter>Source Files\Manager</Filter>
+      <Filter>Source Files\Manager\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Source Files\Manager\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
       <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Source Files\Manager</Filter>
     </ClInclude>
     <ClInclude Include="CoreMinimal.h">
       <Filter>Resource Files</Filter>
@@ -102,7 +105,10 @@
       <Filter>Source Files\Core\Components</Filter>
     </ClInclude>
     <ClInclude Include="ActorManager.h">
-      <Filter>Source Files\Manager</Filter>
+      <Filter>Source Files\Manager\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Source Files\Manager\Texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
