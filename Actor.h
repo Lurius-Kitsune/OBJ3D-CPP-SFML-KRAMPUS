@@ -23,7 +23,12 @@ public:
 	template<typename T>
 	T* GetComponent()
 	{
-		return components.find()
+		for (Component* _component : components)
+		{
+			if(is_same_v(decltype(_component)), decltype(T))) return _component;
+		}
+
+		return nullptr;
 	}
 protected:
 	virtual void BeginPlay() override;

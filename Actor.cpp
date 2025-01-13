@@ -14,7 +14,7 @@ Actor::~Actor()
 
 void Actor::AddComponent(Component* _component)
 {
-	if(GetComponent<decltype(_component)>(_component))
+	if (GetComponent<decltype(_component)>()) return;
 	components.insert(_component);
 }
 
