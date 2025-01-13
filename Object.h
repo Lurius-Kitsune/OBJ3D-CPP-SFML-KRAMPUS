@@ -40,7 +40,7 @@ public:
 	{
 		return transform.rotation;
 	}
-	FORCEINLINE virtual Shape* GetDrawable() const = 0;
+	FORCEINLINE virtual Drawable* GetDrawable() const = 0;
     #pragma endregion
 
 	#pragma region Setter

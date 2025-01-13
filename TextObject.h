@@ -5,7 +5,7 @@ class TextObject : public Object
 	Text* text;
 
 public:
-	FORCEINLINE virtual Shape* GetDrawable() const override
+	FORCEINLINE virtual Drawable* GetDrawable() const override
 	{
 		return text;
 	}

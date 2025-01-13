@@ -149,6 +149,9 @@ xcopy /y /d "..\SFML3.0\bin\sfml-window-d-3.dll" "$(OutDir)"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Core.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -157,6 +160,9 @@ xcopy /y /d "..\SFML3.0\bin\sfml-window-d-3.dll" "$(OutDir)"</Command>
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="Core.h" />
     <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Object.h" />

@@ -1,6 +1,7 @@
 #include "CoreMinimal.h"
 #include "TextureManager.h"
 #include "ShapeObject.h"
+#include "Game.h"
 
 void InitConfig()
 {
@@ -45,7 +46,9 @@ int main()
 {
     InitConfig();
 
-    Demo();
+    //Demo();
+
+    Game::GetInstance().Launch();
 
     return EXIT_SUCCESS;
 }
