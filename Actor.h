@@ -9,9 +9,22 @@ class Actor : public Core
 	set<Component*> components;
 
 public:
+	FORCEINLINE void SetShape(ShapeObject* _shape)
+	{
+		shape = _shape;
+	}
+public:
 	Actor();
 	~Actor();
 
+public:
+	void AddComponent(Component* _component);
+	void RemoveComponent(Component* _component);
+	template<typename T>
+	T* GetComponent()
+	{
+		return components.find()
+	}
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(const float _deltaTime) override;
