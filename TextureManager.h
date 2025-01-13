@@ -1,5 +1,6 @@
 #pragma once
 #include "Singleton.h"
+#include "ShapeObject.h"
 
 class TextureManager : public Singleton<TextureManager>
 {
@@ -30,7 +31,7 @@ public:
 	/// <param name="_path"></param>
 	/// <param name="_isRepeated"></param>
 	/// <param name="_smooth"></param>
-	void Load(Shape* _shape, Texture& _texture, const string& _path,
+	void Load(ShapeObject* _shape, const string& _path,
 		 const IntRect& _rect = IntRect(), const bool _isRepeated = false, const bool _smooth = false);
 
 private :

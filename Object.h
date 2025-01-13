@@ -3,6 +3,7 @@
 
 struct TransformData
 {
+	Vector2f origin;
 	Vector2f position;
 	Angle rotation;
 	Vector2f scale;
@@ -14,14 +15,18 @@ protected:
 	TransformData transform;
 
 public:
-	#pragma region Getter
 	FORCEINLINE virtual bool IsValid(Object* _object) const
 	{
 		return _object;
 	}
+	#pragma region Getter
 	FORCEINLINE virtual TransformData GetTransform() const
 	{
 		return transform;
+	}
+	FORCEINLINE  Vector2f GetOrigin() const
+	{
+		return transform.origin;
 	}
 	FORCEINLINE  Vector2f GetPosition() const
 	{
@@ -35,9 +40,14 @@ public:
 	{
 		return transform.rotation;
 	}
-	FORCEINLINE virtual Drawable* GetDrawable() const = 0;
-    #pragma endregion 
+	FORCEINLINE virtual Shape* GetDrawable() const = 0;
+    #pragma endregion
+
 	#pragma region Setter
+	FORCEINLINE virtual void SetOrigin(const Vector2f& _origin)
+	{
+		transform.origin = _origin;
+	}
 	FORCEINLINE virtual void SetPosition(const Vector2f& _position) 
 	{
 		transform.position = _position;
@@ -50,7 +60,7 @@ public:
 	{
 		transform.rotation = _angle;
 	}
-	FORCEINLINE virtual void SetRotation(const TransformData& _transformeData)
+	FORCEINLINE virtual void SetTransformData(const TransformData& _transformeData)
 	{
 		transform = _transformeData;
 	}

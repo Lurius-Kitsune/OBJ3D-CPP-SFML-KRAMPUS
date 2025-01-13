@@ -42,6 +42,9 @@
     <ClCompile Include="TextObject.cpp">
       <Filter>Source Files\Object\TextObject</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -61,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="TextObject.h">
       <Filter>Source Files\Object\TextObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

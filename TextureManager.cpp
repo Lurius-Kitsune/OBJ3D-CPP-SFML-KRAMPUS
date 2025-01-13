@@ -13,20 +13,21 @@ TextureManager::~TextureManager()
 	delete defaultTexture;
 }
 
-void TextureManager::Load(Shape* _shape, Texture& _texture, const string& _path,
+void TextureManager::Load(ShapeObject* _shape, const string& _path,
 	const IntRect& _rect, const bool _isRepeated, const bool _smooth)
 {
+	Texture& _texture = _shape->GetTexture();
 	if (_path.empty())
 	{
 		cerr << RED "[Error] => Cannot open file with empty path" << RESET << endl;
 		_texture = GetDefaultTexture();
-		SetTexture(_shape, &_texture);
+		SetTexture(_shape->GetDrawable(), &_texture);
 		return;
 	}
 	LoadTexture(_texture, _path, _rect);
 	_texture.setRepeated(_isRepeated);
 	_texture.setSmooth(_smooth);
-	SetTexture(_shape, &_texture);
+	SetTexture(_shape->GetDrawable(), &_texture);
 }
 
 void TextureManager::LoadTexture(Texture& _texture, const string& _path, const IntRect& _rect)

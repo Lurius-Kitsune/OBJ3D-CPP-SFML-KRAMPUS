@@ -1,8 +1,17 @@
 #include "CoreMinimal.h"
 #include "TextureManager.h"
+#include "ShapeObject.h"
+
 void InitConfig()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // Detection de fuite de mémoire
+}
+
+void UpdateWindow(RenderWindow& _window, ShapeObject* _shape)
+{
+    _window.clear();
+    _window.draw(*_shape->GetDrawable());
+    _window.display();
 }
 
 void Demo()
@@ -12,10 +21,10 @@ void Demo()
     // Plusieur mode de rendu
     RenderWindow _window(VideoMode({ 200, 200 }), "SFML works!");
 
-    CircleShape _shape(100.f);
+    ShapeObject* _shape = new ShapeObject(100.f);
     Texture _texture;
 
-    TextureManager::GetInstance().Load(&_shape, _texture, "Cow");
+    TextureManager::GetInstance().Load(_shape, "Cow");
 
     while (_window.isOpen())
     {
@@ -27,11 +36,9 @@ void Demo()
             }
         }
 
-        _window.clear();
-        _window.draw(_shape);
-        _window.display();
+        UpdateWindow(_window, _shape);
     }
-
+    delete _shape;
 }
 
 int main()
