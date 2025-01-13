@@ -4,7 +4,7 @@
 class Object
 {
 public:
-	//oui
+	FORCEINLINE virtual Drawable* GetDrawable() const = 0;
 
 public:
 	virtual ~Object() {};
