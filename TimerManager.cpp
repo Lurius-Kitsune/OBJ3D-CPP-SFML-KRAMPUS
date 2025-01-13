@@ -56,3 +56,31 @@ void Timer::Pause()
 {
 	isRunning = false;
 }
+
+TimerManager::TimerManager()
+{
+}
+
+TimerManager::~TimerManager()
+{
+	for (Timer* _timer : allTimers)
+	{
+		delete _timer;
+	}
+}
+
+void TimerManager::Update()
+{
+	for (Timer* _timer : allTimers)
+	{
+
+	}
+}
+
+void TimerManager::Pause()
+{
+	for (Timer* _timer : allTimers)
+	{
+		_timer->Pause();
+	}
+}

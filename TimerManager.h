@@ -40,6 +40,28 @@ public:
 
 class TimerManager : public Singleton<TimerManager>
 {
+	set<Timer*> allTimers;
+
+public:
+	FORCEINLINE set<Timer*> GetAllTimers() const
+	{
+		return allTimers;
+	}
+
+	FORCEINLINE void AddActor(Timer* _timer)
+	{
+		allTimers.insert(_timer);
+	}
+
+public:
+	TimerManager();
+	~TimerManager();
+
+public:
+	void Update();
+	void Pause();
+
+private:
 
 };
 
