@@ -43,6 +43,9 @@
     <Filter Include="Source Files\Manager\Actor">
       <UniqueIdentifier>{ffa3f325-b135-4bbb-9396-a6c018437918}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Manager\Timer">
+      <UniqueIdentifier>{95ee3889-efae-4838-ab7d-081a62975101}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -74,6 +77,9 @@
     </ClCompile>
     <ClCompile Include="TextureManager.cpp">
       <Filter>Source Files\Manager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerManager.cpp">
+      <Filter>Source Files\Manager\Timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="TextureManager.h">
       <Filter>Source Files\Manager\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerManager.h">
+      <Filter>Source Files\Manager\Timer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
