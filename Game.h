@@ -1,5 +1,6 @@
 #pragma once
 #include "Singleton.h"
+#include "Actor.h"
 
 class Game : public Singleton<Game>
 {

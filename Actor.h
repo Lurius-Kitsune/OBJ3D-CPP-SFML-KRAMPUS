@@ -9,6 +9,11 @@ class Actor : public Core
 	set<Component*> components;
 
 public:
+	FORCEINLINE ShapeObject* GetShape() const
+	{
+		return shape;
+	}
+
 	FORCEINLINE void SetShape(ShapeObject* _shape)
 	{
 		shape = _shape;
@@ -16,9 +21,13 @@ public:
 
 public:
 	Actor();
+	Actor(const float _radius = 0.0f, const string& _path = "",
+		const size_t& _pointCount = 30, const IntRect& _rect = IntRect());
+	Actor(const Vector2f& _size, const string& _path = "", const IntRect& _rect = IntRect());
 	~Actor();
 
 public:
+	#pragma region Component
 	void AddComponent(Component* _component);
 	void RemoveComponent(Component* _component);
 	template<typename T>
@@ -31,10 +40,13 @@ public:
 
 		return nullptr;
 	}
+	#pragma endregion
 
-protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(const float _deltaTime) override;
 	virtual void BeginDestroy() override;
+
+private: 
+	void Register();
 };
 

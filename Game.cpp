@@ -1,13 +1,18 @@
 #include "Game.h"
-#include "Actor.h"
+#include "ActorManager.h"
+
 
 Game::Game()
 {
 	window = RenderWindow();
+    new Actor(20.0f, "Cow");
+    Actor* _actor = new Actor(50.0f, "Cow");
+    _actor->GetShape()->Move({ 0.0f, 50.0f });
 }
 
 Game::~Game()
 {
+
 }
 
 void Game::Launch()
@@ -18,8 +23,7 @@ void Game::Launch()
 
 void Game::Start()
 {
-    window.create(VideoMode({ 200, 200 }), "SFML works!");
-    Actor* _actor = new Actor();
+    window.create(VideoMode({ 800, 600 }), "SFML works!");
 }
 
 void Game::Update()
@@ -41,7 +45,10 @@ void Game::Update()
 void Game::UpdateWindow()
 {
     window.clear();
-    //_window.draw(*_shape->GetDrawable());
+    for (Actor* _actor : ActorManager::GetInstance().GetAllActors())
+    {
+        window.draw(*_actor->GetShape()->GetDrawable());
+    }
     window.display();
 }
 
