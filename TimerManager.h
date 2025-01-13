@@ -1,13 +1,14 @@
 #pragma once
 #include "Singleton.h"
 
+template<class ReturnType, typename ...Args>
 class Timer
 {
 	float currentTime;
 	double duration;
 	bool isRunning;
 	bool isLoop;
-	function<void()> callback;
+	function<ReturnType(Args...)> callback;
 
 public:
 	FORCEINLINE bool IsRunning() const
@@ -26,7 +27,7 @@ public:
 	}
 
 public:
-	Timer(const function<void()>& _callback, const Time& _time, const bool _startRunning = false,
+	Timer(const function<ReturnType(Args...)>& _callback, const Time& _time, const bool _startRunning = false,
 		const bool _isLoop = false);
 
 public:
@@ -38,17 +39,18 @@ public:
 	void Pause();
 };
 
-class TimerManager : public Singleton<TimerManager>
+template<class ReturnType, typename ...Args>
+class TimerManager : public Singleton<TimerManager< ReturnType, Args...>>
 {
-	set<Timer*> allTimers;
+	set<Timer<ReturnType, Args...>*> allTimers;
 
 public:
-	FORCEINLINE set<Timer*> GetAllTimers() const
+	FORCEINLINE set<Timer< ReturnType, Args...>*> GetAllTimers() const
 	{
 		return allTimers;
 	}
 
-	FORCEINLINE void AddActor(Timer* _timer)
+	FORCEINLINE void AddActor(Timer< ReturnType, Args...>* _timer)
 	{
 		allTimers.insert(_timer);
 	}

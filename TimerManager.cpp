@@ -1,6 +1,7 @@
 #include "TimerManager.h"
 
-Timer::Timer(const function<void()>& _callback, const Time& _time,
+template<class ReturnType, typename ...Args>
+Timer<ReturnType,Args...>::Timer(const function<ReturnType(Args...)>& _callback, const Time& _time,
 	const bool _startRunning, const bool _isLoop)
 {
 	isRunning = _startRunning;
@@ -10,14 +11,15 @@ Timer::Timer(const function<void()>& _callback, const Time& _time,
 	callback = _callback;
 
 }
-
-void Timer::Start()
+template<class ReturnType, typename ...Args>
+void Timer<ReturnType, Args...>::Start()
 {
 	Reset();
 	Resume();
 }
 
-void Timer::Update(const float _deltaTime)
+template<class ReturnType, typename ...Args>
+void Timer<ReturnType, Args...>::Update(const float _deltaTime)
 {
 	if (!isRunning) return;
 	
@@ -38,48 +40,56 @@ void Timer::Update(const float _deltaTime)
 	}
 }
 
-void Timer::Stop()
+template<class ReturnType, typename ...Args>
+void Timer<ReturnType, Args...>::Stop()
 {
 }
 
-void Timer::Resume()
+template<class ReturnType, typename ...Args>
+void Timer<ReturnType, Args...>::Resume()
 {
 	isRunning = true;
 }
 
-void Timer::Reset()
+template<class ReturnType, typename ...Args>
+void Timer<ReturnType, Args...>::Reset()
 {
 	currentTime = 0.0;
 }
 
-void Timer::Pause()
+template<class ReturnType, typename ...Args>
+void Timer<ReturnType, Args...>::Pause()
 {
 	isRunning = false;
 }
 
-TimerManager::TimerManager()
+template<class ReturnType, typename ...Args>
+TimerManager<ReturnType, Args...>::TimerManager()
 {
 }
 
-TimerManager::~TimerManager()
+template<class ReturnType, typename ...Args>
+TimerManager< ReturnType, Args...>::~TimerManager()
 {
-	for (Timer* _timer : allTimers)
+	for (Timer< ReturnType, Args...>* _timer : allTimers)
 	{
 		delete _timer;
 	}
 }
 
-void TimerManager::Update()
+template<class ReturnType, typename ...Args>
+void TimerManager< ReturnType, Args...>::Update()
 {
-	for (Timer* _timer : allTimers)
+	for (Timer< ReturnType, Args...>* _timer : allTimers)
 	{
 
 	}
 }
 
-void TimerManager::Pause()
+template<class ReturnType, typename ...Args>
+void TimerManager< ReturnType, Args...>::Pause()
 {
-	for (Timer* _timer : allTimers)
+	for (Timer< ReturnType, Args...>* _timer : allTimers)
 	{
 		_timer->Pause();
 	}
