@@ -73,7 +73,7 @@ void TimerManager::Update()
 {
 	for (Timer* _timer : allTimers)
 	{
-
+		_timer->Update();
 	}
 }
 
