@@ -13,6 +13,7 @@ public:
 	{
 		shape = _shape;
 	}
+
 public:
 	Actor();
 	~Actor();
@@ -25,11 +26,12 @@ public:
 	{
 		for (Component* _component : components)
 		{
-			if(is_same_v(decltype(_component)), decltype(T))) return _component;
+			if (is_same_v<decltype(_component), T>) return dynamic_cast<T>(_component);
 		}
 
 		return nullptr;
 	}
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(const float _deltaTime) override;

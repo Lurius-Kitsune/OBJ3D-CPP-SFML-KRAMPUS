@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Actor.h"
 
 Game::Game()
 {
@@ -12,12 +13,13 @@ Game::~Game()
 void Game::Launch()
 {
     Start();
+    Update();
 }
 
 void Game::Start()
 {
     window.create(VideoMode({ 200, 200 }), "SFML works!");
-    Update();
+    Actor* _actor = new Actor();
 }
 
 void Game::Update()
