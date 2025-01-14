@@ -9,7 +9,6 @@ using MicroSec = int64_t;
 template <typename DurationType>
 class Timer;
 
-
 template <typename DurationType = MilliSec>
 class TimerManager : public Singleton<TimerManager<DurationType>>
 {
@@ -43,9 +42,9 @@ class TimerManager : public Singleton<TimerManager<DurationType>>
 	map<type_index, DurationType> durations;
 
 private:
-	FORCEINLINE DurationType GetDuration() 
+	FORCEINLINE DurationType GetDuration() const
 	{
-		return durations[typeid(DurationType)];
+		return durations.at(typeid(DurationType));
 	}
 
 public:
@@ -63,9 +62,14 @@ public:
 	{
 		timeScale = _timeScale;
 	}
-	FORCEINLINE DurationType ComputeFPS() 
+	FORCEINLINE DurationType ComputeFPS() const
 	{
 		return GetDuration() / (time - lastFrameTime);
+	}
+
+	FORCEINLINE Time GetDeltaTime()const
+	{
+		return Time(seconds(deltaTime * GetDuration()));
 	}
 
 public:
@@ -107,7 +111,7 @@ public:
 		elapsedTime = time - lastTime;
 		framesCount++;
 
-		if (lastFrameTime == 0 || time - lastFrameTime >= GetDuration() / maxFrameRate)
+		if (lastFrameTime == 0 || time - lastFrameTime >= maxFrameRate )
 		{
 			lastFrameTime = time;
 			Game::GetInstance().UpdateWindow();
