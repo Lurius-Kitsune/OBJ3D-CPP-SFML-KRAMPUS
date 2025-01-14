@@ -119,8 +119,8 @@
     <ClInclude Include="TimerManager.h">
       <Filter>Source Files\Manager\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="Callback.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
