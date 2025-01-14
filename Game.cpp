@@ -2,12 +2,10 @@
 #include "ActorManager.h"
 #include "TimerManager.h"
 
+
 Game::Game()
 {
 	window = RenderWindow();
-    new Actor(20.0f, "Cow");
-    Actor* _actor = new Actor(50.0f, "Cow");
-    _actor->GetShape()->Move({ 0.0f, 50.0f });
 }
 
 Game::~Game()
@@ -24,6 +22,7 @@ void Game::Launch()
 void Game::Start()
 {
     window.create(VideoMode({ 800, 600 }), "SFML works!");
+    
 }
 
 void Game::Update()

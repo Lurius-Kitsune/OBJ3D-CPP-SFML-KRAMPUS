@@ -9,12 +9,14 @@ Actor::Actor()
 Actor::Actor(const float _radius, const string& _path, const size_t& _pointCount, const IntRect& _rect)
 {
 	shape = new ShapeObject(_radius, _path, _pointCount, _rect);
+	shape->SetOrigin(Vector2f(_radius, _radius));
 	Register();
 }
 
 Actor::Actor(const Vector2f& _size, const string& _path, const IntRect& _rect)
 {
 	shape = new ShapeObject(_size, _path, _rect);
+	shape->SetOrigin(_size / 2.0f);
 	Register();
 }
 
@@ -52,7 +54,9 @@ void Actor::Tick(const float _deltaTime)
 
 void Actor::BeginDestroy()
 {
-
+	set<Actor*> _actors = ActorManager::GetInstance().GetAllActors();
+	_actors.erase(this);
+	// delete this TODO
 }
 
 void Actor::Register()

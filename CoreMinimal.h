@@ -8,6 +8,8 @@
 #include <functional>
 #include <typeindex>
 #include <typeinfo>
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 // OLD
 #include <math.h>
@@ -19,6 +21,7 @@
 #include <set>
 #include <list>
 #include <queue>
+#include <random>
 
 /// SFML
 #include <SFML/Graphics.hpp>
@@ -48,3 +51,22 @@ using namespace std;
 typedef unsigned int u_int;
 typedef unsigned short u_short;
 typedef long long l_long;
+
+static int RandomInt(const int _min, const int _max)
+{
+    std::random_device _dev;
+    std::mt19937 _rng(_dev());
+    std::uniform_int_distribution<std::mt19937::result_type> _dist(_min, _max);
+
+    return _dist(_rng);
+}
+
+template<typename ReturnValue>
+static int RandomValue(const ReturnValue _min, const ReturnValue _max)
+{
+    std::random_device _dev;
+    std::mt19937 _rng(_dev());
+    std::uniform_real_distribution<> _dist(_min, _max);
+
+    return _dist(_rng);
+}

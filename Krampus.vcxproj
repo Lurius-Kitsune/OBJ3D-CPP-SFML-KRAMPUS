@@ -151,26 +151,39 @@ xcopy /y /d "..\SFML3.0\bin\sfml-window-d-3.dll" "$(OutDir)"</Command>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="ActorManager.cpp" />
+    <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MoveAroundComponent.cpp" />
+    <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="RotateComponent.cpp" />
     <ClCompile Include="ShapeObject.cpp" />
+    <ClCompile Include="ShapeSpawner.cpp" />
+    <ClCompile Include="SpawnComponent.cpp" />
+    <ClCompile Include="Star.cpp" />
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="TimerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="ActorManager.h" />
+    <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="MoveAroundComponent.h" />
+    <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="RotateComponent.h" />
     <ClInclude Include="ShapeObject.h" />
+    <ClInclude Include="ShapeSpawner.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SpawnComponent.h" />
+    <ClInclude Include="Star.h" />
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TimerManager.h" />
