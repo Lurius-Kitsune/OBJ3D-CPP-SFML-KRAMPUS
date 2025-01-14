@@ -36,12 +36,12 @@ int main()
             _actor->GetShape()->SetPosition({ static_cast<float>(RandomValue<float>(0, 800)), static_cast<float>(RandomValue<float>(0, 600)) });
             _actor->AddComponent(new MovementComponent(_actor));
             _actor->GetShape()->GetDrawable()->setFillColor(Color(RandomInt(0, 255), RandomInt(0, 255), RandomInt(0, 255)));
-        }, Time(milliseconds(200)), {50, 50}, {50, 50});
+        }, Time(milliseconds(500)), {50, 50}, {50, 50});
 
     _shapeSpawner->GetShape()->SetPosition({ -100, -100 });
 
     BlackHole* _blackhole = new BlackHole(50.0f);
-    _blackhole->GetShape()->SetPosition({ 800 / 2, 600 / 2 });
+    _blackhole->GetShape()->SetPosition({ static_cast<float>(RandomValue<float>(0, 800)), static_cast<float>(RandomValue<float>(0, 600)) });
 
     ShapeSpawner* _starSpawner = new ShapeSpawner([&]()
         {
