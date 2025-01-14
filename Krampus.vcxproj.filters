@@ -46,6 +46,27 @@
     <Filter Include="Source Files\Manager\Timer">
       <UniqueIdentifier>{95ee3889-efae-4838-ab7d-081a62975101}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core\Actors\Spawner">
+      <UniqueIdentifier>{0ff51834-e4f2-417e-b214-c9109f45300a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Actors\BlackHole">
+      <UniqueIdentifier>{ef68d6cf-6d86-46e5-a50c-b35edbc275cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Actors\Star">
+      <UniqueIdentifier>{99eed4e3-5f2a-444f-9402-68c07e65671a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Components\Rotation">
+      <UniqueIdentifier>{d61a9600-b774-45b4-bcfe-3b1c173847e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Components\Movement">
+      <UniqueIdentifier>{4d0a9113-69f3-4278-a71d-53700f974c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Components\MoveAround">
+      <UniqueIdentifier>{539bd59a-5c89-4ffc-bca9-e603050c4f49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Components\Spawner">
+      <UniqueIdentifier>{f45d0a02-7ae9-4a03-8bc7-a501767ffec1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -78,8 +99,26 @@
     <ClCompile Include="TextureManager.cpp">
       <Filter>Source Files\Manager\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="TimerManager.cpp">
-      <Filter>Source Files\Manager\Timer</Filter>
+    <ClCompile Include="BlackHole.cpp">
+      <Filter>Source Files\Core\Actors\BlackHole</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeSpawner.cpp">
+      <Filter>Source Files\Core\Actors\Spawner</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Source Files\Core\Components\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveAroundComponent.cpp">
+      <Filter>Source Files\Core\Components\MoveAround</Filter>
+    </ClCompile>
+    <ClCompile Include="RotateComponent.cpp">
+      <Filter>Source Files\Core\Components\Rotation</Filter>
+    </ClCompile>
+    <ClCompile Include="SpawnComponent.cpp">
+      <Filter>Source Files\Core\Components\Spawner</Filter>
+    </ClCompile>
+    <ClCompile Include="Star.cpp">
+      <Filter>Source Files\Core\Actors\Star</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +157,27 @@
     </ClInclude>
     <ClInclude Include="TimerManager.h">
       <Filter>Source Files\Manager\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnComponent.h">
+      <Filter>Source Files\Core\Components\Spawner</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeSpawner.h">
+      <Filter>Source Files\Core\Actors\Spawner</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateComponent.h">
+      <Filter>Source Files\Core\Components\Rotation</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Source Files\Core\Components\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveAroundComponent.h">
+      <Filter>Source Files\Core\Components\MoveAround</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackHole.h">
+      <Filter>Source Files\Core\Actors\BlackHole</Filter>
+    </ClInclude>
+    <ClInclude Include="Star.h">
+      <Filter>Source Files\Core\Actors\Star</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
