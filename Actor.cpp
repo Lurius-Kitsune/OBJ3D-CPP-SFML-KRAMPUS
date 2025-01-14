@@ -54,9 +54,7 @@ void Actor::Tick(const float _deltaTime)
 
 void Actor::BeginDestroy()
 {
-	set<Actor*> _actors = ActorManager::GetInstance().GetAllActors();
-	_actors.erase(this);
-	// delete this TODO
+	shape->ToogleDestroy();
 }
 
 void Actor::Register()

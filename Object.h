@@ -11,6 +11,8 @@ struct TransformData
 
 class Object
 {
+	bool isToDestroy = false;
+
 protected:
 	TransformData transform;
 
@@ -40,6 +42,10 @@ public:
 	{
 		return transform.rotation;
 	}
+	FORCEINLINE  bool IsToDestroy() const
+	{
+		return isToDestroy;
+	}
 	FORCEINLINE virtual Drawable* GetDrawable() const = 0;
     #pragma endregion
 
@@ -63,6 +69,10 @@ public:
 	FORCEINLINE virtual void SetTransformData(const TransformData& _transformeData)
 	{
 		transform = _transformeData;
+	}
+	FORCEINLINE virtual void ToogleDestroy()
+	{
+		isToDestroy = !isToDestroy;
 	}
 	#pragma endregion
 

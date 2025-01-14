@@ -43,19 +43,19 @@ int main()
     BlackHole* _blackhole = new BlackHole(50.0f);
     _blackhole->GetShape()->SetPosition({ 800 / 2, 600 / 2 });
 
-    /*ShapeSpawner* _starSpawner = new ShapeSpawner([&]()
+    ShapeSpawner* _starSpawner = new ShapeSpawner([&]()
         {
             Star* _actor = new Star(10.0f);
             _actor->GetShape()->SetPosition({ static_cast<float>(RandomValue<float>(0, 800)), static_cast<float>(RandomValue<float>(0, 600)) });
             _actor->AddComponent(new MoveAroundComponent(_actor, _blackhole));
             _actor->GetShape()->GetDrawable()->setFillColor(Color(RandomInt(0, 255), RandomInt(0, 255), RandomInt(0, 255)));
-        }, Time(milliseconds(200)), { 50, 50 }, { 50, 50 });*/
+        }, Time(milliseconds(200)), { 50, 50 }, { 50, 50 });
 
 
-    Star* _actor = new Star(20.0f);
+    /*Star* _actor = new Star(20.0f);
     _actor->GetShape()->SetPosition({ static_cast<float>(RandomValue<float>(0, 800)), static_cast<float>(RandomValue<float>(0, 600)) });
     _actor->AddComponent(new MoveAroundComponent(_actor, _blackhole));
-    _actor->GetShape()->GetDrawable()->setFillColor(Color(RandomInt(0, 255), RandomInt(0, 255), RandomInt(0, 255)));
+    _actor->GetShape()->GetDrawable()->setFillColor(Color(RandomInt(0, 255), RandomInt(0, 255), RandomInt(0, 255)));*/
 
     Game::GetInstance().Launch();
 
