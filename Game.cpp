@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "ActorManager.h"
-
+#include "TimerManager.h"
 
 Game::Game()
 {
@@ -30,6 +30,9 @@ void Game::Update()
 {
 	while (window.isOpen())
 	{
+        TM_Milli& _timer = TM_Milli::GetInstance();
+        _timer.Update();
+
         while (const std::optional _event = window.pollEvent())
         {
             if (_event->is<Event::Closed>())
@@ -37,7 +40,8 @@ void Game::Update()
                 Stop();
             }
         }
-
+        const float _deltaTime = _timer.GetDeltaTime().asSeconds();
+        ActorManager::GetInstance().Tick(_deltaTime);
         UpdateWindow();
 	}
 }
