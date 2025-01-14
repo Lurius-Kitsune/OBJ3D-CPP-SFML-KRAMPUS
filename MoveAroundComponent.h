@@ -9,7 +9,7 @@ class MoveAroundComponent : public Component
 	float radiants;
 	float radius;
 
-public:
+public: 
 	MoveAroundComponent(Actor* _actor, Actor* _objectToMoveAround, const float _speed = 1.0f);
 
 public:

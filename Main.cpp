@@ -12,12 +12,6 @@ void InitConfig()
 
 }
 
-bool Test(const int _index)
-{
-    cout << "coucou x"<< _index << endl;
-    return _index % 2 == 0;
-}
-
 int main()
 {
     InitConfig();
