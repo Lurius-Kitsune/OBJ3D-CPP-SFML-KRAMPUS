@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "ActorManager.h"
-
+#include "TimerManager.h"
 
 Game::Game()
 {
@@ -37,7 +37,7 @@ void Game::Update()
                 Stop();
             }
         }
-
+        TM_Seconds::GetInstance().Update();
         UpdateWindow();
 	}
 }

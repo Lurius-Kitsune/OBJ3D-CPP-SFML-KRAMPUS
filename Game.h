@@ -12,11 +12,11 @@ public:
 
 public:
 	void Launch();
+	void UpdateWindow();
 
 private:
 	void Start();
 	void Update();
-	void UpdateWindow();
 	void Stop();
 };
 

@@ -8,7 +8,7 @@ Timer::Timer(const function<void()>& _callback, const Time& _time,
 	currentTime = 0.0;
 	duration = _time.asMilliseconds();
 	callback = _callback;
-
+	TM_Seconds::GetInstance().AddTimer(this);
 }
 
 void Timer::Start()
@@ -57,30 +57,3 @@ void Timer::Pause()
 	isRunning = false;
 }
 
-TimerManager::TimerManager()
-{
-}
-
-TimerManager::~TimerManager()
-{
-	for (Timer* _timer : allTimers)
-	{
-		delete _timer;
-	}
-}
-
-void TimerManager::Update()
-{
-	for (Timer* _timer : allTimers)
-	{
-		_timer->Update();
-	}
-}
-
-void TimerManager::Pause()
-{
-	for (Timer* _timer : allTimers)
-	{
-		_timer->Pause();
-	}
-}
