@@ -3,18 +3,19 @@
 #include "Game.h"
 
 using Seconds = float;
-using Milli = int32_t;
-using Micro = int64_t;
+using MilliSec = int32_t;
+using MicroSec = int64_t;
 
 template <typename DurationType>
 class Timer;
 
 
-template <typename DurationType = Milli>
+template <typename DurationType = MilliSec>
 class TimerManager : public Singleton<TimerManager<DurationType>>
 {
 
 	using T = Timer<DurationType>;
+	friend T;
 
 	// Objet qui contient toutes les données de temps
 	Clock clock;
@@ -84,9 +85,9 @@ public:
 
 		durations =
 		{
-			{typeid(float), 1},
-			{typeid(int32_t), 1000},
-			{typeid(int64_t), 1000000},
+			{typeid(Seconds), 1},
+			{typeid(MilliSec), 1000},
+			{typeid(MicroSec), 1000000},
 		};
 	}
 	~TimerManager()
@@ -102,9 +103,7 @@ public:
 	{
 		lastTime = time;
 
-
-
-		time = clock.getElapsedTime().asMilliseconds();
+		time = GetTime(clock.getElapsedTime());
 		elapsedTime = time - lastTime;
 		framesCount++;
 
@@ -128,14 +127,25 @@ public:
 	}
 
 private:
+	FORCEINLINE DurationType GetTime(const Time& _time)
+	{
+		map<type_index, function<DurationType()>> _durationCallback =
+		{
+			{typeid(Seconds), [&]() { return _time.asSeconds(); }},
+			{typeid(MilliSec), [&]() { return _time.asMilliseconds(); }},
+			{typeid(MicroSec), [&]() { return _time.asMicroseconds(); }}
+		
+		};
+		return _durationCallback[typeid(DurationType)]();
+	}
 
 };
 
 using TM_Seconds = TimerManager<Seconds>;
-using TM_Milli = TimerManager<Milli>;
-using TM_Micro = TimerManager<Micro>;
+using TM_Milli = TimerManager<MilliSec>;
+using TM_Micro = TimerManager<MicroSec>;
 
-template <typename DurationType = Milli>
+template <typename DurationType = MilliSec>
 class Timer
 {
 	DurationType currentTime;
@@ -167,7 +177,7 @@ public:
 		isRunning = _startRunning;
 		isLoop = _isLoop;
 		currentTime = 0.0;
-		duration = _time.asMilliseconds();
+		duration = TimerManager<DurationType>::GetInstance().GetTime(_time);
 		callback = _callback;
 		TimerManager<DurationType>::GetInstance().AddTimer(this);
 	}
@@ -213,4 +223,5 @@ public:
 	{
 		isRunning = false;
 	}
+
 };
