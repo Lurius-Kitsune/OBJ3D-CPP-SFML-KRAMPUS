@@ -127,7 +127,7 @@ public:
 	}
 
 private:
-	FORCEINLINE DurationType GetTime(const Time& _time)
+	FORCEINLINE DurationType GetTime(const Time& _time) const
 	{
 		map<type_index, function<DurationType()>> _durationCallback =
 		{
