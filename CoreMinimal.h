@@ -6,6 +6,8 @@
 #include <string>
 #include <fstream>
 #include <functional>
+#include <typeindex>
+#include <typeinfo>
 
 // OLD
 #include <math.h>

@@ -2,46 +2,20 @@
 #include "Singleton.h"
 #include "Game.h"
 
-class Timer
-{
-	float currentTime;
-	double duration;
-	bool isRunning;
-	bool isLoop;
-	function<void()> callback;
+using Seconds = float;
+using Milli = int32_t;
+using Micro = int64_t;
 
-public:
-	FORCEINLINE bool IsRunning() const
-	{
-		return isRunning;
-	}
+template <typename DurationType>
+class Timer;
 
-	FORCEINLINE bool IsLoop() const
-	{
-		return isLoop;
-	}
 
-	FORCEINLINE double GetCurrentTime() const
-	{
-		return currentTime;
-	}
-
-public:
-	Timer(const function<void()>& _callback, const Time& _time, const bool _startRunning = false,
-		const bool _isLoop = false);
-
-public:
-	void Start();
-	void Update(const float _deltaTime);
-	void Stop();
-	void Resume();
-	void Reset();
-	void Pause();
-};
-
-template <typename DurationType = int32_t>
+template <typename DurationType = Milli>
 class TimerManager : public Singleton<TimerManager<DurationType>>
 {
+
+	using T = Timer<DurationType>;
+
 	// Objet qui contient toutes les données de temps
 	Clock clock;
 	// Temps en miliseconde depuis le début du prog
@@ -63,15 +37,23 @@ class TimerManager : public Singleton<TimerManager<DurationType>>
 	// Nombre d'image rendu par seconde
 	DurationType fps;
 	// Collection de tous les time existant
-	set<Timer*> allTimers;
+	set<T*> allTimers;
+
+	map<type_index, DurationType> durations;
+
+private:
+	FORCEINLINE DurationType GetDuration() 
+	{
+		return durations[typeid(DurationType)];
+	}
 
 public:
-	FORCEINLINE set<Timer*> GetAllTimers() const
+	FORCEINLINE set<T*> GetAllTimers() const
 	{
 		return allTimers;
 	}
 
-	FORCEINLINE void AddTimer(Timer* _timer)
+	FORCEINLINE void AddTimer(T* _timer)
 	{
 		allTimers.insert(_timer);
 	}
@@ -80,9 +62,9 @@ public:
 	{
 		timeScale = _timeScale;
 	}
-	FORCEINLINE void ComputeFPS() const
+	FORCEINLINE DurationType ComputeFPS() 
 	{
-		return 1000.0f / (time - lastFrameTime);
+		return GetDuration() / (time - lastFrameTime);
 	}
 
 public:
@@ -91,17 +73,25 @@ public:
 		clock = Clock();
 		time = DurationType();
 		lastTime = DurationType();
+		lastFrameTime = DurationType();
 		elapsedTime = DurationType();
 		deltaTime = DurationType();
 		timeScale = DurationType();
 		framesCount = 0;
 		maxFrameRate = 50;
 		fps = DurationType();
-		allTimers = set<Timer*>();
+		allTimers = set<T*>();
+
+		durations =
+		{
+			{typeid(float), 1},
+			{typeid(int32_t), 1000},
+			{typeid(int64_t), 1000000},
+		};
 	}
 	~TimerManager()
 	{
-		for (Timer* _timer : allTimers)
+		for (T* _timer : allTimers)
 		{
 			delete _timer;
 		}
@@ -111,24 +101,27 @@ public:
 	void Update()
 	{
 		lastTime = time;
+
+
+
 		time = clock.getElapsedTime().asMilliseconds();
 		elapsedTime = time - lastTime;
 		framesCount++;
 
-		if (lastFrameTime == 0 || time - lastFrameTime >= 1000.f / maxFrameRate)
+		if (lastFrameTime == 0 || time - lastFrameTime >= GetDuration() / maxFrameRate)
 		{
 			lastFrameTime = time;
 			Game::GetInstance().UpdateWindow();
 		}
 
-		for (Timer* _timer : allTimers)
+		for (T* _timer : allTimers)
 		{
-			_timer->Update(1.0f);
+			_timer->Update(deltaTime);
 		}
 	}
 	void Pause()
 	{
-		for (Timer* _timer : allTimers)
+		for (T* _timer : allTimers)
 		{
 			_timer->Pause();
 		}
@@ -137,5 +130,87 @@ public:
 private:
 
 };
-using TM_Seconds = TimerManager<int32_t>;
 
+using TM_Seconds = TimerManager<Seconds>;
+using TM_Milli = TimerManager<Milli>;
+using TM_Micro = TimerManager<Micro>;
+
+template <typename DurationType = Milli>
+class Timer
+{
+	DurationType currentTime;
+	DurationType duration;
+	bool isRunning;
+	bool isLoop;
+	function<void()> callback;
+
+public:
+	FORCEINLINE bool IsRunning() const
+	{
+		return isRunning;
+	}
+
+	FORCEINLINE bool IsLoop() const
+	{
+		return isLoop;
+	}
+
+	FORCEINLINE DurationType GetCurrentTime() const
+	{
+		return currentTime;
+	}
+
+public:
+	Timer(const function<void()>& _callback, const Time& _time, const bool _startRunning = false,
+		const bool _isLoop = false)
+	{
+		isRunning = _startRunning;
+		isLoop = _isLoop;
+		currentTime = 0.0;
+		duration = _time.asMilliseconds();
+		callback = _callback;
+		TimerManager<DurationType>::GetInstance().AddTimer(this);
+	}
+
+public:
+	void Start()
+	{
+		Reset();
+		Resume();
+	}
+	void Update(const float _deltaTime)
+	{
+		if (!isRunning) return;
+
+		currentTime += _deltaTime;
+		if (currentTime >= duration)
+		{
+			if (callback)
+			{
+				callback();
+			}
+
+			if (!isLoop)
+			{
+				Stop();
+			}
+
+			Reset();
+		}
+	}
+	void Stop()
+	{
+	}
+	void Resume()
+	{
+		isRunning = true;
+	}
+	void Reset()
+	{
+		currentTime = 0.0;
+	}
+	void Pause()
+	{
+		isRunning = false;
+	}
+};
