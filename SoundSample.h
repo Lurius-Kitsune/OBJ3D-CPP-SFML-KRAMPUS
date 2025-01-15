@@ -3,13 +3,19 @@
 
 class SoundSample
 {
+	float volume;
 	Sound* sound;
 	SoundBuffer buffer;
+	string path;
 
 public:
+	FORCEINLINE void SetMuteStatus(const bool _isMuted)
+	{
+		UpdateVolume(_isMuted ? 0.0f : volume);
+	}
 	FORCEINLINE void SetVolume(const float _volume)
 	{
-		sound->setVolume(_volume);
+		UpdateVolume(volume = _volume);
 	}
 	FORCEINLINE void SetLoop(const bool _isLoop)
 	{
@@ -19,11 +25,21 @@ public:
 	{
 		sound->setPitch(_pitch);
 	}
-	FORCEINLINE float GetVolume()
+
+	FORCEINLINE float GetVolume()const
 	{
-		sound->getVolume();
+		return sound->getVolume();
+	}
+	FORCEINLINE string GetPath()const
+	{
+		return path;
 	}
 
+private:
+	FORCEINLINE void UpdateVolume(const float _volume)
+	{
+		sound->setVolume(_volume);
+	}
 public:
 	SoundSample(const string& _path);
 	~SoundSample();

@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "ActorManager.h"
+#include "SoundManager.h"
 #include "TimerManager.h"
 #include "SoundSample.h"
 
@@ -35,6 +36,7 @@ void Game::Launch()
 void Game::Start()
 {
     window.create(VideoMode({ 800, 600 }), "SFML works!");
+    SoundManager::GetInstance().PlaySound("");
 }
 
 void Game::Update()

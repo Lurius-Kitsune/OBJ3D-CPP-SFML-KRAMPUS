@@ -8,6 +8,8 @@ SoundSample::SoundSample(const string& _path)
 		LOG(Error, "Cannot open sound with path : \'" + _finalPath + "\'");
 		return;
 	}
+	path = _path;
+	volume = GetVolume();
 	sound = new Sound(buffer);
 }
 
