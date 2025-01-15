@@ -46,6 +46,15 @@
     <Filter Include="Source Files\Manager\Timer">
       <UniqueIdentifier>{95ee3889-efae-4838-ab7d-081a62975101}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Manager\Sound">
+      <UniqueIdentifier>{53ffcc76-5513-49aa-9557-a9e2378bd61c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Manager\Music">
+      <UniqueIdentifier>{b73ca388-3cc7-4438-b3b3-9423849b146c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Manager\Sound\SoundSample">
+      <UniqueIdentifier>{e0b61ec3-ef64-4280-b4fa-9f9b27106a5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -80,6 +89,15 @@
     </ClCompile>
     <ClCompile Include="TimerManager.cpp">
       <Filter>Source Files\Manager\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Source Files\Manager\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundSample.cpp">
+      <Filter>Source Files\Manager\Sound\SoundSample</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +136,18 @@
     </ClInclude>
     <ClInclude Include="TimerManager.h">
       <Filter>Source Files\Manager\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSample.h">
+      <Filter>Source Files\Manager\Sound\SoundSample</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Source Files\Manager\Sound</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
