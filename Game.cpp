@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "ActorManager.h"
 #include "TimerManager.h"
+#include "SoundSample.h"
 
 
 Game::Game()
@@ -38,6 +39,8 @@ void Game::Start()
 
 void Game::Update()
 {
+    SoundSample _sound = SoundSample("issous.wav");
+    _sound.Play();
 	while (window.isOpen())
 	{
         TM_Milli& _timer = TM_Milli::GetInstance();
