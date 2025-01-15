@@ -4,6 +4,8 @@
 //#include "TimerManager.h"
 #include <vector>
 #include <set>
+#include <ctime>
+#include <string>
 
 #define DEBUG_FILE
 
@@ -64,7 +66,7 @@ public:
     __forceinline string GetFullText(const bool _useColor = true, const bool _useTime = false) const
     {
         const string& _color = _useColor ? color : "";
-        const string& _time = _useTime ? "<" __TIME__ ">" : "";
+        const string& _time = _useTime ? "<" + GetCurrentTime() + ">" : "";
         string _fullText = _time  + GetPrefix(_useColor)  + _color + text + RESET;
         if (USE_DEBUG || useDebug)
         {
@@ -135,6 +137,22 @@ private:
         };
         useDebug = _debugableVerbosity.find(_type) != _debugableVerbosity.end();
     }
+
+    string GetCurrentTime() const
+    {
+        // current date/time based on current system
+        time_t _now = time(0);
+
+        tm _ltm;
+        localtime_s(&_ltm, &_now);
+
+		string _date = to_string(_ltm.tm_mday) + "/" + to_string(1 + _ltm.tm_mon) + "/" + to_string(1900 + _ltm.tm_year);
+		string _time = to_string(_ltm.tm_hour) + ":" + to_string(_ltm.tm_min) + ":" + to_string(_ltm.tm_sec);
+
+		return _date + "-" + _time;
+    }
+
+
 };
 
 class Logger
