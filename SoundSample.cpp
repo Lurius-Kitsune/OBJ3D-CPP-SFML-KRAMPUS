@@ -1,4 +1,5 @@
 #include "SoundSample.h"
+#include "SoundManager.h"
 
 SoundSample::SoundSample(const string& _path)
 {
@@ -11,6 +12,7 @@ SoundSample::SoundSample(const string& _path)
 	path = _path;
 	sound = new Sound(buffer);
 	volume = GetVolume();
+	SoundManager::GetInstance().RegisterSample(this);
 }
 
 SoundSample::~SoundSample()
@@ -24,6 +26,7 @@ void SoundSample::Play(const Time& _time)
 	{
 		Stop();
 	}
+	SetVolume(volume);
 	sound->setPlayingOffset(_time);
 	sound->play();
 }

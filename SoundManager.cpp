@@ -15,26 +15,28 @@ SoundManager::~SoundManager()
 	}
 }
 
-void SoundManager::PlaySound(const string& _path)
+void SoundManager::PlaySound(const string& _path, const ExtensionType& _type)
 {
-	if (allSamples.find(_path) == allSamples.end())
+
+	const string& _finalPath = prefixPath + _path + GetExtension(_type);
+
+	using Iterator = multimap<string, SoundSample*>::iterator;
+
+	const pair<Iterator, Iterator>& _activeSample = allSamples.equal_range(_path);
+	SoundSample* _sample;
+	for (Iterator _iterator = _activeSample.first; _iterator != _activeSample.second; ++_iterator)
 	{
-		LOG(Warning, "No sound named '" + _path + "' exist.");
-		return;
-	}
-	for (pair<string, SoundSample*> _samplePair : allSamples)
-	{
-		if (_samplePair.first == _path)
+		_sample = _iterator->second;
+		if (_sample->IsVailable())
 		{
-			SoundSample* _sample = _samplePair.second;
-			if (_sample->GetStatus())
-			{
-				_sample->SetMuteStatus(isMuted);
-				_sample->Play();
-				break;
-			}
+			_sample->SetMuteStatus(isMuted);
+			_sample->Play();
+			return;
 		}
 	}
+
+	_sample = new SoundSample(_finalPath);
+	_sample->Play();
 }
 
 void SoundManager::ToogleMute()

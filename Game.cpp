@@ -36,13 +36,11 @@ void Game::Launch()
 void Game::Start()
 {
     window.create(VideoMode({ 800, 600 }), "SFML works!");
-    SoundManager::GetInstance().PlaySound("");
+    SoundManager::GetInstance().PlaySound("issous", WAV);
 }
 
 void Game::Update()
 {
-    SoundSample _sound = SoundSample("openDoor.wav");
-    _sound.Play();
 	while (window.isOpen())
 	{
         TM_Milli& _timer = TM_Milli::GetInstance();
