@@ -21,6 +21,7 @@ void Logger::PrintLog(const VerbosityType& _type,const string& _text, const stri
 
 void Logger::WriteInLogs(const string& _text)
 {
+
 }
 
 void Logger::WriteInConsole(const string& _text)

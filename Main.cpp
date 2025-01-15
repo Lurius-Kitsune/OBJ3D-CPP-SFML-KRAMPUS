@@ -4,6 +4,8 @@
 #include "ShapeObject.h"
 #include "Game.h"
 
+
+
 void InitConfig()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // Detection de fuite de mémoire
@@ -23,7 +25,7 @@ int main()
     if (Test(++_index)) cout << "BOB" << endl;
     }, Time(seconds(2.0f)), true, true);
 
-    Game::GetInstance().Launch();
+    GAME.Launch();
 
     return EXIT_SUCCESS;
 }

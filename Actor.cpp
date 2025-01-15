@@ -1,6 +1,8 @@
 #include "Actor.h"
 #include "ActorManager.h"
 
+
+
 Actor::Actor()
 {
 	Register();
@@ -57,5 +59,5 @@ void Actor::BeginDestroy()
 
 void Actor::Register()
 {
-	ActorManager::GetInstance().AddActor(this);
+	ACTORMANAGER.AddActor(this);
 }

@@ -33,9 +33,9 @@ public:
 		isRunning = _startRunning;
 		isLoop = _isLoop;
 		currentTime = 0.0;
-		duration = TimerManager<DurationType>::GetInstance().GetTime(_time);
+		duration = TIMERMANAGER.GetTime(_time);
 		callback = _callback;
-		TimerManager<DurationType>::GetInstance().AddTimer(this);
+		TIMERMANAGER.AddTimer(this);
 	}
 
 public:

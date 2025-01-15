@@ -4,7 +4,6 @@
 #include "TimerManager.h"
 #include "SoundSample.h"
 
-
 Game::Game()
 {
     window = RenderWindow();
@@ -20,7 +19,7 @@ Game::~Game()
 
 void Game::Launch()
 {
-    TM_Milli& _timer = TM_Milli::GetInstance();
+    TM_Milli& _timer = TM_MILLI;
     const float _deltaTime = _timer.GetDeltaTime().asSeconds();
     LOG(VeryVerbose, "DeltaTime => " + to_string(_deltaTime));
     LOG(Verbose, "DeltaTime => " + to_string(_deltaTime));
@@ -36,14 +35,14 @@ void Game::Launch()
 void Game::Start()
 {
     window.create(VideoMode({ 800, 600 }), "SFML works!");
-    SoundManager::GetInstance().PlaySound("metalPipe", WAV);
+    SOUNDMANAGER.PlaySound("metalPipe", WAV);
 }
 
 void Game::Update()
 {
 	while (window.isOpen())
 	{
-        TM_Seconds& _timer = TM_Seconds::GetInstance();
+        TM_Seconds& _timer = TM_SECONDS;
         _timer.Update();
         while (const std::optional _event = window.pollEvent())
         {
@@ -54,7 +53,7 @@ void Game::Update()
         }
         const float _deltaTime = _timer.GetDeltaTime().asSeconds();
         LOG(Display, "DeltaTime => " + to_string(_deltaTime));
-        ActorManager::GetInstance().Tick(_deltaTime);
+        ACTORMANAGER.Tick(_deltaTime);
         UpdateWindow();
 	}
 }
@@ -62,7 +61,7 @@ void Game::Update()
 void Game::UpdateWindow()
 {
     window.clear();
-    for (Actor* _actor : ActorManager::GetInstance().GetAllActors())
+    for (Actor* _actor : ACTORMANAGER.GetAllActors())
     {
         window.draw(*_actor->GetShape()->GetDrawable());
     }
