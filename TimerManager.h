@@ -9,10 +9,9 @@ using MicroSec = int64_t;
 template <typename DurationType>
 class Timer;
 
-template <typename DurationType = MilliSec>
+template <typename DurationType = Seconds>
 class TimerManager : public Singleton<TimerManager<DurationType>>
 {
-
 	using T = Timer<DurationType>;
 	friend T;
 
@@ -56,6 +55,12 @@ public:
 	FORCEINLINE void AddTimer(T* _timer)
 	{
 		allTimers.insert(_timer);
+	}
+
+	FORCEINLINE void RemoveTimer(T* _timer)
+	{
+		allTimers.erase(_timer);
+		delete _timer;
 	}
 
 	FORCEINLINE void SetTimerScale(const DurationType& _timeScale)
@@ -119,9 +124,18 @@ public:
 			Game::GetInstance().UpdateWindow();
 		}
 
-		for (T* _timer : allTimers)
+		using Iterator = set<Timer<Seconds>*>::iterator;
+		for (Iterator _iterator = allTimers.begin(); _iterator != allTimers.end();)
 		{
+			T* _timer = *_iterator;
 			_timer->Update(deltaTime);
+			if (_timer->IsToDelete())
+			{
+				RemoveTimer(_timer);
+				_iterator--;
+				continue;
+			}
+			_iterator++;
 		}
 	}
 	void Pause()
@@ -129,6 +143,22 @@ public:
 		for (T* _timer : allTimers)
 		{
 			_timer->Pause();
+		}
+	}
+
+	void Resume()
+	{
+		for (T* _timer : allTimers)
+		{
+			_timer->Resume();
+		}
+	}
+
+	void Stop()
+	{
+		for (T* _timer : allTimers)
+		{
+			_timer->Stop();
 		}
 	}
 
@@ -151,14 +181,16 @@ using TM_Seconds = TimerManager<Seconds>;
 using TM_Milli = TimerManager<MilliSec>;
 using TM_Micro = TimerManager<MicroSec>;
 
-template <typename DurationType = MilliSec>
+template <typename DurationType = Seconds>
 class Timer
 {
+	using TM = TimerManager<DurationType>;
 	DurationType currentTime;
 	DurationType duration;
 	bool isRunning;
 	bool isLoop;
 	function<void()> callback;
+	bool isToDelete;
 
 public:
 	FORCEINLINE bool IsRunning() const
@@ -176,6 +208,10 @@ public:
 		return currentTime;
 	}
 
+	FORCEINLINE bool IsToDelete()const
+	{
+		return isToDelete;
+	}
 public:
 	Timer(const function<void()>& _callback, const Time& _time, const bool _startRunning = false,
 		const bool _isLoop = false)
@@ -186,6 +222,7 @@ public:
 		duration = TimerManager<DurationType>::GetInstance().GetTime(_time);
 		callback = _callback;
 		TimerManager<DurationType>::GetInstance().AddTimer(this);
+		isToDelete = false;
 	}
 
 public:
@@ -216,6 +253,8 @@ public:
 	}
 	void Stop()
 	{
+		TM::GetInstance().RemoveTimer(this);
+		isToDelete = true;
 	}
 	void Resume()
 	{
