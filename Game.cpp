@@ -7,8 +7,10 @@
 Game::Game()
 {
 	window = RenderWindow();
-    new Actor(20.0f, "Cow");
     Actor* _actor = new Actor(50.0f, "Cow");
+    _actor->GetShape()->SetOrigin({ 50.0f / 2, 50.0f / 2 });
+    _actor->GetShape()->SetPosition({ 800/2, 600/2 });
+    _actor->GetShape()->Rotate(radians(1.0));
     _actor->GetShape()->Move({ 0.0f, 50.0f });
 }
 
@@ -39,7 +41,7 @@ void Game::Start()
 
 void Game::Update()
 {
-    SoundSample _sound = SoundSample("issous.wav");
+    SoundSample _sound = SoundSample("openDoor.wav");
     _sound.Play();
 	while (window.isOpen())
 	{
