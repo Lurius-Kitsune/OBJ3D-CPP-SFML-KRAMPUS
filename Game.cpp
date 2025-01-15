@@ -36,16 +36,15 @@ void Game::Launch()
 void Game::Start()
 {
     window.create(VideoMode({ 800, 600 }), "SFML works!");
-    SoundManager::GetInstance().PlaySound("metalPipe", WAV);
+    //SoundManager::GetInstance().PlaySound("metalPipe", WAV);
 }
 
 void Game::Update()
 {
 	while (window.isOpen())
 	{
-        TM_Milli& _timer = TM_Milli::GetInstance();
+        TM_Seconds& _timer = TM_Seconds::GetInstance();
         _timer.Update();
-
         while (const std::optional _event = window.pollEvent())
         {
             if (_event->is<Event::Closed>())
@@ -54,6 +53,7 @@ void Game::Update()
             }
         }
         const float _deltaTime = _timer.GetDeltaTime().asSeconds();
+        LOG(Display, "DeltaTime => " + to_string(_deltaTime));
         ActorManager::GetInstance().Tick(_deltaTime);
         UpdateWindow();
 	}

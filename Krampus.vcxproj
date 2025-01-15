@@ -162,7 +162,6 @@ xcopy /y /d "..\SFML3.0\bin\sfml-window-d-3.dll" "$(OutDir)"</Command>
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="TimerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
