@@ -15,7 +15,7 @@ SoundManager::~SoundManager()
 	}
 }
 
-void SoundManager::PlaySound(const string& _path, const ExtensionType& _type)
+SoundSample* SoundManager::PlaySound(const string& _path, const ExtensionType& _type)
 {
 
 	const string& _finalPath = prefixPath + _path + GetExtension(_type);
@@ -31,12 +31,13 @@ void SoundManager::PlaySound(const string& _path, const ExtensionType& _type)
 		{
 			_sample->SetMuteStatus(isMuted);
 			_sample->Play();
-			return;
+			return _sample;
 		}
 	}
 
 	_sample = new SoundSample(_finalPath);
 	_sample->Play();
+	return _sample;
 }
 
 void SoundManager::ToogleMute()

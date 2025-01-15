@@ -30,7 +30,7 @@ public:
 	~SoundManager();
 
 public:
-	void PlaySound(const string& _path, const ExtensionType& _type);
+	SoundSample* PlaySound(const string& _path, const ExtensionType& _type);
 	void ToogleMute();
 };
 
