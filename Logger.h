@@ -4,10 +4,24 @@
 #include <vector>
 #include <set>
 
+#define DEBUG_FILE
+
+#ifdef DEBUG_FILE
+#define PATH __FILE__
+#else
+#define PATH __FUNCTION__
+#endif
+
+#ifdef DEBUG
+#define USE_DEBUG 1
+#else
+#define USE_DEBUG 0
+#endif
+
 #define WRITE_IN_LOG(_verbosity) _type >= Log
 #define WRITE_IN_CONSOLE(_verbosity) _type > Log
 
-#define DEBUG_INFO  WHITE" => (" + string(__FILENAME__)  +  " | " + to_string(__LINE__) + ")"
+#define DEBUG_INFO  WHITE" => (" + string(PATH)  +  " | " + to_string(__LINE__) + ")"
 #define LOG(_verbosity, _msg) Logger::PrintLog(_verbosity, _msg, DEBUG_INFO)
 
 
@@ -26,11 +40,6 @@ enum VerbosityType
     VT_COUNT
 };
 
-#ifdef DEBUG
-    #define USE_DEBUG 1
-#else
-    #define USE_DEBUG 0
-#endif
 
 class VerbosityData
 {
@@ -40,16 +49,28 @@ class VerbosityData
     string debug;
     bool useDebug;
 
+private:
+    __forceinline string GetPrefix(const bool _useColor) const
+    {
+        string _prefix = prefix;
+        if (_useColor)
+        {
+            _prefix = RESET "[" + color + prefix + RESET + "]";
+        }
+        return _prefix;
+    }
 public:
-    __forceinline string GetFullText(const bool _useColor = true) const
+    __forceinline string GetFullText(const bool _useColor = true, const bool _useTime = false) const
     {
         const string& _color = _useColor ? color : "";
-        string _fullText = _color + "["+ prefix+ "] " + text + RESET;
+        const string& _time = _useTime ? "<" __TIME__ ">" : "";
+        string _fullText = _time  + GetPrefix(_useColor)  + _color + text + RESET;
         if (USE_DEBUG || useDebug)
         {
             _fullText += "\n\t" + debug;
         }
         return _fullText;
+
     }
 public:
     VerbosityData(const VerbosityType& _type, const string& _text,
@@ -90,18 +111,18 @@ private:
             throw exception("Exception => Invalid VerbosityType");
         }
 
-        const vector<string>& _verbosityTexts =
+        const vector<string>& _verbosityColors =
         {
-            "VeryVerbose",
-            "Verbose",
-            "Log",
+            DARK_GRAY,
+            GRAY,
+            WHITE,
             BLUE,
             ORANGE,
             RED,
             BG_YELLOW RED,
         };
 
-        color = _verbosityTexts[_type];
+        color = _verbosityColors[_type];
     }
     void ComputeUseDebug(const VerbosityType& _type)
     {
