@@ -10,6 +10,7 @@
 #include <functional>
 #include <typeindex>
 #include <typeinfo>
+#include "Colors.h"
 
 // OLD
 #include <math.h>
@@ -67,3 +68,4 @@ using namespace std;
 typedef unsigned int u_int;
 typedef unsigned short u_short;
 typedef long long l_long;
+
