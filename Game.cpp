@@ -36,7 +36,7 @@ void Game::Launch()
 void Game::Start()
 {
     window.create(VideoMode({ 800, 600 }), "SFML works!");
-    //SoundManager::GetInstance().PlaySound("metalPipe", WAV);
+    SoundManager::GetInstance().PlaySound("metalPipe", WAV);
 }
 
 void Game::Update()
