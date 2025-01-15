@@ -3,7 +3,7 @@
 #include "SoundSample.h"
 class SoundManager : public Singleton<SoundManager>
 {
-	map<string, SoundSample*> allSamples;
+	multimap<string, SoundSample*> allSamples;
 	bool isMuted;
 	float Volume;
 

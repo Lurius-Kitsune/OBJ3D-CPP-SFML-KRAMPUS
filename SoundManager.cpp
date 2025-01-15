@@ -2,7 +2,7 @@
 
 SoundManager::SoundManager()
 {
-	allSamples = map<string, SoundSample*>();
+	allSamples = multimap<string, SoundSample*>();
 	isMuted = false;
 	Volume = 1.0f;
 }
@@ -22,9 +22,19 @@ void SoundManager::PlaySound(const string& _path)
 		LOG(Warning, "No sound named '" + _path + "' exist.");
 		return;
 	}
-	SoundSample* _sample = allSamples[_path];
-	_sample->SetMuteStatus(isMuted);
-	_sample->Play();
+	for (pair<string, SoundSample*> _samplePair : allSamples)
+	{
+		if (_samplePair.first == _path)
+		{
+			SoundSample* _sample = _samplePair.second;
+			if (_sample->GetStatus())
+			{
+				_sample->SetMuteStatus(isMuted);
+				_sample->Play();
+				break;
+			}
+		}
+	}
 }
 
 void SoundManager::ToogleMute()

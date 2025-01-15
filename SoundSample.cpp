@@ -20,6 +20,10 @@ SoundSample::~SoundSample()
 
 void SoundSample::Play(const Time& _time)
 {
+	if (GetStatus() == SoundStatus::Paused)
+	{
+		Stop();
+	}
 	sound->setPlayingOffset(_time);
 	sound->play();
 }

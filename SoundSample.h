@@ -3,6 +3,8 @@
 
 class SoundSample
 {
+	using SoundStatus = SoundSource::Status;
+
 	float volume;
 	Sound* sound;
 	SoundBuffer buffer;
@@ -26,6 +28,10 @@ public:
 		sound->setPitch(_pitch);
 	}
 
+	FORCEINLINE bool IsVailable()const
+	{
+		return sound->getStatus() != SoundStatus::Playing;
+	}
 	FORCEINLINE float GetVolume()const
 	{
 		return sound->getVolume();
@@ -35,10 +41,16 @@ public:
 		return path;
 	}
 
+
+
 private:
 	FORCEINLINE void UpdateVolume(const float _volume)
 	{
 		sound->setVolume(_volume);
+	}
+	FORCEINLINE SoundStatus GetStatus()const
+	{
+		return sound->getStatus();
 	}
 public:
 	SoundSample(const string& _path);
