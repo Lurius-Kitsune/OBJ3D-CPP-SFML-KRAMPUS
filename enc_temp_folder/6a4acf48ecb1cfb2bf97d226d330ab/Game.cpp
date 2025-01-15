@@ -10,6 +10,7 @@ Game::Game()
     Actor* _actor = new Actor({100.0f, 100.0f }, "Cow");
     _actor->GetShape()->SetOrigin({ 100.0f / 2, 100.0f / 2 });
     _actor->GetShape()->SetPosition({ 800/2, 600/2 });
+    _actor->GetShape()->Rotate(radians(1.0));
     _actor->GetShape()->Move({ 0.0f, 50.0f });
 }
 
