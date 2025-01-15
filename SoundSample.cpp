@@ -9,8 +9,8 @@ SoundSample::SoundSample(const string& _path)
 		return;
 	}
 	path = _path;
-	volume = GetVolume();
 	sound = new Sound(buffer);
+	volume = GetVolume();
 }
 
 SoundSample::~SoundSample()

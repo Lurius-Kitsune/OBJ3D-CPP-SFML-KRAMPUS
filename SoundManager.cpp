@@ -2,6 +2,9 @@
 
 SoundManager::SoundManager()
 {
+	allSamples = map<string, SoundSample*>();
+	isMuted = false;
+	Volume = 1.0f;
 }
 
 SoundManager::~SoundManager()
@@ -16,18 +19,19 @@ void SoundManager::PlaySound(const string& _path)
 {
 	if (allSamples.find(_path) == allSamples.end())
 	{
-		LOG(Warning, "No music named '" + _path + "' exist.");
+		LOG(Warning, "No sound named '" + _path + "' exist.");
 		return;
 	}
-
-	allSamples[_path]->Play();
+	SoundSample* _sample = allSamples[_path];
+	_sample->SetMuteStatus(isMuted);
+	_sample->Play();
 }
 
 void SoundManager::ToogleMute()
 {
 	isMuted = !isMuted;
-	for (SoundSample* _sample : activeSample)
+	for (pair<string, SoundSample*> _samplePair : allSamples)
 	{
-		_sample->SetMuteStatus(isMuted);
+		_samplePair.second->SetMuteStatus(isMuted);
 	}
 }

@@ -4,7 +4,6 @@
 class SoundManager : public Singleton<SoundManager>
 {
 	map<string, SoundSample*> allSamples;
-	vector<SoundSample*> activeSample;
 	bool isMuted;
 	float Volume;
 
