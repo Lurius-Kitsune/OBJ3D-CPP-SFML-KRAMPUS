@@ -34,6 +34,7 @@ void MoveAroundComponent::Move(const float _deltaTime)
 	{
 		owner->BeginDestroy();
 	}
+
 	_owner->GetShape()->SetPosition(_ownerPosition);
 	radius -= 0.01f * speed;
 	radiants += 0.0001f * speed;

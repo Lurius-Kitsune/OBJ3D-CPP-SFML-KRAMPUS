@@ -23,6 +23,11 @@ MeshActor::~MeshActor()
 	M_GAME.UnbindOnRenderWindow(renderMeshToken);
 }
 
+void MeshActor::BeginDestroy()
+{
+	M_GAME.UnbindOnRenderWindow(renderMeshToken);
+}
+
 void MeshActor::RenderMesh(RenderWindow& _window)
 {
 	_window.draw(*mesh->GetShape()->GetDrawable());
