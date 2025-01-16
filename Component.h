@@ -17,6 +17,7 @@ public:
 
 public:
 	Component(Actor* _actor);
+	virtual ~Component() = default;
 public:
 
 	virtual void BeginPlay() override;

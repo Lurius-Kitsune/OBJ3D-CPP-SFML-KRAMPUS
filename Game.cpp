@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "ActorManager.h"
 #include "TriangleActor.h"
-#include "MeshActor.h"
+#include "SquareActor.h"
 #include "CircleActor.h"
 #include "SoundManager.h"
 #include "TimerManager.h"
@@ -11,10 +11,11 @@
 Game::Game()
 {
     window = RenderWindow();
-    MeshActor* _actor = new MeshActor({100.0f, 100.0f }, "");
+    
+    SquareActor* _actor = new SquareActor(100.0f, "");
     TriangleActor* _actor2 = new TriangleActor(100.0f, "");
     _actor->GetShape()->SetOrigin({ 100.0f / 2, 100.0f / 2 });
-    _actor->GetShape()->SetPosition({ 800/2, 600/2 });
+    _actor->GetShape()->SetPosition({ 800 / 2, 600 / 2 });
 }
 
 Game::~Game()
