@@ -70,6 +70,12 @@
     <Filter Include="Source Files\Core\Actors\MeshActor">
       <UniqueIdentifier>{05ab3ff8-4e55-4095-a5b9-88eedd13bc73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core\Actors\CircleActor">
+      <UniqueIdentifier>{4e47275b-9074-4dbb-a2fb-7faa4d1f9bde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Actors\TriangleActor">
+      <UniqueIdentifier>{344ee839-b4c7-4cf7-8b8e-7843169e1a45}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -122,6 +128,12 @@
     </ClCompile>
     <ClCompile Include="MeshComponent.cpp">
       <Filter>Source Files\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleActor.cpp">
+      <Filter>Source Files\Core\Actors\CircleActor</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleActor.cpp">
+      <Filter>Source Files\Core\Actors\TriangleActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +199,12 @@
     </ClInclude>
     <ClInclude Include="MeshActor.h">
       <Filter>Source Files\Core\Actors\MeshActor</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleActor.h">
+      <Filter>Source Files\Core\Actors\CircleActor</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleActor.h">
+      <Filter>Source Files\Core\Actors\TriangleActor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

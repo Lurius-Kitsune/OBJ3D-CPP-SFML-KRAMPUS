@@ -1,6 +1,7 @@
 #include "MeshActor.h"
 
-MeshActor::MeshActor(const float _radius, const string& _path, const size_t& _pointCount, const IntRect& _rect)
+MeshActor::MeshActor(const float _radius, const size_t& _pointCount,
+	const string& _path, const IntRect& _rect)
 {
 	mesh = new MeshComponent(this, _radius, _path, _pointCount, _rect);
 	AddComponent(mesh);
