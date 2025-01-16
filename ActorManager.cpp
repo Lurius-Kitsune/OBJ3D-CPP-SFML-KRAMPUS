@@ -22,26 +22,6 @@ void ActorManager::Tick(const float _deltaTime)
 	{
 		_actor->Tick(_deltaTime);
 	}
-
-	GarbageCollector();
-}
-
-void ActorManager::GarbageCollector()
-{
-	vector<Actor*> _actorToDestroy;
-	for (Actor* _actor : allActors)
-	{
-		if (_actor->GetShape()->IsToDestroy())
-		{
-			_actorToDestroy.push_back(_actor);
-		}
-	}
-
-	for (Actor* _actor : _actorToDestroy)
-	{
-		allActors.erase(_actor);
-		delete _actor;
-	}
 }
 
 void ActorManager::BeginDestroy()

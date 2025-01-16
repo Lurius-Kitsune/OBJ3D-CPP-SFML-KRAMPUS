@@ -22,7 +22,6 @@ public:
 public:
 	virtual void BeginPlay() ;
 	virtual void Tick(const float _deltaTime) ;
-	void GarbageCollector();
 	virtual void BeginDestroy() ;
 };
 

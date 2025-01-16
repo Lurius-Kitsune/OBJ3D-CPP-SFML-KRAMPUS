@@ -1,9 +1,9 @@
 #include "RotateComponent.h"
 
-RotateComponent::RotateComponent(Actor* _actor, const float _speed)
+RotateComponent::RotateComponent(MeshActor* _actor, const float _speed)
+	: Component(_actor)
 {
 	speed = _speed;
-	owner = _actor;
 }
 
 void RotateComponent::Tick(const float _deltaTime)
@@ -13,5 +13,6 @@ void RotateComponent::Tick(const float _deltaTime)
 
 void RotateComponent::Rotate(const float _deltaTime)
 {
-	owner->GetShape()->Rotate(degrees(0.1f * speed));
+	MeshActor* _owner = dynamic_cast<MeshActor*>(owner);
+	_owner->GetShape()->Rotate(degrees(0.1f * speed));
 }

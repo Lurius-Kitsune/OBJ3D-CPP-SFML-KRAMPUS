@@ -1,7 +1,23 @@
 #pragma once
 #include "Core.h"
+
+class Actor;
+
 class Component : public Core
 {
+protected:
+	Actor* owner;
+
+public:
+
+	FORCEINLINE Actor* GetOwner()const
+	{
+		return owner;
+	}
+
+public:
+	Component(Actor* _actor);
+	virtual ~Component() = default;
 public:
 
 	virtual void BeginPlay() override;

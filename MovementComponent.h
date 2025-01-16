@@ -1,12 +1,11 @@
 #pragma once
 #include "Component.h"
-#include "Actor.h"
+#include "MeshActor.h"
 class MovementComponent : public Component
 {
-	Actor* owner;
 
 public:
-	MovementComponent(Actor* _actor);
+	MovementComponent(MeshActor* _actor);
 
 public:
 	virtual void Tick(const float _deltaTime) override;

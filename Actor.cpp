@@ -6,23 +6,9 @@ Actor::Actor()
 	Register();
 }
 
-Actor::Actor(const float _radius, const string& _path, const size_t& _pointCount, const IntRect& _rect)
-{
-	shape = new ShapeObject(_radius, _path, _pointCount, _rect);
-	shape->SetOrigin(Vector2f(_radius, _radius));
-	Register();
-}
-
-Actor::Actor(const Vector2f& _size, const string& _path, const IntRect& _rect)
-{
-	shape = new ShapeObject(_size, _path, _rect);
-	shape->SetOrigin(_size / 2.0f);
-	Register();
-}
 
 Actor::~Actor()
 {
-	delete shape;
 	for (Component* _component : components)
 	{
 		delete _component;
@@ -54,10 +40,10 @@ void Actor::Tick(const float _deltaTime)
 
 void Actor::BeginDestroy()
 {
-	shape->ToogleDestroy();
+
 }
 
 void Actor::Register()
 {
-	ActorManager::GetInstance().AddActor(this);
+	M_ACTOR.AddActor(this);
 }

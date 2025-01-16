@@ -9,10 +9,9 @@ using MicroSec = int64_t;
 template <typename DurationType>
 class Timer;
 
-template <typename DurationType = MilliSec>
+template <typename DurationType>
 class TimerManager : public Singleton<TimerManager<DurationType>>
 {
-
 	using T = Timer<DurationType>;
 	friend T;
 
@@ -46,18 +45,34 @@ private:
 	{
 		return durations.at(typeid(DurationType));
 	}
-
 public:
+	FORCEINLINE string GetCurrentRealTime() const
+	{
+		// current date/time based on current system
+		const time_t _now = std::time(0);
+
+		tm _ltm;
+		localtime_s(&_ltm, &_now);
+
+		string _date = to_string(_ltm.tm_mday) + "/" + to_string(1 + _ltm.tm_mon) + "/" + to_string(1900 + _ltm.tm_year);
+		string _time = to_string(_ltm.tm_hour) + ":" + to_string(_ltm.tm_min) + ":" + to_string(_ltm.tm_sec);
+
+		return _date + " " + _time;
+	}
+	
 	FORCEINLINE set<T*> GetAllTimers() const
 	{
 		return allTimers;
 	}
-
 	FORCEINLINE void AddTimer(T* _timer)
 	{
 		allTimers.insert(_timer);
 	}
-
+	FORCEINLINE void RemoveTimer(T* _timer)
+	{
+		allTimers.erase(_timer);
+		delete _timer;
+	}
 	FORCEINLINE void SetTimerScale(const DurationType& _timeScale)
 	{
 		timeScale = _timeScale;
@@ -66,7 +81,6 @@ public:
 	{
 		return GetDuration() / (time - lastFrameTime);
 	}
-
 	FORCEINLINE Time GetDeltaTime()const
 	{
 		return Time(seconds(deltaTime * GetDuration()));
@@ -81,7 +95,7 @@ public:
 		lastFrameTime = DurationType();
 		elapsedTime = DurationType();
 		deltaTime = DurationType();
-		timeScale = 1;
+		timeScale = 1.0f;
 		framesCount = 0;
 		maxFrameRate = 50;
 		fps = DurationType();
@@ -109,6 +123,7 @@ public:
 
 		time = GetTime(clock.getElapsedTime());
 		elapsedTime = time - lastTime;
+
 		deltaTime = elapsedTime * timeScale;
 		framesCount++;
 
@@ -118,9 +133,18 @@ public:
 			Game::GetInstance().UpdateWindow();
 		}
 
-		for (T* _timer : allTimers)
+		using Iterator = set<Timer<Seconds>*>::iterator;
+		for (Iterator _iterator = allTimers.begin(); _iterator != allTimers.end();)
 		{
+			T* _timer = *_iterator;
 			_timer->Update(deltaTime);
+			if (_timer->IsToDelete())
+			{
+				RemoveTimer(_timer);
+				_iterator--;
+				continue;
+			}
+			_iterator++;
 		}
 	}
 	void Pause()
@@ -128,6 +152,22 @@ public:
 		for (T* _timer : allTimers)
 		{
 			_timer->Pause();
+		}
+	}
+
+	void Resume()
+	{
+		for (T* _timer : allTimers)
+		{
+			_timer->Resume();
+		}
+	}
+
+	void Stop()
+	{
+		for (T* _timer : allTimers)
+		{
+			_timer->Stop();
 		}
 	}
 
@@ -150,14 +190,16 @@ using TM_Seconds = TimerManager<Seconds>;
 using TM_Milli = TimerManager<MilliSec>;
 using TM_Micro = TimerManager<MicroSec>;
 
-template <typename DurationType = MilliSec>
+template <typename DurationType>
 class Timer
 {
+	using TM = TimerManager<DurationType>;
 	DurationType currentTime;
 	DurationType duration;
 	bool isRunning;
 	bool isLoop;
 	function<void()> callback;
+	bool isToDelete;
 
 public:
 	FORCEINLINE bool IsRunning() const
@@ -175,6 +217,10 @@ public:
 		return currentTime;
 	}
 
+	FORCEINLINE bool IsToDelete()const
+	{
+		return isToDelete;
+	}
 public:
 	Timer(const function<void()>& _callback, const Time& _time, const bool _startRunning = false,
 		const bool _isLoop = false)
@@ -182,9 +228,10 @@ public:
 		isRunning = _startRunning;
 		isLoop = _isLoop;
 		currentTime = 0.0;
-		duration = TimerManager<DurationType>::GetInstance().GetTime(_time);
+		duration = M_TIMER(DurationType).GetTime(_time);
 		callback = _callback;
-		TimerManager<DurationType>::GetInstance().AddTimer(this);
+		M_TIMER(DurationType).AddTimer(this);
+		isToDelete = false;
 	}
 
 public:
@@ -215,6 +262,8 @@ public:
 	}
 	void Stop()
 	{
+		TM::GetInstance().RemoveTimer(this);
+		isToDelete = true;
 	}
 	void Resume()
 	{

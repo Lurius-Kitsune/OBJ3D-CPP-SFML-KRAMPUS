@@ -19,7 +19,7 @@ void TextureManager::Load(ShapeObject* _shape, const string& _path,
 	Texture& _texture = _shape->GetTexture();
 	if (_path.empty())
 	{
-		cerr << RED "[Error] => Cannot open file with empty path" << RESET << endl;
+		LOG(Error, "Cannot open file with empty path");
 		_texture = GetDefaultTexture();
 		SetTexture(_shape->GetDrawable(), &_texture);
 		return;
@@ -35,7 +35,7 @@ void TextureManager::LoadTexture(Texture& _texture, const string& _path, const I
 	const string& _finalPath = "Assets/Textures/" + _path + defaultTextureExtension;
 	if (!_texture.loadFromFile(_finalPath, false, _rect))
 	{
-		cerr << RED"[Error] => Cannot open file with path : \'" << _finalPath << "\'" << RESET << endl;
+		LOG(Error, "Cannot open file with path : \'" + _finalPath + "\'");
 		_texture = GetDefaultTexture();
 	}
 }
