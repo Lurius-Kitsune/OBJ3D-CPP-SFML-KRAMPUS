@@ -150,6 +150,9 @@
     <ClCompile Include="SquareActor.cpp">
       <Filter>Source Files\Core\Actors\SquareActor</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -226,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="SquareActor.h">
       <Filter>Source Files\Core\Actors\SquareActor</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

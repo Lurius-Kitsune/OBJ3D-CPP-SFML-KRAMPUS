@@ -11,11 +11,6 @@
 Game::Game()
 {
     window = RenderWindow();
-    
-    SquareActor* _actor = new SquareActor(100.0f, "");
-    TriangleActor* _actor2 = new TriangleActor(100.0f, "");
-    _actor->GetShape()->SetOrigin({ 100.0f / 2, 100.0f / 2 });
-    _actor->GetShape()->SetPosition({ 800 / 2, 600 / 2 });
 }
 
 Game::~Game()
@@ -40,8 +35,13 @@ void Game::Launch()
 
 void Game::Start()
 {
+    SquareActor* _actor = new SquareActor(100.0f, "");
+    TriangleActor* _actor2 = new TriangleActor(100.0f, "");
+    _actor->GetShape()->SetOrigin({ 100.0f / 2, 100.0f / 2 });
+    _actor->GetShape()->SetPosition({ 800 / 2, 600 / 2 });
+
     window.create(VideoMode({ 800, 600 }), "SFML works!");
-    M_SOUND.PlaySound("metalPipe", WAV);
+    M_SOUND.PlaySound("openDoor", WAV);
     new Timer<Seconds>([&]()
         {
             TM_Seconds& _timer = M_TIMER(Seconds);
@@ -72,11 +72,17 @@ void Game::Update()
 void Game::UpdateWindow()
 {
     window.clear();
+    
+    for (pair<u_int, OnRenderWindow> _render : onRenderWindow)
+    {
+        _render.second(window);
+    }
+
     for (Actor* _actor : ActorManager::GetInstance().GetAllActors())
     {
         if (MeshActor* _meshActor = dynamic_cast<MeshActor*>(_actor))
         {
-            window.draw(*_meshActor->GetShape()->GetDrawable());
+            //window.draw(*_meshActor->GetShape()->GetDrawable());
         }
     }
     window.display();

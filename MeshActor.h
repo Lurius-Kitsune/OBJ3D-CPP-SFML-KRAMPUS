@@ -5,6 +5,7 @@
 class MeshActor : public Actor
 {
 	MeshComponent* mesh;
+	u_int renderMeshToken;
 
 public:
 	FORCEINLINE MeshComponent* GetMesh() const
@@ -21,5 +22,8 @@ public:
 	MeshActor(const float _radius, const size_t& _pointCount,
 		const string& _path, const IntRect& _rect);
 	MeshActor(const Vector2f& _size, const string& _path, const IntRect& _rect);
+	virtual~MeshActor();
+private:
+	void RenderMesh(RenderWindow& _window);
 };
 
