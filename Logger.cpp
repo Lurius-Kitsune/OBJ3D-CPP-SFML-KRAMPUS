@@ -1,6 +1,8 @@
 #include "Logger.h"
 #include "TimerManager.h"
 
+string Logger::logsPath = "Logs/log.txt";
+
 string VerbosityData::RetrieveFullText(const bool _useColor, const bool _useTime) const
 {
 	const string& _time = _useTime ? "<" + TimerManager<Seconds>::GetInstance().GetCurrentRealTime() + ">" : "";
@@ -10,12 +12,6 @@ string VerbosityData::RetrieveFullText(const bool _useColor, const bool _useTime
 		_fullText += (_useColor ? RESET WHITE"  " : "  ") + debug;
 	}
 	return _fullText + (_useColor ? RESET : "");
-
-}
-
-
-Logger::Logger()
-{
 
 }
 
@@ -35,6 +31,8 @@ void Logger::PrintLog(const VerbosityType& _type,const string& _text, const stri
 
 void Logger::WriteInLogs(const string& _text)
 {
+	ofstream _stream = ofstream(logsPath, ios_base::app);
+	_stream << _text << endl;
 }
 
 void Logger::WriteInConsole(const string& _text)

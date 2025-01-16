@@ -126,12 +126,7 @@ private:
 
 class Logger
 {
-    string logsPath;
-
-public:
-    
-public:
-    Logger();
+    static string logsPath;
 
 public:
     static void PrintLog(const VerbosityType& _type, const string& _text, const string& _debug = "");
