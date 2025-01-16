@@ -1,7 +1,8 @@
 #pragma once
 #include "CoreMinimal.h"
 
-#define DEBUG_FILE
+
+//#define DEBUG_FILE
 
 #ifdef DEBUG_FILE
 #define PATH __FILE__
@@ -71,7 +72,7 @@ public:
     }
 public:
     VerbosityData(const VerbosityType& _type, const string& _text,
-        const string& _debug)
+        const string& _debug, const bool _forceLog=false)
     {
         ComputeUseDebug(_type);
         ComputePrefix(_type);
@@ -135,7 +136,7 @@ private:
     string GetCurrentTime() const
     {
         // current date/time based on current system
-        time_t _now = time(0);
+        const time_t _now = time(0);
 
         tm _ltm;
         localtime_s(&_ltm, &_now);
@@ -160,6 +161,7 @@ public:
 
 public:
     static void PrintLog(const VerbosityType& _type, const string& _text, const string& _debug = "");
+    static string GetLogMessage(const VerbosityType& _type, const string& _text, const string& _debug = "");
 private:
 
     static void WriteInLogs(const string& _text);

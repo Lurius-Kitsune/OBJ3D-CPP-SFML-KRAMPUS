@@ -19,6 +19,12 @@ void Logger::PrintLog(const VerbosityType& _type,const string& _text, const stri
 	}
 }
 
+string Logger::GetLogMessage(const VerbosityType& _type, const string& _text, const string& _debug)
+{
+	const VerbosityData& _verbosity = VerbosityData(_type, _text, _debug);
+	return string(_verbosity.GetFullText(true, true));
+}
+
 void Logger::WriteInLogs(const string& _text)
 {
 	ofstream _stream = ofstream("Logs.txt", ios_base::app);

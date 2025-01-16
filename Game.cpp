@@ -52,7 +52,7 @@ void Game::Update()
             }
         }
         const float _deltaTime = _timer.GetDeltaTime().asSeconds();
-        LOG(Display, "DeltaTime => " + to_string(_deltaTime));
+        //LOG(Display, "DeltaTime => " + to_string(_deltaTime));
         ACTORMANAGER.Tick(_deltaTime);
         UpdateWindow();
 	}

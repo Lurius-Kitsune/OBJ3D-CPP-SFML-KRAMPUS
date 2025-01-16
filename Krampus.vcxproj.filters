@@ -55,6 +55,9 @@
     <Filter Include="Source Files\Manager\Sound\SoundSample">
       <UniqueIdentifier>{e0b61ec3-ef64-4280-b4fa-9f9b27106a5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\LoggerException">
+      <UniqueIdentifier>{4aea7042-f54c-45ea-8256-0b0f2a14c358}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -87,9 +90,6 @@
     <ClCompile Include="TextureManager.cpp">
       <Filter>Source Files\Manager\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="TimerManager.cpp">
-      <Filter>Source Files\Manager\Timer</Filter>
-    </ClCompile>
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -98,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="SoundSample.cpp">
       <Filter>Source Files\Manager\Sound\SoundSample</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggerException.cpp">
+      <Filter>Source Files\LoggerException</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>Source Files\Manager\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerException.h">
+      <Filter>Source Files\LoggerException</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
