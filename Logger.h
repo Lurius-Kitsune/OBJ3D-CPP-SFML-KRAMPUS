@@ -63,6 +63,10 @@ private:
         {
             _prefix = RESET "[" + color + prefix + RESET + "]";
         }
+        else
+        {
+            _prefix = "[" + prefix + "]";
+        }
         return _prefix;
     }
 public:
