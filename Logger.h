@@ -1,9 +1,6 @@
 #pragma once
-#include <iostream>
+#include "Macro.h"
 #include "Colors.h"
-//#include "TimerManager.h"
-#include <vector>
-#include <set>
 
 #define DEBUG_FILE
 
