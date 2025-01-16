@@ -55,6 +55,18 @@
     <Filter Include="Source Files\Manager\Sound\SoundSample">
       <UniqueIdentifier>{e0b61ec3-ef64-4280-b4fa-9f9b27106a5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Logger">
+      <UniqueIdentifier>{1b7c9b0f-d956-476e-b26d-84dab8c5773d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exception">
+      <UniqueIdentifier>{7fd0a8f4-7f0e-4231-9b53-fddf8387d1e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Color">
+      <UniqueIdentifier>{d3a44156-15a0-4783-bf34-a1d6ffd88084}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Components\Collision">
+      <UniqueIdentifier>{b8950ea2-05a2-435f-9d8e-11d4a11d22ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -87,17 +99,20 @@
     <ClCompile Include="TextureManager.cpp">
       <Filter>Source Files\Manager\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="Logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>Source Files\Manager\Sound</Filter>
     </ClCompile>
     <ClCompile Include="SoundSample.cpp">
       <Filter>Source Files\Manager\Sound\SoundSample</Filter>
     </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Header Files\Logger</Filter>
+    </ClCompile>
     <ClCompile Include="Colors.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent.cpp">
+      <Filter>Source Files\Core\Components\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,12 +152,6 @@
     <ClInclude Include="TimerManager.h">
       <Filter>Source Files\Manager\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="Colors.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SoundSample.h">
       <Filter>Source Files\Manager\Sound\SoundSample</Filter>
     </ClInclude>
@@ -152,8 +161,17 @@
     <ClInclude Include="Macro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Header Files\Logger</Filter>
+    </ClInclude>
     <ClInclude Include="CustomException.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Header Files\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>Source Files\Core\Components\Collision</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
