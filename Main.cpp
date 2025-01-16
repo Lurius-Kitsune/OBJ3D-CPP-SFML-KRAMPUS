@@ -14,7 +14,7 @@ int main()
 {
     InitConfig();
 
-    Game::GetInstance().Launch();
+    M_GAME.Launch();
 
     return EXIT_SUCCESS;
 }

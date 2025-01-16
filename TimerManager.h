@@ -228,9 +228,9 @@ public:
 		isRunning = _startRunning;
 		isLoop = _isLoop;
 		currentTime = 0.0;
-		duration = TimerManager<DurationType>::GetInstance().GetTime(_time);
+		duration = M_TIMER(DurationType).GetTime(_time);
 		callback = _callback;
-		TimerManager<DurationType>::GetInstance().AddTimer(this);
+		M_TIMER(DurationType).AddTimer(this);
 		isToDelete = false;
 	}
 

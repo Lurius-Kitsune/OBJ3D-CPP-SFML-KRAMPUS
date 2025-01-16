@@ -15,7 +15,7 @@ public:
 public:
     NO_DISCARD virtual Error what() const override
     {
-        return Super::what();
+        return (CAST(string, "Exception => ") + CAST(string, Super::what())).c_str();
     }
 private:
 
