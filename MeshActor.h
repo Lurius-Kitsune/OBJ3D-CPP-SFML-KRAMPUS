@@ -20,6 +20,6 @@ public:
 public:
 	MeshActor(const float _radius, const size_t& _pointCount,
 		const string& _path, const IntRect& _rect);
-	MeshActor(const Vector2f& _size, const string& _path = "", const IntRect& _rect = IntRect());
+	MeshActor(const Vector2f& _size, const string& _path, const IntRect& _rect);
 };
 

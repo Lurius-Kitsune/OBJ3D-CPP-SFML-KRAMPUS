@@ -76,6 +76,15 @@
     <Filter Include="Source Files\Core\Actors\TriangleActor">
       <UniqueIdentifier>{344ee839-b4c7-4cf7-8b8e-7843169e1a45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core\Components\Mesh">
+      <UniqueIdentifier>{a1847e44-b058-4bad-b1d1-441dbfcb5d1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Actors\RectangleActor">
+      <UniqueIdentifier>{4701c374-2416-45f3-861b-e3358a38b7aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Actors\SquareActor">
+      <UniqueIdentifier>{a200e97d-00a0-41ce-a8b4-3c2020b76c74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -126,14 +135,20 @@
     <ClCompile Include="MeshActor.cpp">
       <Filter>Source Files\Core\Actors\MeshActor</Filter>
     </ClCompile>
-    <ClCompile Include="MeshComponent.cpp">
-      <Filter>Source Files\Core\Components</Filter>
-    </ClCompile>
     <ClCompile Include="CircleActor.cpp">
       <Filter>Source Files\Core\Actors\CircleActor</Filter>
     </ClCompile>
     <ClCompile Include="TriangleActor.cpp">
       <Filter>Source Files\Core\Actors\TriangleActor</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshComponent.cpp">
+      <Filter>Source Files\Core\Components\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleActor.cpp">
+      <Filter>Source Files\Core\Actors\RectangleActor</Filter>
+    </ClCompile>
+    <ClCompile Include="SquareActor.cpp">
+      <Filter>Source Files\Core\Actors\SquareActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,9 +209,6 @@
     <ClInclude Include="CollisionComponent.h">
       <Filter>Source Files\Core\Components\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="MeshComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MeshActor.h">
       <Filter>Source Files\Core\Actors\MeshActor</Filter>
     </ClInclude>
@@ -205,6 +217,15 @@
     </ClInclude>
     <ClInclude Include="TriangleActor.h">
       <Filter>Source Files\Core\Actors\TriangleActor</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshComponent.h">
+      <Filter>Source Files\Core\Components\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleActor.h">
+      <Filter>Source Files\Core\Actors\RectangleActor</Filter>
+    </ClInclude>
+    <ClInclude Include="SquareActor.h">
+      <Filter>Source Files\Core\Actors\SquareActor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

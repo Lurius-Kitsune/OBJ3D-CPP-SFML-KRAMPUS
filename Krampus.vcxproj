@@ -162,9 +162,11 @@ xcopy /y /d "..\SFML3.0\bin\sfml-window-d-3.dll" "$(OutDir)"</Command>
     <ClCompile Include="MeshActor.cpp" />
     <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="RectangleActor.cpp" />
     <ClCompile Include="ShapeObject.cpp" />
     <ClCompile Include="SoundSample.cpp" />
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="SquareActor.cpp" />
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TriangleActor.cpp" />
@@ -185,10 +187,12 @@ xcopy /y /d "..\SFML3.0\bin\sfml-window-d-3.dll" "$(OutDir)"</Command>
     <ClInclude Include="MeshActor.h" />
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="RectangleActor.h" />
     <ClInclude Include="ShapeObject.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundSample.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="SquareActor.h" />
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TimerManager.h" />
