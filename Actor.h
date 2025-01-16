@@ -5,26 +5,11 @@
 
 class Actor : public Core
 {
-	ShapeObject* shape;
 	set<Component*> components;
 
 public:
-	FORCEINLINE ShapeObject* GetShape() const
-	{
-		return shape;
-	}
-
-	FORCEINLINE void SetShape(ShapeObject* _shape)
-	{
-		shape = _shape;
-	}
-
-public:
 	Actor();
-	Actor(const float _radius = 0.0f, const string& _path = "",
-		const size_t& _pointCount = 30, const IntRect& _rect = IntRect());
-	Actor(const Vector2f& _size, const string& _path = "", const IntRect& _rect = IntRect());
-	~Actor();
+	virtual ~Actor();
 
 public:
 	#pragma region Component

@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "ActorManager.h"
+#include "MeshActor.h"
 #include "SoundManager.h"
 #include "TimerManager.h"
 #include "SoundSample.h"
@@ -8,7 +9,8 @@
 Game::Game()
 {
     window = RenderWindow();
-    Actor* _actor = new Actor({100.0f, 100.0f }, "Cow");
+    MeshActor* _actor = new MeshActor({100.0f, 100.0f }, "");
+    MeshActor* _actor2 = new MeshActor(100.0f, "", 3);
     _actor->GetShape()->SetOrigin({ 100.0f / 2, 100.0f / 2 });
     _actor->GetShape()->SetPosition({ 800/2, 600/2 });
 }
@@ -69,7 +71,10 @@ void Game::UpdateWindow()
     window.clear();
     for (Actor* _actor : ActorManager::GetInstance().GetAllActors())
     {
-        window.draw(*_actor->GetShape()->GetDrawable());
+        if (MeshActor* _meshActor = dynamic_cast<MeshActor*>(_actor))
+        {
+            window.draw(*_meshActor->GetShape()->GetDrawable());
+        }
     }
     window.display();
 }

@@ -6,21 +6,9 @@ Actor::Actor()
 	Register();
 }
 
-Actor::Actor(const float _radius, const string& _path, const size_t& _pointCount, const IntRect& _rect)
-{
-	shape = new ShapeObject(_radius, _path, _pointCount, _rect);
-	Register();
-}
-
-Actor::Actor(const Vector2f& _size, const string& _path, const IntRect& _rect)
-{
-	shape = new ShapeObject(_size, _path, _rect);
-	Register();
-}
 
 Actor::~Actor()
 {
-	delete shape;
 	for (Component* _component : components)
 	{
 		delete _component;

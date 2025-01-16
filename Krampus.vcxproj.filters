@@ -67,6 +67,9 @@
     <Filter Include="Source Files\Core\Components\Collision">
       <UniqueIdentifier>{b8950ea2-05a2-435f-9d8e-11d4a11d22ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core\Actors\MeshActor">
+      <UniqueIdentifier>{05ab3ff8-4e55-4095-a5b9-88eedd13bc73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -113,6 +116,12 @@
     </ClCompile>
     <ClCompile Include="CollisionComponent.cpp">
       <Filter>Source Files\Core\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshActor.cpp">
+      <Filter>Source Files\Core\Actors\MeshActor</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshComponent.cpp">
+      <Filter>Source Files\Core\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +181,12 @@
     </ClInclude>
     <ClInclude Include="CollisionComponent.h">
       <Filter>Source Files\Core\Components\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshActor.h">
+      <Filter>Source Files\Core\Actors\MeshActor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
