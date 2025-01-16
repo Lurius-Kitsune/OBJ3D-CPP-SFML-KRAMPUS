@@ -52,8 +52,14 @@ void Game::Update()
                 Stop();
             }
         }
+        new Timer<Seconds>([&]()
+            {
+                TM_Seconds& _timer = TM_Seconds::GetInstance();
+                const float _deltaTime = _timer.GetDeltaTime().asSeconds();
+                LOG(Display, "DeltaTime => " + to_string(_deltaTime));
+            }, Time(seconds(5.0f)), true, true);
+
         const float _deltaTime = _timer.GetDeltaTime().asSeconds();
-        LOG(Display, "DeltaTime => " + to_string(_deltaTime));
         ActorManager::GetInstance().Tick(_deltaTime);
         UpdateWindow();
 	}

@@ -87,9 +87,6 @@
     <ClCompile Include="TextureManager.cpp">
       <Filter>Source Files\Manager\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="TimerManager.cpp">
-      <Filter>Source Files\Manager\Timer</Filter>
-    </ClCompile>
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -98,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="SoundSample.cpp">
       <Filter>Source Files\Manager\Sound\SoundSample</Filter>
+    </ClCompile>
+    <ClCompile Include="Colors.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +148,12 @@
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>Source Files\Manager\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomException.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

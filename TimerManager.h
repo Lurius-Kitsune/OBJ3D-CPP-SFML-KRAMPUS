@@ -272,6 +272,7 @@ public:
 	void Reset()
 	{
 		currentTime = 0.0;
+		cout << "pint" << endl;
 	}
 	void Pause()
 	{

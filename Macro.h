@@ -34,6 +34,7 @@
 #define FORCEINLINE __forceinline
 #define INLINE __inline
 #define Super __super
+#define NO_DISCARD [[nodiscard]]
 #define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
 #define SLEEP(_time) sf::sleep(Time(_time))
 #define new new(_NORMAL_BLOCK, __FILE__, __LINE__)

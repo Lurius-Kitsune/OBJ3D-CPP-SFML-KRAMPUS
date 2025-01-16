@@ -170,6 +170,7 @@ xcopy /y /d "..\SFML3.0\bin\sfml-window-d-3.dll" "$(OutDir)"</Command>
     <ClInclude Include="Component.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="CoreMinimal.h" />
+    <ClInclude Include="CustomException.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="Logger.h" />

@@ -1,6 +1,6 @@
 #pragma once
-#include "Macro.h"
 #include "Colors.h"
+#include "CustomException.h"
 
 //#define DEBUG_FILE
 
@@ -95,7 +95,7 @@ private:
     {
         if (_type == VT_COUNT)
         {
-            throw exception("Exception => Invalid VerbosityType");
+            throw CustomException("Exception => Invalid VerbosityType");
         }
 
         const vector<Gradient>& _verbosityColors =
