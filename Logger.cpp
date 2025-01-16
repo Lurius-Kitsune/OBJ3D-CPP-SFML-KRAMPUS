@@ -7,12 +7,12 @@ Logger::Logger()
 
 void Logger::PrintLog(const VerbosityType& _type,const string& _text, const string& _debug)
 {
-	if (WRITE_IN_LOG(_type))
+	if (DEBUG_CONSOLE_MODE || WRITE_IN_LOG(_type))
 	{
 		const VerbosityData& _verbosity = VerbosityData(_type, _text, _debug);
 		
 		WriteInLogs(_verbosity.GetFullText(false, true));
-		if (WRITE_IN_CONSOLE(_type))
+		if ( DEBUG_CONSOLE_MODE ||WRITE_IN_CONSOLE(_type))
 		{
 			WriteInConsole(_verbosity.GetFullText(true, true));
 		}

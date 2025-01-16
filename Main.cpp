@@ -12,18 +12,9 @@ void InitConfig()
 
 }
 
-bool Test(const int _index)
-{
-    cout << "coucou x"<< _index << endl;
-    return _index % 2 == 0;
-}
-
 int main()
 {
     InitConfig();
-    new Timer([]() { static int _index = 0; 
-    if (Test(++_index)) cout << "BOB" << endl;
-    }, Time(seconds(2.0f)), true, true);
 
     GAME.Launch();
 

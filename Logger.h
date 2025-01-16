@@ -16,6 +16,14 @@
 #define USE_DEBUG 0
 #endif
 
+#define DEBUG_CONSOLE
+
+#ifdef DEBUG_CONSOLE
+#define DEBUG_CONSOLE_MODE 1
+#else
+#define DEBUG_CONSOLE_MODE 0
+#endif
+
 #define WRITE_IN_LOG(_verbosity) _type >= Log
 #define WRITE_IN_CONSOLE(_verbosity) _type > Log
 
