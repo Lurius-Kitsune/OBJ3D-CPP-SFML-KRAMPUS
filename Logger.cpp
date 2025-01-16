@@ -1,4 +1,18 @@
 #include "Logger.h"
+#include "TimerManager.h"
+
+string VerbosityData::RetrieveFullText(const bool _useColor, const bool _useTime) const
+{
+	const string& _time = _useTime ? "<" + TimerManager<Seconds>::GetInstance().GetCurrentRealTime() + ">" : "";
+	string _fullText = _time + GetPrefix(_useColor) + (_useColor ? color.GradientString(text) : text);
+	if (USE_DEBUG || useDebug)
+	{
+		_fullText += (_useColor ? RESET WHITE"  " : "  ") + debug;
+	}
+	return _fullText + (_useColor ? RESET : "");
+
+}
+
 
 Logger::Logger()
 {
@@ -11,10 +25,10 @@ void Logger::PrintLog(const VerbosityType& _type,const string& _text, const stri
 	{
 		const VerbosityData& _verbosity = VerbosityData(_type, _text, _debug);
 		
-		WriteInLogs(_verbosity.GetFullText(false, true));
+		WriteInLogs(_verbosity.RetrieveFullText(false, true));
 		if (WRITE_IN_CONSOLE(_type))
 		{
-			WriteInConsole(_verbosity.GetFullText(true, true));
+			WriteInConsole(_verbosity.RetrieveFullText(true, true));
 		}
 	}
 }
@@ -27,3 +41,4 @@ void Logger::WriteInConsole(const string& _text)
 {
 	cout << _text << endl;
 }
+

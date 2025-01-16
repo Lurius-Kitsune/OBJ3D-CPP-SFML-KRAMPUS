@@ -9,7 +9,7 @@ using MicroSec = int64_t;
 template <typename DurationType>
 class Timer;
 
-template <typename DurationType = Seconds>
+template <typename DurationType>
 class TimerManager : public Singleton<TimerManager<DurationType>>
 {
 	using T = Timer<DurationType>;
@@ -45,24 +45,34 @@ private:
 	{
 		return durations.at(typeid(DurationType));
 	}
-
 public:
+	FORCEINLINE string GetCurrentRealTime() const
+	{
+		// current date/time based on current system
+		const time_t _now = std::time(0);
+
+		tm _ltm;
+		localtime_s(&_ltm, &_now);
+
+		string _date = to_string(_ltm.tm_mday) + "/" + to_string(1 + _ltm.tm_mon) + "/" + to_string(1900 + _ltm.tm_year);
+		string _time = to_string(_ltm.tm_hour) + ":" + to_string(_ltm.tm_min) + ":" + to_string(_ltm.tm_sec);
+
+		return _date + " " + _time;
+	}
+	
 	FORCEINLINE set<T*> GetAllTimers() const
 	{
 		return allTimers;
 	}
-
 	FORCEINLINE void AddTimer(T* _timer)
 	{
 		allTimers.insert(_timer);
 	}
-
 	FORCEINLINE void RemoveTimer(T* _timer)
 	{
 		allTimers.erase(_timer);
 		delete _timer;
 	}
-
 	FORCEINLINE void SetTimerScale(const DurationType& _timeScale)
 	{
 		timeScale = _timeScale;
@@ -71,7 +81,6 @@ public:
 	{
 		return GetDuration() / (time - lastFrameTime);
 	}
-
 	FORCEINLINE Time GetDeltaTime()const
 	{
 		return Time(seconds(deltaTime * GetDuration()));
@@ -181,7 +190,7 @@ using TM_Seconds = TimerManager<Seconds>;
 using TM_Milli = TimerManager<MilliSec>;
 using TM_Micro = TimerManager<MicroSec>;
 
-template <typename DurationType = Seconds>
+template <typename DurationType>
 class Timer
 {
 	using TM = TimerManager<DurationType>;

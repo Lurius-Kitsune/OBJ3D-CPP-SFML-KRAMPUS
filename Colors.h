@@ -1,14 +1,17 @@
-﻿#pragma once
+#pragma once
+#include "Macro.h"
+
 #pragma region ColorMacro
+
 #define BOLD_TEXT "\033[1m"					// Gras
 #define ITALIC_TEXT "\033[3m"				// Italique
-#define UNDERLINE_TEXT "\033[4m"			// Soulign�
-#define STRIKETHROUGH_TEXT "\033[9m"		// Barr�
+#define UNDERLINE_TEXT "\033[4m"			// Soulign 
+#define STRIKETHROUGH_TEXT "\033[9m"		// Barr 
 #define INVERSE_TEXT "\033[7m"				// Inverse les couleurs
 #define BLINK_TEXT "\033[5m"				// Clignotant
 #define DIM_TEXT "\033[2m"					// Semi-gras
-#define HIDDEN_TEXT "\033[8m"				// Masqu�
-#define DOUBLE_UNDERLINE_TEXT "\033[21m"	// Double soulign�e
+#define HIDDEN_TEXT "\033[8m"				// Masqu 
+#define DOUBLE_UNDERLINE_TEXT "\033[21m"	// Double soulign e
 
 #define BLINK_COLOR(x) "\033[5m" << x		// Clignotant
 
@@ -44,7 +47,6 @@
 #define BROWN "\x1B[38;5;130m"
 #define TEXT_RGB(r,g,b) "\033[38;2;" + to_string(r) + ";" + to_string(g) + ";" + to_string(b) + "m"
 
-
 //Base Colors
 #define BLACK_BASE "\u001b[30m"
 #define RED_BASE "\u001b[31m"
@@ -78,8 +80,6 @@
 #define BG_BROWN "\x1B[48;5;130m"
 #define BG_RGB(r,g,b) "\033[48;2;" + to_string(r) + ";" + to_string(g) + ";" + to_string(b) + "m"
 
-
-
 // High intensity text colors
 #define BLACK_INTENSE_TEXT "\033[90m"
 #define RED_INTENSE_TEXT "\033[91m"
@@ -106,3 +106,44 @@
 #define COLOR(x) "\x1B[38;5;"<<x<<"m"
 #define BG_COLOR(x) "\x1B[48;5;"<<x<<"m"
 #pragma endregion
+
+struct ColorData
+{
+	int r;
+	int g;
+	int b;
+
+	ColorData()
+	{
+		r = g = b = 0;
+	}
+
+	ColorData(const int _r, const int _g, const int _b)
+	{
+		r = _r;
+		g = _g;
+		b = _b;
+	}
+
+	string ToString(const bool _textOnly) const
+	{
+		if (_textOnly) return TEXT_RGB(r, g, b);
+		return BG_RGB(r, g, b);
+	}
+};
+
+struct Gradient
+{
+	ColorData gradA;
+	ColorData gradB;
+
+	Gradient() = default;
+	Gradient(const ColorData& _a, const ColorData& _b)
+	{
+		gradA = _a;
+		gradB = _b;
+	}
+
+	string GradientString(const string _text, const bool _textOnly = true) const;
+	ColorData ClampGradient(const int _index, const int _maxDisplayChar) const;
+};
