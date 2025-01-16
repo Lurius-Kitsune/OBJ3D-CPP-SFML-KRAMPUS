@@ -2,6 +2,7 @@
 #include "TimerManager.h"
 
 string Logger::logsPath = "Logs/log.txt";
+ofstream Logger::stream = ofstream(logsPath, ios_base::app);
 
 string VerbosityData::RetrieveFullText(const bool _useColor, const bool _useTime) const
 {
@@ -31,8 +32,7 @@ void Logger::PrintLog(const VerbosityType& _type,const string& _text, const stri
 
 void Logger::WriteInLogs(const string& _text)
 {
-	ofstream _stream = ofstream(logsPath, ios_base::app);
-	_stream << _text << endl;
+	stream << _text << endl;
 }
 
 void Logger::WriteInConsole(const string& _text)

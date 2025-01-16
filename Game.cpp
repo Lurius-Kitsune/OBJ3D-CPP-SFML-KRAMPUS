@@ -37,6 +37,12 @@ void Game::Start()
 {
     window.create(VideoMode({ 800, 600 }), "SFML works!");
     M_SOUND.PlaySound("metalPipe", WAV);
+    new Timer<Seconds>([&]()
+        {
+            TM_Seconds& _timer = M_TIMER(Seconds);
+            const float _deltaTime = _timer.GetDeltaTime().asSeconds();
+            LOG(Display, "DeltaTime => " + to_string(_deltaTime));
+        }, Time(seconds(2.0f)), true, true);
 }
 
 void Game::Update()
@@ -52,13 +58,6 @@ void Game::Update()
                 Stop();
             }
         }
-        new Timer<Seconds>([&]()
-            {
-                TM_Seconds& _timer = M_TIMER(Seconds);
-                const float _deltaTime = _timer.GetDeltaTime().asSeconds();
-                LOG(Display, "DeltaTime => " + to_string(_deltaTime));
-            }, Time(seconds(5.0f)), true, true);
-
         const float _deltaTime = _timer.GetDeltaTime().asSeconds();
         M_ACTOR.Tick(_deltaTime);
         UpdateWindow();

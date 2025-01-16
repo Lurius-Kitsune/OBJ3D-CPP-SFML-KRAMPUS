@@ -127,6 +127,7 @@ private:
 class Logger
 {
     static string logsPath;
+    static ofstream stream;
 
 public:
     static void PrintLog(const VerbosityType& _type, const string& _text, const string& _debug = "");
