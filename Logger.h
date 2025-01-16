@@ -2,8 +2,7 @@
 #include "Macro.h"
 #include "Colors.h"
 
-
-#define DEBUG_FILE
+//#define DEBUG_FILE
 
 #ifdef DEBUG_FILE
 #define PATH __FILE__
@@ -54,9 +53,9 @@ private:
         string _prefix = prefix;
         if (_useColor)
         {
-            _prefix = RESET "[" + color.GradientString(prefix) + RESET + "]";
+            _prefix = RESET + color.GradientString(prefix) + RESET;
         }
-        return _prefix;
+        return "[" + _prefix + "]";
     }
 public:
     __forceinline string RetrieveFullText(const bool _useColor = true, const bool _useTime = false) const;
