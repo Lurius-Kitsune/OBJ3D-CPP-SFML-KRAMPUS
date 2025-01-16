@@ -16,7 +16,7 @@ int main()
 {
     InitConfig();
 
-    GAME.Launch();
+    Manager(Game).Launch();
 
     return EXIT_SUCCESS;
 }

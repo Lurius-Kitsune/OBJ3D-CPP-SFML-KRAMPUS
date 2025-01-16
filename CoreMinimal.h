@@ -42,15 +42,9 @@
 #define CAST(_type, _value) static_cast<_type>(_value)
 
 
-#define ACTORMANAGER ActorManager::GetInstance()
-#define ACTORMANAGER ActorManager::GetInstance()
-#define SOUNDMANAGER SoundManager::GetInstance()
-#define TIMERMANAGER TimerManager<DurationType>::GetInstance()
-#define TM_SECONDS TM_Seconds::GetInstance()
-#define TM_MILLI TM_Milli::GetInstance()
-#define TM_MICRO TM_Micro::GetInstance()
-#define GAME Game::GetInstance()	
-#define TEXTUREMANAGER TextureManager::GetInstance()
+
+
+#define Manager(_manager) _manager::GetInstance()
 
 #include "Logger.h"
 

@@ -19,7 +19,7 @@ Game::~Game()
 
 void Game::Launch()
 {
-    TM_Milli& _timer = TM_MILLI;
+    TM_Milli& _timer = Manager(TimerManager<MilliSec>);
     const float _deltaTime = _timer.GetDeltaTime().asSeconds();
     LOG(VeryVerbose, "DeltaTime => " + to_string(_deltaTime));
     LOG(Verbose, "DeltaTime => " + to_string(_deltaTime));
@@ -35,14 +35,14 @@ void Game::Launch()
 void Game::Start()
 {
     window.create(VideoMode({ 800, 600 }), "SFML works!");
-    SOUNDMANAGER.PlaySound("metalPipe", WAV);
+    Manager(SoundManager).PlaySound("metalPipe", WAV);
 }
 
 void Game::Update()
 {
 	while (window.isOpen())
 	{
-        TM_Seconds& _timer = TM_SECONDS;
+        TM_Seconds& _timer = Manager(TimerManager<Seconds>);
         _timer.Update();
         while (const std::optional _event = window.pollEvent())
         {
@@ -53,7 +53,7 @@ void Game::Update()
         }
         const float _deltaTime = _timer.GetDeltaTime().asSeconds();
         //LOG(Display, "DeltaTime => " + to_string(_deltaTime));
-        ACTORMANAGER.Tick(_deltaTime);
+        Manager(ActorManager).Tick(_deltaTime);
         UpdateWindow();
 	}
 }
@@ -61,7 +61,7 @@ void Game::Update()
 void Game::UpdateWindow()
 {
     window.clear();
-    for (Actor* _actor : ACTORMANAGER.GetAllActors())
+    for (Actor* _actor : Manager(ActorManager).GetAllActors())
     {
         window.draw(*_actor->GetShape()->GetDrawable());
     }

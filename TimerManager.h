@@ -121,7 +121,7 @@ public:
 		if (lastFrameTime == 0 || time - lastFrameTime >= maxFrameRate )
 		{
 			lastFrameTime = time;
-			GAME.UpdateWindow();
+			Manager(Game).UpdateWindow();
 		}
 
 		using Iterator = set<Timer<Seconds>*>::iterator;
@@ -219,9 +219,9 @@ public:
 		isRunning = _startRunning;
 		isLoop = _isLoop;
 		currentTime = 0.0;
-		duration = TIMERMANAGER.GetTime(_time);
+		duration = Manager(TimerManager<DurationType>).GetTime(_time);
 		callback = _callback;
-		TIMERMANAGER.AddTimer(this);
+		Manager(TimerManager<DurationType>).AddTimer(this);
 		isToDelete = false;
 	}
 
@@ -253,7 +253,7 @@ public:
 	}
 	void Stop()
 	{
-		TIMERMANAGER.RemoveTimer(this);
+		Manager(TimerManager<DurationType>).RemoveTimer(this);
 		isToDelete = true;
 	}
 	void Resume()

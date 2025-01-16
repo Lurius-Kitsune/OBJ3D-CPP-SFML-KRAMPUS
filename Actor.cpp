@@ -59,5 +59,5 @@ void Actor::BeginDestroy()
 
 void Actor::Register()
 {
-	ACTORMANAGER.AddActor(this);
+	Manager(ActorManager).AddActor(this);
 }
