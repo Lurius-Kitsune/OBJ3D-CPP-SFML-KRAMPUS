@@ -28,6 +28,7 @@ void MoveAroundComponent::Move(const float _deltaTime)
 	if (radiants >= M_PI * 2)
 	{
 		radiants = 0;
+		speed++;
 	}
 
 	if (radius <= 0)
@@ -36,6 +37,6 @@ void MoveAroundComponent::Move(const float _deltaTime)
 	}
 
 	_owner->GetShape()->SetPosition(_ownerPosition);
-	radius -= 0.01f * speed;
-	radiants += 0.0001f * speed;
+	radius -= 0.005f * speed * _deltaTime * 1000.0f;
+	radiants += 0.0001f * speed * _deltaTime * 1000.0f;
 }
