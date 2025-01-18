@@ -1,8 +1,10 @@
 #include "Actor.h"
 #include "ActorManager.h"
+#include "RootComponent.h"
 
 Actor::Actor()
 {
+	AddComponent(new RootComponent(this));
 	Register();
 }
 
