@@ -13,11 +13,6 @@ class Actor : public Core, public ITransformableViewer, public ITransformableMod
 
 
 public:
-	FORCEINLINE virtual void Move(const Vector2f& _offset) const
-	{
-		root->Move(_offset);
-	}
-
 	FORCEINLINE virtual bool IsValid(Core* _core) const override
 	{
 		//return Super::IsValid(_core);
