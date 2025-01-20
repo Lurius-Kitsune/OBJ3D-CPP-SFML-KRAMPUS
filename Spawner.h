@@ -1,21 +1,32 @@
 #pragma once
 #include "Actor.h"
+#include "TimerManager.h"
+
+template <typename T>
 class Spawner : public Actor
 {
 	float spawnRate;
 	float spawnRange;
 	// Soft référence (Prefab)
-	SubClassOf<Actor>* actorRef;
+	SubClassOf<T>* actorRef;
 
 public:
-	Spawner();
-	~Spawner();
-
-public:
-	template <typename T>
-	void Spawn(const SubClassOf<T>& _actorRef)
+	Spawner(SubClassOf<T>* _actorRef)
 	{
-		T* _actor = new T(_actorRef.GetObject());
+		spawnRate = 1.0f;
+		spawnRange = 200.0f;
+		actorRef = _actorRef;
+		BeginPlay();
+	}
+	~Spawner()
+	{
+		delete actorRef;
+	}
+
+public:
+	void Spawn()
+	{
+		T* _actor = new T(actorRef->GetObject());
 		const Vector2f& _spawnPosition =
 		{
 			RandomValue(0.0f, spawnRange),
@@ -26,7 +37,14 @@ public:
 		LOG(Display, "J'ai Spawn");
 	}
 private:
-	virtual void BeginPlay() override;
-	void Spawn_Internal();
+	virtual void BeginPlay() override
+	{
+		Super::BeginPlay();
+		new Timer<Seconds>(bind(&Spawner::Spawn_Internal, this), Time(seconds(spawnRate)), true, true);
+	}
+	void Spawn_Internal()
+	{
+		Spawn();
+	}
 };
 

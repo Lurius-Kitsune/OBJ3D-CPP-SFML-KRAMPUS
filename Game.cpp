@@ -27,8 +27,8 @@ void Game::Launch()
 
 void Game::Start()
 {
-    Spawner* _spawner = new Spawner();
-    _spawner->Spawn(SubClassOf<MeshActor>(5.0f, 30, "", IntRect()));
+    SubClassOf<MeshActor>* _prefab = new SubClassOf<MeshActor>(5.0f, 30, "Cow", IntRect());
+    Spawner<MeshActor>* _spawner = new Spawner<MeshActor>(_prefab);
     window.create(VideoMode({ 800, 600 }), "SFML works!");
     //M_SOUND.PlaySound("openDoor", WAV);
 
@@ -36,7 +36,6 @@ void Game::Start()
         {
             TM_Seconds& _timer = M_TIMER(Seconds);
             const float _deltaTime = _timer.GetDeltaTime().asSeconds();
-            LOG(Display, "DeltaTime => " + to_string(_deltaTime));
         }, Time(seconds(2.0f)), true, true);
 }
 
@@ -63,16 +62,16 @@ void Game::UpdateWindow()
 {
     window.clear();
     
-    for (pair<u_int, OnRenderWindow> _render : onRenderWindow)
-    {
-        _render.second(window);
-    }
+    //for (pair<u_int, OnRenderWindow> _render : onRenderWindow)
+    //{
+    //    _render.second(window);
+    //}
 
     for (Actor* _actor : ActorManager::GetInstance().GetAllActors())
     {
         if (MeshActor* _meshActor = dynamic_cast<MeshActor*>(_actor))
         {
-            //window.draw(*_meshActor->GetShape()->GetDrawable());
+            _meshActor->RenderMesh(window);
         }
     }
     window.display();

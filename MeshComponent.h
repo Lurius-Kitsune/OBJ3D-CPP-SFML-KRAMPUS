@@ -22,6 +22,7 @@ public:
 		const size_t& _pointCount = 30, const IntRect& _rect = IntRect());
 
 	MeshComponent(Actor* _owner, const Vector2f& _size, const string& _path = "", const IntRect& _rect = IntRect());
+	MeshComponent(MeshComponent& _mesh, Actor* _owner);
 	~MeshComponent();
 };
 

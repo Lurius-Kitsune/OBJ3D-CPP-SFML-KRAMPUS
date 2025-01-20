@@ -14,6 +14,12 @@ MeshActor::MeshActor(const Vector2f& _size, const string& _path, const IntRect& 
 	renderMeshToken = M_GAME.BindOnRenderWindow(bind(&MeshActor::RenderMesh, this, placeholders::_1));
 }
 
+MeshActor::MeshActor(MeshActor& _actor)
+{
+	mesh = new MeshComponent(*_actor.GetMesh());
+	renderMeshToken = M_GAME.BindOnRenderWindow(bind(&MeshActor::RenderMesh, this, placeholders::_1));
+}
+
 MeshActor::~MeshActor()
 {
 	M_GAME.UnbindOnRenderWindow(renderMeshToken);

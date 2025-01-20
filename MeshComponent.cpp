@@ -13,6 +13,12 @@ MeshComponent::MeshComponent(Actor* _owner, const Vector2f& _size, const string&
 	shape = new ShapeObject(_size, _path, _rect);
 }
 
+MeshComponent::MeshComponent(MeshComponent& _mesh, Actor* _owner)
+	: Component(_owner)
+{
+	shape = new ShapeObject(*_mesh.GetShape());
+}
+
 MeshComponent::~MeshComponent()
 {
 	delete shape;
