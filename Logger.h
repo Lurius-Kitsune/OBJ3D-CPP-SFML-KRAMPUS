@@ -131,6 +131,7 @@ class Logger
 
 public:
     static void PrintLog(const VerbosityType& _type, const string& _text, const string& _debug = "");
+    static void PrintLog(const VerbosityType& _type, const Vector2f& _coord, const string& _debug = "");
 private:
 
     static void WriteInLogs(const string& _text);

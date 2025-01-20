@@ -30,6 +30,13 @@ void Logger::PrintLog(const VerbosityType& _type,const string& _text, const stri
 	}
 }
 
+void Logger::PrintLog(const VerbosityType& _type, const Vector2f& _coord, const string& _debug)
+{
+	const string& _text = "Coords = X : " + to_string(_coord.x) + " Y: " + to_string(_coord.y);
+
+	PrintLog(_type, _text, _debug);
+}
+
 void Logger::WriteInLogs(const string& _text)
 {
 	stream << _text << endl;

@@ -50,6 +50,7 @@ public:
 		text->rotate(_angle);
 	}
 
+	// Sf::Fonts
 public:
 	TextObject();
 	~TextObject();

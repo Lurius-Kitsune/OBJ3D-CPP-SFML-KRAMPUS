@@ -1,8 +1,8 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ITransformableModifier.h"
+#include "TransformData.h"
 
-class IGetTransformable : public ITransformableModifier
+class ITransformableViewer
 {
 public:
 	#pragma region Getter

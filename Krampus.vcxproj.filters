@@ -156,7 +156,7 @@
     <ClCompile Include="RootComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IGetTransformable.h">
+    <ClCompile Include="ITransformableViewer.h">
       <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
