@@ -17,12 +17,17 @@ Spawner::~Spawner()
 void Spawner::BeginPlay()
 {
 	Super::BeginPlay();
-	new Timer<Seconds>(bind(&Spawner::Spawn, this), Time(seconds(spawnRate)), true, true);
+	new Timer<Seconds>(bind(&Spawner::Spawn_Internal, this), Time(seconds(spawnRate)), true, true);
 }
 
-void Spawner::Spawn()
+void Spawner::Spawn_Internal()
 {
-	Actor* _actor = new Actor(actorRef->GetObject());
+	Spawn(actorRef);
+}
+
+void Spawner::Spawn(SubClassOf<Actor>* _actorRef)
+{
+	Actor* _actor = new Actor(_actorRef->GetObject());
 	const Vector2f& _spawnPosition =
 	{
 		RandomValue(0.0f, spawnRange),

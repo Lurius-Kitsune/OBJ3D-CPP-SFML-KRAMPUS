@@ -17,7 +17,9 @@ public:
 	SubClassOf(Args... _args)
 	{
 		objectRef = new T(_args...);
+		objectRef->Deconstruct();
 	}
+
 	~SubClassOf()
 	{
 		delete objectRef;

@@ -12,6 +12,12 @@ Label::~Label()
 	delete text;
 }
 
+void Label::Deconstruct()
+{
+	Super::Deconstruct();
+	M_GAME.UnbindOnRenderWindow(renderMeshToken);
+}
+
 void Label::RenderMesh(RenderWindow& _window)
 {
 	_window.draw(*text->GetDrawable());

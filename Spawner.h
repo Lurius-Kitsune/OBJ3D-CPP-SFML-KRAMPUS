@@ -12,8 +12,9 @@ public:
 	~Spawner();
 
 public:
+	void Spawn(SubClassOf<Actor>* _actorRef);
 private:
 	virtual void BeginPlay() override;
-	void Spawn();
+	void Spawn_Internal();
 };
 

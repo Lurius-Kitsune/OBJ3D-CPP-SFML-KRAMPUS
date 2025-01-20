@@ -11,6 +11,9 @@ public :
 	~Label();
 
 public:
+	virtual void Deconstruct() override;
+
+public:
 	void RenderMesh(RenderWindow& _window);
 };
 

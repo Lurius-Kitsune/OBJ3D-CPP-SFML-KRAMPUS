@@ -1,13 +1,10 @@
 #include "Actor.h"
 #include "ActorManager.h"
 
-Actor::Actor(const bool _register)
+Actor::Actor()
 {
 	root = CreateComponent<RootComponent>(this);
-	if (_register)
-	{
-		Register();
-	}
+	Register();
 }
 
 Actor::Actor(const Actor& _actor)
@@ -50,7 +47,15 @@ void Actor::Tick(const float _deltaTime)
 
 void Actor::BeginDestroy()
 {
+	for (Component* _component : components)
+	{
+		_component->BeginDestroy();
+	}
+}
 
+void Actor::Deconstruct()
+{
+	M_ACTOR.RemoveActor(this);
 }
 
 void Actor::Register()

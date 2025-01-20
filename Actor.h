@@ -87,7 +87,7 @@ protected:
 		return _component;
 	}
 public:
-	Actor(const bool _register = true);
+	Actor();
 	Actor(const Actor& _actor);
 	virtual ~Actor();
 
@@ -109,6 +109,7 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(const float _deltaTime) override;
 	virtual void BeginDestroy() override;
+	virtual void Deconstruct();
 
 private: 
 	void Register();

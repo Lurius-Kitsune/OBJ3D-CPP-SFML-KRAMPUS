@@ -16,6 +16,11 @@ public:
 		allActors.insert(_actor);
 	}
 
+	FORCEINLINE void RemoveActor(Actor* _actor)
+	{
+		allActors.erase(_actor);
+	}
+
 public:
 	~ActorManager();
 

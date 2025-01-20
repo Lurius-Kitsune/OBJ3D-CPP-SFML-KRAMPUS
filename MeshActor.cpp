@@ -19,6 +19,12 @@ MeshActor::~MeshActor()
 	M_GAME.UnbindOnRenderWindow(renderMeshToken);
 }
 
+void MeshActor::Deconstruct()
+{
+	Super::Deconstruct();
+	M_GAME.UnbindOnRenderWindow(renderMeshToken);
+}
+
 void MeshActor::RenderMesh(RenderWindow& _window)
 {
 	_window.draw(*mesh->GetShape()->GetDrawable());
