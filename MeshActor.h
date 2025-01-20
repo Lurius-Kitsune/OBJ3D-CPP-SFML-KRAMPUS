@@ -8,6 +8,12 @@ class MeshActor : public Actor
 	u_int renderMeshToken;
 
 public:
+
+	FORCEINLINE virtual bool IsValid(Core* _core) const override
+	{
+		return Super::IsValid(_core) && mesh;
+	}
+
 	FORCEINLINE MeshComponent* GetMesh() const
 	{
 		return mesh;

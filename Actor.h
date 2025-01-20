@@ -1,17 +1,23 @@
 #pragma once
 #include "Core.h"
-#include "ShapeObject.h"
+#include "RootComponent.h"
 #include "Component.h"
 
 class Actor : public Core
 {
 	set<Component*> components;
+	RootComponent* transform;
 
 public:
 	Actor();
 	virtual ~Actor();
 
 public:
+	FORCEINLINE virtual bool IsValid(Core* _core) const override
+	{
+		return Super::IsValid(_core);
+	}
+
 	#pragma region Component
 	void AddComponent(Component* _component);
 	void RemoveComponent(Component* _component);
