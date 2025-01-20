@@ -1,10 +1,8 @@
 #include "Game.h"
+#include "Spawner.h"
+#include "MeshActor.h"
 #include "ActorManager.h"
-#include "TriangleActor.h"
-#include "SquareActor.h"
-#include "CircleActor.h"
 #include "SoundManager.h"
-#include "Label.h"
 #include "TimerManager.h"
 #include "SoundSample.h"
 
@@ -36,14 +34,12 @@ void Game::Launch()
 
 void Game::Start()
 {
-    Label* _text = new Label("BOB");
-    SquareActor* _actor = new SquareActor(100.0f, "");
-    TriangleActor* _actor2 = new TriangleActor(100.0f, "");
-    _actor->GetShape()->SetOrigin({ 100.0f / 2, 100.0f / 2 });
-    _actor->GetShape()->SetPosition({ 800 / 2, 600 / 2 });
-
+    Spawner* _spawner = new Spawner();
+    _spawner->Spawn();
     window.create(VideoMode({ 800, 600 }), "SFML works!");
-    M_SOUND.PlaySound("openDoor", WAV);
+    //M_SOUND.PlaySound("openDoor", WAV);
+
+
     new Timer<Seconds>([&]()
         {
             TM_Seconds& _timer = M_TIMER(Seconds);

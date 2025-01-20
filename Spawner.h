@@ -10,8 +10,9 @@ public:
 	Spawner();
 	~Spawner();
 
+public:
+	void Spawn();
 private:
 	virtual void BeginPlay() override;
-	void Spawn();
 };
 
