@@ -5,7 +5,7 @@ Spawner::Spawner()
 {
 	spawnRate = 1.0f;
 	spawnRange = 200.0f;
-	actorRef = new SubClassOf<Actor>(false);
+	actorRef = new SubClassOf<Actor>();
 	BeginPlay();
 }
 
