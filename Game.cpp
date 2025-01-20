@@ -64,6 +64,7 @@ void Game::Launch()
             MeshActor* _actor = _shapeDatabase[RandomInt(0, _shapeDatabase.size() - 1)](_textureDatabase[RandomInt(0, _textureDatabase.size() - 1)]);
             _actor->GetShape()->SetPosition({ static_cast<float>(RandomValue<float>(0, 800)), static_cast<float>(RandomValue<float>(0, 600)) });
             _actor->AddComponent(new MoveAroundComponent(_actor, _blackhole));
+            _actor->AddComponent(new RotateComponent(_actor));
             _actor->GetShape()->GetDrawable()->setFillColor(Color(RandomInt(0, 255), RandomInt(0, 255), RandomInt(0, 255)));
         }, Time(seconds(1)), { 50, 50 });
 
