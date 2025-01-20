@@ -1,13 +1,6 @@
 #pragma once
 #include "Component.h"
-
-struct TransformData
-{
-	Vector2f origin;
-	Vector2f position;
-	Angle rotation;
-	Vector2f scale;
-};
+#include "TransformData.h"
 
 class RootComponent : public Component
 {
@@ -34,7 +27,7 @@ public:
 	{
 		return transform.rotation;
 	}
-#pragma endregion
+	#pragma endregion
 
 	#pragma region Setter
 	FORCEINLINE virtual void SetOrigin(const Vector2f& _origin)
@@ -57,7 +50,7 @@ public:
 	{
 		transform = _transformeData;
 	}
-#pragma endregion
+	#pragma endregion
 
 	FORCEINLINE virtual void Move(const Vector2f& _offset)
 	{

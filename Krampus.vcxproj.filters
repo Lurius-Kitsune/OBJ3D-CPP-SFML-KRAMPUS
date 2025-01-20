@@ -239,5 +239,8 @@
     <ClInclude Include="RootComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TransformData.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,6 +10,11 @@ protected:
 
 public:
 
+	FORCEINLINE virtual bool IsValid(Core* _core) const override
+	{
+		return true;
+	}
+
 	FORCEINLINE Actor* GetOwner()const
 	{
 		return owner;

@@ -3,8 +3,7 @@
 
 Actor::Actor()
 {
-	transform = new RootComponent(this);
-	AddComponent(transform);
+	transform = CreateComponent<RootComponent>();
 	Register();
 }
 

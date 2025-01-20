@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.h"
 #include "RootComponent.h"
+#include "ShapeObject.h"
 #include "Component.h"
 
 class Actor : public Core
@@ -8,15 +9,30 @@ class Actor : public Core
 	set<Component*> components;
 	RootComponent* transform;
 
-public:
-	Actor();
-	virtual ~Actor();
 
 public:
+	FORCEINLINE virtual void Move(const Vector2f& _offset) const
+	{
+		transform->Move(_offset);
+	}
+
 	FORCEINLINE virtual bool IsValid(Core* _core) const override
 	{
 		return Super::IsValid(_core);
 	}
+
+private:
+	template <typename T>
+	FORCEINLINE T* CreateComponent()
+	{
+		T* _component = new T(this);
+		AddComponent(_component);
+
+		return _component;
+	}
+public:
+	Actor();
+	virtual ~Actor();
 
 	#pragma region Component
 	void AddComponent(Component* _component);

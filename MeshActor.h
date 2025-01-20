@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "ShapeObject.h"
 #include "MeshComponent.h"
 
 class MeshActor : public Actor
@@ -8,6 +9,11 @@ class MeshActor : public Actor
 	u_int renderMeshToken;
 
 public:
+	FORCEINLINE virtual void Move(const Vector2f& _offset) const override
+	{
+		Super::Move(_offset);
+		mesh->GetShape()->Move(_offset);
+	}
 
 	FORCEINLINE virtual bool IsValid(Core* _core) const override
 	{
