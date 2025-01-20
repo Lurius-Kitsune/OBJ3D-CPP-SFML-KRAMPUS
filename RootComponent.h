@@ -1,29 +1,29 @@
 #pragma once
 #include "Component.h"
-#include "TransformData.h"
+#include "IGetTransformable.h"
 
-class RootComponent : public Component
+class RootComponent : public Component, public IGetTransformable
 {
 	TransformData transform;
 public:
 	#pragma region Getter
-	FORCEINLINE virtual TransformData GetTransform() const
+	FORCEINLINE virtual TransformData GetTransform() const override
 	{
 		return transform;
 	}
-	FORCEINLINE  Vector2f GetOrigin() const
+	FORCEINLINE  Vector2f GetOrigin() const override
 	{
 		return transform.origin;
 	}
-	FORCEINLINE  Vector2f GetPosition() const
+	FORCEINLINE  Vector2f GetPosition() const override
 	{
 		return transform.position;
 	}
-	FORCEINLINE  Vector2f GetScale() const
+	FORCEINLINE  Vector2f GetScale() const override
 	{
 		return transform.scale;
 	}
-	FORCEINLINE  Angle GetRotation() const
+	FORCEINLINE  Angle GetRotation() const override
 	{
 		return transform.rotation;
 	}

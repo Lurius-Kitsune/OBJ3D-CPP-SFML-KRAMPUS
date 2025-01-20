@@ -11,27 +11,23 @@ public:
 	}
 
 	#pragma region Setter
-	FORCEINLINE virtual void SetOrigin(const Vector2f& _origin)
+	FORCEINLINE virtual void SetOrigin(const Vector2f& _origin) override
 	{
-		Super::SetOrigin(_origin);
 		text->setOrigin(_origin);
 	}
-	FORCEINLINE virtual void SetPosition(const Vector2f& _position)
+	FORCEINLINE virtual void SetPosition(const Vector2f& _position) override
 	{
-		Super::SetPosition(_position);
 		text->setPosition(_position);
 	}
-	FORCEINLINE virtual void SetScale(const Vector2f& _scale)
+	FORCEINLINE virtual void SetScale(const Vector2f& _scale) override
 	{
-		Super::SetScale(_scale);
 		text->setScale(_scale);
 	}
-	FORCEINLINE virtual void SetRotation(const Angle& _angle)
+	FORCEINLINE virtual void SetRotation(const Angle& _angle) override
 	{
-		Super::SetRotation(_angle);
 		text->setRotation(_angle);
 	}
-	FORCEINLINE virtual void SetTransformData(const TransformData& _transformeData)
+	FORCEINLINE virtual void SetTransformData(const TransformData& _transformeData) override
 	{
 		Super::SetTransformData(_transformeData);
 		text->setOrigin(_transformeData.origin);
@@ -41,19 +37,16 @@ public:
 	}
 	#pragma endregion
 
-	FORCEINLINE virtual void Move(const Vector2f& _offset)
+	FORCEINLINE virtual void Move(const Vector2f& _offset) override
 	{
-		Super::Move(_offset);
 		text->move(_offset);
 	}
-	FORCEINLINE virtual void Scale(const Vector2f& _factor)
+	FORCEINLINE virtual void Scale(const Vector2f& _factor) override
 	{
-		Super::Scale(_factor);
 		text->scale(_factor);
 	}
-	FORCEINLINE virtual void Rotate(const Angle& _angle)
+	FORCEINLINE virtual void Rotate(const Angle& _angle) override
 	{
-		Super::Rotate(_angle);
 		text->rotate(_angle);
 	}
 

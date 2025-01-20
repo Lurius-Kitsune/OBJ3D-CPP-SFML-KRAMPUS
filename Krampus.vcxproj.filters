@@ -156,6 +156,9 @@
     <ClCompile Include="RootComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IGetTransformable.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="TransformData.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ITransformableModifier.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

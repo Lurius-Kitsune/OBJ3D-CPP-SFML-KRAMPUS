@@ -18,7 +18,9 @@ public:
 
 	FORCEINLINE virtual bool IsValid(Core* _core) const override
 	{
-		return Super::IsValid(_core);
+		//return Super::IsValid(_core);
+		// TO DO ASK
+		return true;
 	}
 
 private:
