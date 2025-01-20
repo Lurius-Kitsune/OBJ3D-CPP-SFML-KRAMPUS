@@ -20,17 +20,9 @@ Game::~Game()
 
 void Game::Launch()
 {
-    TM_Milli& _timer = TM_Milli::GetInstance();
-    const float _deltaTime = _timer.GetDeltaTime().asSeconds();
-    LOG(VeryVerbose, "DeltaTime => " + to_string(_deltaTime));
-    LOG(Verbose, "DeltaTime => " + to_string(_deltaTime));
-    LOG(Log, "DeltaTime => " + to_string(_deltaTime));
-    LOG(Display, "DeltaTime => " + to_string(_deltaTime));
-    LOG(Warning, "DeltaTime => " + to_string(_deltaTime));
-    LOG(Error, "DeltaTime => " + to_string(_deltaTime));
-    LOG(Fatal, "DeltaTime => " + to_string(_deltaTime));
     Start();
     Update();
+    Stop();
 }
 
 void Game::Start()
@@ -39,7 +31,6 @@ void Game::Start()
     _spawner->SetActorRef(new CircleActor(5.0f));
     window.create(VideoMode({ 800, 600 }), "SFML works!");
     //M_SOUND.PlaySound("openDoor", WAV);
-
 
     new Timer<Seconds>([&]()
         {
@@ -59,7 +50,7 @@ void Game::Update()
         {
             if (_event->is<Event::Closed>())
             {
-                Stop();
+                window.close();
             }
         }
         const float _deltaTime = _timer.GetDeltaTime().asSeconds();
@@ -89,5 +80,5 @@ void Game::UpdateWindow()
 
 void Game::Stop()
 {
-    window.close();
+    M_ACTOR.BeginDestroy();
 }
