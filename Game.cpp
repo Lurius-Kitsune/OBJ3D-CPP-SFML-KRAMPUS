@@ -4,6 +4,7 @@
 #include "SquareActor.h"
 #include "CircleActor.h"
 #include "SoundManager.h"
+#include "Label.h"
 #include "TimerManager.h"
 #include "SoundSample.h"
 
@@ -35,6 +36,7 @@ void Game::Launch()
 
 void Game::Start()
 {
+    Label* _text = new Label("BOB");
     SquareActor* _actor = new SquareActor(100.0f, "");
     TriangleActor* _actor2 = new TriangleActor(100.0f, "");
     _actor->GetShape()->SetOrigin({ 100.0f / 2, 100.0f / 2 });

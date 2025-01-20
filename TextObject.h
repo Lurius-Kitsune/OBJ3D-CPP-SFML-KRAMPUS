@@ -1,13 +1,26 @@
 #pragma once
 #include "Object.h"
+
+enum FontExtensionType
+{
+	OTF,
+	TTF,
+};
+
 class TextObject : public Object
 {
 	Text* text;
+	Font font;
 
 public:
-	FORCEINLINE virtual Drawable* GetDrawable() const override
+	FORCEINLINE virtual Text* GetDrawable() const override
 	{
 		return text;
+	}
+
+	FORCEINLINE Font& GetFont()
+	{
+		return font;
 	}
 
 	#pragma region Setter
@@ -49,10 +62,8 @@ public:
 	{
 		text->rotate(_angle);
 	}
-
-	// Sf::Fonts
 public:
-	TextObject();
+	TextObject(const string& _text, const string& _fontPath = "", const FontExtensionType& _fontType = TTF);
 	~TextObject();
 };
 

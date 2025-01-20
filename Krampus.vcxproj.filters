@@ -85,6 +85,9 @@
     <Filter Include="Source Files\Core\Actors\SquareActor">
       <UniqueIdentifier>{a200e97d-00a0-41ce-a8b4-3c2020b76c74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Manager\Font">
+      <UniqueIdentifier>{bcaf86ee-6bb9-46a3-87a7-f16a817d6d87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -158,6 +161,12 @@
     </ClCompile>
     <ClCompile Include="ITransformableViewer.h">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>Source Files\Manager\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +255,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="ITransformableModifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>Source Files\Manager\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
