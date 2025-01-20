@@ -88,6 +88,9 @@
     <Filter Include="Source Files\Manager\Font">
       <UniqueIdentifier>{bcaf86ee-6bb9-46a3-87a7-f16a817d6d87}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core\Actors\Text">
+      <UniqueIdentifier>{967690a5-6da9-4f43-a2dd-9b79ac67f617}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -166,7 +169,7 @@
       <Filter>Source Files\Manager\Font</Filter>
     </ClCompile>
     <ClCompile Include="Label.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core\Actors\Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -261,7 +264,7 @@
       <Filter>Source Files\Manager\Font</Filter>
     </ClInclude>
     <ClInclude Include="Label.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Core\Actors\Text</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
