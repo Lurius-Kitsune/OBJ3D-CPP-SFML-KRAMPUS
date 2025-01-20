@@ -35,6 +35,10 @@ void Actor::RemoveComponent(Component* _component)
 
 void Actor::BeginPlay()
 {
+	for (Component* _component : components)
+	{
+		_component->BeginPlay();
+	}
 }
 
 void Actor::Tick(const float _deltaTime)

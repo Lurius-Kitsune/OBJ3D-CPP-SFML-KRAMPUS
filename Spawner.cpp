@@ -22,19 +22,6 @@ void Spawner::BeginPlay()
 
 void Spawner::Spawn_Internal()
 {
-	Spawn(actorRef);
-}
-
-void Spawner::Spawn(SubClassOf<Actor>* _actorRef)
-{
-	Actor* _actor = new Actor(_actorRef->GetObject());
-	const Vector2f& _spawnPosition =
-	{
-		RandomValue(0.0f, spawnRange),
-		RandomValue(0.0f, spawnRange),
-	};
-	_actor->SetPosition(_spawnPosition);
-
-	LOG(Display, "J'ai Spawn");
+	Spawn(*actorRef);
 }
 

@@ -7,7 +7,7 @@ class SubClassOf
 	T* objectRef;
 
 public:
-	FORCEINLINE T& GetObject()
+	FORCEINLINE T GetObject() const
 	{
 		return *objectRef;
 	}

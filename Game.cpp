@@ -28,6 +28,7 @@ void Game::Launch()
 void Game::Start()
 {
     Spawner* _spawner = new Spawner();
+    _spawner->Spawn(SubClassOf<MeshActor>(5.0f, 30, "", IntRect()));
     window.create(VideoMode({ 800, 600 }), "SFML works!");
     //M_SOUND.PlaySound("openDoor", WAV);
 
