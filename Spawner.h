@@ -4,13 +4,8 @@ class Spawner : public Actor
 {
 	float spawnRate;
 	float spawnRange;
-	Actor* actorRef;
-
-public:
-	FORCEINLINE void SetActorRef(Actor* _actorRef)
-	{
-		actorRef = _actorRef;
-	}
+	// Soft référence (Prefab)
+	SubClassOf<Actor>* actorRef;
 
 public:
 	Spawner();

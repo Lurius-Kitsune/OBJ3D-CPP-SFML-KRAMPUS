@@ -5,7 +5,7 @@ Spawner::Spawner()
 {
 	spawnRate = 1.0f;
 	spawnRange = 200.0f;
-	actorRef = new Actor();
+	actorRef = new SubClassOf<Actor>(false);
 	BeginPlay();
 }
 
@@ -13,7 +13,6 @@ Spawner::~Spawner()
 {
 	delete actorRef;
 }
-
 
 void Spawner::BeginPlay()
 {
@@ -23,7 +22,7 @@ void Spawner::BeginPlay()
 
 void Spawner::Spawn()
 {
-	Actor* _actor = new Actor(*actorRef);
+	Actor* _actor = new Actor(actorRef->GetObject());
 	const Vector2f& _spawnPosition =
 	{
 		RandomValue(0.0f, spawnRange),

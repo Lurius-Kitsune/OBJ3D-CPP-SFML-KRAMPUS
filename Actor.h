@@ -87,7 +87,8 @@ protected:
 		return _component;
 	}
 public:
-	Actor();
+	Actor(const bool _register = true);
+	Actor(const Actor& _actor);
 	virtual ~Actor();
 
 	#pragma region Component

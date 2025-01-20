@@ -1,7 +1,16 @@
 #include "Actor.h"
 #include "ActorManager.h"
 
-Actor::Actor()
+Actor::Actor(const bool _register)
+{
+	root = CreateComponent<RootComponent>(this);
+	if (_register)
+	{
+		Register();
+	}
+}
+
+Actor::Actor(const Actor& _actor)
 {
 	root = CreateComponent<RootComponent>(this);
 	Register();

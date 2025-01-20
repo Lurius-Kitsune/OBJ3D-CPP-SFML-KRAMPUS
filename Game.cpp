@@ -28,7 +28,6 @@ void Game::Launch()
 void Game::Start()
 {
     Spawner* _spawner = new Spawner();
-    _spawner->SetActorRef(new CircleActor(5.0f));
     window.create(VideoMode({ 800, 600 }), "SFML works!");
     //M_SOUND.PlaySound("openDoor", WAV);
 

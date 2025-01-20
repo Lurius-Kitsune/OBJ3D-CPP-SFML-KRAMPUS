@@ -2,7 +2,7 @@
 #include "Logger.h"
 #include "CustomException.h"
 #include "Utilities.h"
-#include "Utilities.h"
+#include "SubClassOf.h"
 
 #define M_ACTOR ActorManager::GetInstance()
 #define M_TIMER(_type) TimerManager<_type>::GetInstance()
