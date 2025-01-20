@@ -7,12 +7,18 @@ class Spawner : public Actor
 	Actor* actorRef;
 
 public:
+	FORCEINLINE void SetActorRef(Actor* _actorRef)
+	{
+		actorRef = _actorRef;
+	}
+
+public:
 	Spawner();
 	~Spawner();
 
 public:
-	void Spawn();
 private:
 	virtual void BeginPlay() override;
+	void Spawn();
 };
 

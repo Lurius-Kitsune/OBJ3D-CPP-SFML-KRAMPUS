@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Spawner.h"
 #include "MeshActor.h"
+#include "CircleActor.h"
 #include "ActorManager.h"
 #include "SoundManager.h"
 #include "TimerManager.h"
@@ -35,7 +36,7 @@ void Game::Launch()
 void Game::Start()
 {
     Spawner* _spawner = new Spawner();
-    _spawner->Spawn();
+    _spawner->SetActorRef(new CircleActor(5.0f));
     window.create(VideoMode({ 800, 600 }), "SFML works!");
     //M_SOUND.PlaySound("openDoor", WAV);
 

@@ -6,11 +6,19 @@ Spawner::Spawner()
 	spawnRate = 1.0f;
 	spawnRange = 200.0f;
 	actorRef = new Actor();
+	BeginPlay();
 }
 
 Spawner::~Spawner()
 {
 	delete actorRef;
+}
+
+
+void Spawner::BeginPlay()
+{
+	Super::BeginPlay();
+	new Timer<Seconds>(bind(&Spawner::Spawn, this), Time(seconds(spawnRate)), true, true);
 }
 
 void Spawner::Spawn()
@@ -24,11 +32,5 @@ void Spawner::Spawn()
 	_actor->SetPosition(_spawnPosition);
 
 	LOG(Display, "J'ai Spawn");
-}
-
-void Spawner::BeginPlay()
-{
-	Super::BeginPlay();
-	new Timer<Seconds>(bind(&Spawner::Spawn, this), Time(seconds(spawnRate)), true, true);
 }
 
