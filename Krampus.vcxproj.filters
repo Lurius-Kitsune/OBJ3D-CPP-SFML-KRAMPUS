@@ -91,6 +91,18 @@
     <Filter Include="Source Files\Core\Actors\Text">
       <UniqueIdentifier>{967690a5-6da9-4f43-a2dd-9b79ac67f617}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core\Components\Root">
+      <UniqueIdentifier>{11a2f815-2ddd-4bd5-9459-5a1b52867caa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Transform">
+      <UniqueIdentifier>{bf64bca1-02c6-4868-b3fd-474ded2050fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ShootingStar">
+      <UniqueIdentifier>{6aea5403-279a-4888-9ca0-384ca320b452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ShootingStar\Spawner">
+      <UniqueIdentifier>{a92077ea-65ce-48b1-a077-fdccdef76624}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -159,17 +171,20 @@
     <ClCompile Include="Utilities.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="RootComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ITransformableViewer.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="FontManager.cpp">
       <Filter>Source Files\Manager\Font</Filter>
     </ClCompile>
     <ClCompile Include="Label.cpp">
       <Filter>Source Files\Core\Actors\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="RootComponent.cpp">
+      <Filter>Source Files\Core\Components\Root</Filter>
+    </ClCompile>
+    <ClCompile Include="ITransformableViewer.h">
+      <Filter>Header Files\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Source Files\ShootingStar\Spawner</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,20 +266,23 @@
     <ClInclude Include="Utilities.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="RootComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TransformData.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ITransformableModifier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FontManager.h">
       <Filter>Source Files\Manager\Font</Filter>
     </ClInclude>
     <ClInclude Include="Label.h">
       <Filter>Source Files\Core\Actors\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="RootComponent.h">
+      <Filter>Source Files\Core\Components\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="ITransformableModifier.h">
+      <Filter>Header Files\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformData.h">
+      <Filter>Header Files\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Source Files\ShootingStar\Spawner</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

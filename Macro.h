@@ -1,8 +1,6 @@
 #pragma once
 #pragma warning(disable: 4275)
 
-
-
 // STL
 #include <iostream>
 #include <string>
@@ -10,6 +8,8 @@
 #include <functional>
 #include <typeindex>
 #include <typeinfo>
+#include <exception>
+#include <random>
 
 // OLD
 #include <math.h>
