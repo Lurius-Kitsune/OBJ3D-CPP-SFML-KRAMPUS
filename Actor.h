@@ -1,11 +1,13 @@
 #pragma once
 #include "Core.h"
 #include "ShapeObject.h"
+#include "RootComponent.h"
 #include "Component.h"
 
 class Actor : public Core
 {
 	set<Component*> components;
+	RootComponent* transform;
 
 public:
 	Actor();

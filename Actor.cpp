@@ -4,7 +4,8 @@
 
 Actor::Actor()
 {
-	AddComponent(new RootComponent(this));
+	transform = new RootComponent(this);
+	AddComponent(transform);
 	Register();
 }
 
