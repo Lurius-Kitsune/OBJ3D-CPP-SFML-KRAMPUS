@@ -14,5 +14,8 @@ protected :
 	virtual void Start() override;
 	virtual void Update() override;
 	virtual void Stop() override;
+
+public:
+	virtual void Launch() override;
 };
 

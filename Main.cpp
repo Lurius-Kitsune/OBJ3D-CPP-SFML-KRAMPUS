@@ -10,6 +10,9 @@ void InitConfig()
 int main()
 {
     InitConfig();
-    DuckHuntGame::GetInstance().Launch();
+    Game::GetInstance().Launch();
+
+    //DuckHuntGame _game;
+    //_game.Launch();
 	return EXIT_SUCCESS;
 }

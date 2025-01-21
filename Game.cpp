@@ -25,7 +25,7 @@ void Game::Start()
     //_sample->SetLoop(true);
     //new Label("Bonjour !", "Cheese_Market", TTF);
 
-    Spawner* _spawner = Level::SpawnActor<Spawner>();
+    //Spawner* _spawner = Level::SpawnActor<Spawner>();
 
     /*
     MeshActor _meshActorObject = MeshActor(20.0f, 30, "Charm");
