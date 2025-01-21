@@ -9,7 +9,7 @@ class Actor : public Core, public ITransformableModifier, public ITransformableV
 {
 	set<Component*> components;
 	RootComponent* root;
-
+	bool isToDelete;
 protected:
 	template <typename T, typename ...Args>
 	FORCEINLINE T* CreateComponent(Args... _args)
@@ -25,6 +25,16 @@ public:
 	{
 		// Overridable
 		return true;
+	}
+
+	FORCEINLINE void SetToDelete()
+	{
+		isToDelete = true;
+	}
+
+	FORCEINLINE bool IsToDelete()const
+	{
+		return isToDelete;
 	}
 
 	#pragma region Transformable
@@ -101,6 +111,7 @@ public:
 	virtual void Tick(const float _deltaTime) override;
 	virtual void BeginDestroy() override;
 
+	void Destroy();
 	#pragma region Components
 
 	void AddComponent(Component* _component);

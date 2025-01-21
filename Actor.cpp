@@ -4,11 +4,13 @@
 Actor::Actor()
 {
 	root = CreateComponent<RootComponent>();
+	isToDelete = false;
 }
 
 Actor::Actor(const Actor& _actor)
 {
 	root = CreateComponent<RootComponent>(*_actor.root);
+	isToDelete = false;
 }
 
 Actor::~Actor()
@@ -52,6 +54,11 @@ void Actor::BeginDestroy()
 	{
 		_component->BeginDestroy();
 	}
+}
+
+void Actor::Destroy()
+{
+	delete this;
 }
 
 

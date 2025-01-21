@@ -4,6 +4,7 @@
 #include "SoundManager.h"
 
 #include "MeshActor.h"
+#include "Duck.h"
 #include "Label.h"
 #include "Spawner.h"
 #include "Level.h"
@@ -45,7 +46,17 @@ void Game::Start()
            + " / " + to_string(_intersection.value().getCenter().y));
     }*/
 
-    M_ACTOR.BeginPlay();
+    Level::SpawnActor(MeshActor(Vector2f(719.0f, 400.0f), "farmBackground"));
+    new Timer([&]()
+        {
+            Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "duck", IntRect(Vector2i(), Vector2i(156.0f, 160.0f))));
+        },
+        seconds(1.0f),
+        true,
+        true
+    );
+
+
 };
 
 void Game::Update()
