@@ -51,12 +51,10 @@ void Game::Start()
         {
             Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "duck", IntRect(Vector2i(), Vector2i(156.0f, 160.0f))));
         },
-        seconds(1.0f),
+        seconds(3.0f),
         true,
         true
     );
-
-
 };
 
 void Game::Update()

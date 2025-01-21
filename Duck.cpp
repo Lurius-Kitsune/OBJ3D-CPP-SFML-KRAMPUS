@@ -5,7 +5,7 @@
 Duck::Duck(const Vector2f& _size, const string& _path, const IntRect& _rect)
 	: MeshActor(_size, _path, _rect)
 {
-	lifeSpan = 2.0f;
+	lifeSpan = 5.0f;
 	movement = CreateComponent<MovementComponent>();
 }
 
@@ -19,7 +19,8 @@ void Duck::BeginPlay()
 {
 	Super::BeginPlay();
 
+	new Timer([&]() {Destroy(); }, seconds(lifeSpan), true);
+
 	LOG(Display, "coinc");
 
-	new Timer([&]() { Destroy(); }, seconds(lifeSpan), true);
-}
+} 

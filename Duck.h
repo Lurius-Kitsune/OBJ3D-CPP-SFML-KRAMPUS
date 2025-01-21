@@ -1,6 +1,7 @@
 #pragma once
 #include "MeshActor.h"
 #include "MovementComponent.h"
+
 class Duck : public MeshActor
 {
 	float lifeSpan;

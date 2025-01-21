@@ -4,13 +4,15 @@
 MovementComponent::MovementComponent(Actor* _owner)
 	: Component(_owner)
 {
-	speed = 10.0f;
+	speed = 100.0f;
 	direction = Vector2f(1.0f, 0.0f);
 }
 
 MovementComponent::MovementComponent(Actor* _owner, const MovementComponent& _other)
 	: Component(_owner)
 {
+	speed = _other.speed;
+	direction = _other.direction;
 }
 
 void MovementComponent::Tick(const float _deltaTime)

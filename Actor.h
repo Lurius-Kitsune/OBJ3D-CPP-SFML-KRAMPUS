@@ -7,9 +7,10 @@
 
 class Actor : public Core, public ITransformableModifier, public ITransformableViewer
 {
+	bool isToDelete;
 	set<Component*> components;
 	RootComponent* root;
-	bool isToDelete;
+
 protected:
 	template <typename T, typename ...Args>
 	FORCEINLINE T* CreateComponent(Args... _args)
