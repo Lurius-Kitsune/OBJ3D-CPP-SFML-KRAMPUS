@@ -149,13 +149,13 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"</Command>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="ActorManager.cpp" />
-    <ClCompile Include="Bird.cpp" />
     <ClCompile Include="CircleActor.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="CustomException.cpp" />
+    <ClCompile Include="DuckHuntGame.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Label.cpp" />
@@ -181,7 +181,6 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"</Command>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="ActorManager.h" />
-    <ClInclude Include="Bird.h" />
     <ClInclude Include="CircleActor.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="Color.h" />
@@ -189,6 +188,7 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"</Command>
     <ClInclude Include="Core.h" />
     <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="CustomException.h" />
+    <ClInclude Include="DuckHuntGame.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Label.h" />

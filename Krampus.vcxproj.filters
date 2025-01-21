@@ -94,6 +94,9 @@
     <Filter Include="ShootingStars">
       <UniqueIdentifier>{39046391-69cf-469b-8bbf-9ebc75c183dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DuckHunt">
+      <UniqueIdentifier>{3cf18b3f-09e0-4f1e-9db7-a0d7d4be12f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TextObject.cpp">
@@ -183,7 +186,7 @@
     <ClCompile Include="Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bird.cpp">
+    <ClCompile Include="DuckHuntGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -293,7 +296,7 @@
     <ClInclude Include="Level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bird.h">
+    <ClInclude Include="DuckHuntGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

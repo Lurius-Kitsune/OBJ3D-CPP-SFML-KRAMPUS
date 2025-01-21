@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "DuckHuntGame.h"
 #include "Logger.h"
 
 void InitConfig()
@@ -10,6 +10,6 @@ void InitConfig()
 int main()
 {
     InitConfig();
-    Game::GetInstance().Launch();
+    DuckHuntGame::GetInstance().Launch();
 	return EXIT_SUCCESS;
 }

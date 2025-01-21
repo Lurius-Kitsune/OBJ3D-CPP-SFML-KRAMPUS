@@ -24,12 +24,12 @@ public:
 	Game();
 	~Game();
 
-private:
-	void Start();
-	void Update();
-	void Stop();
+protected :
+	virtual void Start();
+	virtual void Update();
+	virtual void Stop();
 
 public:
-	void Launch();
+	virtual void Launch();
 	void UpdateWindow();
 };
