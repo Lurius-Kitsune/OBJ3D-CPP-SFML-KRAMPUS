@@ -9,4 +9,5 @@
 #define M_SOUND SoundManager::GetInstance()
 #define M_GAME Game::GetInstance()
 #define M_FONT FontManager::GetInstance()
+#define M_TEXTURE TextureManager::GetInstance()
 #define M_(_manager) _manager::GetInstance()

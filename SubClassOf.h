@@ -13,9 +13,9 @@ public:
 	}
 
 public:
-	/*SubclassOf()
+	/*SubClassOf()
 	{
-	objectRef = T();
+		objectRef = T();
 	}*/
 	SubClassOf(const T& _objectRef)
 	{

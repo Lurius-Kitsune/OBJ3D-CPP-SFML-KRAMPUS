@@ -27,8 +27,8 @@ public:
 
 		const Vector2f& _spawnPosition =
 		{
-		GetRandomNumberInRange(0.0f, spawnRange),
-		GetRandomNumberInRange(0.0f, spawnRange),
+			GetRandomNumberInRange(0.0f, spawnRange),
+			GetRandomNumberInRange(0.0f, spawnRange),
 		};
 		_actor->SetPosition(_spawnPosition);
 	}

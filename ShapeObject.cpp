@@ -2,7 +2,7 @@
 #include "TextureManager.h"
 
 ShapeObject::ShapeObject(const float _radius, const string& _path, const IntRect& _rect,
-	const size_t& _pointCount)
+						 const size_t& _pointCount)
 {
 	objectData = new ShapeObjectData(SOT_CIRCLE, CircleShapeData(_radius, _path, _rect, _pointCount));
 	InitCircle(objectData->data->circleData);
@@ -39,11 +39,11 @@ ShapeObject::~ShapeObject()
 void ShapeObject::InitCircle(const CircleShapeData& _data)
 {
 	shape = new CircleShape(_data.radius, _data.pointCount);
-	TextureManager::GetInstance().Load(this, _data.path, _data.rect);
+	M_TEXTURE.Load(this, _data.path, _data.rect);
 }
 
 void ShapeObject::InitRectangle(const RectangleShapeData& _data)
 {
 	shape = new RectangleShape(_data.size);
-	TextureManager::GetInstance().Load(this, _data.path, _data.rect);
+	M_TEXTURE.Load(this, _data.path, _data.rect);
 }

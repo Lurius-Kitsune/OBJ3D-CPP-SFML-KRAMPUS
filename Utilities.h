@@ -13,7 +13,7 @@ static int RandomInt(const int _min, const int _max)
 }
 
 template<typename ReturnValue>
-static ReturnValue RandomValue(const ReturnValue _min, const ReturnValue _max)
+static ReturnValue GetRandomNumberInRange(const ReturnValue _min, const ReturnValue _max)
 {
     std::random_device _dev;
     std::mt19937 _rng(_dev());

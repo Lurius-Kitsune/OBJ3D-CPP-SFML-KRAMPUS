@@ -5,7 +5,7 @@ Spawner::Spawner()
 {
 	spawnRate = 1.0f;
 	spawnRange = 200.0f;
-	ref = new SubClassOf<MeshActor>(MeshActor(20.0f, 30, "Charm"));
+	ref = new SubClassOf<MeshActor>(MeshActor(20.0f, 30, "Charm", IntRect()));
 }
 
 Spawner::~Spawner()

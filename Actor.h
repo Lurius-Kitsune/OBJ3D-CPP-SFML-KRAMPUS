@@ -81,7 +81,7 @@ protected:
 	template <typename T, typename ...Args>
 	FORCEINLINE T* CreateComponent(Args... _args)
 	{
-		T* _component = new T(_args...);
+		T* _component = new T(this, _args...);
 		AddComponent(_component);
 
 		return _component;

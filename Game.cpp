@@ -32,7 +32,7 @@ void Game::Start()
 
     //Spawner* _spawner = new Spawner();
 
-    MeshActor _meshActorObject = MeshActor(10.0f, 30,"Cow");
+    MeshActor _meshActorObject = MeshActor(30, 30, "", IntRect());
     SubClassOf<MeshActor> _meshActorRef = SubClassOf<MeshActor>(_meshActorObject);
     MeshActor* _meshActor = Level::SpawnActor<MeshActor>(_meshActorRef);
 
