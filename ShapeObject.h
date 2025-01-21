@@ -86,6 +86,19 @@ struct ShapeObjectData
 		data.rectangleData = new RectangleShapeData(_rectangleData);
 	}
 
+	~ShapeObjectData()
+	{
+		if (type == SOT_CIRCLE)
+		{
+			delete data.circleData;
+		}
+
+		else if (type == SOT_RECTANGLE)
+		{
+			delete data.rectangleData;
+		}
+	}
+
 	ShapeObjectData& operator = (const ShapeObjectData& _other)
 	{
 		type = _other.type;

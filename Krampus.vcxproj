@@ -122,6 +122,13 @@ xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"
 
 </Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>xcopy /y /d "..\SFML-3.0.0\bin\sfml-audio-d-3.dll" "$(OutDir)"
+xcopy /y /d "..\SFML-3.0.0\bin\sfml-graphics-d-3.dll" "$(OutDir)"
+xcopy /y /d "..\SFML-3.0.0\bin\sfml-network-d-3.dll" "$(OutDir)"
+xcopy /y /d "..\SFML-3.0.0\bin\sfml-system-d-3.dll" "$(OutDir)"
+xcopy /y /d "..\SFML-3.0.0\bin\sfml-window-d-3.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

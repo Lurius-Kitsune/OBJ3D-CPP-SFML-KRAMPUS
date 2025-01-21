@@ -21,4 +21,9 @@ public:
 	{
 		objectRef = new T(*_objectRef);
 	}
+
+	~SubclassOf()
+	{
+		delete objectRef;
+	}
 };
