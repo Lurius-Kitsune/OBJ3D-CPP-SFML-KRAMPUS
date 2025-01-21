@@ -8,9 +8,10 @@ ActorManager::~ActorManager()
 	}
 }
 
+
 void ActorManager::BeginPlay()
 {
-	for (Actor* _actor: allActors)
+	for (Actor* _actor : allActors)
 	{
 		_actor->BeginPlay();
 	}

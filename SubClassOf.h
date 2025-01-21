@@ -2,23 +2,23 @@
 #include "Macro.h"
 
 template <typename T>
-class SubClassOf
+class SubclassOf
 {
-	T objectRef;
+	T* objectRef;
 
 public:
 	FORCEINLINE T GetObject() const
 	{
-		return objectRef;
+		return *objectRef;
 	}
 
 public:
-	/*SubClassOf()
+	SubclassOf(const T& _objectRef)
 	{
-		objectRef = T();
-	}*/
-	SubClassOf(const T& _objectRef)
+		objectRef = new T(_objectRef);
+	}
+	SubclassOf(const T* _objectRef)
 	{
-		objectRef = _objectRef;
+		objectRef = new T(*_objectRef);
 	}
 };

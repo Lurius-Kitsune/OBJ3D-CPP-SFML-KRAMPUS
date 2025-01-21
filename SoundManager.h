@@ -1,7 +1,8 @@
 #pragma once
 #include "Singleton.h"
 #include "SoundSample.h"
-enum ExtensionType
+
+enum SoundExtensionType
 {
 	MP3,
 	WAV
@@ -9,28 +10,25 @@ enum ExtensionType
 
 class SoundManager : public Singleton<SoundManager>
 {
-	multimap<string, SoundSample*> allSamples;
 	bool isMuted;
-	float Volume;
+	float volume;
 	string prefixPath;
+	multimap<string, SoundSample*> allSamples;
 
-public:
+public: 
 	FORCEINLINE void RegisterSample(SoundSample* _sample)
 	{
-		allSamples.insert({ _sample->GetPath(), _sample });
+		allSamples.insert(make_pair(_sample->GetPath(), _sample));
 	}
-
-	FORCEINLINE string GetExtension(const ExtensionType& _type)
+	FORCEINLINE string GetExtension(const SoundExtensionType& _type)
 	{
-		return vector<string>({".mp3", ".wav"})[_type];
+		return vector<string>({ ".mp3", ".wav" })[_type];
 	}
 
 public:
 	SoundManager();
 	~SoundManager();
 
-public:
-	SoundSample* PlaySound(const string& _path, const ExtensionType& _type);
-	void ToogleMute();
+	SoundSample* PlaySound(const string& _path, const SoundExtensionType& _type = MP3);
+	void ToggleMute();
 };
-

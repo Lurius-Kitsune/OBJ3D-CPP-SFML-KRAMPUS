@@ -1,11 +1,19 @@
 #include "Spawner.h"
 #include "TimerManager.h"
+#include "Level.h"
 
 Spawner::Spawner()
 {
 	spawnRate = 1.0f;
 	spawnRange = 200.0f;
-	ref = new SubClassOf<MeshActor>(MeshActor(20.0f, 30, "Charm", IntRect()));
+	ref = new SubclassOf<MeshActor>(MeshActor(20.0f, 30, "Charm"));
+}
+
+Spawner::Spawner(const Spawner& _other)
+{
+	spawnRate = _other.spawnRate;
+	spawnRange = _other.spawnRange;
+	ref = new SubclassOf<MeshActor>(*_other.ref);
 }
 
 Spawner::~Spawner()
@@ -17,10 +25,19 @@ Spawner::~Spawner()
 void Spawner::BeginPlay()
 {
 	Super::BeginPlay();
-	new Timer<Seconds>(bind(&Spawner::Spawn_Internal, this), Time(seconds(spawnRate)), true, true);
+	new Timer(bind(&Spawner::Spawn, this), Time(seconds(spawnRate)), true, true);
 }
 
-void Spawner::Spawn_Internal()
+void Spawner::Spawn()
 {
-	Spawn(*ref);
+	LOG(Display, "Spawn");
+
+	const Vector2f& _spawnPosition =
+	{
+		GetRandomNumberInRange(0.0f, spawnRange),
+		GetRandomNumberInRange(0.0f, spawnRange),
+	};
+	ref->GetObject().SetPosition(_spawnPosition);
+
+	Level::SpawnActor<MeshActor>(*ref);
 }

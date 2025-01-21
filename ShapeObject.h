@@ -12,6 +12,8 @@ enum ShapeObjectType
 {
 	SOT_CIRCLE,
 	SOT_RECTANGLE,
+
+	SOT_COUNT,
 };
 
 struct CircleShapeData
@@ -28,6 +30,16 @@ struct CircleShapeData
 		path = _path;
 		rect = _rect;
 		pointCount = _pointCount;
+	}
+
+	CircleShapeData& operator = (CircleShapeData _other)
+	{
+		radius = _other.radius;
+		path = _other.path;
+		rect = _other.rect;
+		pointCount = _other.pointCount;
+
+		return *this;
 	}
 };
 
@@ -47,26 +59,48 @@ struct RectangleShapeData
 
 union ObjectData
 {
-	CircleShapeData circleData;
-	RectangleShapeData rectangleData;
+	CircleShapeData* circleData;
+	RectangleShapeData* rectangleData;
 
-	~ObjectData() = delete;
+	ObjectData() {}
+	~ObjectData() {}
 };
 
 struct ShapeObjectData
 {
 	ShapeObjectType type;
-	ObjectData* data;
+	ObjectData data;
 
+	ShapeObjectData()
+	{
+		type = SOT_COUNT;
+	}
 	ShapeObjectData(const ShapeObjectType& _type, const CircleShapeData& _circleData)
 	{
 		type = _type;
-		data->circleData = _circleData;
+		data.circleData = new CircleShapeData(_circleData);
 	}
 	ShapeObjectData(const ShapeObjectType& _type, const RectangleShapeData& _rectangleData)
 	{
 		type = _type;
-		data->rectangleData = _rectangleData;
+		data.rectangleData = new RectangleShapeData(_rectangleData);
+	}
+
+	ShapeObjectData& operator = (const ShapeObjectData& _other)
+	{
+		type = _other.type;
+
+		if (type == SOT_CIRCLE)
+		{
+			data.circleData = new CircleShapeData(*_other.data.circleData);
+		}
+
+		else if (type == SOT_RECTANGLE)
+		{
+			data.rectangleData = new RectangleShapeData(*_other.data.rectangleData);
+		}
+
+		return *this;
 	}
 };
 
@@ -74,7 +108,7 @@ class ShapeObject : public Object
 {
 	Texture texture;
 	Shape* shape;
-	ShapeObjectData* objectData;
+	ShapeObjectData objectData;
 
 public:
 	FORCEINLINE Texture& GetTexture()
@@ -101,7 +135,7 @@ public:
 	{
 		shape->setScale(_scale);
 	}
-	FORCEINLINE virtual void SetTransformData(const TransformData& _transformData) override
+	FORCEINLINE virtual void SetTransform(const TransformData& _transformData) override
 	{
 		shape->setOrigin(_transformData.origin);
 		shape->setPosition(_transformData.position);

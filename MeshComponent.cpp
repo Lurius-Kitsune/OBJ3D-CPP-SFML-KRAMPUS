@@ -14,9 +14,9 @@ MeshComponent::MeshComponent(Actor* _owner, const Vector2f& _size, const string&
 	shape = new ShapeObject(_size, _path, _rect);
 }
 
-MeshComponent::MeshComponent(Actor* _owner, const MeshComponent& _other) : Component(_owner) 
+MeshComponent::MeshComponent(Actor* _owner, const MeshComponent* _other) : Component(_owner) 
 {
-	shape = new ShapeObject(*_other.shape);
+	shape = new ShapeObject(*_other->shape);
 }
 
 

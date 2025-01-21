@@ -3,16 +3,18 @@
 
 SoundSample::SoundSample(const string& _path)
 {
-	const string& _finalPath = "Assets/Sounds/" + _path;
-	if (!buffer.loadFromFile(_finalPath))
+	volume = 100.0f;
+	path = _path;
+
+	if (!buffer.loadFromFile(_path))
 	{
-		LOG(Error, "Cannot open sound with path : \'" + _finalPath + "\'");
+		LOG(Error, "Invalid path : " + _path);
+		sound = nullptr;
 		return;
 	}
-	path = _path;
+
 	sound = new Sound(buffer);
-	volume = GetVolume();
-	SoundManager::GetInstance().RegisterSample(this);
+	M_SOUND.RegisterSample(this);
 }
 
 SoundSample::~SoundSample()
@@ -20,15 +22,17 @@ SoundSample::~SoundSample()
 	delete sound;
 }
 
+
 void SoundSample::Play(const Time& _time)
 {
 	if (GetStatus() == SoundStatus::Paused)
 	{
-		Stop();
+		sound->stop();
 	}
+
 	SetVolume(volume);
-	sound->setPlayingOffset(_time);
 	sound->play();
+	sound->setPlayingOffset(_time);
 }
 
 void SoundSample::Pause()

@@ -15,7 +15,7 @@ MeshActor::MeshActor(const Vector2f& _size, const string& _path, const IntRect& 
 
 MeshActor::MeshActor(const MeshActor& _other)
 {
-	mesh = CreateComponent<MeshComponent>(*_other.mesh);
+	mesh = CreateComponent<MeshComponent>(_other.mesh);
 	renderMeshToken = _other.renderMeshToken;
 }
 

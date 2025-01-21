@@ -1,81 +1,14 @@
 #pragma once
 #include "Core.h"
-#include "RootComponent.h"
-#include "ShapeObject.h"
+#include "TransformableModifier.h"
+#include "TransformableViewer.h"
 #include "Component.h"
-#include "ITransformableViewer.h"
-#include "ITransformableModifier.h"
+#include "RootComponent.h"
 
-class Actor : public Core, public ITransformableViewer, public ITransformableModifier
+class Actor : public Core, public ITransformableModifier, public ITransformableViewer
 {
 	set<Component*> components;
 	RootComponent* root;
-
-
-public:
-	FORCEINLINE virtual bool IsValid(Core* _core) const override
-	{
-		//return Super::IsValid(_core);
-		// TO DO ASK
-		return true;
-	}
-
-	#pragma region Transformable
-	#pragma region Modifier
-	FORCEINLINE virtual void SetOrigin(const Vector2f& _origin) override
-	{
-		root->SetOrigin(_origin);
-	}
-	FORCEINLINE virtual void SetPosition(const Vector2f& _position) override
-	{
-		root->SetPosition(_position);
-	}
-	FORCEINLINE virtual void SetScale(const Vector2f& _scale) override
-	{
-		root->SetScale(_scale);
-	}
-	FORCEINLINE virtual void SetRotation(const Angle& _angle) override
-	{
-		root->SetRotation(_angle);
-	}
-	FORCEINLINE virtual void Move(const Vector2f& _offset) override
-	{
-		root->Move(_offset);
-	}
-	FORCEINLINE virtual void Scale(const Vector2f& _factor) override
-	{
-		root->Scale(_factor);
-	}
-	FORCEINLINE virtual void Rotate(const Angle& _angle) override
-	{
-		root->Rotate(_angle);
-	}
-	#pragma endregion
-
-	#pragma region Viewer
-	FORCEINLINE virtual TransformData GetTransform() const override
-	{
-		return root->GetTransform();
-	}
-	FORCEINLINE virtual Vector2f GetOrigin() const override
-	{
-		return root->GetOrigin();
-	}
-	FORCEINLINE virtual Vector2f GetPosition() const override
-	{
-		return root->GetPosition();
-	}
-	FORCEINLINE virtual Vector2f GetScale() const override
-	{
-		return root->GetScale();
-	}
-	FORCEINLINE virtual Angle GetRotation() const override
-	{
-		return root->GetRotation();
-	}
-	#pragma endregion
-
-	#pragma endregion
 
 protected:
 	template <typename T, typename ...Args>
@@ -86,32 +19,105 @@ protected:
 
 		return _component;
 	}
+
+public:
+	FORCEINLINE virtual bool IsValid(Core* _core) const override
+	{
+		// Overridable
+		return true;
+	}
+
+	#pragma region Transformable
+
+	#pragma region Viewer
+
+	FORCEINLINE virtual Vector2f GetOrigin() const override
+	{
+		return root->GetOrigin();
+	}
+	FORCEINLINE virtual Vector2f GetPosition() const override
+	{
+		return root->GetPosition();
+	}
+	FORCEINLINE virtual Angle GetRotation() const override
+	{
+		return root->GetRotation();
+	}
+	FORCEINLINE virtual Vector2f GetScale() const override
+	{
+		return root->GetScale();
+	}
+	FORCEINLINE virtual TransformData GetTransform() const override
+	{
+		return root->GetTransform();
+	}
+
+	#pragma endregion
+
+	#pragma region Modifier
+
+	FORCEINLINE virtual void SetPosition(const Vector2f& _position) override
+	{
+		root->SetPosition(_position);
+	}
+	FORCEINLINE virtual void SetRotation(const Angle& _rotation) override
+	{
+		root->SetRotation(_rotation);
+	}
+	FORCEINLINE virtual void SetScale(const Vector2f& _scale) override
+	{
+		root->SetScale(_scale);
+	}
+	FORCEINLINE virtual void SetOrigin(const Vector2f& _origin) override
+	{
+		root->SetOrigin(_origin);
+	}
+	FORCEINLINE virtual void Move(const Vector2f& _offset) override
+	{
+		root->Move(_offset);
+	}
+	FORCEINLINE virtual void Rotate(const Angle& _angle) override
+	{
+		root->Rotate(_angle);
+	}
+	FORCEINLINE virtual void Scale(const Vector2f& _factor) override
+	{
+		root->Scale(_factor);
+	}
+
+	#pragma endregion
+
+	#pragma endregion
+
 public:
 	Actor();
 	Actor(const Actor& _actor);
 	virtual ~Actor();
 
-	#pragma region Component
+public:
+	virtual void Construct();
+	virtual void Deconstruct();
+	virtual void BeginPlay() override;
+	virtual void Tick(const float _deltaTime) override;
+	virtual void BeginDestroy() override;
+
+	#pragma region Components
+
 	void AddComponent(Component* _component);
 	void RemoveComponent(Component* _component);
-	template<typename T>
-	T* GetComponent()
+	template <typename T>
+	T GetComponent()
 	{
 		for (Component* _component : components)
 		{
-			if (is_same_v<decltype(_component), T>) return dynamic_cast<T>(_component);
+			if (is_same_v<decltype(_component), T>)
+			{
+				return dynamic_cast<T>(_component);
+			}
 		}
 
 		return nullptr;
 	}
+
 	#pragma endregion
-
-	virtual void BeginPlay() override;
-	virtual void Tick(const float _deltaTime) override;
-	virtual void BeginDestroy() override;
-	virtual void Deconstruct();
-	virtual void Construct();
-
-
 };
-

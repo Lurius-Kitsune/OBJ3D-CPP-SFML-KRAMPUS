@@ -1,71 +1,76 @@
 #pragma once
 #include "Component.h"
-#include "ITransformableViewer.h"
-#include "ITransformableModifier.h"
+#include "TransformableModifier.h"
+#include "TransformableViewer.h"
 
-class RootComponent : public Component, public ITransformableViewer
+class RootComponent : public Component, public ITransformableModifier, public ITransformableViewer
 {
-	TransformData root;
+	TransformData transform;
+
 public:
-	#pragma region Getter
+	#pragma region Getters
+
+	FORCEINLINE virtual Vector2f GetOrigin() const override
+	{
+		return transform.origin;
+	}
+	FORCEINLINE virtual Vector2f GetPosition() const override
+	{
+		return transform.position;
+	}
+	FORCEINLINE virtual Angle GetRotation() const override
+	{
+		return transform.rotation;
+	}
+	FORCEINLINE virtual Vector2f GetScale() const override
+	{
+		return transform.scale;
+	}
 	FORCEINLINE virtual TransformData GetTransform() const override
 	{
-		return root;
+		return transform;
 	}
-	FORCEINLINE  Vector2f GetOrigin() const override
-	{
-		return root.origin;
-	}
-	FORCEINLINE  Vector2f GetPosition() const override
-	{
-		return root.position;
-	}
-	FORCEINLINE  Vector2f GetScale() const override
-	{
-		return root.scale;
-	}
-	FORCEINLINE  Angle GetRotation() const override
-	{
-		return root.rotation;
-	}
+
 	#pragma endregion
 
-	#pragma region Setter
-	FORCEINLINE virtual void SetOrigin(const Vector2f& _origin)
+	#pragma region Setters
+
+	FORCEINLINE virtual void SetOrigin(const Vector2f& _origin) override
 	{
-		root.origin = _origin;
+		transform.origin = _origin;
 	}
-	FORCEINLINE virtual void SetPosition(const Vector2f& _position)
+	FORCEINLINE virtual void SetPosition(const Vector2f& _position) override
 	{
-		root.position = _position;
+		transform.position = _position;
 	}
-	FORCEINLINE virtual void SetScale(const Vector2f& _scale)
+	FORCEINLINE virtual void SetRotation(const Angle& _rotation) override
 	{
-		root.scale = _scale;
+		transform.rotation = _rotation;
 	}
-	FORCEINLINE virtual void SetRotation(const Angle& _angle)
+	FORCEINLINE virtual void SetScale(const Vector2f& _scale) override
 	{
-		root.rotation = _angle;
+		transform.scale = _scale;
 	}
-	FORCEINLINE virtual void SetTransformData(const TransformData& _transformeData)
+	FORCEINLINE virtual void SetTransform(const TransformData& _transformData) override
 	{
-		root = _transformeData;
+		transform = _transformData;
 	}
+	FORCEINLINE virtual void Move(const Vector2f& _offset) override
+	{
+		transform.position += _offset;
+	}
+	FORCEINLINE virtual void Rotate(const Angle& _angle) override
+	{
+		transform.rotation += _angle;
+	}
+	FORCEINLINE virtual void Scale(const Vector2f& _factor) override
+	{
+		transform.scale += _factor;
+	}
+
 	#pragma endregion
 
-	FORCEINLINE virtual void Move(const Vector2f& _offset)
-	{
-		root.position += _offset;
-	}
-	FORCEINLINE virtual void Scale(const Vector2f& _factor)
-	{
-		root.scale += _factor;
-	}
-	FORCEINLINE virtual void Rotate(const Angle& _angle)
-	{
-		root.rotation += _angle;
-	}
 public:
 	RootComponent(Actor* _owner);
+	RootComponent(Actor* _owner, const RootComponent& _other);
 };
-
