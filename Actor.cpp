@@ -3,16 +3,15 @@
 
 Actor::Actor()
 {
-	root = CreateComponent<RootComponent>(this);
-	Register();
+	root = CreateComponent<RootComponent>();
+	
 }
 
 Actor::Actor(const Actor& _actor)
 {
-	root = CreateComponent<RootComponent>(this);
-	Register();
+	root = CreateComponent<RootComponent>();
+	
 }
-
 
 Actor::~Actor()
 {
@@ -62,7 +61,7 @@ void Actor::Deconstruct()
 	M_ACTOR.RemoveActor(this);
 }
 
-void Actor::Register()
+void Actor::Construct()
 {
 	M_ACTOR.AddActor(this);
 }

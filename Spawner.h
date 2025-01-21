@@ -1,5 +1,8 @@
 #pragma once
 #include "Actor.h"
+#include "MeshActor.h"
+
+using T = MeshActor;
 class Spawner : public Actor
 {
 	float spawnRate;
@@ -11,11 +14,16 @@ public:
 	Spawner();
 	~Spawner();
 
+private:
+	virtual void BeginPlay() override;
+	void Spawn_Internal();
+
 public:
 	template <typename T>
 	void Spawn(const SubClassOf<T>& _actorRef)
 	{
 		T* _actor = new T(_actorRef.GetObject());
+		_actor->Construct();
 		const Vector2f& _spawnPosition =
 		{
 			RandomValue(0.0f, spawnRange),
@@ -25,8 +33,5 @@ public:
 
 		LOG(Display, "J'ai Spawn");
 	}
-private:
-	virtual void BeginPlay() override;
-	void Spawn_Internal();
 };
 

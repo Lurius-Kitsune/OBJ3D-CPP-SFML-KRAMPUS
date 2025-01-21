@@ -110,8 +110,8 @@ public:
 	virtual void Tick(const float _deltaTime) override;
 	virtual void BeginDestroy() override;
 	virtual void Deconstruct();
+	virtual void Construct();
 
-private: 
-	void Register();
+
 };
 

@@ -6,6 +6,7 @@
 #include "SoundManager.h"
 #include "TimerManager.h"
 #include "SoundSample.h"
+#include "Level.h"
 
 
 Game::Game()
@@ -27,9 +28,14 @@ void Game::Launch()
 
 void Game::Start()
 {
-    Spawner* _spawner = new Spawner();
-    _spawner->Spawn(SubClassOf<MeshActor>(5.0f, 30, "", IntRect()));
     window.create(VideoMode({ 800, 600 }), "SFML works!");
+
+    //Spawner* _spawner = new Spawner();
+
+    MeshActor _meshActorObject = MeshActor(10.0f, 30,"Cow");
+    SubClassOf<MeshActor> _meshActorRef = SubClassOf<MeshActor>(_meshActorObject);
+    MeshActor* _meshActor = Level::SpawnActor<MeshActor>(_meshActorRef);
+
     //M_SOUND.PlaySound("openDoor", WAV);
 
     new Timer<Seconds>([&]()
@@ -38,6 +44,8 @@ void Game::Start()
             const float _deltaTime = _timer.GetDeltaTime().asSeconds();
             LOG(Display, "DeltaTime => " + to_string(_deltaTime));
         }, Time(seconds(2.0f)), true, true);
+
+    M_ACTOR.BeginPlay();
 }
 
 void Game::Update()

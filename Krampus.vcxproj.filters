@@ -186,6 +186,12 @@
     <ClCompile Include="Spawner.cpp">
       <Filter>Source Files\ShootingStar\Spawner</Filter>
     </ClCompile>
+    <ClCompile Include="SubClassOf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -283,6 +289,12 @@
     </ClInclude>
     <ClInclude Include="Spawner.h">
       <Filter>Source Files\ShootingStar\Spawner</Filter>
+    </ClInclude>
+    <ClInclude Include="SubClassOf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Source Files\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

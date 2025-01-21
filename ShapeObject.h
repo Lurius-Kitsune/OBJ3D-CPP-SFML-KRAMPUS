@@ -1,10 +1,65 @@
 #pragma once
 #include "Object.h"
 
+
+enum ShapeObjectType
+{
+	SOT_CIRCLE,
+	SOT_RECTANGLE,
+};
+
+struct CircleShapeData
+{
+	float radius;
+	string path;
+	IntRect rect;
+	size_t pointCount;
+
+	CircleShapeData() = default;
+
+};
+
+struct RectangleShapeData
+{
+	Vector2f size;
+	string path;
+	IntRect rect;
+
+	RectangleShapeData() = default;
+};
+
+struct ShapeObjectData
+{
+	ShapeObjectType type;
+
+	union ObjectData
+	{
+		CircleShapeData circleData;
+		RectangleShapeData rectangleData;
+	} data;
+
+	ShapeObjectData() = default;
+	ShapeObjectData(const ShapeObjectData& _other) = default;
+	ShapeObjectData(const ShapeObjectType& _type, const ObjectData& _data)
+	{
+		type = _type;
+		if(type == SOT_CIRCLE)
+		{
+			data.circleData = _data.circleData;
+		}
+		else if (type == SOT_RECTANGLE)
+		{
+			data.rectangleData = _data.rectangleData;
+		}
+	}
+};
+
+
 class ShapeObject : public Object
 {
 	Shape* shape;
 	Texture texture;
+	ShapeObjectData* objectData;
 
 public:
 	FORCEINLINE virtual Shape* GetDrawable() const override
@@ -61,9 +116,13 @@ public:
 	ShapeObject(const float _radius = 0.0f, const string& _path = "",
 		const size_t& _pointCount = 30, const IntRect& _rect = IntRect());
 	ShapeObject(const Vector2f& _size, const string& _path = "", const IntRect& _rect = IntRect());
+	ShapeObject(const ShapeObject& _other);
 	~ShapeObject();
 
-public:
+private:
+	void InitCircle(const CircleShapeData& _data);
+	void InitRectangle(const RectangleShapeData& _data);
+
 
 };
 
