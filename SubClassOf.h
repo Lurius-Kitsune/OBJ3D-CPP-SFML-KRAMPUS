@@ -13,13 +13,12 @@ public:
 	}
 
 public:
-	/*SubClassOf()
+	/*SubclassOf()
 	{
-		objectRef = T();
+	objectRef = T();
 	}*/
 	SubClassOf(const T& _objectRef)
 	{
 		objectRef = _objectRef;
 	}
 };
-

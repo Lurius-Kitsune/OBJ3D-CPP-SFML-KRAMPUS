@@ -5,14 +5,14 @@ Spawner::Spawner()
 {
 	spawnRate = 1.0f;
 	spawnRange = 200.0f;
-	actorRef = new SubClassOf<MeshActor>(MeshActor(20.0f, 30, "Cow"));
-	//BeginPlay();
+	ref = new SubClassOf<MeshActor>(MeshActor(20.0f, 30, "Charm"));
 }
 
 Spawner::~Spawner()
 {
-	delete actorRef;
+	delete ref;
 }
+
 
 void Spawner::BeginPlay()
 {
@@ -22,6 +22,5 @@ void Spawner::BeginPlay()
 
 void Spawner::Spawn_Internal()
 {
-	Spawn(*actorRef);
+	Spawn(*ref);
 }
-

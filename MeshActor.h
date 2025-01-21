@@ -64,7 +64,7 @@ public:
 		const string& _path, const IntRect& _rect);
 	MeshActor(const Vector2f& _size, const string& _path, const IntRect& _rect);
 	MeshActor(const MeshActor& _other);
-	virtual~MeshActor();
+	//virtual~MeshActor();
 
 public:
 	virtual void Deconstruct() override;

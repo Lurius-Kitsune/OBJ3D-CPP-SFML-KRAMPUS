@@ -2,13 +2,11 @@
 #include "Actor.h"
 #include "MeshActor.h"
 
-using T = MeshActor;
 class Spawner : public Actor
 {
 	float spawnRate;
 	float spawnRange;
-	// Soft référence (Prefab)
-	SubClassOf<Actor>* actorRef;
+	SubClassOf<MeshActor>* ref;
 
 public:
 	Spawner();
@@ -20,18 +18,18 @@ private:
 
 public:
 	template <typename T>
-	void Spawn(const SubClassOf<T>& _actorRef)
+	void Spawn(const SubClassOf<T>& _ref)
 	{
-		T* _actor = new T(_actorRef.GetObject());
+		LOG(Display, "Spawn");
+
+		T* _actor = new T(_ref.GetObject());
 		_actor->Construct();
+
 		const Vector2f& _spawnPosition =
 		{
-			RandomValue(0.0f, spawnRange),
-			RandomValue(0.0f, spawnRange),
+		GetRandomNumberInRange(0.0f, spawnRange),
+		GetRandomNumberInRange(0.0f, spawnRange),
 		};
 		_actor->SetPosition(_spawnPosition);
-
-		LOG(Display, "J'ai Spawn");
 	}
 };
-
