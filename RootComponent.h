@@ -67,5 +67,7 @@ public:
 	}
 public:
 	RootComponent(Actor* _owner);
+	RootComponent(const RootComponent& _other);
+
 };
 

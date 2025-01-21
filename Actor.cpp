@@ -9,7 +9,7 @@ Actor::Actor()
 
 Actor::Actor(const Actor& _actor)
 {
-	root = CreateComponent<RootComponent>();
+	root = CreateComponent<RootComponent>(*_actor.root);
 	
 }
 

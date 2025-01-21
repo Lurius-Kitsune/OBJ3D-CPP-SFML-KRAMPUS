@@ -4,35 +4,34 @@
 ShapeObject::ShapeObject(const float _radius, const string& _path, const IntRect& _rect,
 						 const size_t& _pointCount)
 {
-	objectData = new ShapeObjectData(SOT_CIRCLE, CircleShapeData(_radius, _path, _rect, _pointCount));
-	InitCircle(objectData->data->circleData);
+	objectData = ShapeObjectData(SOT_CIRCLE, CircleShapeData(_radius, _path, _rect, _pointCount));
+	InitCircle(*objectData.data.circleData);
 }
 
 ShapeObject::ShapeObject(const Vector2f& _size, const string& _path, const IntRect& _rect)
 {
-	objectData = new ShapeObjectData(SOT_RECTANGLE, RectangleShapeData(_size, _path, _rect));
-	InitRectangle(objectData->data->rectangleData);
+	objectData = ShapeObjectData(SOT_RECTANGLE, RectangleShapeData(_size, _path, _rect));
+	InitRectangle(*objectData.data.rectangleData);
 }
 
 ShapeObject::ShapeObject(const ShapeObject& _other)
 {
-	objectData = new ShapeObjectData(*_other.objectData);
+	objectData = _other.objectData;
 
-	if (objectData->type == SOT_CIRCLE)
+	if (objectData.type == SOT_CIRCLE)
 	{
-		InitCircle(objectData->data->circleData);
+		InitCircle(*objectData.data.circleData);
 	}
 
-	else if (objectData->type == SOT_RECTANGLE)
+	else if (objectData.type == SOT_RECTANGLE)
 	{
-		InitRectangle(objectData->data->rectangleData);
+		InitRectangle(*objectData.data.rectangleData);
 	}
 }
 
 ShapeObject::~ShapeObject()
 {
 	delete shape;
-	delete objectData;
 }
 
 

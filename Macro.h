@@ -11,7 +11,7 @@
 #include <typeinfo>
 #include <exception>
 #include <random>
-
+#include <algorithm>
 // OLD
 #include <math.h>
 #include <conio.h>

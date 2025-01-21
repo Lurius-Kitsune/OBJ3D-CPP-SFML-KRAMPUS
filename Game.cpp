@@ -33,7 +33,7 @@ void Game::Start()
     //Spawner* _spawner = new Spawner();
 
     MeshActor _meshActorObject = MeshActor(30, 30, "", IntRect());
-    SubClassOf<MeshActor> _meshActorRef = SubClassOf<MeshActor>(_meshActorObject);
+    SubClassOf<MeshActor> _meshActorRef = SubClassOf<MeshActor>(&_meshActorObject);
     MeshActor* _meshActor = Level::SpawnActor<MeshActor>(_meshActorRef);
 
     //M_SOUND.PlaySound("openDoor", WAV);

@@ -21,6 +21,7 @@ public:
 	}
 
 public:
+	Component() = default;
 	Component(Actor* _actor);
 	virtual ~Component() = default;
 public:

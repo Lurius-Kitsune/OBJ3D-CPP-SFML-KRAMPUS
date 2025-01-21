@@ -1,8 +1,7 @@
-#include "CoreMinimal.h"
-#include "TextureManager.h"
-#include "TimerManager.h"
-#include "ShapeObject.h"
 #include "Game.h"
+#include "Logger.h"
+#include <algorithm>
+
 
 void InitConfig()
 {
@@ -12,6 +11,13 @@ void InitConfig()
 
 int main()
 {
+    string _text1 = ("coucou");
+    string _text2 = _text1;
+    cout << _text2 << endl;
+
+    return EXIT_SUCCESS;
+
+
     InitConfig();
 
     M_GAME.Launch();

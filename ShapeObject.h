@@ -12,6 +12,7 @@ enum ShapeObjectType
 {
 	SOT_CIRCLE,
 	SOT_RECTANGLE,
+	SOT_COUNT
 };
 
 struct CircleShapeData
@@ -28,6 +29,15 @@ struct CircleShapeData
 		path = _path;
 		rect = _rect;
 		pointCount = _pointCount;
+	}
+	CircleShapeData& operator = (CircleShapeData _other)
+	{
+		radius = _other.radius;
+		path = _other.path;
+		rect = _other.rect;
+		pointCount = _other.pointCount;
+
+		return *this;
 	}
 };
 
@@ -50,23 +60,45 @@ union ObjectData
 	CircleShapeData circleData;
 	RectangleShapeData rectangleData;
 
-	~ObjectData() = delete;
+	ObjectData() {}
+	~ObjectData() {}
 };
 
 struct ShapeObjectData
 {
 	ShapeObjectType type;
-	ObjectData* data;
+	ObjectData data;
 
+	ShapeObjectData()
+	{
+		type = SOT_COUNT;
+	}
 	ShapeObjectData(const ShapeObjectType& _type, const CircleShapeData& _circleData)
 	{
 		type = _type;
-		data->circleData = _circleData;
+		data.circleData = _circleData;
 	}
 	ShapeObjectData(const ShapeObjectType& _type, const RectangleShapeData& _rectangleData)
 	{
 		type = _type;
-		data->rectangleData = _rectangleData;
+		data.rectangleData = _rectangleData;
+	}
+
+	ShapeObjectData& operator = (const ShapeObjectData& _other)
+	{
+		type = _other.type;
+
+		if (type = SOT_CIRCLE)
+		{
+			data.circleData = new CircleShapeData(*_other.data.circleData);
+		}
+		
+		else if (type = SOT_RECTANGLE)
+		{
+			data.rectangleData = new RectangleShapeData(*_other.data.rectangleData);
+		}
+		return *this;
+		
 	}
 };
 
@@ -74,7 +106,7 @@ class ShapeObject : public Object
 {
 	Texture texture;
 	Shape* shape;
-	ShapeObjectData* objectData;
+	ShapeObjectData objectData;
 
 public:
 	FORCEINLINE Texture& GetTexture()

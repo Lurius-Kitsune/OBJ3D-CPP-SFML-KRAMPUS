@@ -9,7 +9,7 @@ class SubClassOf
 public:
 	FORCEINLINE T GetObject() const
 	{
-		return objectRef;
+		return *objectRef;
 	}
 
 public:
@@ -19,6 +19,10 @@ public:
 	}*/
 	SubClassOf(const T& _objectRef)
 	{
-		objectRef = _objectRef;
+		objectRef = new T(_objectRef);
+	}
+	SubClassOf(const T* _objectRef)
+	{
+		objectRef = new T(*_objectRef);
 	}
 };
