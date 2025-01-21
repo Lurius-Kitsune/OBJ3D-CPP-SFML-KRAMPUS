@@ -73,8 +73,11 @@ public:
 	}
 	FORCEINLINE void RemoveTimer(T* _timer)
 	{
-		allTimers.erase(_timer);
-		delete _timer;
+		if (allTimers.contains(_timer))
+		{
+			allTimers.erase(_timer);
+			delete _timer;
+		}
 	}
 	FORCEINLINE void SetTimerScale(const DurationType& _timeScale)
 	{
