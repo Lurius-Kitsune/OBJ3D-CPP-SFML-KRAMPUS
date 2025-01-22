@@ -1,21 +1,17 @@
-#include "DuckHuntGame.h"
-#include "Logger.h"
-#include "AudioManager.h"
+#include "CoreMinimal.h"
+#include "Game.h"
 
 void InitConfig()
 {
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    Logger::Reset();
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // Detection de fuite de mémoire
 }
 
 int main()
 {
     InitConfig();
-    //MusicSample* _music = M_AUDIO.PlaySample<MusicSample>("fight", MP3);
-    Game::GetInstance().Launch();
 
-
-    //DuckHuntGame _game;
-    //_game.Launch();
-	return EXIT_SUCCESS;
+   
+    M_GAME.Launch();
+    return EXIT_SUCCESS;
 }
+

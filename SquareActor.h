@@ -1,8 +1,15 @@
 #pragma once
-#include "RectangleActor.h"
+#include "MeshActor.h"
 
-class SquareActor : public RectangleActor
+class SquareActor : public MeshActor
 {
 public:
-	SquareActor(const float _size, const string& _path = "", const IntRect& _rect = {});
+
+	SquareActor(const float& _sideSize, const string& _path = "",
+		const IntRect& _rect = IntRect());
 };
+
+
+
+
+

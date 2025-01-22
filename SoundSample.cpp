@@ -1,19 +1,18 @@
 #include "SoundSample.h"
-#include "AudioManager.h"
+#include "SoundManager.h"
 
 SoundSample::SoundSample(const string& _path)
-	: Sample(_path)
 {
-
-	if (!buffer.loadFromFile(_path))
+	const string& _finalPath = "Assets/Sounds/" + _path;
+	if (!buffer.loadFromFile(_finalPath))
 	{
-		LOG(Error, "Invalid path : " + _path);
-		sound = nullptr;
+		LOG(Error, "Cannot open sound with path : \'" + _finalPath + "\'");
 		return;
 	}
-
+	path = _path;
 	sound = new Sound(buffer);
-	M_AUDIO.RegisterSample(this);
+	volume = GetVolume();
+	SoundManager::GetInstance().RegisterSample(this);
 }
 
 SoundSample::~SoundSample()
@@ -21,12 +20,15 @@ SoundSample::~SoundSample()
 	delete sound;
 }
 
-
 void SoundSample::Play(const Time& _time)
 {
-	Super::Play();
-	sound->play();
+	if (GetStatus() == SoundStatus::Paused)
+	{
+		Stop();
+	}
+	SetVolume(volume);
 	sound->setPlayingOffset(_time);
+	sound->play();
 }
 
 void SoundSample::Pause()
