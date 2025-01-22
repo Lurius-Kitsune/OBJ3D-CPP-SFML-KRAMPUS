@@ -13,8 +13,9 @@ enum ReadDirection
 
 struct SpriteData
 {
-	Vector2f start;
-	Vector2f sizes;
+	float timesBetween;
+	Vector2i start;
+	Vector2i size;
 };
 
 struct LinkedAnimation
@@ -27,18 +28,14 @@ struct LinkedAnimation
 		return !transition || transition();
 	}
 
-	bool TryToChange()
-	{
-		if (!IsValid()) return false;
-		//animation->Start(); // TODO
-		return true;
-	}
+	bool TryToChange();
 };
 
 struct AnimationData
 {
 	bool canLoop;
 	bool hasExitTime;
+	bool isReversed;
 	int count;
 	float duration;
 	vector<float> timesBetween;
@@ -49,15 +46,58 @@ struct AnimationData
 	AnimationData() = default;
 
 	AnimationData(const int _count, const float _duration, const SpriteData& _spriteData,
-		const ReadDirection& _direction = RD_ROW,const bool _canLoop = true, const bool _hasExitTime = true,
+		const ReadDirection& _direction = RD_ROW, const bool _isReversed = false,
+		const bool _canLoop = true, const bool _hasExitTime = true,
 		const vector<LinkedAnimation>& _linkedAnimations = {})
 	{
 		canLoop = _canLoop;
 		hasExitTime = _hasExitTime;
+		isReversed = _isReversed;
 		count = _count;
 		duration = _duration;
-		for (u_int _i = 0; _i < _count; _i++)
+
+		const function<Vector2i(const int _i)> _computeStart[] =
 		{
+			[&](const int _i)
+			{
+				return Vector2i
+				{
+					_spriteData.start.x + _i * _spriteData.size.x,
+					 _spriteData.start.y
+				};
+
+			},
+
+			[&](const int _i)
+			{
+			return Vector2i
+				{
+					_spriteData.start.x - _i * _spriteData.size.x,
+					 _spriteData.start.y
+				};
+			},
+
+			[&](const int _i)
+			{
+				return Vector2i
+					{
+						_spriteData.start.x,
+						 _spriteData.start.y + _i * _spriteData.size.y
+					};
+			},
+			[&](const int _i)
+			{
+				return Vector2i
+					{
+						_spriteData.start.x,
+						 _spriteData.start.y - _i * _spriteData.size.y
+					};
+			},
+		};
+
+		for (int _i = 0; _i < _count; _i++)
+		{
+			const SpriteData& _data = { _spriteData.timesBetween, _computeStart[direction](_i), _spriteData.size};
 			sprite.push_back(_spriteData);
 		}
 		direction = _direction;
@@ -65,11 +105,13 @@ struct AnimationData
 	}
 
 	AnimationData(const int _count, const float _duration, const vector<SpriteData>& _spriteDatas,
-		const ReadDirection& _direction = RD_ROW, const bool _canLoop = true, const bool _hasExitTime = true,
+		const ReadDirection& _direction = RD_ROW, const bool _isReversed = false,
+		const bool _canLoop = true, const bool _hasExitTime = true,
 		const vector<LinkedAnimation>& _linkedAnimations = {})
 	{
 		canLoop = _canLoop;
 		hasExitTime = _hasExitTime;
+		isReversed = _isReversed;
 		count = _count;
 		duration = _duration;
 		sprite = _spriteDatas;
@@ -85,8 +127,30 @@ class Animation
 	string name;
 	ShapeObject* shape;
 	Timer<Seconds>* timer;
+	
+private:
+	FORCEINLINE bool IsValidIndex() const
+	{
+		return currentIndex < data.count ;
+	}
+
+public:
+	FORCEINLINE string GetName() const
+	{
+		return name;
+	}
 
 public:
 	Animation(const string& _name, ShapeObject* _object, const AnimationData& _data);
+	Animation(const Animation& _other);
+
+public:
+	void Start();
+	void Resume();
+	void Pause();
+	void Stop();
+private:
+	void Update();
+	void Reset();
 };
 

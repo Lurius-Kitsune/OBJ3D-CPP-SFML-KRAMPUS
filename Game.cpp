@@ -49,7 +49,7 @@ void Game::Start()
     Level::SpawnActor(MeshActor(Vector2f(719.0f, 400.0f), "farmBackground"));
     new Timer([&]()
         {
-            Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "duck", IntRect(Vector2i(), Vector2i(156.0f, 160.0f))));
+            Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "duck"));
         },
         seconds(3.0f),
         true,

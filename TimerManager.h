@@ -225,6 +225,20 @@ public:
 		_manager.AddTimer(this);
 	}
 
+	Timer(const Timer& _other)
+	{
+		TM& _manager = TM::GetInstance();
+
+		isToDelete = _other.isToDelete;
+		isRunning = _other.isRunning;
+		isLoop = _other.isLoop;
+		currentTime = _other.currentTime;
+		duration = _other.duration;
+		callback = _other.callback;
+
+		_manager.AddTimer(this);
+	}
+
 public:
 	void Start()
 	{
