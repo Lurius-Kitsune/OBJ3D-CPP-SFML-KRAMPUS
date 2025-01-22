@@ -10,7 +10,7 @@ bool LinkedAnimation::TryToChange()
 
 Animation::Animation(const string& _name, ShapeObject* _shape, const AnimationData& _data)
 {
-	currentIndex = _other.currentIndex;
+	currentIndex = 0;
 	name = _name;
 	data = _data;
 	shape = _shape;
@@ -40,6 +40,7 @@ Animation::Animation(const Animation& _other)
 Animation::~Animation()
 {
 	LOG(Display, "Animation destroyed : " + name);
+	M_TIMER.RemoveTimer(timer);
 	delete timer;
 }
 
