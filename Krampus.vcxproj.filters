@@ -103,9 +103,6 @@
     <Filter Include="Scripts\Managers\Audio\Sample\Sound">
       <UniqueIdentifier>{5be43bb8-9156-4d55-9a04-b5e7f9fd0d8d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\Core\Components\Animation">
-      <UniqueIdentifier>{60745a21-85e1-43b3-aa69-c5f4ac680cbf}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TextObject.cpp">
@@ -210,11 +207,17 @@
     <ClCompile Include="MovementComponent.cpp">
       <Filter>DuckHunt</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationComponent.cpp">
-      <Filter>Scripts\Core\Components\Animation</Filter>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -338,11 +341,17 @@
     <ClInclude Include="MovementComponent.h">
       <Filter>DuckHunt</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationComponent.h">
-      <Filter>Scripts\Core\Components\Animation</Filter>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

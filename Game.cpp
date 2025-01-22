@@ -2,6 +2,7 @@
 #include "ActorManager.h"
 #include "TimerManager.h"
 #include "AudioManager.h"
+#include "CameraManager.h"
 
 #include "MeshActor.h"
 #include "Duck.h"
@@ -15,13 +16,15 @@ Game::Game()
 }
 Game::~Game()
 {
-
+    M_CAMERA.Destroy();
 }
 
 
 void Game::Start()
 {
     window.create(VideoMode({800, 600}), "SFML works!");
+    Camera* _main = new Camera(&window, "main", FloatRect({ 0,0 },{ 400, 300 }));
+    SetCamera(_main);
     //SoundSample* _sample = AudioManager::GetInstance().PlaySample("hugooo");
     //_sample->SetLoop(true);
     //new Label("Bonjour !", "Cheese_Market", TTF);
@@ -46,19 +49,28 @@ void Game::Start()
            + " / " + to_string(_intersection.value().getCenter().y));
     }*/
 
-    Level::SpawnActor(MeshActor(Vector2f(719.0f, 400.0f), "farmBackground"));
-    
-    //Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f), "duck"));
+    MeshActor* _n = new MeshActor(Vector2f(719.0f, 400.0f), "farmBackground");
+    _n->Construct();
+
+    MeshActor* _duck = new Duck(Vector2f(50.0f, 50.0f), "duck");
+    _duck->Construct();
+    _duck->AddChild(_main);
+    _main->SetPosition(_duck->GetPosition());
+
+  /*  SubclassOf<Duck> _duckRef = SubclassOf<Duck>(Duck(Vector2f(50.0f, 50.0f), "duck"));
+    //Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "duck"));
 
     //pitchFactor = 0.1f;
     new Timer([&]()
         {
-            Level::SpawnActor(/*SubclassOf<Duck>*/(Duck(Vector2f(50.0f, 50.0f), "duck")));
+            //Level::SpawnActor(SubclassOf<Duck>(Duck(Vector2f(50.0f, 50.0f), "duck")));
+            Level::SpawnActor(_duckRef);
+
         },
         seconds(3.0f),
         true,
         true
-    );
+    );*/
 };
 
 void Game::Update()
@@ -88,7 +100,27 @@ void Game::UpdateWindow()
     {
         _renderPair.second(window);
     }
+    if (M_CAMERA.GetCurrentCamera())
+    {
+        window.setView(M_CAMERA.GetCurrentCamera()->GetView());
+    }
+    else 
+    {
+        LOG(Warning, "No camera set !");
+        window.setView(window.getDefaultView());
+    }
     window.display();
+}
+
+void Game::SetCamera(Camera* _camera)
+{
+    M_CAMERA.SetCurrentCamera(_camera);
+    window.setView(M_CAMERA.GetCurrentCamera()->GetView());
+}
+
+void Game::SetCamera(const string& _cameraName)
+{
+    SetCamera(M_CAMERA.GetCamera(_cameraName));
 }
 
 void Game::Stop()

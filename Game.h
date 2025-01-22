@@ -1,6 +1,7 @@
 #pragma once
 #include "Singleton.h"
 #include "Actor.h"
+#include "Camera.h"
 
 class Game : public Singleton<Game>
 {
@@ -32,4 +33,6 @@ protected :
 public:
 	virtual void Launch();
 	void UpdateWindow();
+	void SetCamera(Camera* _camera);
+	void SetCamera(const string& _cameraName);
 };

@@ -11,6 +11,8 @@ class Actor : public Core, public ITransformableModifier, public ITransformableV
 	set<Component*> components;
 	RootComponent* root;
 
+	set<Actor*> children;
+
 protected:
 	template <typename T, typename ...Args>
 	FORCEINLINE T* CreateComponent(Args... _args)
@@ -28,7 +30,7 @@ public:
 		return true;
 	}
 
-	FORCEINLINE void SetToDelete()
+	FORCEINLINE virtual void SetToDelete()
 	{
 		isToDelete = true;
 	}
@@ -36,6 +38,16 @@ public:
 	FORCEINLINE bool IsToDelete()const
 	{
 		return isToDelete;
+	}
+
+	FORCEINLINE void AddChild(Actor* _actor)
+	{
+		children.insert(_actor);
+	}
+
+	FORCEINLINE set<Actor*> GetChildren() const
+	{
+		return children;
 	}
 
 	#pragma region Transformable
@@ -112,7 +124,8 @@ public:
 	virtual void Tick(const float _deltaTime) override;
 	virtual void BeginDestroy() override;
 
-	void Destroy();
+	void Destroy(const bool _destroyChildren=false);
+	void RemoveChild(Actor* _actor);
 	#pragma region Components
 
 	void AddComponent(Component* _component);

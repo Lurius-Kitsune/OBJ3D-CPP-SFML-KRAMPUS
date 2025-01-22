@@ -56,11 +56,22 @@ void Actor::BeginDestroy()
 	}
 }
 
-void Actor::Destroy()
+void Actor::Destroy(const bool _destroyChildren)
 {
 	isToDelete = true;
+	if (_destroyChildren)
+	{
+		for (Actor* _child : children)
+		{
+			_child->SetToDelete();
+		}
+	}
 }
 
+void Actor::RemoveChild(Actor* _actor)
+{
+	if (children.find(_actor) != children.end()) children.erase(_actor);
+}
 
 void Actor::AddComponent(Component* _component)
 {

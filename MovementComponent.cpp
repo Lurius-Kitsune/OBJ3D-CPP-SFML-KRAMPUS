@@ -1,5 +1,6 @@
 #include "MovementComponent.h"
 #include "Actor.h"
+#include "Camera.h"
 
 MovementComponent::MovementComponent(Actor* _owner)
 	: Component(_owner)
@@ -25,4 +26,10 @@ void MovementComponent::Move(const float _deltaTime)
 {
 	const Vector2f& _offset = direction * speed * _deltaTime;
 	owner->Move(_offset);
+
+	for (Actor* _child : owner->GetChildren())
+	{
+		_child->Move(_offset);
+	}
+
 }
