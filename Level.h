@@ -2,9 +2,6 @@
 #include "CoreMinimal.h"
 #include "Actor.h"
 
-// SpawnActor		-> Constructeur + Construct()
-// Instance de ref  -> Constructeur
-
 class Level
 {
 public:

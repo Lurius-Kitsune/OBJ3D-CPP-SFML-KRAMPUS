@@ -8,6 +8,9 @@ class Game : public Singleton<Game>
 	using OnRenderWindow = function<void(RenderWindow&)>;
 	map<u_int, OnRenderWindow> onRenderWindow;
 
+	float pitchFactor;
+	class MusicSample* music;
+
 public:
 	FORCEINLINE u_int BindOnRenderWindow(OnRenderWindow _callback)
 	{
@@ -22,9 +25,8 @@ public:
 
 public:
 	Game();
-	~Game();
 
-protected :
+protected:
 	virtual void Start();
 	virtual void Update();
 	virtual void Stop();

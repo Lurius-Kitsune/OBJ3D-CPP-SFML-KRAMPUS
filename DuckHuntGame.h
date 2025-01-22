@@ -10,7 +10,8 @@ class DuckHuntGame : public Game
 public:
 	DuckHuntGame();
 	~DuckHuntGame();
-protected :
+
+protected:
 	virtual void Start() override;
 	virtual void Update() override;
 	virtual void Stop() override;
@@ -18,4 +19,3 @@ protected :
 public:
 	virtual void Launch() override;
 };
-

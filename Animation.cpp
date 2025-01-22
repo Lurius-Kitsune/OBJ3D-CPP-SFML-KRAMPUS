@@ -4,17 +4,26 @@
 bool LinkedAnimation::TryToChange()
 {
 	if (!IsValid()) return false;
-	animation->Start(); // TODO
+
+	animation->Start(); // TODO implement
 	return true;
 }
 
-Animation::Animation(const string& _name, ShapeObject* _object, const AnimationData& _data)
+
+Animation::Animation(const string& _name, ShapeObject* _shape, const AnimationData& _data)
 {
 	currentIndex = 0;
 	name = _name;
 	data = _data;
-	shape = _object;
-	timer = nullptr;
+	shape = _shape;
+
+	timer = new Timer([&]()
+		{
+			Update(); },
+		seconds(data.sprites[currentIndex].timeBetween * data.count / data.duration),
+		false,
+		true
+	); //TODO change
 }
 
 Animation::Animation(const Animation& _other)
@@ -23,11 +32,55 @@ Animation::Animation(const Animation& _other)
 	name = _other.name;
 	data = _other.data;
 	shape = _other.shape;
-	timer = _other.timer;
+	
+	timer = new Timer([&]()
+		{ 
+			Update(); },
+		seconds(data.sprites[currentIndex].timeBetween * data.count / data.duration),
+		false,
+		true
+	);
 }
+
+Animation::~Animation()
+{
+	M_TIMER.RemoveTimer(timer);
+}
+
+void Animation::Update()
+{
+	if (!IsValidIndex())
+	{
+		if (!data.canLoop)
+		{
+			// transition
+
+			Stop();
+			return;
+		}
+
+		Reset();
+	}
+
+	if (data.isReversed)
+	{
+		shape->SetScale(Vector2f(-1.0f, 1.0f));
+	}
+
+	const SpriteData& _spriteData = data.sprites[++currentIndex - 1];
+	M_TEXTURE.SetTextureRect(shape->GetDrawable(), _spriteData.start, _spriteData.size);
+}
+
+void Animation::Reset()
+{
+	currentIndex = 0;
+	timer->Reset();
+}
+
 
 void Animation::Start()
 {
+	Update();
 	timer->Start();
 }
 
@@ -46,34 +99,3 @@ void Animation::Stop()
 	Pause();
 	Reset();
 }
-
-void Animation::Update()
-{
-	++currentIndex;
-	if (!IsValidIndex())
-	{
-		if (!data.canLoop)
-		{
-			// transition
-
-			Stop();
-			return;
-		}
-		else
-		{
-			Reset();
-		}
-	}
-	const SpriteData& _spriteData = data.sprite[currentIndex - 1];
-	const Vector2i& _start = CAST(Vector2i, _spriteData.start);
-	const Vector2i& _size = CAST(Vector2i, _spriteData.size);
-	M_TEXTURE.SetTextureRect(shape->GetDrawable(), _start, _size);
-}
-
-void Animation::Reset()
-{
-	currentIndex = 0;
-	timer->Reset();
-}
-
-

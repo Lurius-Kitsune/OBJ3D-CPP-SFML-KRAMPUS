@@ -1,6 +1,5 @@
+#include "Game.h"
 #include "DuckHuntGame.h"
-#include "Logger.h"
-#include "AudioManager.h"
 
 void InitConfig()
 {
@@ -11,11 +10,11 @@ void InitConfig()
 int main()
 {
     InitConfig();
-    //MusicSample* _music = M_AUDIO.PlaySample<MusicSample>("fight", MP3);
+    
     Game::GetInstance().Launch();
 
+    /*DuckHuntGame _game;
+    _game.Launch();*/
 
-    //DuckHuntGame _game;
-    //_game.Launch();
 	return EXIT_SUCCESS;
 }

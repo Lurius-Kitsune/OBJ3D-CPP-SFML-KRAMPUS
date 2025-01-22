@@ -10,7 +10,7 @@ Actor::Actor()
 Actor::Actor(const Actor& _actor)
 {
 	isToDelete = false;
-	root = CreateComponent<RootComponent>(*_actor.root);
+	root = CreateComponent<RootComponent>(_actor.root);
 }
 
 Actor::~Actor()
@@ -58,7 +58,7 @@ void Actor::BeginDestroy()
 
 void Actor::Destroy()
 {
-	isToDelete = true;
+	SetToDelete();
 }
 
 

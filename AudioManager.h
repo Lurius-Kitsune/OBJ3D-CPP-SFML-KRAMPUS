@@ -1,8 +1,7 @@
 #pragma once
 #include "Singleton.h"
-#include "SoundSample.h"
-#include "MusicSample.h"
 #include "Sample.h"
+#include "SoundSample.h"
 
 enum AudioExtensionType
 {
@@ -14,7 +13,6 @@ class AudioManager : public Singleton<AudioManager>
 {
 	bool isMuted;
 	float volume;
-	string prefixPath;
 	multimap<string, Sample*> allSamples;
 
 public: 
@@ -31,11 +29,12 @@ public:
 	AudioManager();
 	~AudioManager();
 
-	template<typename SampleType, typename = enable_if<is_base_of_v<Sample, SampleType>>::type>
-	SampleType* PlaySample(const string& _path, const AudioExtensionType& _type = MP3)
+	template <typename T, typename = enable_if_t<is_base_of_v<Sample, T>>>
+	T* PlaySample(const string& _path, const AudioExtensionType& _type = MP3, const Time& _time = Time())
 	{
-		//static_assert(is_base_of_v<Sample, SampleType>, "ERREUR CUSTOM");
-		const string& _finalPath = prefixPath + _path + GetExtension(_type);
+		//static_assert(is_base_of_v<Sample, T>, "ERREUR CUSTOM !");
+
+		const string& _finalPath = _path + GetExtension(_type);
 
 		using Iterator = multimap<string, Sample*>::iterator;
 		const pair<Iterator, Iterator>& _activeSamples = allSamples.equal_range(_finalPath);
@@ -46,15 +45,15 @@ public:
 			_sample = _iterator->second;
 			if (_sample->IsAvailable())
 			{
-				_sample->Play();
-				return Cast<Sample, SampleType>(_sample);
+				_sample->Play(_time);
+				return Cast<Sample, T>(_sample);
 			}
 		}
 
-		_sample = new SampleType(_finalPath);
-		_sample->Play();
+		_sample = new T(_finalPath);
+		_sample->Play(_time);
 
-		return Cast<Sample, SampleType>(_sample);
+		return Cast<Sample, T>(_sample);
 	}
 	void ToggleMute();
 };

@@ -4,54 +4,32 @@
 #include "AudioManager.h"
 
 #include "MeshActor.h"
-#include "Duck.h"
 #include "Label.h"
 #include "Spawner.h"
 #include "Level.h"
+#include "Duck.h"
+#include "MusicSample.h"
 
 Game::Game()
 {
 	window = RenderWindow();
-}
-Game::~Game()
-{
-
 }
 
 
 void Game::Start()
 {
     window.create(VideoMode({800, 600}), "SFML works!");
-    //SoundSample* _sample = AudioManager::GetInstance().PlaySample("hugooo");
-    //_sample->SetLoop(true);
-    //new Label("Bonjour !", "Cheese_Market", TTF);
+    
+    Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
+    //music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
 
-    //Spawner* _spawner = Level::SpawnActor<Spawner>();
-
-    /*
-    MeshActor _meshActorObject = MeshActor(20.0f, 30, "Charm");
-    SubclassOf<MeshActor> _meshActorRef = SubclassOf<MeshActor>(&_meshActorObject);
-    MeshActor* _meshActor = Level::SpawnActor<MeshActor>(_meshActorRef);
-    */
-
-    //_spawner->Spawn(SubclassOf<Actor>());
-    //_spawner->Spawn(SubclassOf<MeshActor>(20.0f, 30, "Charm"));
-
-    /*const FloatRect& _bb1 = _mesh1->GetMesh()->GetShape()->GetDrawable()->getGlobalBounds();
-    const FloatRect& _bb2 = _mesh2->GetMesh()->GetShape()->GetDrawable()->getGlobalBounds();
-
-    if (const optional<FloatRect>& _intersection = _bb1.findIntersection(_bb2))
-    {
-        LOG(Display, to_string(_intersection.value().getCenter().x)
-           + " / " + to_string(_intersection.value().getCenter().y));
-    }*/
-
-    Level::SpawnActor(MeshActor(Vector2f(719.0f, 400.0f), "farmBackground"));
+    pitchFactor = 0.1f;
     new Timer([&]()
         {
-            Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "duck"));
+            Level::SpawnActor(/*SubclassOf(*/Duck(Vector2f(50.0f, 50.0f), "Duck")/*)*/);
+            M_AUDIO.PlaySample<SoundSample>("couin", WAV);
         },
-        seconds(3.0f),
+        seconds(2.0f),
         true,
         true
     );

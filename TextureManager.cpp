@@ -37,12 +37,12 @@ void TextureManager::SetTexture(Shape* _shape, const Texture* _texture)
 
 void TextureManager::SetTextureRect(Shape* _shape, const Vector2i& _start, const Vector2i& _size)
 {
-	_shape->setTextureRect(IntRect(_start, _size));
+	_shape->setTextureRect(Rect(_start, _size));
 }
 
-void TextureManager::SetTextureRect(Shape* _shape, const IntRect& _intRect)
+void TextureManager::SetTextureRect(Shape* _shape, const IntRect& _rect)
 {
-	_shape->setTextureRect(_intRect);
+	_shape->setTextureRect(_rect);
 }
 
 string TextureManager::GetExtensionNameByType(const TextureExtensionType& _textureType)

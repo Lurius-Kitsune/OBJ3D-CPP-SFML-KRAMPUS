@@ -8,7 +8,5 @@
 - GetComponent<>() de Actor
 - TextureManager => load texture déjà existante
 
-
-
 - Reserver le sound tant qu'il est pas terminé
 - AdjustAllVolums

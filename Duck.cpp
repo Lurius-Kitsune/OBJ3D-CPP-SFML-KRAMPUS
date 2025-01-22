@@ -1,33 +1,62 @@
 #include "Duck.h"
-#include "Level.h"
 #include "TimerManager.h"
+#include "Level.h"
 
-Duck::Duck(const Vector2f& _size, const string& _path, const IntRect& _rect)
-	: MeshActor(_size, _path, _rect)
+Duck::Duck(const Vector2f& _size, const string& _path, const IntRect& _rect) : MeshActor(_size, _path, PNG, _rect)
 {
 	lifeSpan = 5.0f;
 	movement = CreateComponent<MovementComponent>();
 	animation = CreateComponent<AnimationComponent>();
-
-	const SpriteData& _spriteData = { 0.2f, Vector2i(), Vector2i(80, 50) };
-	const AnimationData& _animData = AnimationData(3, 2.0f, _spriteData);
-	animation->AddAnimation(new Animation("Default", GetMesh()->GetShape(), _animData));
-	animation->SetCurrentAnimation("Default");
 }
 
-Duck::Duck(const Duck& _duck) : MeshActor(_duck)
+Duck::Duck(const Duck& _other) : MeshActor(_other)
 {
-	lifeSpan = _duck.lifeSpan;
-	movement = CreateComponent<MovementComponent>(*_duck.movement);
-	animation = CreateComponent<AnimationComponent>(*_duck.animation);
+	lifeSpan = _other.lifeSpan;
+	movement = CreateComponent<MovementComponent>(_other.movement);
+	animation = CreateComponent<AnimationComponent>();
+}
+
+
+void Duck::Construct()
+{
+	Super::Construct();
+
+	const float _timeBetween = 0.05f;
+	const Vector2i& _spriteSize = Vector2i(41, 39);
+	const vector<SpriteData>& _spritesData =
+	{
+		{ _timeBetween, Vector2i(0, 8), _spriteSize },
+		{ _timeBetween, Vector2i(43, 8), _spriteSize },
+		{ _timeBetween, Vector2i(85, 8), _spriteSize },
+		{ _timeBetween, Vector2i(127, 8), _spriteSize },
+		{ _timeBetween, Vector2i(0, 48), _spriteSize },
+		{ _timeBetween, Vector2i(43, 48), _spriteSize },
+		{ _timeBetween, Vector2i(85, 48), _spriteSize },
+		{ _timeBetween, Vector2i(127, 48), _spriteSize },
+		{ _timeBetween, Vector2i(0, 86), _spriteSize },
+		{ _timeBetween, Vector2i(43, 86), _spriteSize },
+		{ _timeBetween, Vector2i(85, 86), _spriteSize },
+		{ _timeBetween, Vector2i(127, 86), _spriteSize },
+	};
+	//const SpriteData& _spriteData = { 0.2f, Vector2i(), Vector2i(80, 50) };
+	const AnimationData& _animationData = AnimationData(2.0f, _spritesData);
+	animation->AddAnimation(new Animation("Default", GetMesh()->GetShape(), _animationData));
+	animation->SetCurrentAnimation("Default");
+	animation->StartAnimation();
+}
+
+void Duck::Deconstruct()
+{
+	//Super::Deconstruct();
+
+	//animation->StopAnimation();
 }
 
 void Duck::BeginPlay()
 {
 	Super::BeginPlay();
 
-	new Timer([&]() {Destroy(); }, seconds(lifeSpan), true);
+	new Timer([&]() { Destroy(); }, seconds(lifeSpan), true);
 
-	LOG(Display, "coinc");
-
-} 
+	LOG(Display, "couin, couin");
+}

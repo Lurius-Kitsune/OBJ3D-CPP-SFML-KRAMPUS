@@ -27,17 +27,14 @@ public:
 		// Overridable
 		return true;
 	}
-
 	FORCEINLINE void SetToDelete()
 	{
 		isToDelete = true;
 	}
-
-	FORCEINLINE bool IsToDelete()const
+	FORCEINLINE bool IsToDelete() const
 	{
 		return isToDelete;
 	}
-
 	#pragma region Transformable
 
 	#pragma region Viewer
@@ -113,6 +110,7 @@ public:
 	virtual void BeginDestroy() override;
 
 	void Destroy();
+
 	#pragma region Components
 
 	void AddComponent(Component* _component);

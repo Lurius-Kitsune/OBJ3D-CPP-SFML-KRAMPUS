@@ -20,6 +20,7 @@ void ActorManager::BeginPlay()
 void ActorManager::Tick(const float _deltaTime)
 {
 	vector<Actor*> _garbage;
+
 	for (Actor* _actor : allActors)
 	{
 		_actor->Tick(_deltaTime);

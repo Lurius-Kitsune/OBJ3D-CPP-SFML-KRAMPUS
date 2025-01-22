@@ -4,7 +4,6 @@ AudioManager::AudioManager()
 {
 	isMuted = false;
 	volume = 100.0f;
-	prefixPath = "Assets/Sounds/";
 	allSamples = multimap<string, Sample*>();
 }
 

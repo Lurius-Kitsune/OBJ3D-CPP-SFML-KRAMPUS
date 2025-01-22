@@ -6,40 +6,37 @@ AnimationComponent::AnimationComponent(Actor* _owner) : Component(_owner)
 	allAnimations = map<string, Animation*>();
 }
 
-AnimationComponent::AnimationComponent(Actor* _owner, const AnimationComponent& _other)
-	:Component(_owner)
-{	
-	for (pair<string, Animation*> _animation : _other.allAnimations)
+AnimationComponent::AnimationComponent(Actor* _owner, const AnimationComponent* _other) : Component(_owner)
+{
+	for (const pair<string, Animation*>& _animation : _other->allAnimations)
 	{
 		allAnimations[_animation.first] = new Animation(*_animation.second);
 	}
-
-	current = allAnimations[_other.current->GetName()];
+	current = allAnimations[_other->current->GetName()];
 }
 
 AnimationComponent::~AnimationComponent()
 {
-	for (pair<string, Animation*> _animation : allAnimations)
+	for (const pair<string, Animation*>& _animation : allAnimations)
 	{
 		delete _animation.second;
 	}
 }
 
+
 void AnimationComponent::AddAnimation(Animation* _animation)
 {
 	const string& _animationName = _animation->GetName();
 	if (allAnimations.contains(_animationName)) return;
-	allAnimations.insert({ _animationName, _animation });
+
+	allAnimations[_animationName] = _animation;
 }
 
-void AnimationComponent::AddAnimation(const vector<Animation*>& _animations)
+void AnimationComponent::AddAnimations(const vector<Animation*>& _animations)
 {
-	for (Animation* _animation : _animations)
+	const u_int& _animationsCount = CAST(u_int, _animations.size());
+	for (u_int _index = 0; _index < _animationsCount; _index++)
 	{
-		AddAnimation(_animation);
+		AddAnimation(_animations[_index]);
 	}
-}
-
-void AnimationComponent::Tick(const float _deltaTime)
-{
 }

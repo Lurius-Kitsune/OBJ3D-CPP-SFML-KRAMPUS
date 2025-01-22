@@ -1,6 +1,6 @@
 #include "Spawner.h"
-#include "Level.h"
 #include "TimerManager.h"
+#include "Level.h"
 
 Spawner::Spawner()
 {
@@ -9,7 +9,7 @@ Spawner::Spawner()
 	ref = new SubclassOf<MeshActor>(MeshActor(20.0f, 30, "Charm"));
 }
 
-Spawner::Spawner(const Spawner& _other) : Actor (_other)
+Spawner::Spawner(const Spawner& _other) : Actor(_other)
 {
 	spawnRate = _other.spawnRate;
 	spawnRange = _other.spawnRange;

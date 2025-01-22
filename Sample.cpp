@@ -2,9 +2,10 @@
 
 Sample::Sample(const string& _path)
 {
-	volume = 100.0f;
+	volume = 50.0f;
 	path = _path;
 }
+
 
 void Sample::Play(const Time& _time)
 {

@@ -73,11 +73,11 @@ public:
 	}
 	FORCEINLINE void RemoveTimer(T* _timer)
 	{
-		if (allTimers.contains(_timer))
-		{
-			allTimers.erase(_timer);
-			delete _timer;
-		}
+		if (!allTimers.contains(_timer)) return;
+
+		_timer->Stop();
+		allTimers.erase(_timer);
+		delete _timer;
 	}
 	FORCEINLINE void SetTimerScale(const DurationType& _timeScale)
 	{
@@ -222,13 +222,10 @@ public:
 		duration = _manager.GetTime(_time);
 		callback = _callback;
 
-		_manager.AddTimer(this);
+		_manager.AddTimer(this); //TODO check
 	}
-
 	Timer(const Timer& _other)
 	{
-		TM& _manager = TM::GetInstance();
-
 		isToDelete = _other.isToDelete;
 		isRunning = _other.isRunning;
 		isLoop = _other.isLoop;
@@ -236,7 +233,7 @@ public:
 		duration = _other.duration;
 		callback = _other.callback;
 
-		_manager.AddTimer(this);
+		TM::GetInstance().AddTimer(this);
 	}
 
 public:

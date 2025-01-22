@@ -3,30 +3,19 @@
 
 class Sample
 {
-protected:
 	float volume;
 	string path;
 
 	FORCEINLINE virtual void UpdateVolume(const float _volume) = 0;
 	FORCEINLINE virtual int GetStatus() const = 0;
-	FORCEINLINE virtual bool IsStatusByIndex(const u_int& _statusIndex)
+	FORCEINLINE virtual bool IsStatusByIndex(const u_int& _statusIndex) const
 	{
 		return GetStatus() == _statusIndex;
 	}
 public:
-	FORCEINLINE virtual void SetLoop(const bool _isLoop) = 0;
-	FORCEINLINE virtual bool SetPitch(const float _pitch) = 0;
 	FORCEINLINE virtual bool IsAvailable() const = 0;
-
-	FORCEINLINE string GetPath() const
-	{
-		return path;
-	}
-
-	FORCEINLINE float GetVolume() const
-	{
-		return volume;
-	}
+	FORCEINLINE virtual void SetLoop(const bool _isLoop) = 0;
+	FORCEINLINE virtual bool AddPitch(const float _pitch) = 0;
 
 	FORCEINLINE void SetMuteStatus(const bool _status)
 	{
@@ -36,11 +25,19 @@ public:
 	{
 		UpdateVolume(volume = _volume);
 	}
-
-
+	FORCEINLINE float GetVolume() const
+	{
+		return volume;
+	}
+	FORCEINLINE string GetPath() const
+	{
+		return path;
+	}
+	
 public:
 	Sample(const string& _path);
 	virtual ~Sample() = default;
+
 public:
 	virtual void Play(const Time& _time = Time());
 	virtual void Pause() = 0;
