@@ -1,6 +1,7 @@
 #include "SquareActor.h"
 
-SquareActor::SquareActor(const float& _sideSize, const string& _path, const IntRect& _rect)
-	: MeshActor({ _sideSize, _sideSize }, _path, _rect)
+SquareActor::SquareActor(const float _size, const string& _path, const IntRect& _rect)
+					   : RectangleActor(Vector2f(_size, _size), _path, _rect)
 {
+
 }

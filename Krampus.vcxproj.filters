@@ -9,274 +9,358 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{625b7062-d7fa-407c-9303-a3913fb51935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Manager">
-      <UniqueIdentifier>{21b0a7f1-1d36-4f0e-96fb-dc4c5a63c930}</UniqueIdentifier>
+    <Filter Include="Scripts\Objects">
+      <UniqueIdentifier>{86305f3d-9461-4ee5-8ed0-ae9bd0ca5c75}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Object">
-      <UniqueIdentifier>{a86aed9b-421a-4106-8cf0-4c58c728cad5}</UniqueIdentifier>
+    <Filter Include="Scripts\Objects\ShapeObjects">
+      <UniqueIdentifier>{943a71c5-b6a5-4c5d-8ec2-9099e960f252}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Object\ShapeObject">
-      <UniqueIdentifier>{2594650f-5c10-435a-a76d-a14179f7d009}</UniqueIdentifier>
+    <Filter Include="Scripts\Objects\TextObjects">
+      <UniqueIdentifier>{c2bec6b1-550c-4e1c-b537-729c8bf2369d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Object\TextObject">
-      <UniqueIdentifier>{567cffd3-b47f-4bcc-aa30-814aad06aa23}</UniqueIdentifier>
+    <Filter Include="Scripts\Managers">
+      <UniqueIdentifier>{b2916959-0e2d-476e-9b22-9076da6f0fec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameLoop">
-      <UniqueIdentifier>{90fc2d30-bb37-4f8f-bf42-e6e0c7ed4b24}</UniqueIdentifier>
+    <Filter Include="Scripts\Managers\Texture">
+      <UniqueIdentifier>{6d5fb1c0-b561-4431-8320-87df10db64ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core">
-      <UniqueIdentifier>{13a1fdac-d8b9-4504-8c17-75c861239769}</UniqueIdentifier>
+    <Filter Include="Scripts\GameLoop">
+      <UniqueIdentifier>{7b153ce2-c5f6-4445-9b4a-45d25a9cba11}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Components">
-      <UniqueIdentifier>{6735ad7b-87bb-4e7c-9841-91356e9e44a0}</UniqueIdentifier>
+    <Filter Include="Scripts\Core">
+      <UniqueIdentifier>{9ae3e0d7-674a-4a36-8b73-6870c38f6f68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Actors">
-      <UniqueIdentifier>{542c48f5-c503-4e43-bd32-b198da1184ce}</UniqueIdentifier>
+    <Filter Include="Scripts\Core\Actors">
+      <UniqueIdentifier>{89a5cd57-b53f-4c91-96a2-4e6772b10d20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Manager\Texture">
-      <UniqueIdentifier>{ab48a26b-a621-4a05-a45c-1a0df1bdac5c}</UniqueIdentifier>
+    <Filter Include="Scripts\Core\Components">
+      <UniqueIdentifier>{f25e24e6-b4b3-4ac0-b95c-45c2dfaa8292}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Manager\Actor">
-      <UniqueIdentifier>{ffa3f325-b135-4bbb-9396-a6c018437918}</UniqueIdentifier>
+    <Filter Include="Scripts\Managers\Actor">
+      <UniqueIdentifier>{f1589cba-120c-4b4f-892e-87eaba47791a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Manager\Timer">
-      <UniqueIdentifier>{95ee3889-efae-4838-ab7d-081a62975101}</UniqueIdentifier>
+    <Filter Include="Scripts\Managers\Timer">
+      <UniqueIdentifier>{4efce1d3-6413-4bf9-bbd8-c134d8a7938e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Manager\Sound">
-      <UniqueIdentifier>{53ffcc76-5513-49aa-9557-a9e2378bd61c}</UniqueIdentifier>
+    <Filter Include="Scripts\Resource Files\Logger">
+      <UniqueIdentifier>{5f94f2c9-17a6-46af-a08d-932e1102517d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Manager\Music">
-      <UniqueIdentifier>{b73ca388-3cc7-4438-b3b3-9423849b146c}</UniqueIdentifier>
+    <Filter Include="Scripts\Core\Actors\Shapes">
+      <UniqueIdentifier>{d7a6af57-adf9-4ffc-affb-ad21bcfb6ce1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Manager\Sound\SoundSample">
-      <UniqueIdentifier>{e0b61ec3-ef64-4280-b4fa-9f9b27106a5a}</UniqueIdentifier>
+    <Filter Include="Scripts\Resource Files\Utility">
+      <UniqueIdentifier>{0c1939bc-0357-469e-944a-c1fdf4075fe9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Logger">
-      <UniqueIdentifier>{1b7c9b0f-d956-476e-b26d-84dab8c5773d}</UniqueIdentifier>
+    <Filter Include="Scripts\Resource Files\Exception">
+      <UniqueIdentifier>{351b38c9-5026-4155-8920-9b10fcdfffb9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Exception">
-      <UniqueIdentifier>{7fd0a8f4-7f0e-4231-9b53-fddf8387d1e2}</UniqueIdentifier>
+    <Filter Include="Scripts\Resource Files\Color">
+      <UniqueIdentifier>{bf823de7-edd2-4d74-ae9b-2c9d09a6b7c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Color">
-      <UniqueIdentifier>{d3a44156-15a0-4783-bf34-a1d6ffd88084}</UniqueIdentifier>
+    <Filter Include="Scripts\Core\Components\Collision">
+      <UniqueIdentifier>{ccbd1e60-b2d7-4a41-84fb-779ba97d390d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Components\Collision">
-      <UniqueIdentifier>{b8950ea2-05a2-435f-9d8e-11d4a11d22ca}</UniqueIdentifier>
+    <Filter Include="Scripts\Core\Components\Mesh">
+      <UniqueIdentifier>{1c76df5b-7237-4d65-b03b-1568c80432ee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Actors\MeshActor">
-      <UniqueIdentifier>{05ab3ff8-4e55-4095-a5b9-88eedd13bc73}</UniqueIdentifier>
+    <Filter Include="Scripts\Core\Components\Root">
+      <UniqueIdentifier>{2722f0ba-c4d7-4e56-a5bc-cf7b721bb8a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Actors\CircleActor">
-      <UniqueIdentifier>{4e47275b-9074-4dbb-a2fb-7faa4d1f9bde}</UniqueIdentifier>
+    <Filter Include="Scripts\Managers\Font">
+      <UniqueIdentifier>{a27c8130-50ec-4ebf-bfa7-ed2ba11c894b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Actors\TriangleActor">
-      <UniqueIdentifier>{344ee839-b4c7-4cf7-8b8e-7843169e1a45}</UniqueIdentifier>
+    <Filter Include="Scripts\Core\Interfaces">
+      <UniqueIdentifier>{b9fa6b2d-0193-4b84-bbee-e701d7295b0e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Components\Mesh">
-      <UniqueIdentifier>{a1847e44-b058-4bad-b1d1-441dbfcb5d1d}</UniqueIdentifier>
+    <Filter Include="Scripts\Core\Interfaces\Transformable">
+      <UniqueIdentifier>{6601a903-a6fa-4d49-90fc-8915df11bbcc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Actors\RectangleActor">
-      <UniqueIdentifier>{4701c374-2416-45f3-861b-e3358a38b7aa}</UniqueIdentifier>
+    <Filter Include="Scripts\Core\Actors\Texts">
+      <UniqueIdentifier>{3a236a4d-3434-4099-898c-b9f32bc86ba4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Actors\SquareActor">
-      <UniqueIdentifier>{a200e97d-00a0-41ce-a8b4-3c2020b76c74}</UniqueIdentifier>
+    <Filter Include="ShootingStars">
+      <UniqueIdentifier>{39046391-69cf-469b-8bbf-9ebc75c183dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Actors\ShapeSpawner">
-      <UniqueIdentifier>{84a3bd4d-bb61-4116-a6d6-b91ae0865df7}</UniqueIdentifier>
+    <Filter Include="DuckHunt">
+      <UniqueIdentifier>{3cf18b3f-09e0-4f1e-9db7-a0d7d4be12f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Components\Movement">
-      <UniqueIdentifier>{928d531f-03c8-4bd0-a16a-eb9f123073fd}</UniqueIdentifier>
+    <Filter Include="Scripts\Managers\Audio">
+      <UniqueIdentifier>{efa133e8-fe5c-4bc5-987a-d9c41695c6f0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Components\MoveAround">
-      <UniqueIdentifier>{e775d6a8-29c2-4010-9539-04b38b8ca928}</UniqueIdentifier>
+    <Filter Include="Scripts\Managers\Audio\Sample">
+      <UniqueIdentifier>{4f209eec-1042-4245-90b0-0b1ab6013327}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Components\Rotate">
-      <UniqueIdentifier>{0e3f1468-7511-46ea-aedf-9b270596d118}</UniqueIdentifier>
+    <Filter Include="Scripts\Managers\Audio\Sample\Music">
+      <UniqueIdentifier>{85485f9e-767e-4a95-833d-840f8602da7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Components\Spawn">
-      <UniqueIdentifier>{b07e19ab-95f9-4232-a02d-eac7beb97688}</UniqueIdentifier>
+    <Filter Include="Scripts\Managers\Audio\Sample\Sound">
+      <UniqueIdentifier>{5be43bb8-9156-4d55-9a04-b5e7f9fd0d8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ViewManager">
+      <UniqueIdentifier>{9d1e3f5a-7b4c-415e-a356-87e8293cad2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ViewManager\View">
+      <UniqueIdentifier>{ee5f7ead-37f3-407f-ab80-feeab7c561ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TextObject.cpp">
+      <Filter>Scripts\Objects\TextObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Scripts\Managers\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeObject.cpp">
+      <Filter>Scripts\Objects\ShapeObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Scripts\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Scripts\GameLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Scripts\Core\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Scripts\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Core.cpp">
+      <Filter>Scripts\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorManager.cpp">
+      <Filter>Scripts\Managers\Actor</Filter>
+    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShapeObject.cpp">
-      <Filter>Source Files\Object\ShapeObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="TextObject.cpp">
-      <Filter>Source Files\Object\TextObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files\GameLoop</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Source Files\Core\Actors</Filter>
-    </ClCompile>
-    <ClCompile Include="Core.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Source Files\Core\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="ActorManager.cpp">
-      <Filter>Source Files\Manager\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Source Files\Manager\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>Source Files\Manager\Sound</Filter>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Scripts\Resource Files\Logger</Filter>
     </ClCompile>
     <ClCompile Include="SoundSample.cpp">
-      <Filter>Source Files\Manager\Sound\SoundSample</Filter>
-    </ClCompile>
-    <ClCompile Include="Logger.cpp">
-      <Filter>Header Files\Logger</Filter>
-    </ClCompile>
-    <ClCompile Include="Colors.cpp">
-      <Filter>Header Files\Color</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionComponent.cpp">
-      <Filter>Source Files\Core\Components\Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshActor.cpp">
-      <Filter>Source Files\Core\Actors\MeshActor</Filter>
+      <Filter>Scripts\Managers\Audio\Sample\Sound</Filter>
     </ClCompile>
     <ClCompile Include="CircleActor.cpp">
-      <Filter>Source Files\Core\Actors\CircleActor</Filter>
+      <Filter>Scripts\Core\Actors\Shapes</Filter>
     </ClCompile>
-    <ClCompile Include="TriangleActor.cpp">
-      <Filter>Source Files\Core\Actors\TriangleActor</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshComponent.cpp">
-      <Filter>Source Files\Core\Components\Mesh</Filter>
+    <ClCompile Include="MeshActor.cpp">
+      <Filter>Scripts\Core\Actors\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="RectangleActor.cpp">
-      <Filter>Source Files\Core\Actors\RectangleActor</Filter>
+      <Filter>Scripts\Core\Actors\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="SquareActor.cpp">
-      <Filter>Source Files\Core\Actors\SquareActor</Filter>
+      <Filter>Scripts\Core\Actors\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleActor.cpp">
+      <Filter>Scripts\Core\Actors\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="Utilities.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Scripts\Resource Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="ShapeSpawner.cpp">
-      <Filter>Source Files\Core\Actors\ShapeSpawner</Filter>
+    <ClCompile Include="CustomException.cpp">
+      <Filter>Scripts\Resource Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Scripts\Resource Files\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent.cpp">
+      <Filter>Scripts\Core\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="RootComponent.cpp">
+      <Filter>Scripts\Core\Components\Root</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshComponent.cpp">
+      <Filter>Scripts\Core\Components\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>Scripts\Managers\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Scripts\Core\Actors\Texts</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>ShootingStars</Filter>
+    </ClCompile>
+    <ClCompile Include="SubclassOf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Scripts\Managers\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicSample.cpp">
+      <Filter>Scripts\Managers\Audio\Sample\Music</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample.cpp">
+      <Filter>Scripts\Managers\Audio\Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="DuckHuntGame.cpp">
+      <Filter>DuckHunt</Filter>
+    </ClCompile>
+    <ClCompile Include="Duck.cpp">
+      <Filter>DuckHunt</Filter>
     </ClCompile>
     <ClCompile Include="MovementComponent.cpp">
-      <Filter>Source Files\Core\Components\Movement</Filter>
+      <Filter>DuckHunt</Filter>
     </ClCompile>
-    <ClCompile Include="MoveAroundComponent.cpp">
-      <Filter>Source Files\Core\Components\MoveAround</Filter>
+    <ClCompile Include="AnimationComponent.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RotateComponent.cpp">
-      <Filter>Source Files\Core\Components\Rotate</Filter>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpawnComponent.cpp">
-      <Filter>Source Files\Core\Components\Spawn</Filter>
+    <ClCompile Include="ViewManager.cpp">
+      <Filter>ViewManager</Filter>
+    </ClCompile>
+    <ClCompile Include="View.cpp">
+      <Filter>ViewManager\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Scripts\Managers</Filter>
     </ClInclude>
     <ClInclude Include="CoreMinimal.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShapeObject.h">
-      <Filter>Source Files\Object\ShapeObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Source Files\Object</Filter>
+      <Filter>Scripts\Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="TextObject.h">
-      <Filter>Source Files\Object\TextObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Source Files\GameLoop</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>Source Files\Core\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="Core.h">
-      <Filter>Source Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Source Files\Core\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="ActorManager.h">
-      <Filter>Source Files\Manager\Actor</Filter>
+      <Filter>Scripts\Objects\TextObjects</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
-      <Filter>Source Files\Manager\Texture</Filter>
+      <Filter>Scripts\Managers\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeObject.h">
+      <Filter>Scripts\Objects\ShapeObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Scripts\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Scripts\GameLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Scripts\Core\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Scripts\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Scripts\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorManager.h">
+      <Filter>Scripts\Managers\Actor</Filter>
     </ClInclude>
     <ClInclude Include="TimerManager.h">
-      <Filter>Source Files\Manager\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundSample.h">
-      <Filter>Source Files\Manager\Sound\SoundSample</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>Source Files\Manager\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="Macro.h">
-      <Filter>Header Files</Filter>
+      <Filter>Scripts\Managers\Timer</Filter>
     </ClInclude>
     <ClInclude Include="Logger.h">
-      <Filter>Header Files\Logger</Filter>
+      <Filter>Scripts\Resource Files\Logger</Filter>
     </ClInclude>
-    <ClInclude Include="CustomException.h">
-      <Filter>Header Files\Exception</Filter>
+    <ClInclude Include="SoundSample.h">
+      <Filter>Scripts\Managers\Audio\Sample\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="Colors.h">
-      <Filter>Header Files\Color</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionComponent.h">
-      <Filter>Source Files\Core\Components\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshActor.h">
-      <Filter>Source Files\Core\Actors\MeshActor</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleActor.h">
-      <Filter>Source Files\Core\Actors\CircleActor</Filter>
+    <ClInclude Include="Macro.h">
+      <Filter>Scripts\Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="TriangleActor.h">
-      <Filter>Source Files\Core\Actors\TriangleActor</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshComponent.h">
-      <Filter>Source Files\Core\Components\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="RectangleActor.h">
-      <Filter>Source Files\Core\Actors\RectangleActor</Filter>
+      <Filter>Scripts\Core\Actors\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="SquareActor.h">
-      <Filter>Source Files\Core\Actors\SquareActor</Filter>
+      <Filter>Scripts\Core\Actors\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshActor.h">
+      <Filter>Scripts\Core\Actors\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleActor.h">
+      <Filter>Scripts\Core\Actors\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleActor.h">
+      <Filter>Scripts\Core\Actors\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="Utilities.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Scripts\Resource Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="ShapeSpawner.h">
-      <Filter>Source Files\Core\Actors\ShapeSpawner</Filter>
+    <ClInclude Include="CustomException.h">
+      <Filter>Scripts\Resource Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Scripts\Resource Files\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>Scripts\Core\Components\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="RootComponent.h">
+      <Filter>Scripts\Core\Components\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshComponent.h">
+      <Filter>Scripts\Core\Components\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformData.h">
+      <Filter>Scripts\Core\Components\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>Scripts\Managers\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformableModifier.h">
+      <Filter>Scripts\Core\Interfaces\Transformable</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformableViewer.h">
+      <Filter>Scripts\Core\Interfaces\Transformable</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Scripts\Core\Actors\Texts</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>ShootingStars</Filter>
+    </ClInclude>
+    <ClInclude Include="SubclassOf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Scripts\Managers\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicSample.h">
+      <Filter>Scripts\Managers\Audio\Sample\Music</Filter>
+    </ClInclude>
+    <ClInclude Include="Sample.h">
+      <Filter>Scripts\Managers\Audio\Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="DuckHuntGame.h">
+      <Filter>DuckHunt</Filter>
+    </ClInclude>
+    <ClInclude Include="Duck.h">
+      <Filter>DuckHunt</Filter>
     </ClInclude>
     <ClInclude Include="MovementComponent.h">
-      <Filter>Source Files\Core\Components\Movement</Filter>
+      <Filter>DuckHunt</Filter>
     </ClInclude>
-    <ClInclude Include="MoveAroundComponent.h">
-      <Filter>Source Files\Core\Components\MoveAround</Filter>
+    <ClInclude Include="AnimationComponent.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RotateComponent.h">
-      <Filter>Source Files\Core\Components\Rotate</Filter>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpawnComponent.h">
-      <Filter>Source Files\Core\Components\Spawn</Filter>
+    <ClInclude Include="ViewManager.h">
+      <Filter>ViewManager</Filter>
     </ClInclude>
+    <ClInclude Include="View.h">
+      <Filter>ViewManager\View</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TODOList.txt" />
   </ItemGroup>
 </Project>

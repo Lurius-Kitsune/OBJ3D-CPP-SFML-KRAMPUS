@@ -3,9 +3,15 @@
 
 Actor::Actor()
 {
-	Register();
+	isToDelete = false;
+	root = CreateComponent<RootComponent>();
 }
 
+Actor::Actor(const Actor& _actor)
+{
+	isToDelete = false;
+	root = CreateComponent<RootComponent>(*_actor.root);
+}
 
 Actor::~Actor()
 {
@@ -15,19 +21,23 @@ Actor::~Actor()
 	}
 }
 
-void Actor::AddComponent(Component* _component)
+
+void Actor::Construct()
 {
-	//if (GetComponent<decltype(_component)>()) return;
-	components.insert(_component);
+	M_ACTOR.AddActor(this);
 }
 
-void Actor::RemoveComponent(Component* _component)
+void Actor::Deconstruct()
 {
-	components.erase(_component);
+	M_ACTOR.RemoveActor(this);
 }
 
 void Actor::BeginPlay()
 {
+	for (Component* _component : components)
+	{
+		_component->BeginPlay();
+	}
 }
 
 void Actor::Tick(const float _deltaTime)
@@ -40,10 +50,29 @@ void Actor::Tick(const float _deltaTime)
 
 void Actor::BeginDestroy()
 {
-
+	for (Component* _component : components)
+	{
+		_component->BeginDestroy();
+	}
 }
 
-void Actor::Register()
+void Actor::Destroy()
 {
-	M_ACTOR.AddActor(this);
+	isToDelete = true;
 }
+
+
+void Actor::AddComponent(Component* _component)
+{
+	components.insert(_component);
+}
+
+void Actor::RemoveComponent(Component* _component)
+{
+	components.erase(_component);
+}
+
+
+// Level -> SpawnActor(SubClass<Actor>, Transform args...)
+// SubclassOf<T> ->  ????
+// Actor -> Construct/Deconstruct => Register -> BeginPlay/Update/BeginDestroy
