@@ -9,3 +9,8 @@ Camera::Camera(const FloatRect& _viewRect)
 {
 	view = new View(_viewRect);
 }
+
+Camera::~Camera()
+{
+	delete view;
+}

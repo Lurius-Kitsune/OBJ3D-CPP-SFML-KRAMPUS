@@ -6,6 +6,11 @@ class Camera : public Actor
 
 public:
 
+	FORCEINLINE virtual View* GetView()const
+	{
+		return view;
+	}
+
 #pragma region Transformable
 
 #pragma region Viewer
@@ -71,6 +76,6 @@ public:
 public:
 	Camera(const Vector2f& _centerPosition, const Vector2f& _size);
 	Camera(const FloatRect& _viewRect);
-	~Camera()
+	~Camera();
 };
 
