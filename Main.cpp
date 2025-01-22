@@ -13,6 +13,8 @@ int main()
     InitConfig();
     Game::GetInstance().Launch();
 
+    M_AUDIO.PlaySample<Music>("fight", MP3);
+
     //DuckHuntGame _game;
     //_game.Launch();
 	return EXIT_SUCCESS;
