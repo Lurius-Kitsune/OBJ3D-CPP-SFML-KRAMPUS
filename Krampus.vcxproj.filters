@@ -189,15 +189,6 @@
     <ClCompile Include="Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DuckHuntGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Duck.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AudioManager.cpp">
       <Filter>Scripts\Managers\Audio</Filter>
     </ClCompile>
@@ -206,6 +197,21 @@
     </ClCompile>
     <ClCompile Include="Sample.cpp">
       <Filter>Scripts\Managers\Audio\Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="DuckHuntGame.cpp">
+      <Filter>DuckHunt</Filter>
+    </ClCompile>
+    <ClCompile Include="Duck.cpp">
+      <Filter>DuckHunt</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>DuckHunt</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -311,15 +317,6 @@
     <ClInclude Include="Level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DuckHuntGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Duck.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AudioManager.h">
       <Filter>Scripts\Managers\Audio</Filter>
     </ClInclude>
@@ -328,6 +325,21 @@
     </ClInclude>
     <ClInclude Include="Sample.h">
       <Filter>Scripts\Managers\Audio\Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="DuckHuntGame.h">
+      <Filter>DuckHunt</Filter>
+    </ClInclude>
+    <ClInclude Include="Duck.h">
+      <Filter>DuckHunt</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>DuckHunt</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

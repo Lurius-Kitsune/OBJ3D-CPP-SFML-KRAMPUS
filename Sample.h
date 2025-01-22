@@ -15,7 +15,7 @@ protected:
 	}
 public:
 	FORCEINLINE virtual void SetLoop(const bool _isLoop) = 0;
-	FORCEINLINE virtual void SetPitch(const float _pitch) = 0;
+	FORCEINLINE virtual bool SetPitch(const float _pitch) = 0;
 	FORCEINLINE virtual bool IsAvailable() const = 0;
 
 	FORCEINLINE string GetPath() const

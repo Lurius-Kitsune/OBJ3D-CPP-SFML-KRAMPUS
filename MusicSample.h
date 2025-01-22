@@ -22,9 +22,12 @@ public:
 	{
 		music->setLooping(_isLoop);
 	}
-	FORCEINLINE virtual void SetPitch(const float _pitch) override
+	FORCEINLINE virtual bool SetPitch(const float _pitch) override
 	{
-		music->setPitch(_pitch);
+		float _newPitch = music->getPitch() + _pitch;
+		if (_newPitch > 100.0f || _newPitch < 0.0f) return false;
+		music->setPitch(_newPitch);
+		return true;
 	}
 	FORCEINLINE virtual bool IsAvailable() const override
 	{
