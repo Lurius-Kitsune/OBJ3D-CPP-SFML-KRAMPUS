@@ -40,7 +40,7 @@ public:
 
 public:
 	Sample(const string& _path);
-
+	virtual ~Sample() = default;
 public:
 	virtual void Play(const Time& _time = Time());
 	virtual void Pause() = 0;

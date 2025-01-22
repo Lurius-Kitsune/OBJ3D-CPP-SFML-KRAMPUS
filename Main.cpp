@@ -11,9 +11,9 @@ void InitConfig()
 int main()
 {
     InitConfig();
+    M_AUDIO.PlaySample<MusicSample>("fight", MP3);
     Game::GetInstance().Launch();
 
-    M_AUDIO.PlaySample<SoundSample>("boom", MP3);
 
     //DuckHuntGame _game;
     //_game.Launch();
