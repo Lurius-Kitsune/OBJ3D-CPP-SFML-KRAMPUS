@@ -8,13 +8,19 @@ bool LinkedAnimation::TryToChange()
 	return true;
 }
 
-Animation::Animation(const string& _name, ShapeObject* _object, const AnimationData& _data)
+Animation::Animation(const string& _name, ShapeObject* _shape, const AnimationData& _data)
 {
-	currentIndex = 0;
+	currentIndex = _other.currentIndex;
 	name = _name;
 	data = _data;
-	shape = _object;
-	timer = nullptr;
+	shape = _shape;
+
+	timer = new Timer([&]() 
+		{ Update(); },
+		seconds(data.sprite[currentIndex].timesBetween * data.count / data.duration),
+		true,
+		true
+	);
 }
 
 Animation::Animation(const Animation& _other)
@@ -23,7 +29,18 @@ Animation::Animation(const Animation& _other)
 	name = _other.name;
 	data = _other.data;
 	shape = _other.shape;
-	timer = _other.timer;
+	timer = new Timer([&]()
+		{ Update(); },
+		seconds(data.sprite[currentIndex].timesBetween * data.count / data.duration),
+		true,
+		true
+	);
+}
+
+Animation::~Animation()
+{
+	LOG(Display, "Animation destroyed : " + name);
+	delete timer;
 }
 
 void Animation::Start()

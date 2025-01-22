@@ -143,6 +143,7 @@ public:
 public:
 	Animation(const string& _name, ShapeObject* _object, const AnimationData& _data);
 	Animation(const Animation& _other);
+	~Animation();
 
 public:
 	void Start();

@@ -234,7 +234,7 @@ public:
 		isLoop = _other.isLoop;
 		currentTime = _other.currentTime;
 		duration = _other.duration;
-		callback = _other.callback;
+		callback = function<void()>(_other.callback);
 
 		_manager.AddTimer(this);
 	}
