@@ -1,18 +1,15 @@
 #pragma once
 #include "Component.h"
+#include "MeshActor.h"
 class MovementComponent : public Component
 {
-	float speed;
-	Vector2f direction;
 
 public:
-	MovementComponent(Actor* _owner);
-	MovementComponent(Actor* _owner, const MovementComponent& _other);
+	MovementComponent(MeshActor* _actor);
 
-protected:
+public:
 	virtual void Tick(const float _deltaTime) override;
 
-private:
 	void Move(const float _deltaTime);
 };
 

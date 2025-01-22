@@ -1,6 +1,6 @@
 #pragma once
 #include "Singleton.h"
-#include "Game.h" 
+#include "Game.h"
 
 using Seconds = float;
 using MilliSec = int32_t;
@@ -9,7 +9,7 @@ using MicroSec = int64_t;
 template <typename DurationType>
 class Timer;
 
-template <typename DurationType = Seconds>
+template <typename DurationType>
 class TimerManager : public Singleton<TimerManager<DurationType>>
 {
 	using T = Timer<DurationType>;
@@ -17,23 +17,25 @@ class TimerManager : public Singleton<TimerManager<DurationType>>
 
 	// Objet qui contient toutes les données de temps
 	Clock clock;
-	// Temps depuis le début du programme
+	// Temps en miliseconde depuis le début du prog
 	DurationType time;
 	// Stocke temporairement la précédente durée de la frame
 	DurationType lastTime;
-	// Mettre à jour le compteur de FPS
+	// Mettre à jours le content de FPS
 	DurationType lastFrameTime;
-	// Temps depuis la dernière image rendue
+	// Temps depuis la dernière image rendu 
 	DurationType elapsedTime;
-	// Temps depuis la dernière image rendue avec le 'timeScale'
+	// Temps depuis la dernière image rendu avec le timeScale
 	DurationType deltaTime;
 	// Vitesse à laquelle le temps s'écoule
-	float timeScale;
-	// Nombre d'images qui ont été rendu depuis le début du programme
+	DurationType timeScale;
+	// NB image rendu depuis le début
 	l_long framesCount;
-	// Maximum d'images à rendre par seconde
+	// MAximum d'image rendu par seconde
 	u_short maxFrameRate;
-	// Collection de tous les timers existants
+	// Nombre d'image rendu par seconde
+	DurationType fps;
+	// Collection de tous les time existant
 	set<T*> allTimers;
 
 	map<type_index, DurationType> durations;
@@ -43,29 +45,24 @@ private:
 	{
 		return durations.at(typeid(DurationType));
 	}
-	FORCEINLINE DurationType GetTime(const Time& _time) const
-	{
-		map<type_index, function<DurationType()>> _durationCallback =
-		{
-			{ typeid(Seconds),  [&]() { return _time.asSeconds(); }},
-			{ typeid(MilliSec), [&]() { return _time.asMilliseconds(); }},
-			{ typeid(MicroSec), [&]() { return _time.asMicroseconds(); }},
-		};
-
-		return _durationCallback.at(typeid(DurationType))();
-	}
 public:
 	FORCEINLINE string GetCurrentRealTime() const
 	{
-		const time_t& _now = std::time(0);
+		// current date/time based on current system
+		const time_t _now = std::time(0);
 
 		tm _ltm;
 		localtime_s(&_ltm, &_now);
 
-		const string& _date = to_string(_ltm.tm_mday) + "/" + to_string(1 + _ltm.tm_mon) + "/" + to_string(1900 + _ltm.tm_year);
-		const string& _time = to_string(_ltm.tm_hour) + ":" + to_string(_ltm.tm_min) + ":" + to_string(_ltm.tm_sec);
+		string _date = to_string(_ltm.tm_mday) + "/" + to_string(1 + _ltm.tm_mon) + "/" + to_string(1900 + _ltm.tm_year);
+		string _time = to_string(_ltm.tm_hour) + ":" + to_string(_ltm.tm_min) + ":" + to_string(_ltm.tm_sec);
 
 		return _date + " " + _time;
+	}
+	
+	FORCEINLINE set<T*> GetAllTimers() const
+	{
+		return allTimers;
 	}
 	FORCEINLINE void AddTimer(T* _timer)
 	{
@@ -73,11 +70,8 @@ public:
 	}
 	FORCEINLINE void RemoveTimer(T* _timer)
 	{
-		if (allTimers.contains(_timer))
-		{
-			allTimers.erase(_timer);
-			delete _timer;
-		}
+		allTimers.erase(_timer);
+		delete _timer;
 	}
 	FORCEINLINE void SetTimerScale(const DurationType& _timeScale)
 	{
@@ -87,9 +81,9 @@ public:
 	{
 		return GetDuration() / (time - lastFrameTime);
 	}
-	FORCEINLINE Time GetDeltaTime() const
+	FORCEINLINE Time GetDeltaTime()const
 	{
-		return Time(seconds(CAST(float, deltaTime * GetDuration())));
+		return Time(seconds(deltaTime * GetDuration()));
 	}
 
 public:
@@ -103,13 +97,15 @@ public:
 		deltaTime = DurationType();
 		timeScale = 1.0f;
 		framesCount = 0;
-		maxFrameRate = 60;
+		maxFrameRate = 50;
+		fps = DurationType();
 		allTimers = set<T*>();
+
 		durations =
 		{
-			{ typeid(Seconds), 1 },
-			{ typeid(MilliSec), 1000 },
-			{ typeid(MicroSec), 1000000 }
+			{typeid(Seconds), 1},
+			{typeid(MilliSec), 1000},
+			{typeid(MicroSec), 1000000},
 		};
 	}
 	~TimerManager()
@@ -120,45 +116,45 @@ public:
 		}
 	}
 
+public:
 	void Update()
 	{
 		lastTime = time;
+
 		time = GetTime(clock.getElapsedTime());
 		elapsedTime = time - lastTime;
+
 		deltaTime = elapsedTime * timeScale;
 		framesCount++;
 
-		// && framesCount < maxFrameRate
-		if (lastFrameTime == 0 || time - lastFrameTime <= maxFrameRate)
+		if (lastFrameTime == 0 || time - lastFrameTime >= maxFrameRate )
 		{
 			lastFrameTime = time;
-			framesCount = 0;
 			Game::GetInstance().UpdateWindow();
 		}
-		
-		using Iterator = set<T*>::iterator;
-		for (Iterator _iterator = allTimers.begin(); _iterator != allTimers.end(); )
+
+		using Iterator = set<Timer<Seconds>*>::iterator;
+		for (Iterator _iterator = allTimers.begin(); _iterator != allTimers.end();)
 		{
 			T* _timer = *_iterator;
 			_timer->Update(deltaTime);
-
 			if (_timer->IsToDelete())
 			{
-				--_iterator;
 				RemoveTimer(_timer);
+				_iterator--;
 				continue;
 			}
-
-			++_iterator;
+			_iterator++;
 		}
 	}
 	void Pause()
 	{
-		for (Timer* _timer : allTimers)
+		for (T* _timer : allTimers)
 		{
 			_timer->Pause();
 		}
 	}
+
 	void Resume()
 	{
 		for (T* _timer : allTimers)
@@ -166,6 +162,7 @@ public:
 			_timer->Resume();
 		}
 	}
+
 	void Stop()
 	{
 		for (T* _timer : allTimers)
@@ -173,70 +170,68 @@ public:
 			_timer->Stop();
 		}
 	}
+
+private:
+	FORCEINLINE DurationType GetTime(const Time& _time) const
+	{
+		map<type_index, function<DurationType()>> _durationCallback =
+		{
+			{typeid(Seconds), [&]() { return _time.asSeconds(); }},
+			{typeid(MilliSec), [&]() { return _time.asMilliseconds(); }},
+			{typeid(MicroSec), [&]() { return _time.asMicroseconds(); }}
+		
+		};
+		return _durationCallback[typeid(DurationType)]();
+	}
+
 };
 
 using TM_Seconds = TimerManager<Seconds>;
 using TM_Milli = TimerManager<MilliSec>;
 using TM_Micro = TimerManager<MicroSec>;
 
-template <typename DurationType = Seconds>
+template <typename DurationType>
 class Timer
 {
 	using TM = TimerManager<DurationType>;
-
-	bool isToDelete;
-	bool isRunning;
-	bool isLoop;
 	DurationType currentTime;
 	DurationType duration;
+	bool isRunning;
+	bool isLoop;
 	function<void()> callback;
+	bool isToDelete;
 
 public:
-	FORCEINLINE bool IsToDelete() const
-	{
-		return isToDelete;
-	}
 	FORCEINLINE bool IsRunning() const
 	{
 		return isRunning;
 	}
+
 	FORCEINLINE bool IsLoop() const
 	{
 		return isLoop;
 	}
+
 	FORCEINLINE DurationType GetCurrentTime() const
 	{
 		return currentTime;
 	}
 
+	FORCEINLINE bool IsToDelete()const
+	{
+		return isToDelete;
+	}
 public:
 	Timer(const function<void()>& _callback, const Time& _time, const bool _startRunning = false,
 		const bool _isLoop = false)
 	{
-		TM& _manager = TM::GetInstance();
-
-		isToDelete = false;
 		isRunning = _startRunning;
 		isLoop = _isLoop;
 		currentTime = 0.0;
-		duration = _manager.GetTime(_time);
+		duration = M_TIMER(DurationType).GetTime(_time);
 		callback = _callback;
-
-		_manager.AddTimer(this);
-	}
-
-	Timer(const Timer& _other)
-	{
-		TM& _manager = TM::GetInstance();
-
-		isToDelete = _other.isToDelete;
-		isRunning = _other.isRunning;
-		isLoop = _other.isLoop;
-		currentTime = _other.currentTime;
-		duration = _other.duration;
-		callback = _other.callback;
-
-		_manager.AddTimer(this);
+		M_TIMER(DurationType).AddTimer(this);
+		isToDelete = false;
 	}
 
 public:
@@ -245,12 +240,11 @@ public:
 		Reset();
 		Resume();
 	}
-	void Update(const DurationType& _deltaTime)
+	void Update(const float _deltaTime)
 	{
 		if (!isRunning) return;
 
 		currentTime += _deltaTime;
-
 		if (currentTime >= duration)
 		{
 			if (callback)
@@ -268,6 +262,7 @@ public:
 	}
 	void Stop()
 	{
+		TM::GetInstance().RemoveTimer(this);
 		isToDelete = true;
 	}
 	void Resume()
@@ -276,10 +271,11 @@ public:
 	}
 	void Reset()
 	{
-		currentTime = DurationType();
+		currentTime = 0.0;
 	}
 	void Pause()
 	{
 		isRunning = false;
 	}
+
 };

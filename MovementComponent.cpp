@@ -1,28 +1,26 @@
 #include "MovementComponent.h"
-#include "Actor.h"
 
-MovementComponent::MovementComponent(Actor* _owner)
-	: Component(_owner)
+MovementComponent::MovementComponent(MeshActor* _actor)
+	: Component(_actor)
 {
-	speed = 100.0f;
-	direction = Vector2f(1.0f, 0.0f);
-}
-
-MovementComponent::MovementComponent(Actor* _owner, const MovementComponent& _other)
-	: Component(_owner)
-{
-	speed = _other.speed;
-	direction = _other.direction;
 }
 
 void MovementComponent::Tick(const float _deltaTime)
 {
-	Super::Tick(_deltaTime);
 	Move(_deltaTime);
 }
 
 void MovementComponent::Move(const float _deltaTime)
 {
-	const Vector2f& _offset = direction * speed * _deltaTime;
-	owner->Move(_offset);
+	MeshActor* _owner = dynamic_cast<MeshActor*>(owner);
+	_owner->GetShape()->Move(Vector2f(0.05f, 0.05f) * _deltaTime * 1000.0f);
+	_owner->GetShape()->Rotate(radians(0.001f * _deltaTime * 1000.0f));
+	
+	const Vector2f& _scale = _owner->GetShape()->GetDrawable()->getScale();
+	if (_scale.x <= 0.f)
+	{
+		_owner->BeginDestroy();
+		return;
+	}
+	_owner->GetShape()->SetScale(_scale - (Vector2f(0.0001f, 0.0001f) * _deltaTime * 1000.0f));
 }
