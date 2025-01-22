@@ -1,5 +1,5 @@
 #include "SoundSample.h"
-#include "SoundManager.h"
+#include "AudioManager.h"
 
 SoundSample::SoundSample(const string& _path)
 	: Sample(_path)

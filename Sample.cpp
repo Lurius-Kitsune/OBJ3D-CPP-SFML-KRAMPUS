@@ -8,9 +8,9 @@ Sample::Sample(const string& _path)
 
 void Sample::Play(const Time& _time)
 {
-	if (IsStatusByIndex(0))
+	if (IsStatusByIndex(1))
 	{
-		//sound->stop();
+		Stop();
 	}
 
 	SetVolume(volume);

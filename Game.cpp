@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "ActorManager.h"
 #include "TimerManager.h"
-#include "SoundManager.h"
+#include "AudioManager.h"
 
 #include "MeshActor.h"
 #include "Duck.h"

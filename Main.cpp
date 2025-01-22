@@ -1,5 +1,6 @@
 #include "DuckHuntGame.h"
 #include "Logger.h"
+#include "AudioManager.h"
 
 void InitConfig()
 {
