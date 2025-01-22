@@ -11,7 +11,7 @@ void InitConfig()
 int main()
 {
     InitConfig();
-    MusicSample* _music = M_AUDIO.PlaySample<MusicSample>("fight", MP3);
+    //MusicSample* _music = M_AUDIO.PlaySample<MusicSample>("fight", MP3);
     Game::GetInstance().Launch();
 
 
