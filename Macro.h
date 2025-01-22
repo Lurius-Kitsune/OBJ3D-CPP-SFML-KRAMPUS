@@ -1,84 +1,56 @@
 #pragma once
-#pragma warning(disable: 4275)
-
-
+#pragma warning (disable : 4275)
+#pragma warning( disable : 4244)
 
 // STL
 #include <iostream>
-#include <string>
 #include <fstream>
+#include <string>
+#include <algorithm>
 #include <functional>
 #include <typeindex>
 #include <typeinfo>
-#define _USE_MATH_DEFINES
-#include <cmath>
+#include <exception>
 #include <random>
 
 // OLD
-#include <conio.h>
 #include <math.h>
+#include <conio.h>
 
 // Collections
 #include <vector>
-#include <map>
-#include <set>
 #include <list>
 #include <queue>
+#include <map>
+#include <set>
 
 /// SFML
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Window.hpp>
+#include "SFML/Graphics.hpp"
+#include "SFML/Window.hpp"
+#include "SFML/System.hpp"
+#include "SFML/Audio.hpp"
+#include "SFML/Network.hpp"
 
-// Perso
+#define DEBUG_PATH
+#ifdef DEBUG_PATH
+#define PATH __FUNCTION__
+#else
+#define PATH __FILE__
+#endif // DEBUG_FILE
 
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#define Super __super
+#define FILE_NAME (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
+#define DEBUG_INFO "(File: " + CAST(string, PATH) + " | Line: " + to_string(__LINE__) + ")"
 #define FORCEINLINE __forceinline
 #define INLINE __inline
-#define Super __super
-#define NO_DISCARD [[nodiscard]]
-#define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
-#define SLEEP(_time) sf::sleep(Time(_time))
-#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
-#define STRING(value) to_string(value)
-#define CAST(_type, _value) static_cast<_type>(_value)
+#define CAST(_type, _expr) static_cast<_type>(_expr)
+#define SLEEP(_duration) sleep(_duration)
+#define NO_DISCARD _NODISCARD
 
-
-// Debugs
-enum VerbosityLevel
-{
-	VL_LOG,
-	VL_WARNING,
-	VL_ERROR
-};
-
-using namespace sf;
 using namespace std;
+using namespace sf;
 
-typedef unsigned int u_int;
 typedef unsigned short u_short;
-typedef long long l_long;
-
 typedef unsigned int u_int;
-typedef unsigned short u_short;
 typedef long long l_long;
-
-static int RandomInt(const int _min, const int _max)
-{
-    std::random_device _dev;
-    std::mt19937 _rng(_dev());
-    std::uniform_int_distribution<std::mt19937::result_type> _dist(_min, _max);
-
-    return _dist(_rng);
-}
-
-template<typename ReturnValue>
-static int RandomValue(const ReturnValue _min, const ReturnValue _max)
-{
-    std::random_device _dev;
-    std::mt19937 _rng(_dev());
-    std::uniform_real_distribution<> _dist(_min, _max);
-
-    return _dist(_rng);
-}
