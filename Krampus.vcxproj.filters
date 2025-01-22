@@ -52,12 +52,6 @@
     <Filter Include="Scripts\Resource Files\Logger">
       <UniqueIdentifier>{5f94f2c9-17a6-46af-a08d-932e1102517d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\Managers\Sound">
-      <UniqueIdentifier>{5be43bb8-9156-4d55-9a04-b5e7f9fd0d8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Managers\Music">
-      <UniqueIdentifier>{85485f9e-767e-4a95-833d-840f8602da7d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scripts\Core\Actors\Shapes">
       <UniqueIdentifier>{d7a6af57-adf9-4ffc-affb-ad21bcfb6ce1}</UniqueIdentifier>
     </Filter>
@@ -97,6 +91,18 @@
     <Filter Include="DuckHunt">
       <UniqueIdentifier>{3cf18b3f-09e0-4f1e-9db7-a0d7d4be12f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\Managers\Audio">
+      <UniqueIdentifier>{efa133e8-fe5c-4bc5-987a-d9c41695c6f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Managers\Audio\Sample">
+      <UniqueIdentifier>{4f209eec-1042-4245-90b0-0b1ab6013327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Managers\Audio\Sample\Music">
+      <UniqueIdentifier>{85485f9e-767e-4a95-833d-840f8602da7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Managers\Audio\Sample\Sound">
+      <UniqueIdentifier>{5be43bb8-9156-4d55-9a04-b5e7f9fd0d8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TextObject.cpp">
@@ -133,10 +139,7 @@
       <Filter>Scripts\Resource Files\Logger</Filter>
     </ClCompile>
     <ClCompile Include="SoundSample.cpp">
-      <Filter>Scripts\Managers\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>Scripts\Managers\Sound</Filter>
+      <Filter>Scripts\Managers\Audio\Sample\Sound</Filter>
     </ClCompile>
     <ClCompile Include="CircleActor.cpp">
       <Filter>Scripts\Core\Actors\Shapes</Filter>
@@ -189,6 +192,21 @@
     <ClCompile Include="DuckHuntGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Duck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Scripts\Managers\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicSample.cpp">
+      <Filter>Scripts\Managers\Audio\Sample\Music</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample.cpp">
+      <Filter>Scripts\Managers\Audio\Sample</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -231,10 +249,7 @@
       <Filter>Scripts\Resource Files\Logger</Filter>
     </ClInclude>
     <ClInclude Include="SoundSample.h">
-      <Filter>Scripts\Managers\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>Scripts\Managers\Sound</Filter>
+      <Filter>Scripts\Managers\Audio\Sample\Sound</Filter>
     </ClInclude>
     <ClInclude Include="Macro.h">
       <Filter>Scripts\Resource Files</Filter>
@@ -298,6 +313,21 @@
     </ClInclude>
     <ClInclude Include="DuckHuntGame.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Duck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Scripts\Managers\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicSample.h">
+      <Filter>Scripts\Managers\Audio\Sample\Music</Filter>
+    </ClInclude>
+    <ClInclude Include="Sample.h">
+      <Filter>Scripts\Managers\Audio\Sample</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
