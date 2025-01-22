@@ -6,6 +6,7 @@ class AnimationComponent : public Component
 	// AnimationPose -> only
 	// StateMachine -> AutoSwitch
 	Animation* current;
+	map<string, Animation*> allAnimations;
 
 public:
 	AnimationComponent(Actor* _owner);
