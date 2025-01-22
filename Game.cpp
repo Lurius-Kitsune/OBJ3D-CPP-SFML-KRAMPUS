@@ -48,15 +48,12 @@ void Game::Start()
 
     Level::SpawnActor(MeshActor(Vector2f(719.0f, 400.0f), "farmBackground"));
     
-    SubclassOf<Duck> _duckRef = SubclassOf<Duck>(Duck(Vector2f(50.0f, 50.0f), "duck"));
-    //Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "duck"));
+    //Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f), "duck"));
 
     //pitchFactor = 0.1f;
     new Timer([&]()
         {
-            //Level::SpawnActor(SubclassOf<Duck>(Duck(Vector2f(50.0f, 50.0f), "duck")));
-            Level::SpawnActor(_duckRef);
-
+            Level::SpawnActor(/*SubclassOf<Duck>*/(Duck(Vector2f(50.0f, 50.0f), "duck")));
         },
         seconds(3.0f),
         true,

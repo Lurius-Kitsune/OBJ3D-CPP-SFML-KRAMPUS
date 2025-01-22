@@ -6,15 +6,15 @@ AnimationComponent::AnimationComponent(Actor* _owner) : Component(_owner)
 	allAnimations = map<string, Animation*>();
 }
 
-AnimationComponent::AnimationComponent(Actor* _owner, const AnimationComponent& _other)
+AnimationComponent::AnimationComponent(Actor* _owner, const AnimationComponent* _other)
 	:Component(_owner)
 {	
-	for (pair<string, Animation*> _animation : _other.allAnimations)
+	for (pair<string, Animation*> _animation : _other->allAnimations)
 	{
 		allAnimations[_animation.first] = new Animation(*_animation.second);
 	}
 
-	current = allAnimations[_other.current->GetName()];
+	current = allAnimations[_other->current->GetName()];
 }
 
 AnimationComponent::~AnimationComponent()
@@ -29,6 +29,7 @@ void AnimationComponent::AddAnimation(Animation* _animation)
 {
 	const string& _animationName = _animation->GetName();
 	if (allAnimations.contains(_animationName)) return;
+
 	allAnimations.insert({ _animationName, _animation });
 }
 

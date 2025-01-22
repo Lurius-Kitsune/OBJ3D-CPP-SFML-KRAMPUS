@@ -15,5 +15,8 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+public:
+	virtual void Construct() override;
+	virtual void Deconstruct() override;
 };
 

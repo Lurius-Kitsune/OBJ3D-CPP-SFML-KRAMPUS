@@ -104,7 +104,7 @@ struct AnimationData
 		linkedAnimations = _linkedAnimations;
 	}
 
-	AnimationData(const int _count, const float _duration, const vector<SpriteData>& _spriteDatas,
+	AnimationData(const float _duration, const vector<SpriteData>& _spriteDatas,
 		const ReadDirection& _direction = RD_ROW, const bool _isReversed = false,
 		const bool _canLoop = true, const bool _hasExitTime = true,
 		const vector<LinkedAnimation>& _linkedAnimations = {})
@@ -112,7 +112,7 @@ struct AnimationData
 		canLoop = _canLoop;
 		hasExitTime = _hasExitTime;
 		isReversed = _isReversed;
-		count = _count;
+		count = CAST(int, _spriteDatas.size());
 		duration = _duration;
 		sprite = _spriteDatas;
 		direction = _direction;

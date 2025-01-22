@@ -11,12 +11,18 @@ class AnimationComponent : public Component
 public:
 	FORCEINLINE void SetCurrentAnimation(const string& _name)
 	{
+		if (!allAnimations.contains(_name)) return;
 		current = allAnimations[_name];
+	}
+	FORCEINLINE void StartAnimation()
+	{
+		if(!current) return;
+		current->Start();
 	}
 
 public:
 	AnimationComponent(Actor* _owner);
-	AnimationComponent(Actor* _owner, const AnimationComponent& _other);
+	AnimationComponent(Actor* _owner, const AnimationComponent* _other);
 	~AnimationComponent();
 public:
 	void AddAnimation(Animation* _animation);
