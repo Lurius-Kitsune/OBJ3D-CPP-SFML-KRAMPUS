@@ -11,11 +11,4 @@ public:
 	virtual void Tick(const float _deltaTime) = 0;
 	virtual void BeginDestroy() = 0;
 
-	//TODO check for using
-	template <typename T>
-	T* Cast(Core* _core)
-	{
-		if (!IsValid(_core)) return nullptr;
-		return dynamic_cast<T>(_core);
-	}
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include "Singleton.h"
 #include "SoundSample.h"
+#include "MusicSample.h"
 #include "Sample.h"
 
 enum AudioExtensionType
@@ -46,14 +47,14 @@ public:
 			if (_sample->IsAvailable())
 			{
 				_sample->Play();
-				return _sample;
+				return Cast<Sample, SampleType>(_sample);
 			}
 		}
 
 		_sample = new SampleType(_finalPath);
 		_sample->Play();
 
-		return _sample;
+		return Cast<Sample, SampleType>(_sample);
 	}
 	void ToggleMute();
 };
