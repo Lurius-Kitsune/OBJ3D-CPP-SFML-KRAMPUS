@@ -24,7 +24,7 @@ SoundSample::~SoundSample()
 
 void SoundSample::Play(const Time& _time)
 {
-	
+	Super::Play();
 	sound->play();
 	sound->setPlayingOffset(_time);
 }

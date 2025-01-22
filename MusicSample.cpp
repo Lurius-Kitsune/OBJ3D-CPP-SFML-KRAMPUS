@@ -23,6 +23,7 @@ MusicSample::~MusicSample()
 
 void MusicSample::Play(const Time& _time)
 {
+	Super::Play();
 	music->play();
 }
 
