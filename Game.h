@@ -29,7 +29,7 @@ protected :
 	virtual void Start();
 	virtual void Update();
 	virtual void Stop();
-
+	
 public:
 	virtual void Launch();
 	void UpdateWindow();

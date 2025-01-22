@@ -51,6 +51,7 @@ void Game::Start()
 
     MeshActor* _n = new MeshActor(Vector2f(719.0f, 400.0f), "farmBackground");
     _n->Construct();
+    _n->SetName("Background");
 
     MeshActor* _duck = new Duck(Vector2f(50.0f, 50.0f), "duck");
     _duck->Construct();
@@ -85,6 +86,13 @@ void Game::Update()
             if (_event->is<Event::Closed>())
             {
                 window.close();
+            }
+            if (auto _key = _event->getIf<Event::KeyReleased>())
+            {
+                if (_key->scancode == Keyboard::Scan::F1)
+                {
+                    M_ACTOR.DisplayHierarchy();
+                }
             }
         }
 
@@ -127,6 +135,7 @@ void Game::Stop()
 {
     M_ACTOR.BeginDestroy();
 }
+
 
 
 void Game::Launch()

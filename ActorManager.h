@@ -1,6 +1,8 @@
-#pragma once
+﻿#pragma once
 #include "Singleton.h"
 #include "Actor.h"
+
+#define ACTOR_CHAR "|- "
 
 class ActorManager : public Singleton<ActorManager>
 {
@@ -28,4 +30,9 @@ public:
 	void BeginPlay();
 	void Tick(const float _deltaTime);
 	void BeginDestroy();
+
+	void DisplayHierarchy() const;
+
+private:
+	string GetChildren(Actor* _actor, string _text="", const u_int& _level = 1) const;
 };

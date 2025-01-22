@@ -56,6 +56,7 @@ void Camera::SetOrigin(const Vector2f& _origin)
 
 void Camera::Construct()
 {
+	Super::SetName(name + "_camera");
 	M_CAMERA.AddCamera(this);
 	Super::Construct();
 	LOG(Display, "Registered camera " + name);

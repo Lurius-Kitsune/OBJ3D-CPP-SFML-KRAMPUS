@@ -30,4 +30,4 @@ void Duck::BeginPlay()
 
 	LOG(Display, "coinc");
 
-} 
+}

@@ -1,14 +1,23 @@
 #include "Actor.h"
 #include "ActorManager.h"
 
+void Actor::SetName(const string& _name)
+{
+	cout << "new name " << _name << endl;
+	cout << "prev" << name << endl;
+	name = _name;
+}
+
 Actor::Actor()
 {
+	parent = nullptr;
 	isToDelete = false;
 	root = CreateComponent<RootComponent>();
 }
 
 Actor::Actor(const Actor& _actor)
 {
+	parent = nullptr;
 	isToDelete = false;
 	root = CreateComponent<RootComponent>(*_actor.root);
 }
@@ -24,7 +33,9 @@ Actor::~Actor()
 
 void Actor::Construct()
 {
+	cout << "constructed" << endl;
 	M_ACTOR.AddActor(this);
+	if(name.size() < 1) name = ComputeDefaultName();
 }
 
 void Actor::Deconstruct()
@@ -59,12 +70,10 @@ void Actor::BeginDestroy()
 void Actor::Destroy(const bool _destroyChildren)
 {
 	isToDelete = true;
-	if (_destroyChildren)
+	for (Actor* _child : children)
 	{
-		for (Actor* _child : children)
-		{
-			_child->SetToDelete();
-		}
+		if (_destroyChildren)_child->SetToDelete();
+		else _child->SetParent(nullptr);
 	}
 }
 

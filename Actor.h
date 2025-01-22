@@ -7,10 +7,13 @@
 
 class Actor : public Core, public ITransformableModifier, public ITransformableViewer
 {
+	string name;
+
 	bool isToDelete;
 	set<Component*> components;
 	RootComponent* root;
 
+	Actor* parent;
 	set<Actor*> children;
 
 protected:
@@ -43,12 +46,28 @@ public:
 	FORCEINLINE void AddChild(Actor* _actor)
 	{
 		children.insert(_actor);
+		if (_actor->GetParent())
+		{
+			_actor->GetParent()->RemoveChild(_actor);
+		}
+		_actor->SetParent(this);
 	}
 
 	FORCEINLINE set<Actor*> GetChildren() const
 	{
 		return children;
 	}
+
+	FORCEINLINE Actor* GetParent() const
+	{
+		return parent;
+	}
+
+	FORCEINLINE string GetName() const
+	{
+		return name;
+	}
+	void SetName(const string& _name);
 
 	#pragma region Transformable
 
@@ -126,6 +145,21 @@ public:
 
 	void Destroy(const bool _destroyChildren=false);
 	void RemoveChild(Actor* _actor);
+
+private:
+	FORCEINLINE void SetParent(Actor* _actor)
+	{
+		parent = _actor;
+	}
+
+	FORCEINLINE virtual string ComputeDefaultName() const
+	{
+		cout << "wanting name : " << name << endl;
+		static u_int _count = 0;
+		_count++;
+		return "Actor n'" + to_string(_count);
+	}
+
 	#pragma region Components
 
 	void AddComponent(Component* _component);
