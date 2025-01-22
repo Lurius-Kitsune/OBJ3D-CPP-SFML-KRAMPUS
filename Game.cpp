@@ -22,7 +22,7 @@ Game::~Game()
 void Game::Start()
 {
     window.create(VideoMode({800, 600}), "SFML works!");
-    //SoundSample* _sample = SoundManager::GetInstance().PlaySound("hugooo");
+    //SoundSample* _sample = AudioManager::GetInstance().PlaySample("hugooo");
     //_sample->SetLoop(true);
     //new Label("Bonjour !", "Cheese_Market", TTF);
 

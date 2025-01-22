@@ -1,45 +1,49 @@
 #pragma once
-#include "CoreMinimal.h"
 #include "Sample.h"
+#include "CoreMinimal.h"
 
-class SoundSample : public Sample
+class MusicSample : public Sample
 {
-	using SoundStatus = SoundSource::Status;
+	using MusicStatus = Music::Status;
 
-	float volume;
-	string path;
-	Sound* sound;
-	SoundBuffer buffer;
-#pragma region Sample
+	Music* music;
+
+	#pragma region Sample
 	FORCEINLINE virtual void UpdateVolume(const float _volume) override
 	{
-		sound->setVolume(_volume);
+		music->setVolume(_volume);
 	}
 	FORCEINLINE virtual int GetStatus() const override
 	{
-		return CAST(int,sound->getStatus());
+		return CAST(int, music->getStatus());
 	}
 public:
 	FORCEINLINE virtual void SetLoop(const bool _isLoop) override
 	{
-		sound->setLooping(_isLoop);
+		music->setLooping(_isLoop);
 	}
 	FORCEINLINE virtual void SetPitch(const float _pitch) override
 	{
-		sound->setPitch(_pitch);
+		music->setPitch(_pitch);
 	}
 	FORCEINLINE virtual bool IsAvailable() const override
 	{
-		return CAST(SoundStatus, GetStatus()) != SoundStatus::Playing;
+		return CAST(MusicStatus, GetStatus()) != MusicStatus::Playing;
+	}
+	#pragma endregion
+	FORCEINLINE float GetVolume() const
+	{
+		return music->getVolume();
 	}
 	
-	#pragma endregion
 
 public:
-	SoundSample(const string& _path);
-	~SoundSample();
+	MusicSample(const string& _path);
+	~MusicSample();
 
+public:
 	virtual void Play(const Time& _time = Time()) override;
 	virtual void Pause() override;
 	virtual void Stop() override;
 };
+

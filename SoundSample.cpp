@@ -2,9 +2,8 @@
 #include "SoundManager.h"
 
 SoundSample::SoundSample(const string& _path)
+	: Sample(_path)
 {
-	volume = 100.0f;
-	path = _path;
 
 	if (!buffer.loadFromFile(_path))
 	{
@@ -14,7 +13,7 @@ SoundSample::SoundSample(const string& _path)
 	}
 
 	sound = new Sound(buffer);
-	M_SOUND.RegisterSample(this);
+	M_AUDIO.RegisterSample(this);
 }
 
 SoundSample::~SoundSample()
@@ -25,12 +24,7 @@ SoundSample::~SoundSample()
 
 void SoundSample::Play(const Time& _time)
 {
-	if (GetStatus() == SoundStatus::Paused)
-	{
-		sound->stop();
-	}
-
-	SetVolume(volume);
+	
 	sound->play();
 	sound->setPlayingOffset(_time);
 }
