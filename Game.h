@@ -10,8 +10,9 @@ class Game : public Singleton<Game>
 	map<u_int, OnRenderWindow> onRenderWindow;
 
 	class MusicSample* music;
-	class Duck* duck;
-	class CameraActor* camera;
+	class CameraActor* duckCam;
+	CameraActor* camBase;
+	bool isUsingDuckCam = false;
 
 public:
 	FORCEINLINE u_int BindOnRenderWindow(OnRenderWindow _callback)
