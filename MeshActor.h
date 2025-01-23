@@ -59,8 +59,9 @@ public:
 
 public:
 	MeshActor() = default;
-	MeshActor(const float _radius, const size_t& _pointCount = 30, const string& _path = "", const IntRect& _rect = {});
-	MeshActor(const Vector2f& _size, const string& _path = "", const TextureExtensionType& _textureType = PNG, const IntRect& _rect = {});
+	MeshActor(const string& _name);
+	MeshActor(const string& _name, const float _radius, const size_t& _pointCount = 30, const string& _path = "", const IntRect& _rect = {});
+	MeshActor(const string& _name, const Vector2f& _size, const string& _path = "", const TextureExtensionType& _textureType = PNG, const IntRect& _rect = {});
 	MeshActor(const MeshActor& _other);
 
 	virtual void Construct() override;

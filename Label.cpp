@@ -1,7 +1,8 @@
 #include "Label.h"
 #include "Game.h"
 
-Label::Label(const string& _text, const string& _path, const FontExtensionType& _fontType)
+Label::Label(const string& _name, const string& _text, const string& _path, const FontExtensionType& _fontType)
+	: Actor(_name)
 {
 	text = new TextObject(_text, _path, _fontType);
 

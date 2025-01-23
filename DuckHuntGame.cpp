@@ -4,7 +4,7 @@
 
 DuckHuntGame::DuckHuntGame() : Game()
 {
-	background = new MeshActor();
+	background = new MeshActor("Background");
 	duck = nullptr;
 }
 
@@ -19,7 +19,7 @@ void DuckHuntGame::Start()
 	Super::Start();
 
 	//Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
-	Level::SpawnActor(MeshActor(Vector2f(50.0f, 50.0f), "duck"));
+	Level::SpawnActor(MeshActor("Background", Vector2f(50.0f, 50.0f), "duck"));
 
 	/*new Timer([&]() 
 		{

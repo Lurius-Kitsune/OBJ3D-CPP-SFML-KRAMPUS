@@ -1,14 +1,6 @@
 #include "Actor.h"
 #include "ActorManager.h"
 
-Actor::Actor()
-{
-	id = GetUniqueID();
-	name = "Actor";
-	isToDelete = false;
-	root = CreateComponent<RootComponent>();
-}
-
 Actor::Actor(const string& _name, const TransformData& _transformData)
 {
 	name = _name;
@@ -19,7 +11,7 @@ Actor::Actor(const string& _name, const TransformData& _transformData)
 Actor::Actor(const Actor& _actor)
 {
 	
-	name = _actor.name + "_" + to_string(M_ACTOR.GetCountByName(_actor.name));
+	name = M_ACTOR.GetAvailableName(_actor.name);
 	isToDelete = false;
 	root = CreateComponent<RootComponent>(_actor.root);
 }

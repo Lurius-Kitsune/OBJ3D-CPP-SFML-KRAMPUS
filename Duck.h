@@ -10,7 +10,7 @@ class Duck : public MeshActor
 	AnimationComponent* animation;
 
 public:
-	Duck(const Vector2f& _size, const string& _path = "", const IntRect& _rect = {});
+	Duck(const string& _name, const Vector2f& _size, const string& _path = "", const IntRect& _rect = {});
 	Duck(const Duck& _other);
 
 protected:
