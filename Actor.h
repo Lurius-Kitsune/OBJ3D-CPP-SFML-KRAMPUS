@@ -8,7 +8,9 @@
 class Actor : public Core, public ITransformableModifier, public ITransformableViewer
 {
 	bool isToDelete;
+	u_int id;
 	string name;
+	string displayName;
 	set<Component*> components;
 	RootComponent* root;
 	Actor* parent;
@@ -23,56 +25,67 @@ protected:
 
 		return _component;
 	}
-	FORCEINLINE void CreateSocket(const string& _name, const TransformData& _transformData = TransformData(), const AttachmentType& _type = AT_SNAP_TO_TARGET)
+	FORCEINLINE void CreateSocket(const string& _name, const TransformData& _transform = TransformData(),
+								  const AttachmentType& _type = AT_SNAP_TO_TARGET)
 	{
-		Actor* _socket = new Actor(_name, _transformData);
+		Actor* _socket = new Actor(_name, _transform);
 		AddChild(_socket, _type);
 	}
-public:
-	FORCEINLINE string GetName() const
-	{
-		return name;
-	}
 
-	FORCEINLINE void SetToDelete()
-	{
-		isToDelete = true;
-	}
-	FORCEINLINE Actor* GetParent() const
-	{
-		return parent;
-	}
 private:
 	FORCEINLINE void SetParent(Actor* _parent)
 	{
 		parent = _parent;
 	}
+
 public:
-	FORCEINLINE set<Actor*> GetChildren() const
+	FORCEINLINE void SetToDelete()
 	{
-		return children;
-	}
-	FORCEINLINE Actor* GetChildrenAtIndex(const u_int& _index) const
-	{
-		set<Actor*>::iterator _it = children.begin();
-		advance(_it, _index);
-		return *_it;
+		isToDelete = true;
 	}
 	FORCEINLINE void AddChild(Actor* _child, const AttachmentType& _type)
 	{
 		if (children.contains(_child)) return;
+
 		_child->SetParent(this);
 		children.insert(_child);
 	}
 	FORCEINLINE void RemoveChild(Actor* _child)
 	{
-		if (!_child ||!children.contains(_child)) return;
+		if (!_child || !children.contains(_child)) return;
+
 		_child->SetParent(nullptr);
 		children.erase(_child);
+	}
+	FORCEINLINE Actor* GetParent() const
+	{
+		return parent;
+	}
+	FORCEINLINE set<Actor*> GetChildren() const
+	{
+		return children;
+	}
+	FORCEINLINE Actor* GetChildrenAtIndex(const int _index) const
+	{
+		set<Actor*>::const_iterator _it = children.begin();
+		advance(_it, _index);
+		return *_it;
 	}
 	FORCEINLINE bool IsToDelete() const
 	{
 		return isToDelete;
+	}
+	FORCEINLINE u_int GetID() const
+	{
+		return id;
+	}
+	FORCEINLINE string GetName() const
+	{
+		return name;
+	}
+	FORCEINLINE string GetDisplayName() const
+	{
+		return displayName;
 	}
 	#pragma region Transformable
 
@@ -137,7 +150,7 @@ public:
 	#pragma endregion
 
 public:
-	Actor(const string& _name, const TransformData& _transformData = TransformData());
+	Actor(const string& _name, const TransformData& _transform = TransformData());
 	Actor(const Actor& _actor);
 	virtual ~Actor();
 

@@ -1,14 +1,8 @@
 #include "RootComponent.h"
 
-RootComponent::RootComponent(Actor* _owner) : Component(_owner)
+RootComponent::RootComponent(Actor* _owner, const TransformData& _transform) : Component(_owner)
 {
-	transform = TransformData();
-}
-
-RootComponent::RootComponent(Actor* _owner, const TransformData& _transformData)
-	: Component(_owner)
-{
-	transform = _transformData;
+	transform = _transform;
 }
 
 RootComponent::RootComponent(Actor* _owner, const RootComponent* _other) : Component(_owner)

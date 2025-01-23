@@ -20,15 +20,21 @@ void Game::Start()
 {
     window.create(VideoMode({800, 600}), "SFML works!");
     
-    Level::SpawnActor(MeshActor("Background", Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
+    Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
     music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
-    camera = Level::SpawnActor(CameraActor("Camera", {}, {500.0f, 400.0f}));
+    camera = Level::SpawnActor(CameraActor({}, { 500.0f, 400.0f }));
 
     new Timer([&]()
         {
-            Duck* _duck = Level::SpawnActor(/*SubclassOf(*/Duck("Duck", Vector2f(50.0f, 50.0f), "Duck")/*)*/);
+            Duck* _duck = Level::SpawnActor(/*SubclassOf(*/Duck(Vector2f(50.0f, 50.0f), "Duck")/*)*/);
             duckList.push_back(_duck);
+
             _duck->SetOriginAtMiddle();
+
+            /*for (Actor* _actor : _duck->GetChildren())
+            {
+                LOG(Display, _actor->GetName());
+            }*/
 
             if (!camera->HasTarget())
             {

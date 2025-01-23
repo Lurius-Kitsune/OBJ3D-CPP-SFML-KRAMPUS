@@ -78,7 +78,6 @@ public:
 	#pragma endregion
 
 public:
-	RootComponent(Actor* _owner);
-	RootComponent(Actor* _owner, const TransformData& _transformData);
+	RootComponent(Actor* _owner, const TransformData& _transform = {});
 	RootComponent(Actor* _owner, const RootComponent* _other);
 };
