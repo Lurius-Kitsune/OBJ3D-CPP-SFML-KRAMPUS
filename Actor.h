@@ -7,6 +7,7 @@
 
 class Actor : public Core, public ITransformableModifier, public ITransformableViewer
 {
+	u_int id;
 	bool isToDelete;
 	string name;
 	set<Component*> components;
@@ -32,6 +33,10 @@ public:
 	FORCEINLINE string GetName() const
 	{
 		return name;
+	}
+	FORCEINLINE u_int GetID() const
+	{
+		return id;
 	}
 
 	FORCEINLINE void SetToDelete()

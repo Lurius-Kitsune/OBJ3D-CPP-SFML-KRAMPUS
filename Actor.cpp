@@ -3,6 +3,7 @@
 
 Actor::Actor()
 {
+	id = GetUniqueID();
 	name = "Actor";
 	isToDelete = false;
 	root = CreateComponent<RootComponent>();
@@ -18,7 +19,7 @@ Actor::Actor(const string& _name, const TransformData& _transformData)
 Actor::Actor(const Actor& _actor)
 {
 	
-	name = _actor.name + "_" + to_string(M_ACTOR.GetCount(_actor.name));
+	name = _actor.name + "_" + to_string(M_ACTOR.GetCountByName(_actor.name));
 	isToDelete = false;
 	root = CreateComponent<RootComponent>(_actor.root);
 }
