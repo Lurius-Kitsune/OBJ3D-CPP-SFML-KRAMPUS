@@ -3,9 +3,8 @@
 #include "Level.h"
 #include "AudioManager.h"
 
-Duck::Duck(const Vector2f& _size, const string& _path, const IntRect& _rect) : MeshActor(_size, _path, PNG, _rect, "Duck")
+Duck::Duck(const Vector2f& _size, const string& _path, const float _lifespan, const IntRect& _rect) : MeshActor(_size, _path, _lifespan, PNG, _rect, "Duck")
 {
-	lifeSpan = 2.0f;
 	movement = CreateComponent<MovementComponent>();
 	animation = CreateComponent<AnimationComponent>();
 
@@ -14,7 +13,6 @@ Duck::Duck(const Vector2f& _size, const string& _path, const IntRect& _rect) : M
 
 Duck::Duck(const Duck& _other) : MeshActor(_other)
 {
-	lifeSpan = _other.lifeSpan;
 	movement = CreateComponent<MovementComponent>(_other.movement);
 	animation = CreateComponent<AnimationComponent>();
 }

@@ -5,7 +5,6 @@
 
 class Duck : public MeshActor
 {
-	float lifeSpan;
 	MovementComponent* movement;
 	AnimationComponent* animation;
 
@@ -16,7 +15,7 @@ public:
 	}
 
 public:
-	Duck(const Vector2f& _size, const string& _path = "", const IntRect& _rect = {});
+	Duck(const Vector2f& _size, const string& _path = "", const float _lifespan = 0.0f, const IntRect& _rect = {});
 	Duck(const Duck& _other);
 
 protected:
