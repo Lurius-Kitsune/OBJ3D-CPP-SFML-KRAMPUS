@@ -15,16 +15,16 @@
 Game::Game()
 {
 	window = RenderWindow();
+}
 
-    
-    angle = 10.0f;
+Game::~Game()
+{
+    //delete circle;
 }
 
 void Game::Start()
 {
-    circle = Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "Duck"));
-    circle->SetOriginAtMiddle();
-    window.create(VideoMode({800, 600}), "SFML works!");
+    window.create(VideoMode({1400, 400}), "SFML works!");
     
     //Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
     //music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
@@ -48,20 +48,34 @@ void Game::Start()
             //}
         },
         seconds(1.0f),
-        true,
+        false,
         true
     );
-	Actor* _actor = Level::SpawnActor<Actor>(Actor("Bob"));
-	_actor->SetPosition(Vector2f(window.getSize().x / 2.0f, window.getSize().y / 2.0f));
-    circle->SetPosition(Vector2f(window.getSize().x / 2.0f, window.getSize().y / 2.0f) / 2.0f);
-    if (MovementComponent* _movement = circle->GetComponent<MovementComponent>())
+
+    target = Level::SpawnActor<Actor>();
+    //Actor* _target = Level::SpawnActor(Actor()); 
+    target->SetPosition(Vector2f(window.getSize().x / 2 , window.getSize().y / 2));
+
+    duck = Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "Duck"));
+    duck->SetOriginAtMiddle();
+    const float _gap = 10.0f / 100.0f;
+    duck->SetPosition
+        ({
+            target->GetPosition().x + window.getSize().x * _gap,
+            target->GetPosition().y + window.getSize().y * _gap,
+        });
+
+
+    if (MovementComponent* _movement = duck->GetComponent<MovementComponent>())
     {
-        _movement->SetTarget(_actor);
+        _movement->SetTarget(target);
     }
-    else if (MovementComponent* _movement = circle->GetMovementComponent())
+    else if (MovementComponent* _movement = duck->GetMovementComponent())
     {
-		_movement->SetTarget(_actor);
+		_movement->SetTarget(target);
 	}
+
+    
 };
 
 void Game::Update()

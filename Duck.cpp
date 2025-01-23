@@ -5,11 +5,11 @@
 
 Duck::Duck(const Vector2f& _size, const string& _path, const IntRect& _rect) : MeshActor(_size, _path, PNG, _rect, "Duck")
 {
-	lifeSpan = 10000.0f;
+	lifeSpan = 2.0f;
 	movement = CreateComponent<MovementComponent>();
 	animation = CreateComponent<AnimationComponent>();
 
-	CreateSocket("Socket");
+	//CreateSocket("Socket");
 }
 
 Duck::Duck(const Duck& _other) : MeshActor(_other)
@@ -51,6 +51,7 @@ void Duck::Construct()
 	animation->AddAnimation(new Animation("Default", GetMesh()->GetShape(), _animationData));
 	animation->SetCurrentAnimation("Default");
 	animation->StartAnimation();
+	SetPosition({ 400.0f , 400.0f });
 }
 
 void Duck::Deconstruct()
@@ -63,5 +64,5 @@ void Duck::BeginPlay()
 {
 	Super::BeginPlay();
 
-	new Timer([&]() { Destroy(); }, seconds(lifeSpan), true);
+	//new Timer([&]() { Destroy(); }, seconds(lifeSpan), true);
 }
