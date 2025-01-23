@@ -28,6 +28,7 @@ public:
 		return _actor;
 	}
 
-	// TODO move to PlayerControler
-	//void
+
+	// TODO move to PlayerController
+	//static void SetViewTarget()
 };

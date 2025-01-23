@@ -39,6 +39,7 @@ struct AnimationData
     int count;
     float duration;
     vector<SpriteData> sprites;
+    map<u_int, function<void()>> notifies;
     ReadDirection direction;
     vector<LinkedAnimation> linkedAnimations;
 

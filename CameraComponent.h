@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+
 class CameraComponent : public Component
 {
 	View* view;
@@ -13,11 +14,10 @@ public:
 	{
 		return view->getViewport();
 	}
-	FORCEINLINE void SetViewport(const FloatRect& _viewport)
+	FORCEINLINE void SetViewport(const FloatRect& _rect)
 	{
-		view->setViewport(_viewport);
+		view->setViewport(_rect);
 	}
-
 	FORCEINLINE void SetCenter(const Vector2f& _center)
 	{
 		view->setCenter(_center);
@@ -30,9 +30,9 @@ public:
 	{
 		view->setSize(_size);
 	}
-	FORCEINLINE void SetScissor(const FloatRect& _scissor)
+	FORCEINLINE void SetScissor(const FloatRect& _rect)
 	{
-		view->setScissor(_scissor);
+		view->setScissor(_rect);
 	}
 	FORCEINLINE void Move(const Vector2f& _offset)
 	{
@@ -47,12 +47,10 @@ public:
 		view->zoom(_factor);
 	}
 
-
 public:
 	CameraComponent(Actor* _owner);
-	CameraComponent(Actor* _owner, const Vector2f& _start, const Vector2f& _size);
+	CameraComponent(Actor* _owner, const Vector2f& _center, const Vector2f& _size);
 	CameraComponent(Actor* _owner, const FloatRect& _rect);
 	CameraComponent(Actor* _owner, const CameraComponent* _other);
 	~CameraComponent();
 };
-

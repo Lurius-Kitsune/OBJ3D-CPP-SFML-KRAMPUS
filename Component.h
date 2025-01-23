@@ -7,11 +7,6 @@ protected:
 	class Actor* owner;
 
 public:
-	FORCEINLINE virtual bool IsValid(Core* _core) const override
-	{
-		// Overridable
-		return true;
-	}
 	FORCEINLINE Actor* GetOwner() const
 	{
 		return owner;

@@ -2,6 +2,9 @@
 #include "Singleton.h"
 #include "Actor.h"
 
+class MusicSample;
+class CameraActor;
+class Duck;
 
 class Game : public Singleton<Game>
 {
@@ -9,10 +12,11 @@ class Game : public Singleton<Game>
 	using OnRenderWindow = function<void(RenderWindow&)>;
 	map<u_int, OnRenderWindow> onRenderWindow;
 
-	class MusicSample* music;
-	class CameraActor* duckCam;
-	CameraActor* camBase;
-	bool isUsingDuckCam = false;
+	//TODO remove
+	MusicSample* music;
+	CameraActor* camera;
+	Duck* duck;
+	vector<Duck*> duckList;
 
 public:
 	FORCEINLINE u_int BindOnRenderWindow(OnRenderWindow _callback)
@@ -25,13 +29,11 @@ public:
 	{
 		onRenderWindow.erase(_uniqueId);
 	}
-
 	FORCEINLINE void SetView(const View& _view)
 	{
 		window.setView(_view);
 	}
-
-	FORCEINLINE void RemoveView(const View& _view)
+	FORCEINLINE void RemoveView()
 	{
 		window.setView(window.getDefaultView());
 	}
@@ -47,4 +49,7 @@ protected:
 public:
 	virtual void Launch();
 	void UpdateWindow();
+
+	//TODO remove
+	Duck* RetrieveFirstDuck();
 };

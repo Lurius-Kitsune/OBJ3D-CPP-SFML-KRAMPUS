@@ -22,11 +22,6 @@ protected:
 	}
 
 public:
-	FORCEINLINE virtual bool IsValid(Core* _core) const override
-	{
-		// Overridable
-		return true;
-	}
 	FORCEINLINE void SetToDelete()
 	{
 		isToDelete = true;

@@ -8,10 +8,6 @@ class MeshActor : public Actor
 	u_int renderMeshToken;
 
 public:
-	FORCEINLINE virtual bool IsValid(Core* _core) const override
-	{
-		return mesh;
-	}
 	FORCEINLINE MeshComponent* GetMesh() const
 	{
 		return mesh;
@@ -38,6 +34,10 @@ public:
 	{
 		Super::SetOrigin(_origin);
 		mesh->GetShape()->SetOrigin(_origin);
+	}
+	FORCEINLINE void SetOriginAtMiddle()
+	{
+		SetOrigin(mesh->GetShape()->GetDrawable()->getGeometricCenter());
 	}
 	FORCEINLINE virtual void Move(const Vector2f& _offset) override
 	{

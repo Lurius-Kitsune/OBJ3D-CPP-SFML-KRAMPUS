@@ -67,7 +67,14 @@ void Animation::Update()
 		shape->SetScale(Vector2f(-1.0f, 1.0f));
 	}
 
-	const SpriteData& _spriteData = data.sprites[++currentIndex - 1];
+	++currentIndex;
+
+	map<u_int, function<void()>> _notifies = data.notifies;
+	if (_notifies.contains(currentIndex))
+	{
+		_notifies[currentIndex]();
+	}
+	const SpriteData& _spriteData = data.sprites[currentIndex - 1];
 	M_TEXTURE.SetTextureRect(shape->GetDrawable(), _spriteData.start, _spriteData.size);
 }
 

@@ -8,34 +8,34 @@
 #include "Spawner.h"
 #include "Level.h"
 #include "Duck.h"
-#include "CameraActor.h"
 #include "MusicSample.h"
+#include "CameraActor.h"
 
 Game::Game()
 {
 	window = RenderWindow();
-    
 }
-
 
 void Game::Start()
 {
     window.create(VideoMode({800, 600}), "SFML works!");
-	duckCam = Level::SpawnActor(CameraActor({200.0F, 200.0f}, {800, 800 }));
-	camBase = Level::SpawnActor(CameraActor({ 400.0F, 300.0f }, { 800, 600 }));
+    
     Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
-    //music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
-	
+    music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
+    camera = Level::SpawnActor(CameraActor({}, { 500.0f, 400.0f }));
+
     new Timer([&]()
         {
             Duck* _duck = Level::SpawnActor(/*SubclassOf(*/Duck(Vector2f(50.0f, 50.0f), "Duck")/*)*/);
-            M_AUDIO.PlaySample<SoundSample>("couin", WAV);
-            if (!duckCam->GetTarget())
+            duckList.push_back(_duck);
+            _duck->SetOriginAtMiddle();
+
+            if (!camera->HasTarget())
             {
-                duckCam->SetTarget(_duck);
+                camera->SetTarget(_duck);
             }
         },
-        seconds(2.0f),
+        seconds(1.0f),
         true,
         true
     );
@@ -54,37 +54,51 @@ void Game::Update()
             {
                 window.close();
             }
-            else if (const Event::KeyPressed* _keyPressed = _event->getIf<sf::Event::KeyPressed>())
-            {
-                if (_keyPressed->code == Keyboard::Key::Space)
-                {
-                    isUsingDuckCam = !isUsingDuckCam;
-                }
-            }
         }
 
         const float _deltaTime = _timer.GetDeltaTime().asSeconds();
         M_ACTOR.Tick(_deltaTime);
+
+        //const u_int& _ducksCount = CAST(u_int, duckList.size());
+        for (u_int _index = 0; _index < CAST(u_int, duckList.size()); )
+        {
+            Duck* _duck = duckList[_index];
+
+            if (_duck->IsToDelete())
+            {
+                duckList.erase(duckList.begin() + _index);
+                continue;
+            }
+
+            _index++;
+        }
 	}
 }
 
 void Game::UpdateWindow()
 {
-    // TODO CHECK TO DRAW AFTER CLEAR
-	if (isUsingDuckCam)
-	{
-		window.setView(*duckCam->GetView());
-	}
-	else
-	{
-		window.setView(*camBase->GetView());
-	}
+    //TODO check to draw after clear
+    window.setView(*camera->GetView());
+
     window.clear();
+
     for (const pair<u_int, OnRenderWindow>& _renderPair : onRenderWindow)
     {
         _renderPair.second(window);
     }
+
     window.display();
+}
+
+Duck* Game::RetrieveFirstDuck()
+{
+    if (duckList.empty()) return nullptr;
+
+    const vector<Duck*>::iterator& _it = duckList.begin();
+    Duck* _duck = *_it;
+    duckList.erase(_it);
+
+    return _duck;
 }
 
 void Game::Stop()

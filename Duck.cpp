@@ -1,10 +1,11 @@
 #include "Duck.h"
 #include "TimerManager.h"
 #include "Level.h"
+#include "AudioManager.h"
 
 Duck::Duck(const Vector2f& _size, const string& _path, const IntRect& _rect) : MeshActor(_size, _path, PNG, _rect)
 {
-	lifeSpan = 5.0f;
+	lifeSpan = 2.0f;
 	movement = CreateComponent<MovementComponent>();
 	animation = CreateComponent<AnimationComponent>();
 }
@@ -39,7 +40,12 @@ void Duck::Construct()
 		{ _timeBetween, Vector2i(127, 86), _spriteSize },
 	};
 	//const SpriteData& _spriteData = { 0.2f, Vector2i(), Vector2i(80, 50) };
-	const AnimationData& _animationData = AnimationData(2.0f, _spritesData);
+	AnimationData _animationData = AnimationData(2.0f, _spritesData);
+	_animationData.notifies[6] = []() 
+	{
+		M_AUDIO.PlaySample<SoundSample>("couin", WAV);
+	};
+
 	animation->AddAnimation(new Animation("Default", GetMesh()->GetShape(), _animationData));
 	animation->SetCurrentAnimation("Default");
 	animation->StartAnimation();
@@ -56,6 +62,4 @@ void Duck::BeginPlay()
 	Super::BeginPlay();
 
 	new Timer([&]() { Destroy(); }, seconds(lifeSpan), true);
-
-	LOG(Display, "couin, couin");
 }

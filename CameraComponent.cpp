@@ -1,25 +1,21 @@
 #include "CameraComponent.h"
 
-CameraComponent::CameraComponent(Actor* _owner)
-	: Component(_owner)
+CameraComponent::CameraComponent(Actor* _owner) : Component(_owner)
 {
 	view = new View();
 }
 
-CameraComponent::CameraComponent(Actor* _owner, const Vector2f& _start, const Vector2f& _size)
-	: Component(_owner)
+CameraComponent::CameraComponent(Actor* _owner, const Vector2f& _center, const Vector2f& _size) : Component(_owner)
 {
-	view = new View(_start, _size);
+	view = new View(_center, _size);
 }
 
-CameraComponent::CameraComponent(Actor* _owner, const FloatRect& _rect)
-	: Component(_owner)
+CameraComponent::CameraComponent(Actor* _owner, const FloatRect& _rect) : Component(_owner)
 {
 	view = new View(_rect);
 }
 
-CameraComponent::CameraComponent(Actor* _owner, const CameraComponent* _other)
-	: Component(_owner)
+CameraComponent::CameraComponent(Actor* _owner, const CameraComponent* _other) : Component(_owner)
 {
 	view = new View(*_other->view);
 }

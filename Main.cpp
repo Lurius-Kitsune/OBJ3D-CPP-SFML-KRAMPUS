@@ -10,7 +10,7 @@ void InitConfig()
 int main()
 {
     InitConfig();
-    
+
     Game::GetInstance().Launch();
 
     /*DuckHuntGame _game;

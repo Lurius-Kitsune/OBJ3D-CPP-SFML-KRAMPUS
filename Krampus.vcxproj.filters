@@ -82,23 +82,26 @@
     <Filter Include="DuckHunt">
       <UniqueIdentifier>{39046391-69cf-469b-8bbf-9ebc75c183dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\Audio">
-      <UniqueIdentifier>{2d7b5c28-6243-462f-9a7c-c0cd1ddfc504}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Audio\Samples">
-      <UniqueIdentifier>{97c562bd-c8e1-44b1-b04c-336d58c919f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Audio\Samples\Sound">
-      <UniqueIdentifier>{5be43bb8-9156-4d55-9a04-b5e7f9fd0d8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Audio\Samples\Music">
-      <UniqueIdentifier>{85485f9e-767e-4a95-833d-840f8602da7d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scripts\Core\Components\Animation">
       <UniqueIdentifier>{486f8b75-db00-4b39-9f9f-f217ee614670}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scripts\Core\Components\Root\Transform">
       <UniqueIdentifier>{777c360b-720c-48d7-aa5d-39806b673363}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Core\Actors\Shapes\Primitives">
+      <UniqueIdentifier>{7f8c3452-6650-4bd3-865f-37ca67ab34bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Managers\Audio">
+      <UniqueIdentifier>{2d7b5c28-6243-462f-9a7c-c0cd1ddfc504}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Managers\Audio\Samples">
+      <UniqueIdentifier>{97c562bd-c8e1-44b1-b04c-336d58c919f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Managers\Audio\Samples\Sound">
+      <UniqueIdentifier>{5be43bb8-9156-4d55-9a04-b5e7f9fd0d8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Managers\Audio\Samples\Music">
+      <UniqueIdentifier>{85485f9e-767e-4a95-833d-840f8602da7d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -136,21 +139,9 @@
       <Filter>Scripts\Resource Files\Logger</Filter>
     </ClCompile>
     <ClCompile Include="SoundSample.cpp">
-      <Filter>Scripts\Audio\Samples\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="CircleActor.cpp">
-      <Filter>Scripts\Core\Actors\Shapes</Filter>
+      <Filter>Scripts\Managers\Audio\Samples\Sound</Filter>
     </ClCompile>
     <ClCompile Include="MeshActor.cpp">
-      <Filter>Scripts\Core\Actors\Shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="RectangleActor.cpp">
-      <Filter>Scripts\Core\Actors\Shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="SquareActor.cpp">
-      <Filter>Scripts\Core\Actors\Shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="TriangleActor.cpp">
       <Filter>Scripts\Core\Actors\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="Utilities.cpp">
@@ -181,13 +172,13 @@
       <Filter>DuckHunt</Filter>
     </ClCompile>
     <ClCompile Include="AudioManager.cpp">
-      <Filter>Scripts\Audio</Filter>
+      <Filter>Scripts\Managers\Audio</Filter>
     </ClCompile>
     <ClCompile Include="Sample.cpp">
-      <Filter>Scripts\Audio\Samples</Filter>
+      <Filter>Scripts\Managers\Audio\Samples</Filter>
     </ClCompile>
     <ClCompile Include="MusicSample.cpp">
-      <Filter>Scripts\Audio\Samples\Music</Filter>
+      <Filter>Scripts\Managers\Audio\Samples\Music</Filter>
     </ClCompile>
     <ClCompile Include="MovementComponent.cpp">
       <Filter>DuckHunt</Filter>
@@ -201,14 +192,29 @@
     <ClCompile Include="DuckHuntGame.cpp">
       <Filter>DuckHunt</Filter>
     </ClCompile>
-    <ClCompile Include="SubclassOf.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Scripts\Core\Components\Animation</Filter>
     </ClCompile>
     <ClCompile Include="AnimationComponent.cpp">
       <Filter>Scripts\Core\Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleActor.cpp">
+      <Filter>Scripts\Core\Actors\Shapes\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleActor.cpp">
+      <Filter>Scripts\Core\Actors\Shapes\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="SquareActor.cpp">
+      <Filter>Scripts\Core\Actors\Shapes\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleActor.cpp">
+      <Filter>Scripts\Core\Actors\Shapes\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraActor.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -252,24 +258,12 @@
       <Filter>Scripts\Resource Files\Logger</Filter>
     </ClInclude>
     <ClInclude Include="SoundSample.h">
-      <Filter>Scripts\Audio\Samples\Sound</Filter>
+      <Filter>Scripts\Managers\Audio\Samples\Sound</Filter>
     </ClInclude>
     <ClInclude Include="Macro.h">
       <Filter>Scripts\Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="TriangleActor.h">
-      <Filter>Scripts\Core\Actors\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="SquareActor.h">
-      <Filter>Scripts\Core\Actors\Shapes</Filter>
-    </ClInclude>
     <ClInclude Include="MeshActor.h">
-      <Filter>Scripts\Core\Actors\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleActor.h">
-      <Filter>Scripts\Core\Actors\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="RectangleActor.h">
       <Filter>Scripts\Core\Actors\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="Utilities.h">
@@ -300,13 +294,13 @@
       <Filter>DuckHunt</Filter>
     </ClInclude>
     <ClInclude Include="AudioManager.h">
-      <Filter>Scripts\Audio</Filter>
+      <Filter>Scripts\Managers\Audio</Filter>
     </ClInclude>
     <ClInclude Include="Sample.h">
-      <Filter>Scripts\Audio\Samples</Filter>
+      <Filter>Scripts\Managers\Audio\Samples</Filter>
     </ClInclude>
     <ClInclude Include="MusicSample.h">
-      <Filter>Scripts\Audio\Samples\Music</Filter>
+      <Filter>Scripts\Managers\Audio\Samples\Music</Filter>
     </ClInclude>
     <ClInclude Include="Duck.h">
       <Filter>DuckHunt</Filter>
@@ -316,12 +310,6 @@
     </ClInclude>
     <ClInclude Include="MovementComponent.h">
       <Filter>DuckHunt</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="SubclassOf.h">
-      <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Scripts\Core\Components\Animation</Filter>
@@ -337,6 +325,30 @@
     </ClInclude>
     <ClInclude Include="TransformData.h">
       <Filter>Scripts\Core\Components\Root\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleActor.h">
+      <Filter>Scripts\Core\Actors\Shapes\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleActor.h">
+      <Filter>Scripts\Core\Actors\Shapes\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="SquareActor.h">
+      <Filter>Scripts\Core\Actors\Shapes\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleActor.h">
+      <Filter>Scripts\Core\Actors\Shapes\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Scripts\GameLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="SubclassOf.h">
+      <Filter>Scripts\Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraActor.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
