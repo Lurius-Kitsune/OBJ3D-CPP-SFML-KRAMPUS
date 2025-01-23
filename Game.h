@@ -18,6 +18,9 @@ class Game : public Singleton<Game>
 	Duck* duck;
 	vector<Duck*> duckList;
 
+
+	Duck* circle;
+	float angle;
 public:
 	FORCEINLINE u_int BindOnRenderWindow(OnRenderWindow _callback)
 	{

@@ -168,13 +168,13 @@ public:
 	void AddComponent(Component* _component);
 	void RemoveComponent(Component* _component);
 	template <typename T>
-	T GetComponent()
+	T* GetComponent()
 	{
 		for (Component* _component : components)
 		{
-			if (is_same_v<decltype(_component), T>)
+			if (is_same_v<decltype(_component), T*>)
 			{
-				return dynamic_cast<T>(_component);
+				return dynamic_cast<T*>(_component);
 			}
 		}
 

@@ -28,7 +28,7 @@ Actor::~Actor()
 void Actor::Construct()
 {
 	id = GetUniqueID();
-	displayName = M_ACTOR.GetAvailableName(name);
+	//displayName = M_ACTOR.GetAvailableName(name);
 	M_ACTOR.AddActor(this);
 }
 

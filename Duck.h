@@ -10,6 +10,12 @@ class Duck : public MeshActor
 	AnimationComponent* animation;
 
 public:
+	FORCEINLINE MovementComponent* GetMovementComponent() const
+	{
+		return movement;
+	}
+
+public:
 	Duck(const Vector2f& _size, const string& _path = "", const IntRect& _rect = {});
 	Duck(const Duck& _other);
 

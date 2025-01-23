@@ -5,6 +5,9 @@ u_int GetUniqueID();
 
 int GetRandomNumberInRange(const int _min, const int _max);
 
+float DegToRad(const float _deg);
+float RadToDeg(const float _rad);
+
 template <typename T>
 T GetRandomNumberInRange(const T& _min, const T& _max)
 {

@@ -8,43 +8,60 @@
 #include "Spawner.h"
 #include "Level.h"
 #include "Duck.h"
+#include "CircleActor.h"
 #include "MusicSample.h"
 #include "CameraActor.h"
 
 Game::Game()
 {
 	window = RenderWindow();
+
+    
+    angle = 10.0f;
 }
 
 void Game::Start()
 {
+    circle = Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "Duck"));
+    circle->SetOriginAtMiddle();
     window.create(VideoMode({800, 600}), "SFML works!");
     
-    Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
-    music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
-    camera = Level::SpawnActor(CameraActor({}, { 500.0f, 400.0f }));
+    //Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
+    //music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
+    //camera = Level::SpawnActor(CameraActor({}, { 500.0f, 400.0f }));
 
     new Timer([&]()
         {
-            Duck* _duck = Level::SpawnActor(/*SubclassOf(*/Duck(Vector2f(50.0f, 50.0f), "Duck")/*)*/);
-            duckList.push_back(_duck);
+            //Duck* _duck = Level::SpawnActor(/*SubclassOf(*/Duck(Vector2f(50.0f, 50.0f), "Duck")/*)*/);
+            //duckList.push_back(_duck);
 
-            _duck->SetOriginAtMiddle();
+            //_duck->SetOriginAtMiddle();
 
-            /*for (Actor* _actor : _duck->GetChildren())
-            {
-                LOG(Display, _actor->GetName());
-            }*/
+            ///*for (Actor* _actor : _duck->GetChildren())
+            //{
+            //    LOG(Display, _actor->GetName());
+            //}*/
 
-            if (!camera->HasTarget())
-            {
-                camera->SetTarget(_duck);
-            }
+            //if (!camera->HasTarget())
+            //{
+            //    camera->SetTarget(_duck);
+            //}
         },
         seconds(1.0f),
         true,
         true
     );
+	Actor* _actor = Level::SpawnActor<Actor>(Actor("Bob"));
+	_actor->SetPosition(Vector2f(window.getSize().x / 2.0f, window.getSize().y / 2.0f));
+    circle->SetPosition(Vector2f(window.getSize().x / 2.0f, window.getSize().y / 2.0f) / 2.0f);
+    if (MovementComponent* _movement = circle->GetComponent<MovementComponent>())
+    {
+        _movement->SetTarget(_actor);
+    }
+    else if (MovementComponent* _movement = circle->GetMovementComponent())
+    {
+		_movement->SetTarget(_actor);
+	}
 };
 
 void Game::Update()
@@ -78,13 +95,19 @@ void Game::Update()
 
             _index++;
         }
-	}
+	
+       
+
+    }
 }
 
 void Game::UpdateWindow()
 {
     //TODO check to draw after clear
-    window.setView(*camera->GetView());
+    if (camera)
+    {
+        window.setView(*camera->GetView());
+    }
 
     window.clear();
 

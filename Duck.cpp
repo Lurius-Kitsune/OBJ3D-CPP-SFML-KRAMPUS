@@ -5,7 +5,7 @@
 
 Duck::Duck(const Vector2f& _size, const string& _path, const IntRect& _rect) : MeshActor(_size, _path, PNG, _rect, "Duck")
 {
-	lifeSpan = 2.0f;
+	lifeSpan = 10000.0f;
 	movement = CreateComponent<MovementComponent>();
 	animation = CreateComponent<AnimationComponent>();
 
