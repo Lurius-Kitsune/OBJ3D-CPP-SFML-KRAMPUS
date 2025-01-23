@@ -27,4 +27,7 @@ public:
 		_actor->Construct();
 		return _actor;
 	}
+
+	// TODO move to PlayerControler
+	//void
 };
