@@ -10,6 +10,8 @@ class Actor : public Core, public ITransformableModifier, public ITransformableV
 	bool isToDelete;
 	set<Component*> components;
 	RootComponent* root;
+	Actor* parent;
+	set<Actor*> children;
 
 protected:
 	template <typename T, typename ...Args>
@@ -25,6 +27,38 @@ public:
 	FORCEINLINE void SetToDelete()
 	{
 		isToDelete = true;
+	}
+	FORCEINLINE Actor* GetParent() const
+	{
+		return parent;
+	}
+private:
+	FORCEINLINE void SetParent(Actor* _parent)
+	{
+		parent = _parent;
+	}
+public:
+	FORCEINLINE set<Actor*> GetChildren() const
+	{
+		return children;
+	}
+	FORCEINLINE Actor* GetChildrenAtIndex(const u_int& _index) const
+	{
+		set<Actor*>::iterator _it = children.begin();
+		advance(_it, _index);
+		return *_it;
+	}
+	FORCEINLINE void AddChild(Actor* _child)
+	{
+		if (children.contains(_child)) return;
+		_child->SetParent(this);
+		children.insert(_child);
+	}
+	FORCEINLINE void RemoveChild(Actor* _child)
+	{
+		if (!_child ||!children.contains(_child)) return;
+		_child->SetParent(nullptr);
+		children.erase(_child);
 	}
 	FORCEINLINE bool IsToDelete() const
 	{
