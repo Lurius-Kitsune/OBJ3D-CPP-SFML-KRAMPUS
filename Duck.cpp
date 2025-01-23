@@ -8,6 +8,8 @@ Duck::Duck(const Vector2f& _size, const string& _path, const IntRect& _rect) : M
 	lifeSpan = 2.0f;
 	movement = CreateComponent<MovementComponent>();
 	animation = CreateComponent<AnimationComponent>();
+
+	CreateSocket("Socket");
 }
 
 Duck::Duck(const Duck& _other) : MeshActor(_other)

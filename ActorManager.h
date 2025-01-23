@@ -4,24 +4,29 @@
 
 class ActorManager : public Singleton<ActorManager>
 {
-	set<Actor*> allActors;
+	multimap<string, Actor*> allActors;
 
 public:
-	FORCEINLINE set<Actor*> GetAllActors() const
+	FORCEINLINE multimap<string, Actor*> GetAllActors() const
 	{
 		return allActors;
 	}
 	FORCEINLINE void AddActor(Actor* _actor)
 	{
-		allActors.insert(_actor);
+		allActors[_actor->GetName()] = _actor;
 		_actor->BeginPlay();
 	}
 	FORCEINLINE void RemoveActor(Actor* _actor)
 	{
-		allActors.erase(_actor);
+		allActors.erase(_actor->GetName());
 		_actor->BeginDestroy();
 	}
+	FORCEINLINE u_int GetCountByName(const string _name)
+	{
+		u_int _count = 0;
 
+		return _count;
+	}
 public:
 	~ActorManager();
 

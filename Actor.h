@@ -8,6 +8,7 @@
 class Actor : public Core, public ITransformableModifier, public ITransformableViewer
 {
 	bool isToDelete;
+	string name;
 	set<Component*> components;
 	RootComponent* root;
 	Actor* parent;
@@ -22,8 +23,17 @@ protected:
 
 		return _component;
 	}
-
+	FORCEINLINE void CreateSocket(const string& _name, const TransformData& _transformData = TransformData(), const AttachmentType& _type = AT_SNAP_TO_TARGET)
+	{
+		Actor* _socket = new Actor(_name, _transformData);
+		AddChild(_socket, _type);
+	}
 public:
+	FORCEINLINE string GetName() const
+	{
+		return name;
+	}
+
 	FORCEINLINE void SetToDelete()
 	{
 		isToDelete = true;
@@ -48,7 +58,7 @@ public:
 		advance(_it, _index);
 		return *_it;
 	}
-	FORCEINLINE void AddChild(Actor* _child)
+	FORCEINLINE void AddChild(Actor* _child, const AttachmentType& _type)
 	{
 		if (children.contains(_child)) return;
 		_child->SetParent(this);
@@ -128,6 +138,7 @@ public:
 
 public:
 	Actor();
+	Actor(const string& _name, const TransformData& _transformData = TransformData());
 	Actor(const Actor& _actor);
 	virtual ~Actor();
 

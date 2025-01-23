@@ -3,6 +3,13 @@
 #include "TransformableModifier.h"
 #include "TransformableViewer.h"
 
+enum AttachmentType
+{
+	AT_KEEP_RELATIVE,
+	AT_KEEP_WORLD,
+	AT_SNAP_TO_TARGET,
+};
+
 class RootComponent : public Component, public ITransformableModifier, public ITransformableViewer
 {
 	TransformData transform;
@@ -72,5 +79,6 @@ public:
 
 public:
 	RootComponent(Actor* _owner);
+	RootComponent(Actor* _owner, const TransformData& _transformData);
 	RootComponent(Actor* _owner, const RootComponent* _other);
 };

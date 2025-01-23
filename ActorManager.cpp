@@ -2,18 +2,18 @@
 
 ActorManager::~ActorManager()
 {
-	for (Actor* _actor : allActors)
+	for (pair<string, Actor*> _actorPair : allActors)
 	{
-		delete _actor;
+		delete _actorPair.second;
 	}
 }
 
 
 void ActorManager::BeginPlay()
 {
-	for (Actor* _actor : allActors)
+	for (pair<string, Actor*> _actorPair : allActors)
 	{
-		_actor->BeginPlay();
+		_actorPair.second->BeginPlay();
 	}
 }
 
@@ -21,8 +21,9 @@ void ActorManager::Tick(const float _deltaTime)
 {
 	vector<Actor*> _garbage;
 
-	for (Actor* _actor : allActors)
+	for (pair<string ,Actor*> _actorPair : allActors)
 	{
+		Actor* _actor = _actorPair.second;
 		_actor->Tick(_deltaTime);
 
 		if (_actor->IsToDelete())
