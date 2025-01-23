@@ -21,7 +21,7 @@ void Duck::Construct()
 {
 	Super::Construct();
 
-	const float _timeBetween = 0.05f;
+	const float _timeBetween = 0.01f;
 	const Vector2i& _spriteSize = Vector2i(41, 39);
 	const vector<SpriteData>& _spritesData =
 	{
@@ -47,9 +47,8 @@ void Duck::Construct()
 
 void Duck::Deconstruct()
 {
-	//Super::Deconstruct();
-
-	//animation->StopAnimation();
+	Super::Deconstruct();
+	animation->StopAnimation();
 }
 
 void Duck::BeginPlay()

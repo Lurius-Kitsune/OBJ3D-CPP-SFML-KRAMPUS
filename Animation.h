@@ -44,8 +44,8 @@ struct AnimationData
 
     AnimationData() = default;
     AnimationData(const int _count, const float _duration, const SpriteData& _spriteData,
-                  const ReadDirection& _direction = RD_ROW, const bool _isReversed = false,
                   const bool _hasExitTime = true, const bool _canLoop = true,
+                  const ReadDirection& _direction = RD_ROW, const bool _isReversed = false,
                   const vector<LinkedAnimation>& _linkedAnimations = {})
     {
         canLoop = _canLoop;
@@ -101,8 +101,8 @@ struct AnimationData
         }
     }
     AnimationData(const float _duration, const vector<SpriteData>& _spritesData,
-                  const ReadDirection& _direction = RD_ROW, const bool _isReversed = false,
                   const bool _hasExitTime = true, const bool _canLoop = true,
+                  const ReadDirection& _direction = RD_ROW, const bool _isReversed = false,
                   const vector<LinkedAnimation>& _linkedAnimations = {})
     {
         canLoop = _canLoop;

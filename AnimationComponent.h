@@ -21,6 +21,11 @@ public:
 		if (!current) return;
 		current->Start();
 	}
+	FORCEINLINE void StopAnimation()
+	{
+		if (!current) return;
+		current->Stop();
+	}
 
 public:
 	AnimationComponent(Actor* _owner);

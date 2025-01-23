@@ -44,7 +44,7 @@ Animation::Animation(const Animation& _other)
 
 Animation::~Animation()
 {
-	M_TIMER.RemoveTimer(timer);
+	timer->Stop();
 }
 
 void Animation::Update()

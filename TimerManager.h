@@ -265,6 +265,7 @@ public:
 	}
 	void Stop()
 	{
+		Pause();
 		isToDelete = true;
 	}
 	void Resume()
