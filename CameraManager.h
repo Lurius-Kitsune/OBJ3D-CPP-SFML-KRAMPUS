@@ -61,7 +61,7 @@ public:
 	Type* CreateCamera(const string& _name = "Camera")
 	{
 		Type* _camera = Level::SpawnActor(Type(_name));
-
+		Register(_camera);
 		if (!current)
 		{
 			SetCurrent(_camera);

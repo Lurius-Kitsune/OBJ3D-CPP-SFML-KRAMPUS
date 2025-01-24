@@ -54,21 +54,6 @@ void DuckHuntGame::Start()
 bool DuckHuntGame::Update()
 {
     Super::Update();
-	LOG(Display, "DuckHuntGame::Update");
-
-    for (u_int _index = 0; _index < CAST(u_int, duckList.size()); )
-    {
-        Duck* _duck = duckList[_index];
-
-        if (_duck->IsToDelete())
-        {
-            duckList.erase(duckList.begin() + _index);
-            continue;
-        }
-
-        _index++;
-    }
-
     return IsOver();
 }
 
