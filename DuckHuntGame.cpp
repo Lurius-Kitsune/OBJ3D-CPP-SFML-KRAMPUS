@@ -13,6 +13,7 @@
 #include "MusicSample.h"
 #include "CameraActor.h"
 #include "CircleActor.h"
+#include "Ball.h"
 
 DuckHuntGame::DuckHuntGame() : Game()
 {
@@ -33,7 +34,7 @@ void DuckHuntGame::Start()
     Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
     //music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
     //camera = Level::SpawnActor(CameraActor({}, { 500.0f, 400.0f }));
-	CameraActor* _cam1 =  M_CAMERA.CreateCamera("Cam 1");
+	/*CameraActor* _cam1 =  M_CAMERA.CreateCamera("Cam 1");
 	_cam1->SetViewport(FloatRect({ 0.0f, 0.0f }, { 0.5f, 1.0f }));
 
     CameraActor* _cam2 = M_CAMERA.CreateCamera("Cam 2");
@@ -45,14 +46,20 @@ void DuckHuntGame::Start()
 	for (u_int _index = 0; _index < 5; _index++)
 	{
         CircleActor* _shape = Level::SpawnActor(CircleActor(75.0f));
-        _shape->SetOriginAtMiddle();
 		_shape->SetPosition(_start + _gap * CAST(float, _index));
 	}
 
-    // LERP
+	LOG(Display, "DuckHuntGame::Start");*/
 
+    MeshActor* _floor = Level::SpawnActor(MeshActor(50.0f));
+    _floor->SetPosition(Vector2f( window.getSize()) / 2.0f );
+    const float _posX = window.getSize().x / 2.0f;
+    const float _posY = window.getSize().y / 0.8f;
+    _floor->SetPosition(Vector2f(_posX, _posY));
 
-	LOG(Display, "DuckHuntGame::Start");
+    Ball* _ball = Level::SpawnActor(Ball(50.0f));
+    _ball->SetOriginAtMiddle();
+    _ball->SetPosition(Vector2f( window.getSize()) / 2.0f );
 }
 
 bool DuckHuntGame::Update()
