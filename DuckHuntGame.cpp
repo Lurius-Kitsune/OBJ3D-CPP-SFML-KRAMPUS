@@ -54,18 +54,15 @@ void DuckHuntGame::Start()
     */
 
     // lerp du mouvement
-    floor = Level::SpawnActor(MeshActor(Vector2f(window.getSize().x, window.getSize().y  * 0.2f)));
+    floor = Level::SpawnActor(MeshActor(Vector2f(window.getSize().x, window.getSize().y * 0.2f)));
     const float _posX = 0.0f;
     const float _posY = window.getSize().y * 0.8f;
     floor->SetPosition(Vector2f(_posX, _posY));
-
-
 
     ball = Level::SpawnActor(Ball(50.0f));
     ball->SetOriginAtMiddle();
     ball->SetPosition(Vector2f(window.getSize()) / 2.0f);
 
-   
     ////TODO check
     //if (MovementComponent* _movement = duck->GetComponent<MovementComponent>())
     //{
@@ -85,7 +82,7 @@ bool DuckHuntGame::Update()
 
     if (_ballRect.findIntersection(_floorRect))
     {
-        ball->SetDirection(Vector2f(0.0f,-1.0f));
+        ball->ApplyBounce();
     }
 
     return IsOver();

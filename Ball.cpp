@@ -2,16 +2,19 @@
 
 Ball::Ball(const float _radius) : MeshActor(_radius)
 {
-	//Mouvement
+	// Movement
 	canMove = true;
 	moveSpeed = 5.0f;
 	direction = Vector2f();
+	fallMovement = Vector2f();
 
-	//Bounce
-	elasticity = 0.0f;
+	// Bounce
+	// v = d / t
+	// t = d / v
+	bounceDuration = 2.0f;
 	bounceDirection = Vector2f();
 
-	//Fall
+	// Fall
 	mass = 20.0f;
 	gravity = 9.81f;
 }
@@ -23,25 +26,29 @@ void Ball::Tick(const float _deltaTime)
 
 	if (canMove)
 	{
-		//Direction
+		// Direction
 		const Vector2f& _directionOffset = direction * moveSpeed * 100.0f;
 
 		// Fall
 		const Vector2f& _downVector = Vector2f(0.0f, 1.0f);
 		const Vector2f& _fallOffset = _downVector * gravity * mass;
 
-		//Bounce
-		const Vector2f& _normal = Vector2f(0.0f, -1.0f);
-		const Vector2f& _bounceOffset = ComputeRebound(bounceDirection, _normal, 0.8f);
+		if (bounceDuration > 0.0f)
+		{
+			/*bounceDuration -= _deltaTime;
+			bounceDuration = bounceDuration < 0.0f ? 0.0f : bounceDuration;*/
+			bounceDirection *= EaseOutQuart(0.5f);
+			LOG(Display, to_string(bounceDirection.y));
+		}
 
-		//Result
-		const Vector2f& _offset = (_directionOffset + _fallOffset + _bounceOffset) * _deltaTime;
+		// Result
+		const Vector2f& _offset = (_directionOffset + _fallOffset + bounceDirection) * _deltaTime;
+		fallMovement += _fallOffset * _deltaTime;
 		Move(_offset);
 	}
 }
 
-
-Vector2f Ball::ComputeRebound(const Vector2f _direction,const Vector2f _normal, const float _restitution)
+Vector2f Ball::ComputeRebound(const Vector2f& _direction, const Vector2f& _normal, const float _restitution)
 {
 	Vector2f _normalizedNormal = _normal.normalized();
 	float _dotProduct = _direction.dot(_normalizedNormal);

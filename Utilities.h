@@ -8,8 +8,7 @@ float RadToDeg(const float _radians);
 float Lerp(const float _start, const float _end, const float _time);
 float Lerp_Constant(const float _start, const float _end, const float _time);
 float DotProduct(const Vector2f& _direction, const Vector2f& _normal);
-Vector2f ComputeElasticity(const Vector2f& _direction, const Vector2f& _normal);
-
+float EaseOutQuart(const float _time);
 
 template <typename T>
 T GetRandomNumberInRange(const T& _min, const T& _max)

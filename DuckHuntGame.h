@@ -15,6 +15,7 @@ class DuckHuntGame : public Game
 	vector<Duck*> duckList;
 	Vector2f center;
 
+	// Ball
 	Ball* ball;
 	MeshActor* floor;
 
