@@ -1,34 +1,17 @@
 #include "Game.h"
 #include "ActorManager.h"
-#include "TimerManager.h"
-#include "AudioManager.h"
 #include "CameraManager.h"
-
-#include "MeshActor.h"
-#include "Label.h"
-#include "Spawner.h"
-#include "Level.h"
-#include "Duck.h"
-#include "MusicSample.h"
-#include "CameraActor.h"
-#include "CircleActor.h"
+#include "TimerManager.h"
 
 Game::Game()
 {
 	window = RenderWindow();
 }
 
-Game::~Game()
-{
-
-}
-
 
 void Game::Start()
 {
-    window.create(VideoMode({1400, 800}), "SFML works!");
-    
-    
+    window.create(VideoMode({ 1200, 800 }), "SFML works!");
 };
 
 bool Game::Update()
@@ -44,18 +27,8 @@ bool Game::Update()
         }
     }
 
-
     const float _deltaTime = _timer.GetDeltaTime().asSeconds();
     M_ACTOR.Tick(_deltaTime);
-
-    /*static float _t = 0.0f;
-    if (_t > 1.0f)
-    {
-		_t = 0.0f;
-    }
-    const float _value = Lerp(0.0f, 100.0f, 0.5f);
-    LOG(Display, to_string(_value));
-   _t += _deltaTime;*/
 
     return IsOver();
 }
@@ -63,10 +36,9 @@ bool Game::Update()
 void Game::UpdateWindow()
 {
     window.clear();
-	M_CAMERA.RenderAllCameras(window);
+    M_CAMERA.RenderAllCameras(window);
     window.display();
 }
-
 
 void Game::Stop()
 {

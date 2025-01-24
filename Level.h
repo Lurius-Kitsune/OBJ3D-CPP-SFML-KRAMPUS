@@ -5,25 +5,25 @@
 class Level
 {
 public:
-	template <typename Type = Actor>
-	static Type* SpawnActor()
+	template <typename T = Actor>
+	static T* SpawnActor()
 	{
-		const SubclassOf<Type>& _ref = SubclassOf(Type());
+		const SubclassOf<T>& _ref = SubclassOf(T());
 		return SpawnActor(_ref);
 	}
 
-	template <typename Type = Actor>
-	static Type* SpawnActor(const SubclassOf<Type>& _ref)
+	template <typename T = Actor>
+	static T* SpawnActor(const SubclassOf<T>& _ref)
 	{
-		Type* _actor = new Type(_ref.GetObject());
+		T* _actor = new T(_ref.GetObject());
 		_actor->Construct();
 		return _actor;
 	}
 
-	template <typename Type = Actor>
-	static Type* SpawnActor(const Type& _ref)
+	template <typename T = Actor>
+	static T* SpawnActor(const T& _ref)
 	{
-		Type* _actor = new Type(_ref);
+		T* _actor = new T(_ref);
 		_actor->Construct();
 		return _actor;
 	}

@@ -1,13 +1,10 @@
 #pragma once
 #include "Singleton.h"
 #include "Game.h"
+
 class GameManager : public Singleton<GameManager>
 {
 	Game* currentGame;
-
-public:
-
-	~GameManager();
 
 public:
 	FORCEINLINE Game* GetCurrent() const
@@ -16,6 +13,7 @@ public:
 	}
 
 public:
+	~GameManager();
+
 	virtual void Launch(Game* _currentGame);
 };
-

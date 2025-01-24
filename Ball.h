@@ -10,5 +10,5 @@ public:
 	Ball(const float _radius);
 
 	virtual void Tick(const float _deltaTime) override;
-};
 
+};

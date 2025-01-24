@@ -12,8 +12,8 @@ class Timer;
 template <typename DurationType = Seconds>
 class TimerManager : public Singleton<TimerManager<DurationType>>
 {
-	using Type = Timer<DurationType>;
-	friend Type;
+	using T = Timer<DurationType>;
+	friend T;
 
 	// Objet qui contient toutes les données de temps
 	Clock clock;
@@ -34,7 +34,7 @@ class TimerManager : public Singleton<TimerManager<DurationType>>
 	// Maximum d'images à rendre par seconde
 	u_short maxFrameRate;
 	// Collection de tous les timers existants
-	set<Type*> allTimers;
+	set<T*> allTimers;
 
 	map<type_index, DurationType> durations;
 
@@ -67,11 +67,11 @@ public:
 
 		return _date + " " + _time;
 	}
-	FORCEINLINE void AddTimer(Type* _timer)
+	FORCEINLINE void AddTimer(T* _timer)
 	{
 		allTimers.insert(_timer);
 	}
-	FORCEINLINE void RemoveTimer(Type* _timer)
+	FORCEINLINE void RemoveTimer(T* _timer)
 	{
 		if (!allTimers.contains(_timer)) return;
 
@@ -104,7 +104,7 @@ public:
 		timeScale = 1.0f;
 		framesCount = 0;
 		maxFrameRate = 60;
-		allTimers = set<Type*>();
+		allTimers = set<T*>();
 		durations =
 		{
 			{ typeid(Seconds), 1 },
@@ -114,7 +114,7 @@ public:
 	}
 	~TimerManager()
 	{
-		for (Type* _timer : allTimers)
+		for (T* _timer : allTimers)
 		{
 			delete _timer;
 		}
@@ -128,7 +128,6 @@ public:
 		deltaTime = elapsedTime * timeScale;
 		framesCount++;
 
-		// && framesCount < maxFrameRate
 		if (lastFrameTime == 0 || time - lastFrameTime <= maxFrameRate)
 		{
 			lastFrameTime = time;
@@ -136,10 +135,10 @@ public:
 			M_GAME.GetCurrent()->UpdateWindow();
 		}
 		
-		using Iterator = set<Type*>::iterator;
+		using Iterator = set<T*>::iterator;
 		for (Iterator _iterator = allTimers.begin(); _iterator != allTimers.end(); )
 		{
-			Type* _timer = *_iterator;
+			T* _timer = *_iterator;
 			_timer->Update(deltaTime);
 
 			if (_timer->IsToDelete())
@@ -161,14 +160,14 @@ public:
 	}
 	void Resume()
 	{
-		for (Type* _timer : allTimers)
+		for (T* _timer : allTimers)
 		{
 			_timer->Resume();
 		}
 	}
 	void Stop()
 	{
-		for (Type* _timer : allTimers)
+		for (T* _timer : allTimers)
 		{
 			_timer->Stop();
 		}

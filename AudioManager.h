@@ -32,7 +32,7 @@ public:
 	template <typename Type, IS_BASE_OF(Sample, Type)>
 	Type* PlaySample(const string& _path, const AudioExtensionType& _type = MP3, const Time& _time = Time())
 	{
-		//static_assert(is_base_of_v<Sample, Type>, "ERREUR CUSTOM !");
+		//static_assert(is_base_of_v<Sample, T>, "ERREUR CUSTOM !");
 
 		const string& _finalPath = _path + GetExtension(_type);
 

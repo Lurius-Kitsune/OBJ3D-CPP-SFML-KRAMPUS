@@ -14,8 +14,8 @@ Actor::Actor(const string& _name, const TransformData& _transform)
 Actor::Actor(const Actor& _actor)
 {
 	name = _actor.name;
-	isToDelete = false;
 	displayName = _actor.displayName;
+	isToDelete = _actor.isToDelete;
 	lifeSpan = _actor.lifeSpan;
 	root = CreateComponent<RootComponent>(_actor.root);
 }
@@ -47,6 +47,7 @@ void Actor::BeginPlay()
 	{
 		new Timer(bind(&Actor::Destroy, this), seconds(lifeSpan), true);
 	}
+
 	for (Component* _component : components)
 	{
 		_component->BeginPlay();

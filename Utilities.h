@@ -7,17 +7,17 @@ float DegToRad(const float _degrees);
 float RadToDeg(const float _radians);
 float Lerp(const float _start, const float _end, const float _time);
 
-template <typename Type>
-Type GetRandomNumberInRange(const Type& _min, const Type& _max)
+template <typename T>
+T GetRandomNumberInRange(const T& _min, const T& _max)
 {
     random_device _rSeed; // Obtient un graine aléatoire
     mt19937 _gen(_rSeed()); // Initialise le générateur avec la graine
-    uniform_real_distribution<Type> _distr(_min, _max); // Définit la distribution (les limites)
+    uniform_real_distribution<T> _distr(_min, _max); // Définit la distribution (les limites)
 
     return _distr(_gen); // Génération du nombre
 }
 
-template <typename Type, typename BaseType, IS_BASE_OF(BaseType, Type)> 
+template <typename Type, typename BaseType, IS_BASE_OF(BaseType, Type)>
 Type* Cast(BaseType* _baseType)
 {
     if (!_baseType) return nullptr;

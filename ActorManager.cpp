@@ -2,7 +2,7 @@
 
 ActorManager::~ActorManager()
 {
-	for (Actor* _actor : allCameras)
+	for (Actor* _actor : allActors)
 	{
 		delete _actor;
 	}
@@ -11,7 +11,7 @@ ActorManager::~ActorManager()
 
 void ActorManager::BeginPlay()
 {
-	for (Actor* _actor : allCameras)
+	for (Actor* _actor : allActors)
 	{
 		_actor->BeginPlay();
 	}
@@ -21,7 +21,7 @@ void ActorManager::Tick(const float _deltaTime)
 {
 	vector<Actor*> _garbage;
 
-	for (Actor* _actor : allCameras)
+	for (Actor* _actor : allActors)
 	{
 		_actor->Tick(_deltaTime);
 
@@ -40,7 +40,7 @@ void ActorManager::Tick(const float _deltaTime)
 
 void ActorManager::BeginDestroy()
 {
-	for (Actor* _actor : allCameras)
+	for (Actor* _actor : allActors)
 	{
 		_actor->BeginDestroy();
 	}

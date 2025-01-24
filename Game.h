@@ -4,20 +4,9 @@
 class Game
 {
 protected:
-
 	RenderWindow window;
 
 public:
-	
-	FORCEINLINE void SetView(const View& _view)
-	{
-		window.setView(_view);
-	}
-	FORCEINLINE void RemoveView()
-	{
-		window.setView(window.getDefaultView());
-	}
-
 	FORCEINLINE virtual bool IsOver() const
 	{
 		return !window.isOpen();
@@ -25,11 +14,11 @@ public:
 
 public:
 	Game();
-	virtual ~Game();
+	virtual ~Game() {};
 
 public:
 	virtual void Start();
 	virtual bool Update();
+	void UpdateWindow();
 	virtual void Stop();
-	virtual void UpdateWindow();
 };

@@ -1,23 +1,18 @@
 #pragma once
 #include "Game.h"
 #include "MeshActor.h"
-
-class MusicSample;
-class CameraActor;
-class Duck;
+#include "MusicSample.h"
+#include "CameraActor.h"
+#include "Duck.h"
 
 class DuckHuntGame : public Game
 {
 	MeshActor* background;
-
-	//TODO remove
+	Duck* duck;
 	MusicSample* music;
 	CameraActor* camera;
-	Duck* duck;
-	Duck* target;
 	vector<Duck*> duckList;
 	Vector2f center;
-	float angle;
 
 public:
 	DuckHuntGame();
@@ -28,6 +23,5 @@ public:
 	virtual bool Update() override;
 	virtual void Stop() override;
 
-	virtual void UpdateWindow() override;
 	Duck* RetrieveFirstDuck();
 };
