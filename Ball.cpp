@@ -2,6 +2,7 @@
 
 Ball::Ball(const float _radius) : MeshActor(_radius)
 {
+	canMove = true;
 	mass = 20.0f;
 	gravity = 9.81f;
 }

@@ -54,16 +54,18 @@ void DuckHuntGame::Start()
     */
 
     // lerp du mouvement
-    MeshActor* _floor = Level::SpawnActor(MeshActor(50.0f));
-    _floor->SetOriginAtMiddle();
-    const float _posX = window.getSize().x / 2.0f;
+    floor = Level::SpawnActor(MeshActor(Vector2f(window.getSize().x, window.getSize().y  * 0.2f)));
+    const float _posX = 0.0f;
     const float _posY = window.getSize().y * 0.8f;
-    _floor->SetPosition(Vector2f(_posX, _posY));
+    floor->SetPosition(Vector2f(_posX, _posY));
 
-    Ball* _ball = Level::SpawnActor(Ball(50.0f));
-    _ball->SetOriginAtMiddle();
-    _ball->SetPosition(Vector2f(window.getSize()) / 2.0f);
 
+
+    ball = Level::SpawnActor(Ball(50.0f));
+    ball->SetOriginAtMiddle();
+    ball->SetPosition(Vector2f(window.getSize()) / 2.0f);
+
+   
     ////TODO check
     //if (MovementComponent* _movement = duck->GetComponent<MovementComponent>())
     //{
@@ -75,7 +77,16 @@ bool DuckHuntGame::Update()
 {
 	Super::Update();
 
-    
+    Shape* _ballShape = ball->GetMesh()->GetShape()->GetDrawable();
+    const FloatRect& _ballRect = _ballShape->getGlobalBounds();
+
+    Shape* _floorShape = floor->GetMesh()->GetShape()->GetDrawable();
+    const FloatRect& _floorRect = _floorShape->getGlobalBounds();
+
+    if (_ballRect.findIntersection(_floorRect))
+    {
+        ball->SetCanMove(false);
+    }
 
     return IsOver();
 }
