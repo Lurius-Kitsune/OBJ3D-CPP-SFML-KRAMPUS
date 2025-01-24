@@ -10,7 +10,7 @@ public:
 	~GameManager();
 
 public:
-	FORCEINLINE Game* GetCurrentGame() const
+	FORCEINLINE Game* GetCurrent() const
 	{
 		return currentGame;
 	}

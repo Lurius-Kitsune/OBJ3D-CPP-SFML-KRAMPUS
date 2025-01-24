@@ -89,55 +89,39 @@ void DuckHuntGame::Start()
 	LOG(Display, "DuckHuntGame::Start");
 }
 
-void DuckHuntGame::Update()
+bool DuckHuntGame::Update()
 {
-    while (window.isOpen())
-    {
-        TM_Seconds& _timer = M_TIMER;
-        _timer.Update();
-
-        while (const optional _event = window.pollEvent())
-        {
-            if (_event->is<Event::Closed>())
-            {
-                window.close();
-            }
-        }
-
-        const float _deltaTime = _timer.GetDeltaTime().asSeconds();
-        M_ACTOR.Tick(_deltaTime);
-
-        //const u_int& _ducksCount = CAST(u_int, duckList.size());
-        for (u_int _index = 0; _index < CAST(u_int, duckList.size()); )
-        {
-            Duck* _duck = duckList[_index];
-
-            if (_duck->IsToDelete())
-            {
-                duckList.erase(duckList.begin() + _index);
-                continue;
-            }
-
-            _index++;
-        }
-    }
+    Super::Update();
 	LOG(Display, "DuckHuntGame::Update");
+
+    for (u_int _index = 0; _index < CAST(u_int, duckList.size()); )
+    {
+        Duck* _duck = duckList[_index];
+
+        if (_duck->IsToDelete())
+        {
+            duckList.erase(duckList.begin() + _index);
+            continue;
+        }
+
+        _index++;
+    }
+
+    return IsOver();
 }
 
 void DuckHuntGame::Stop()
 {
 	Super::Stop();
-	LOG(Display, "DuckHuntGame::Stop");
 }
 
 void DuckHuntGame::UpdateWindow()
 {
-    if (camera)
+    /*if (camera)
     {
         window.setView(*camera->GetView());
-    }
+    }*/
 	Super::UpdateWindow();
-	LOG(Display, "DuckHuntGame::UpdateWindow");
 }
 
 Duck* DuckHuntGame::RetrieveFirstDuck()

@@ -24,13 +24,13 @@ MeshActor::MeshActor(const MeshActor& _other) : Actor(_other)
 void MeshActor::Construct()
 {
 	Super::Construct();
-	renderMeshToken = M_GAME.GetCurrentGame()->BindOnRenderWindow(bind(&MeshActor::RenderMesh, this, placeholders::_1));
+	renderMeshToken = M_GAME.GetCurrent()->BindOnRenderWindow(bind(&MeshActor::RenderMesh, this, placeholders::_1));
 }
 
 void MeshActor::Deconstruct()
 {
 	Super::Deconstruct();
-	M_GAME.GetCurrentGame()->UnbindOnRenderWindow(renderMeshToken);
+	M_GAME.GetCurrent()->UnbindOnRenderWindow(renderMeshToken);
 }
 
 void MeshActor::RenderMesh(RenderWindow& _window)

@@ -1,12 +1,7 @@
 #pragma once
-#include "Singleton.h"
-#include "Actor.h"
+#include "CoreMinimal.h"
 
-class MusicSample;
-class CameraActor;
-class Duck;
-
-class Game : public Singleton<Game>
+class Game
 {
 protected:
 
@@ -34,13 +29,18 @@ public:
 		window.setView(window.getDefaultView());
 	}
 
+	FORCEINLINE virtual bool IsOver() const
+	{
+		return !window.isOpen();
+	}
+
 public:
 	Game();
 	~Game();
 
 public:
 	virtual void Start();
-	virtual void Update();
+	virtual bool Update();
 	virtual void Stop();
 	virtual void UpdateWindow();
 };

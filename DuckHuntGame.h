@@ -25,7 +25,7 @@ public:
 
 public:
 	virtual void Start() override;
-	virtual void Update() override;
+	virtual bool Update() override;
 	virtual void Stop() override;
 
 	virtual void UpdateWindow() override;

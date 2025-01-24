@@ -30,9 +30,23 @@ void Game::Start()
     
 };
 
-void Game::Update()
+bool Game::Update()
 {
-	
+    TM_Seconds& _timer = M_TIMER;
+    _timer.Update();
+
+    while (const optional _event = window.pollEvent())
+    {
+        if (_event->is<Event::Closed>())
+        {
+            window.close();
+        }
+    }
+
+    const float _deltaTime = _timer.GetDeltaTime().asSeconds();
+    M_ACTOR.Tick(_deltaTime);
+
+    return IsOver();
 }
 
 void Game::UpdateWindow()

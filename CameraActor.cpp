@@ -30,13 +30,13 @@ CameraActor::CameraActor(const CameraActor& _other) : Actor(_other)
 void CameraActor::Construct()
 {
 	Super::Construct();
-	M_GAME.GetCurrentGame()->SetView(*camera->GetView());
+	M_GAME.GetCurrent()->SetView(*camera->GetView());
 }
 
 void CameraActor::Deconstruct()
 {
 	Super::Deconstruct();
-	M_GAME.GetCurrentGame()->RemoveView();
+	M_GAME.GetCurrent()->RemoveView();
 }
 
 
@@ -47,7 +47,7 @@ void CameraActor::Tick(const float _deltaTime)
 	if (!target) return;
 	if (target->IsToDelete())
 	{
-		SetTarget(Cast<DuckHuntGame>(M_GAME.GetCurrentGame())->RetrieveFirstDuck());
+		SetTarget(Cast<DuckHuntGame>(M_GAME.GetCurrent())->RetrieveFirstDuck());
 		if (!target) return;
 	}
 

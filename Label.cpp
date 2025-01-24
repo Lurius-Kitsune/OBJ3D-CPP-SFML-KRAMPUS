@@ -5,7 +5,7 @@ Label::Label(const string& _text, const string& _path, const FontExtensionType& 
 {
 	text = new TextObject(_text, _path, _fontType);
 
-	textMeshToken = M_GAME.GetCurrentGame()->BindOnRenderWindow(bind(&Label::RenderText, this, placeholders::_1));
+	textMeshToken = M_GAME.GetCurrent()->BindOnRenderWindow(bind(&Label::RenderText, this, placeholders::_1));
 }
 
 Label::~Label()
@@ -17,7 +17,7 @@ Label::~Label()
 void Label::Deconstruct()
 {
 	Super::Deconstruct();
-	M_GAME.GetCurrentGame()->UnbindOnRenderWindow(textMeshToken);
+	M_GAME.GetCurrent()->UnbindOnRenderWindow(textMeshToken);
 }
 
 

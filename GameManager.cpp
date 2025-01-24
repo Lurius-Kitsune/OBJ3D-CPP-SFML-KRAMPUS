@@ -11,6 +11,7 @@ void GameManager::Launch(Game* _currentGame)
 	if (!currentGame) return;
 
 	currentGame->Start();
-	currentGame->Update();
+	while (!currentGame->Update());
+	
 	currentGame->Stop();
 }
