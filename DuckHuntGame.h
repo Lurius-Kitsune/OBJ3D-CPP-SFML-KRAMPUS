@@ -4,6 +4,7 @@
 #include "MusicSample.h"
 #include "CameraActor.h"
 #include "Duck.h"
+#include "Ball.h"
 
 class DuckHuntGame : public Game
 {
