@@ -1,20 +1,17 @@
 #include "Actor.h"
 #include "ActorManager.h"
-#include "TimerManager.h"
 
-Actor::Actor(const string& _name, const float _lifespan, const TransformData& _transform)
+Actor::Actor(const string& _name, const TransformData& _transform)
 {
 	name = _name;
 	displayName = "Unknown";
 	isToDelete = false;
 	root = CreateComponent<RootComponent>(_transform);
-	lifeSpan = _lifespan;
 }
 
 Actor::Actor(const Actor& _actor)
 {
 	name = _actor.name;
-	lifeSpan = _actor.lifeSpan;
 	isToDelete = false;
 	root = CreateComponent<RootComponent>(_actor.root);
 }
@@ -45,19 +42,6 @@ void Actor::BeginPlay()
 	for (Component* _component : components)
 	{
 		_component->BeginPlay();
-	}
-	if (lifeSpan != 0)
-	{
-		new Timer([&]()
-			{
-				cout << "feur" << endl;
-
-			},
-			seconds(lifeSpan),
-			true,
-			true
-
-			);
 	}
 }
 

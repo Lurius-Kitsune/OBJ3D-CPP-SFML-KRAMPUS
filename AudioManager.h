@@ -46,14 +46,14 @@ public:
 			if (_sample->IsAvailable())
 			{
 				_sample->Play(_time);
-				return Cast<Sample, T>(_sample);
+				return Cast<T>(_sample);
 			}
 		}
 
 		_sample = new T(_finalPath);
 		_sample->Play(_time);
 
-		return Cast<Sample, T>(_sample);
+		return Cast<T>(_sample);
 	}
 	void ToggleMute();
 };

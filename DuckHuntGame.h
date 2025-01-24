@@ -2,20 +2,32 @@
 #include "Game.h"
 #include "MeshActor.h"
 
+class MusicSample;
+class CameraActor;
+class Duck;
+
 class DuckHuntGame : public Game
 {
 	MeshActor* background;
-	MeshActor* duck;
+
+	//TODO remove
+	MusicSample* music;
+	CameraActor* camera;
+	Duck* duck;
+	Duck* target;
+	vector<Duck*> duckList;
+	Vector2f center;
+	float angle;
 
 public:
 	DuckHuntGame();
 	~DuckHuntGame();
 
-protected:
+public:
 	virtual void Start() override;
 	virtual void Update() override;
 	virtual void Stop() override;
 
-public:
-	virtual void Launch() override;
+	virtual void UpdateWindow() override;
+	Duck* RetrieveFirstDuck();
 };

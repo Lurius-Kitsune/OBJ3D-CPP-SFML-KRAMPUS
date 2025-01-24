@@ -8,19 +8,11 @@ class Duck;
 
 class Game : public Singleton<Game>
 {
+protected:
+
 	RenderWindow window;
 	using OnRenderWindow = function<void(RenderWindow&)>;
 	map<u_int, OnRenderWindow> onRenderWindow;
-
-	//TODO remove
-	MusicSample* music;
-	CameraActor* camera;
-	Duck* duck;
-	Actor* target;
-	vector<Duck*> duckList;
-	Vector2f center;
-	float angle;
-
 
 public:
 	FORCEINLINE u_int BindOnRenderWindow(OnRenderWindow _callback)
@@ -46,15 +38,9 @@ public:
 	Game();
 	~Game();
 
-protected:
+public:
 	virtual void Start();
 	virtual void Update();
 	virtual void Stop();
-
-public:
-	virtual void Launch();
-	void UpdateWindow();
-
-	//TODO remove
-	Duck* RetrieveFirstDuck();
+	virtual void UpdateWindow();
 };

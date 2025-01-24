@@ -1,15 +1,15 @@
 #include "MeshActor.h"
-#include "Game.h"
+#include "GameManager.h"
 
-MeshActor::MeshActor(const float _radius, const size_t& _pointCount, const string& _path, const float _lifespan,
-					 const IntRect& _rect, const string& _name) : Actor(_name, _lifespan)
+MeshActor::MeshActor(const float _radius, const size_t& _pointCount, const string& _path,
+					 const IntRect& _rect, const string& _name) : Actor(_name)
 {
 	mesh = CreateComponent<MeshComponent>(_radius, _pointCount, _path, _rect);
 	renderMeshToken = -1;
 }
 
-MeshActor::MeshActor(const Vector2f& _size, const string& _path, const float _lifespan, const TextureExtensionType& _textureType,
-					 const IntRect& _rect, const string& _name) : Actor(_name, _lifespan)
+MeshActor::MeshActor(const Vector2f& _size, const string& _path, const TextureExtensionType& _textureType,
+					 const IntRect& _rect, const string& _name) : Actor(_name)
 {
 	mesh = CreateComponent<MeshComponent>(_size, _path, _textureType, _rect);
 	renderMeshToken = -1;
@@ -24,13 +24,13 @@ MeshActor::MeshActor(const MeshActor& _other) : Actor(_other)
 void MeshActor::Construct()
 {
 	Super::Construct();
-	renderMeshToken = M_GAME.BindOnRenderWindow(bind(&MeshActor::RenderMesh, this, placeholders::_1));
+	renderMeshToken = M_GAME.GetCurrentGame()->BindOnRenderWindow(bind(&MeshActor::RenderMesh, this, placeholders::_1));
 }
 
 void MeshActor::Deconstruct()
 {
 	Super::Deconstruct();
-	M_GAME.UnbindOnRenderWindow(renderMeshToken);
+	M_GAME.GetCurrentGame()->UnbindOnRenderWindow(renderMeshToken);
 }
 
 void MeshActor::RenderMesh(RenderWindow& _window)

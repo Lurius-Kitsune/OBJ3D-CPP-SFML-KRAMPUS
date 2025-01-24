@@ -2,11 +2,9 @@
 #include "Macro.h"
 
 u_int GetUniqueID();
-
 int GetRandomNumberInRange(const int _min, const int _max);
-
-float DegToRad(const float _deg);
-float RadToDeg(const float _rad);
+float DegToRad(const float _degrees);
+float RadToDeg(const float _radians);
 
 template <typename T>
 T GetRandomNumberInRange(const T& _min, const T& _max)
@@ -18,7 +16,7 @@ T GetRandomNumberInRange(const T& _min, const T& _max)
     return _distr(_gen); // Génération du nombre
 }
 
-template <typename BaseType, typename Type, typename = enable_if_t<is_base_of_v<BaseType, Type>>>
+template <typename Type, typename BaseType, typename = enable_if_t<is_base_of_v<BaseType, Type>>>
 Type* Cast(BaseType* _baseType)
 {
     if (!_baseType) return nullptr;

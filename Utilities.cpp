@@ -15,12 +15,12 @@ int GetRandomNumberInRange(const int _min, const int _max)
     return _distr(_gen); // Génération du nombre
 }
 
-float DegToRad(const float _deg)
+float DegToRad(const float _degrees)
 {
-	return _deg * pi / 180.0f;
+    return _degrees * pi / 180.0f;
 }
 
-float RadToDeg(const float _rad)
+float RadToDeg(const float _radians)
 {
-	return 180.0f /pi * _rad;
+    return 180.0f / pi * _radians;
 }
