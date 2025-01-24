@@ -26,7 +26,7 @@ Game::~Game()
 
 void Game::Start()
 {
-    window.create(VideoMode({1400, 400}), "SFML works!");
+    window.create(VideoMode({1400, 800}), "SFML works!");
     
     
 };

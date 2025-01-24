@@ -3,6 +3,7 @@
 #include "ActorManager.h"
 #include "TimerManager.h"
 #include "AudioManager.h"
+#include "CameraManager.h"
 
 #include "MeshActor.h"
 #include "Label.h"
@@ -21,7 +22,7 @@ DuckHuntGame::DuckHuntGame() : Game()
 
 DuckHuntGame::~DuckHuntGame()
 {
-	delete background;
+	//delete background;
 }
 
 
@@ -32,59 +33,14 @@ void DuckHuntGame::Start()
     //Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
     music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
     //camera = Level::SpawnActor(CameraActor({}, { 500.0f, 400.0f }));
-
-    new Timer([&]()
-        {
-            Duck* _duck = Level::SpawnActor(/*SubclassOf(*/Duck(Vector2f(50.0f, 50.0f), "Duck")/*)*/);
-            duckList.push_back(_duck);
-
-            _duck->SetOriginAtMiddle();
-
-            /*for (Actor* _actor : _duck->GetChildren())
-            {
-                LOG(Display, _actor->GetName());
-            }*/
-
-            if (!camera->HasTarget())
-            {
-                camera->SetTarget(_duck);
-            }
-        },
-        seconds(1.0f),
-        false,
-        true
-    );
-
-    target = Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "Duck"));
-    target->SetPosition(Vector2f(window.getSize().x / 2, window.getSize().y / 2));
-    target->SetOriginAtMiddle();
-    target->SetPosition({
-        window.getSize().x * 0.8f,
-        window.getSize().y * 0.8f
-        });
-
-    duck = Level::SpawnActor(Duck(Vector2f(50.0f, 50.0f), "Duck"));
-    duck->SetOriginAtMiddle();
-    duck->SetPosition({
-        window.getSize().x * 0.2f,
-        window.getSize().y * 0.2f
-        });
-
-    //TODO check
-    if (MovementComponent* _movement = duck->GetComponent<MovementComponent>())
-    {
-        _movement->SetTarget(target);
-    }
-    else if (MovementComponent* _movement = duck->GetMovement())
-    {
-        _movement->SetTarget(target);
-    }
-
-    if (MovementComponent* _movement = target->GetMovement())
-    {
-        _movement->SetRotateSpeed(80.0f);
-        _movement->SetTarget(duck);
-    }
+	M_CAMERA.CreateCamera();
+    const Vector2f& _start = Vector2f(100.0F, 100.0f);
+    const Vector2f& _gap = Vector2f(150.0F, 150.0f);
+	for (u_int _index = 0; _index < 5; _index++)
+	{
+        CircleActor* _shape = Level::SpawnActor(CircleActor(75.0f));
+		_shape->SetPosition(_start + _gap * CAST(float, _index));
+	}
 
 	LOG(Display, "DuckHuntGame::Start");
 }

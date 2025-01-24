@@ -22,6 +22,14 @@ void CameraManager::RenderAllCameras(RenderWindow& _window)
 	}
 
 	_window.setView(_window.getDefaultView());
+
+	if (allCameras.empty())
+	{
+		for (const pair<u_int, OnRenderWindow>& _renderPair : onRenderWindow)
+		{
+			_renderPair.second(_window);
+		}
+	}
 }
 
 void CameraManager::BeginPlay()

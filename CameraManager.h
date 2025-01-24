@@ -57,7 +57,7 @@ public:
 
 	void RenderAllCameras(RenderWindow& _window);
 
-	template<typename Type, IS_BASE_OF(CameraActor, Type)>
+	template<typename Type = CameraActor, IS_BASE_OF(CameraActor, Type)>
 	Type* CreateCamera(const string& _name = "Camera")
 	{
 		Type* _camera = Level::SpawnActor(Type(_name));
