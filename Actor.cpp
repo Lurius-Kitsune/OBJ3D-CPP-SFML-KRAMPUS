@@ -51,6 +51,7 @@ void Actor::BeginPlay()
 		new Timer([&]()
 			{
 				cout << "feur" << endl;
+
 			},
 			seconds(lifeSpan),
 			true,

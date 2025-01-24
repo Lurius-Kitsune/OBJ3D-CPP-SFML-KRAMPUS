@@ -7,6 +7,7 @@ class MovementComponent : public Component
 	float speed;
 	Vector2f direction;
 	Actor* target;
+	Vector2f windDirection;
 
 
 public:
@@ -17,6 +18,9 @@ public:
 public:
 	MovementComponent(Actor* _owner);
 	MovementComponent(Actor* _owner, const MovementComponent* _other);
+	
+public:
+	void ChangeWindDirection();
 
 protected:
 	virtual void Tick(const float _deltaTime) override;

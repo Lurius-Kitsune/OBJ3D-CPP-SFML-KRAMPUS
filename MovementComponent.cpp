@@ -1,11 +1,24 @@
 #include "MovementComponent.h"
 #include "Actor.h"
+#include "Utilities.h"
+#include "TimerManager.h"
 
 MovementComponent::MovementComponent(Actor* _owner) : Component(_owner)
 {
 	rotateSpeed = 100.0f;
 	speed = 30.0f;
 	direction = Vector2f(1.0f, 0.0f);
+	windDirection = { 5.f, 5.f };
+
+	new Timer([&]()
+		{
+			ChangeWindDirection();
+		},
+		seconds(2.0f),
+		true,
+		true
+	);
+
 }
 
 MovementComponent::MovementComponent(Actor* _owner, const MovementComponent* _other) : Component(_owner)
@@ -15,11 +28,16 @@ MovementComponent::MovementComponent(Actor* _owner, const MovementComponent* _ot
 	direction = _other->direction;
 }
 
+void MovementComponent::ChangeWindDirection()
+{
+	windDirection = { GetRandomNumberInRange(-10.f, 10.f), GetRandomNumberInRange(-10.f, 10.f) };
+}
+
 
 void MovementComponent::Tick(const float _deltaTime)
 {
 	Super::Tick(_deltaTime);
-
+	cout << windDirection.x << " / " << windDirection.y << endl;
 	//Move(_deltaTime);
 	RotateAround(_deltaTime);
 }
@@ -43,7 +61,7 @@ void MovementComponent::RotateAround(const float _deltaTime)
 	const float _newPosY = _relativePos.x * sin(_radAngle) + _relativePos.y * cos(_radAngle);
 	const Vector2f& _newPos = _center + Vector2f(_newPosX, _newPosY);
 
-	owner->SetPosition(_newPos);
+	owner->SetPosition(_newPos + Vector2f(windDirection.x, windDirection.y));
 
 	Vector2f _velocity(_newPosX - _relativePos.x, _newPosY - _relativePos.y);
 
