@@ -24,7 +24,7 @@ public:
 
 	FORCEINLINE void SetDirection(const Vector2f& _direction)
 	{
-		direction = _direction;
+		bounceDirection = _direction;
 	}
 
 public:
