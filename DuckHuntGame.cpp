@@ -85,7 +85,7 @@ bool DuckHuntGame::Update()
 
     if (_ballRect.findIntersection(_floorRect))
     {
-        ball->SetCanMove(false);
+        ball->SetDirection(Vector2f(0.0f,-1.0f));
     }
 
     return IsOver();
