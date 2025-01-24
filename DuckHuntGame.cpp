@@ -54,9 +54,9 @@ void DuckHuntGame::Start()
     */
 
     // lerp du mouvement
-    MeshActor* _floor = Level::SpawnActor(MeshActor(50.0f));
-    _floor->SetOriginAtMiddle();
-    const float _posX = window.getSize().x / 2.0f;
+    MeshActor* _floor = Level::SpawnActor(MeshActor(Vector2f(window.getSize().x, window.getSize().y * 0.2f)));
+    //_floor->SetOriginAtMiddle();
+    const float _posX = 0.0f;
     const float _posY = window.getSize().y * 0.8f;
     _floor->SetPosition(Vector2f(_posX, _posY));
 
