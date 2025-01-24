@@ -44,8 +44,18 @@ bool Game::Update()
         }
     }
 
+
     const float _deltaTime = _timer.GetDeltaTime().asSeconds();
     M_ACTOR.Tick(_deltaTime);
+
+    static float _t = 0.0f;
+    if (_t > 1.0f)
+    {
+		_t = 0.0f;
+    }
+    const float _value = Lerp(0.0f, 100.0f, 0.5f);
+    LOG(Display, to_string(_value));
+   _t += _deltaTime;
 
     return IsOver();
 }
