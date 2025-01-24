@@ -5,7 +5,6 @@
 
 class Duck : public MeshActor
 {
-	float lifeSpan;
 	MovementComponent* movement;
 	AnimationComponent* animation;
 

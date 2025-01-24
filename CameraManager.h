@@ -46,7 +46,7 @@ private:
 	FORCEINLINE void Register(CameraActor* _camera)
 	{
 		if (!_camera) return;
-		allCameras.insert({ _camera->GetName(), _camera });
+		allCameras.insert({ _camera->GetDisplayName(), _camera });
 	}
 
 public:

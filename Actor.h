@@ -8,6 +8,7 @@
 class Actor : public Core, public ITransformableModifier, public ITransformableViewer
 {
 	bool isToDelete;
+	float lifeSpan;
 	u_int id;
 	string name;
 	string displayName;
@@ -42,6 +43,10 @@ public:
 	FORCEINLINE void SetToDelete()
 	{
 		isToDelete = true;
+	}
+	FORCEINLINE void SetLifeSpan(const float _lifeSpan)
+	{
+		lifeSpan = _lifeSpan;
 	}
 	FORCEINLINE void AddChild(Actor* _child, const AttachmentType& _type)
 	{
