@@ -5,6 +5,7 @@ u_int GetUniqueID();
 int GetRandomNumberInRange(const int _min, const int _max);
 float DegToRad(const float _degrees);
 float RadToDeg(const float _radians);
+float Lerp(const float _start, const float _end, const float _time);
 
 template <typename Type>
 Type GetRandomNumberInRange(const Type& _min, const Type& _max)

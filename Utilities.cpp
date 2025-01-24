@@ -24,3 +24,13 @@ float RadToDeg(const float _radians)
 {
     return 180.0f / pi * _radians;
 }
+
+float Lerp(const float _start, const float _end, const float _time)
+{
+    return _start + _time * (_end - _start);
+}
+
+float Lerp_Constant(const float _start, const float _end, const float _time)
+{
+    return(1 - _time) * _start + _time * _end;
+}

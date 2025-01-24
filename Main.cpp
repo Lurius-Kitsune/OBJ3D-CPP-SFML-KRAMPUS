@@ -8,11 +8,18 @@ void InitConfig()
     Logger::Reset();
 }
 
+float Lerp(const float _start, const float _end, const float _time)
+{
+    return _start + _time * (_end - _start);
+}
+
 int main()
 {
     InitConfig();
 
-    M_GAME.Launch(new DuckHuntGame());
+    //M_GAME.Launch(new DuckHuntGame());
+
+   
 
     /*DuckHuntGame _game;
     _game.Launch();*/
