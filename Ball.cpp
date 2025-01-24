@@ -6,7 +6,7 @@ Ball::Ball(const float _radius) : MeshActor(_radius)
 	canMove = true;
 	moveSpeed = 5.0f;
 	direction = Vector2f();
-	movement = Vector2f();
+	fallMovement = Vector2f();
 
 	//Bounce
 	//v = d / t
@@ -33,17 +33,18 @@ void Ball::Tick(const float _deltaTime)
 		const Vector2f& _downVector = Vector2f(0.0f, 1.0f);
 		const Vector2f& _fallOffset = _downVector * gravity * mass;
 
-		if (bounceDuration != 0.0f)
+		if (bounceDuration > 0.0f)
 		{
-			bounceDuration -= _deltaTime;
-			bounceDuration  = bounceDuration < 0.0f ? 0.0f : bounceDuration;
-			bounceDirection *= EaseOutQuart(bounceDuration);
+			/*bounceDuration -= _deltaTime;
+			bounceDuration  = bounceDuration < 0.0f ? 0.0f : bounceDuration;*/
+			bounceDirection *= EaseOutQuart(0.5f);
 			LOG(Display, to_string(bounceDirection.y));
 		}
 
 		//Result
-		movement = _directionOffset + _fallOffset + bounceDirection;
-		Move(movement * _deltaTime);
+		const Vector2f& _offset = (_directionOffset + _fallOffset + bounceDirection) * _deltaTime;
+		fallMovement += _fallOffset * _deltaTime;
+		Move(_offset);
 	}
 }
 
