@@ -17,10 +17,10 @@ class Actor : public Core, public ITransformableModifier, public ITransformableV
 	set<Actor*> children;
 
 protected:
-	template <typename T, typename ...Args>
-	FORCEINLINE T* CreateComponent(Args... _args)
+	template <typename Type, typename ...Args, IS_BASE_OF(Component, Type)>
+	FORCEINLINE Type* CreateComponent(Args... _args)
 	{
-		T* _component = new T(this, _args...);
+		Type* _component = new Type(this, _args...);
 		AddComponent(_component);
 
 		return _component;
@@ -167,14 +167,14 @@ public:
 
 	void AddComponent(Component* _component);
 	void RemoveComponent(Component* _component);
-	template <typename T>
-	T* GetComponent()
+	template <typename Type>
+	Type* GetComponent()
 	{
 		for (Component* _component : components)
 		{
-			if (is_same_v<decltype(_component), T*>)
+			if (is_same_v<decltype(_component), Type*>)
 			{
-				return dynamic_cast<T*>(_component);
+				return dynamic_cast<Type*>(_component);
 			}
 		}
 

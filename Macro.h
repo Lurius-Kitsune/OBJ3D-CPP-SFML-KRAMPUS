@@ -47,7 +47,7 @@
 #define CAST(_type, _expr) static_cast<_type>(_expr)
 #define SLEEP(_duration) sleep(_duration)
 #define NO_DISCARD _NODISCARD
-
+#define IS_BASE_OF(_base, _derived) typename enable_if<is_base_of<_base, _derived>::value>::type* = nullptr
 using namespace std;
 using namespace sf;
 using namespace priv;

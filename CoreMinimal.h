@@ -10,3 +10,4 @@
 #define M_TEXTURE TextureManager::GetInstance()
 #define M_FONT FontManager::GetInstance()
 #define M_AUDIO AudioManager::GetInstance()
+#define M_CAMERA CameraManager::GetInstance()

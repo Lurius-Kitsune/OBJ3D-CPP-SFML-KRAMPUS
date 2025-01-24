@@ -2,6 +2,7 @@
 #include "ActorManager.h"
 #include "TimerManager.h"
 #include "AudioManager.h"
+#include "CameraManager.h"
 
 #include "MeshActor.h"
 #include "Label.h"
@@ -52,12 +53,7 @@ bool Game::Update()
 void Game::UpdateWindow()
 {
     window.clear();
-
-    for (const pair<u_int, OnRenderWindow>& _renderPair : onRenderWindow)
-    {
-        _renderPair.second(window);
-    }
-
+	M_CAMERA.RenderAllCameras(window);
     window.display();
 }
 

@@ -4,23 +4,23 @@
 
 class ActorManager : public Singleton<ActorManager>
 {
-	set<Actor*> allActors;
+	set<Actor*> allCameras;
 	multimap<string, Actor*> actorsID;
 
 public:
 	FORCEINLINE set<Actor*> GetAllActors() const
 	{
-		return allActors;
+		return allCameras;
 	}
 	FORCEINLINE void AddActor(Actor* _actor)
 	{
-		allActors.insert(_actor);
+		allCameras.insert(_actor);
 		actorsID.insert({ _actor->GetName(), _actor });
 		_actor->BeginPlay();
 	}
 	FORCEINLINE void RemoveActor(Actor* _actor)
 	{
-		allActors.erase(_actor);
+		allCameras.erase(_actor);
 
 		const string& _actorName = _actor->GetName();
 		using Iterator = multimap<string, Actor*>::iterator;

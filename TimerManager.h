@@ -12,8 +12,8 @@ class Timer;
 template <typename DurationType = Seconds>
 class TimerManager : public Singleton<TimerManager<DurationType>>
 {
-	using T = Timer<DurationType>;
-	friend T;
+	using Type = Timer<DurationType>;
+	friend Type;
 
 	// Objet qui contient toutes les données de temps
 	Clock clock;
@@ -34,7 +34,7 @@ class TimerManager : public Singleton<TimerManager<DurationType>>
 	// Maximum d'images à rendre par seconde
 	u_short maxFrameRate;
 	// Collection de tous les timers existants
-	set<T*> allTimers;
+	set<Type*> allTimers;
 
 	map<type_index, DurationType> durations;
 
@@ -67,11 +67,11 @@ public:
 
 		return _date + " " + _time;
 	}
-	FORCEINLINE void AddTimer(T* _timer)
+	FORCEINLINE void AddTimer(Type* _timer)
 	{
 		allTimers.insert(_timer);
 	}
-	FORCEINLINE void RemoveTimer(T* _timer)
+	FORCEINLINE void RemoveTimer(Type* _timer)
 	{
 		if (!allTimers.contains(_timer)) return;
 
@@ -104,7 +104,7 @@ public:
 		timeScale = 1.0f;
 		framesCount = 0;
 		maxFrameRate = 60;
-		allTimers = set<T*>();
+		allTimers = set<Type*>();
 		durations =
 		{
 			{ typeid(Seconds), 1 },
@@ -114,7 +114,7 @@ public:
 	}
 	~TimerManager()
 	{
-		for (T* _timer : allTimers)
+		for (Type* _timer : allTimers)
 		{
 			delete _timer;
 		}
@@ -136,10 +136,10 @@ public:
 			M_GAME.GetCurrent()->UpdateWindow();
 		}
 		
-		using Iterator = set<T*>::iterator;
+		using Iterator = set<Type*>::iterator;
 		for (Iterator _iterator = allTimers.begin(); _iterator != allTimers.end(); )
 		{
-			T* _timer = *_iterator;
+			Type* _timer = *_iterator;
 			_timer->Update(deltaTime);
 
 			if (_timer->IsToDelete())
@@ -161,14 +161,14 @@ public:
 	}
 	void Resume()
 	{
-		for (T* _timer : allTimers)
+		for (Type* _timer : allTimers)
 		{
 			_timer->Resume();
 		}
 	}
 	void Stop()
 	{
-		for (T* _timer : allTimers)
+		for (Type* _timer : allTimers)
 		{
 			_timer->Stop();
 		}
