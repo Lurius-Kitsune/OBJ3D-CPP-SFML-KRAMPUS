@@ -40,3 +40,13 @@ float DotProduct(const Vector2f& _direction, const Vector2f& _normal)
 {
     return _direction.x * _normal.x + _direction.y * _normal.y;
 }
+
+float EaseOutQuart(const float _time)
+{
+    return 1 - pow(1 - _time, 4.0f);
+}
+
+float EaseInQuart(const float _time)
+{
+    return _time* _time * _time * _time;
+}

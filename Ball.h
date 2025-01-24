@@ -8,25 +8,32 @@ class Ball : public MeshActor
 	float moveSpeed;
 	Vector2f direction;
 
-	//bounce
-	float elasticity;
+	//Bounce
+	float bounceDuration;
 	Vector2f bounceDirection;
+
 
 	//fall
 	float mass;
 	float gravity;
+
+	//
+	Vector2f movement;
 
 public:
 	FORCEINLINE void SetCanMove(const bool _status)
 	{
 		canMove = _status;
 	}
-
-	FORCEINLINE void SetDirection(const Vector2f& _direction)
+	FORCEINLINE void ApplyBounce()
 	{
-		bounceDirection = _direction;
+		const Vector2f& _normal = Vector2f(0.0f, -1.0f);
+		bounceDirection = ComputeRebound(movement, _normal, 0.8f) * gravity * mass;
 	}
-
+	FORCEINLINE Vector2f GetMovement()
+	{
+		return movement;
+	}
 public:
 	Ball(const float _radius);
 
@@ -34,6 +41,7 @@ public:
 
 
 private:
+	
 	Vector2f ComputeRebound(const Vector2f _direction, const Vector2f _normal, const float _restitution);
 
 };
