@@ -60,9 +60,9 @@ public:
 
 
 public:
-	CameraActor();
-	CameraActor(const Vector2f& _center, const Vector2f& _size);
-	CameraActor(const FloatRect& _rect);
+	CameraActor(const string& _name = "Camera");
+	CameraActor(const Vector2f& _center, const Vector2f& _size, const string& _name = "Camera");
+	CameraActor(const FloatRect& _rect, const string& _name = "Camera");
 	CameraActor(const CameraActor& _other);
 
 	virtual void Construct() override;

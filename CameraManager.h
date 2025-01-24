@@ -66,6 +66,8 @@ public:
 		{
 			SetCurrent(_camera);
 		}
+
+		return _camera;
 	}
 
 	void BeginPlay();
