@@ -33,7 +33,13 @@ void DuckHuntGame::Start()
     //Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
     music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
     //camera = Level::SpawnActor(CameraActor({}, { 500.0f, 400.0f }));
-	M_CAMERA.CreateCamera();
+	CameraActor* _cam1 =  M_CAMERA.CreateCamera("Cam 1");
+	_cam1->SetViewport(FloatRect({ 0.0f, 0.0f }, { 0.5f, 1.0f }));
+
+    CameraActor* _cam2 = M_CAMERA.CreateCamera("Cam 1");
+    _cam2->SetViewport(FloatRect({ 0.5f, 0.0f }, { 0.5f, 1.0f }));
+
+
     const Vector2f& _start = Vector2f(100.0F, 100.0f);
     const Vector2f& _gap = Vector2f(150.0F, 150.0f);
 	for (u_int _index = 0; _index < 5; _index++)
