@@ -15,6 +15,7 @@ class Actor : public Core, public ITransformableModifier, public ITransformableV
 	RootComponent* root;
 	Actor* parent;
 	set<Actor*> children;
+	float lifeSpan;
 
 protected:
 	template <typename T, typename ...Args>
@@ -25,10 +26,10 @@ protected:
 
 		return _component;
 	}
-	FORCEINLINE void CreateSocket(const string& _name, const TransformData& _transform = TransformData(),
+	FORCEINLINE void CreateSocket(const string& _name,const float _lifespan = 0.0f, const TransformData& _transform = TransformData(),
 								  const AttachmentType& _type = AT_SNAP_TO_TARGET)
 	{
-		Actor* _socket = new Actor(_name, _transform);
+		Actor* _socket = new Actor(_name,_lifespan, _transform);
 		AddChild(_socket, _type);
 	}
 
@@ -150,7 +151,7 @@ public:
 	#pragma endregion
 
 public:
-	Actor(const string& _name, const TransformData& _transform = TransformData());
+	Actor(const string& _name = "Actor", const float _lifespan = 0.0f, const TransformData& _transform = TransformData());
 	Actor(const Actor& _actor);
 	virtual ~Actor();
 

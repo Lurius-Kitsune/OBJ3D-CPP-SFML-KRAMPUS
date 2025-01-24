@@ -16,11 +16,12 @@ class Game : public Singleton<Game>
 	MusicSample* music;
 	CameraActor* camera;
 	Duck* duck;
+	Actor* target;
 	vector<Duck*> duckList;
-
-
-	Duck* circle;
+	Vector2f center;
 	float angle;
+
+
 public:
 	FORCEINLINE u_int BindOnRenderWindow(OnRenderWindow _callback)
 	{
@@ -43,6 +44,7 @@ public:
 
 public:
 	Game();
+	~Game();
 
 protected:
 	virtual void Start();

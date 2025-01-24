@@ -13,7 +13,7 @@ public:
 		return allActors;
 	}
 	FORCEINLINE void AddActor(Actor* _actor)
-	{
+	{   
 		allActors.insert(_actor);
 		actorsID.insert({ _actor->GetName(), _actor });
 		_actor->BeginPlay();
