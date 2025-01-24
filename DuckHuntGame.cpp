@@ -45,8 +45,12 @@ void DuckHuntGame::Start()
 	for (u_int _index = 0; _index < 5; _index++)
 	{
         CircleActor* _shape = Level::SpawnActor(CircleActor(75.0f));
+        _shape->SetOriginAtMiddle();
 		_shape->SetPosition(_start + _gap * CAST(float, _index));
 	}
+
+    // LERP
+
 
 	LOG(Display, "DuckHuntGame::Start");
 }
