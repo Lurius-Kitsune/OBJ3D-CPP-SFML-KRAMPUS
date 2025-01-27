@@ -42,10 +42,8 @@ void Ball::Tick(const float _deltaTime)
 void Ball::ApplyBounce(const Vector2f& _normal)
 {
     // Calculer la projection de la vitesse sur la normale
-    float _dotProduct = velocity.x * _normal.x + velocity.y * _normal.y;
-
     // Appliquer le rebond : inverser la composante normale de la vitesse
-    velocity -= 2.0f * _dotProduct * _normal;
+    velocity -= 2.0f * DotProduct(velocity, _normal) * _normal;
 
     // Réduire la vitesse en fonction du facteur de restitution
     velocity *= restitution;
