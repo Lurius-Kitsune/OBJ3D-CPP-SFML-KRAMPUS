@@ -2,26 +2,14 @@
 #include "Level.h"
 #include "TimerManager.h"
 #include "AudioManager.h"
-
-#include "Spawner.h"
-#include "Level.h"
-#include "MusicSample.h"
-#include "CameraActor.h"
 #include "CameraManager.h"
-#include "CircleActor.h"
-#include "Ball.h"
 
 DuckHuntGame::DuckHuntGame() : Game()
 {
 	background = nullptr;
-	duck = nullptr;
-    camera = nullptr;
-    duckList = vector<Duck*>();
-}
-
-DuckHuntGame::~DuckHuntGame()
-{
-	delete background;
+    music = nullptr;
+	floor = nullptr;
+	ball = nullptr;
 }
 
 
@@ -29,40 +17,20 @@ void DuckHuntGame::Start()
 {
 	Super::Start();
 
-    Level::SpawnActor(MeshActor(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG));
-    //music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
+    Level::SpawnActor(MeshActor(RectangleShapeData(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG)));
+    music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
 
-    /*
-    CameraActor* _camera1 = M_CAMERA.CreateCamera("Camera1");
-    _camera1->SetViewport(FloatRect({ 0.0f, 0.0f }, { 0.5f, 1.0f }));
-    _camera1->SetPosition({ 350.f, 300.f });
-    //_camera1->SetScale({ 300.f, 200.f });
-    _camera1->Zoom(1.5f);
-
-    CameraActor* _camera2 = M_CAMERA.CreateCamera("Camera2");
-    _camera2->SetViewport(FloatRect({ 0.5f, 0.0f }, { 0.5f, 1.0f }));
-
-    const Vector2f& _start = Vector2f(100.0f, 100.0f);
-    const Vector2f& _gap = Vector2f(150.0f, 150.0f);
-
-    for (u_int _index = 0; _index < 5; _index++)
-    {
-        CircleActor* _circle = Level::SpawnActor(CircleActor(75.0f));
-        _circle->SetOriginAtMiddle();
-        _circle->SetPosition(_start + _gap * CAST(float, _index));
-    }
-    */
-
-    // lerp du mouvement
-    floor = Level::SpawnActor(MeshActor(Vector2f(window.getSize().x, window.getSize().y * 0.2f)));
+    const Vector2f& _floorSize = Vector2f(window.getSize().x, window.getSize().y * 0.2f);
+    floor = Level::SpawnActor(MeshActor(RectangleShapeData(_floorSize, "Floor", PNG, true)));
     const float _posX = 0.0f;
     const float _posY = window.getSize().y * 0.8f;
     floor->SetPosition(Vector2f(_posX, _posY));
+    floor->SetTextureRect(IntRect(Vector2i(), Vector2i(512 * 3, 512)));
 
     ball = Level::SpawnActor(Ball(50.0f));
     ball->SetOriginAtMiddle();
-    ball->SetPosition(Vector2f(window.getSize()) / 2.0f);
-
+    ball->SetPosition(Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.2f));
+    
     ////TODO check
     //if (MovementComponent* _movement = duck->GetComponent<MovementComponent>())
     //{
@@ -82,7 +50,8 @@ bool DuckHuntGame::Update()
 
     if (_ballRect.findIntersection(_floorRect))
     {
-        ball->ApplyBounce();
+        const Vector2f& _normal = Vector2f(0.0f, -1.0f);
+        ball->ApplyBounce(_normal);
     }
 
     return IsOver();
@@ -91,16 +60,4 @@ bool DuckHuntGame::Update()
 void DuckHuntGame::Stop()
 {
 	Super::Stop();
-}
-
-
-Duck* DuckHuntGame::RetrieveFirstDuck()
-{
-    if (duckList.empty()) return nullptr;
-
-    const vector<Duck*>::iterator& _it = duckList.begin();
-    Duck* _duck = *_it;
-    duckList.erase(_it);
-
-    return _duck;
 }
