@@ -34,13 +34,16 @@ void Ball::Tick(const float _deltaTime)
 
     // Calculer le déplacement
     const Vector2f& _displacement = velocity * _deltaTime;
-
     // Mettre à jour la position
     Move(_displacement);
 }
 
 void Ball::ApplyBounce(const Vector2f& _normal)
 {
+    ///////////////////////////////////////////////////////////
+    Move(-_normal * 0.1f);
+    ///////////////////////////////////////////////////////////
+    // 
     // Calculer la projection de la vitesse sur la normale
     // Appliquer le rebond : inverser la composante normale de la vitesse
     velocity -= 2.0f * DotProduct(velocity, _normal) * _normal;
