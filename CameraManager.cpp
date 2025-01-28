@@ -16,7 +16,7 @@ void CameraManager::RenderAllCameras(RenderWindow& _window)
 		// je draw tous les éléments que je veux
 		for (const pair<u_int, RenderData>& _renderPair : allRendersData)
 		{
-			const bool _isWorld = _renderPair.second.type == WORLD;
+			const bool _isWorld = _renderPair.second.type == World;
 			const View& _view = _isWorld ? *_pair.second->GetView() : _window.getDefaultView();
 			// je set sa view
 			_window.setView(_view);

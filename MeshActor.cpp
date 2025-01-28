@@ -23,7 +23,8 @@ MeshActor::MeshActor(const MeshActor& _other) : Actor(_other)
 void MeshActor::Construct()
 {
 	Super::Construct();
-	renderMeshToken = M_CAMERA.BindOnRenderWindow(bind(&MeshActor::RenderMesh, this, placeholders::_1));
+	const RenderData& _renderData = RenderData(bind(&MeshActor::RenderMesh, this, placeholders::_1));
+	renderMeshToken = M_CAMERA.BindOnRenderWindow(_renderData);
 }
 
 void MeshActor::Deconstruct()

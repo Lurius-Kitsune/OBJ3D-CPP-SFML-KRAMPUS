@@ -5,18 +5,25 @@
 
 enum RenderType
 {
-	WORLD,
-	WIDGET
+	World,
+	Widget
+};
+
+struct RenderData
+{
+	RenderType type;
+	using RenderCallback = function<void(RenderWindow&)>;
+	RenderCallback callback;
+	RenderData(const RenderCallback& _callback, const RenderType& _type = World)
+	{
+		type = _type;
+		callback = _callback;
+	}
 };
 
 class CameraManager : public Singleton<CameraManager>
 {
-	using RenderCallback = function<void(RenderWindow&)>;
-	struct RenderData
-	{
-		RenderType type;
-		RenderCallback callback;
-	};
+
 	map<u_int, RenderData> allRendersData;
 	map<string, CameraActor*> allCameras;
 	CameraActor* current;

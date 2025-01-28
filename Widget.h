@@ -23,6 +23,13 @@ namespace UI
 		{
 			visibility = _visibility;
 		}
+
+	public:
+		Widget();
+		virtual ~Widget() = default;
+
+	public:
+		virtual void Render(RenderWindow& _window) = 0;
 	};
 }
 
