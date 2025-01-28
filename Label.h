@@ -1,6 +1,7 @@
 #pragma once
 #include "Widget.h"
 #include "TextObject.h"
+#include "RenderType.h"
 
 namespace UI
 {
@@ -51,7 +52,7 @@ namespace UI
 		#pragma endregion
 
 	public:
-		Label(const string& _text, const string& _path = "", const FontExtensionType& _fontType = OTF);
+		Label(const string& _text,const RenderType& _type = Screen, const string& _path = "", const FontExtensionType& _fontType = OTF);
 		~Label();
 
 	private:

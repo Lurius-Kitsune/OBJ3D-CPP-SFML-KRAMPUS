@@ -3,6 +3,10 @@
 #include "TimerManager.h"
 #include "AudioManager.h"
 #include "CameraManager.h"
+#include "HUD.h"
+#include "Label.h"
+
+using namespace UI;
 
 DuckHuntGame::DuckHuntGame() : Game()
 {
@@ -48,6 +52,12 @@ void DuckHuntGame::Start()
     //{
     //    _movement->SetTarget(_target);
     //}
+
+    CameraActor* _camera = M_CAMERA.CreateCamera();
+    //M_CAMERA.CreateCamera(Vector2f(), Vector2f(1200, 800), "Camera::Main");
+    M_HUD.CreateWidget<Label>("Label", World);
+    _camera->SetTarget(ball);
+
 }
 
 bool DuckHuntGame::Update()

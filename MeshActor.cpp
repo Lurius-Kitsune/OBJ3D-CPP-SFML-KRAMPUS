@@ -1,6 +1,8 @@
 #include "MeshActor.h"
 #include "CameraManager.h"
 
+using namespace Camera;
+
 MeshActor::MeshActor(const float _radius, const size_t& _pointCount, const string& _path,
 					 const IntRect& _rect, const string& _name) : Actor(_name)
 {

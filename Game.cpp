@@ -8,7 +8,6 @@ Game::Game()
 	window = RenderWindow();
 }
 
-
 void Game::Start()
 {
     window.create(VideoMode({ 1200, 800 }), "SFML works!");

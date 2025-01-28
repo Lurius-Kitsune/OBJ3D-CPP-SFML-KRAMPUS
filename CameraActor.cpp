@@ -9,7 +9,7 @@ CameraActor::CameraActor(const string& _name) : Actor(_name)
 	target = nullptr;
 }
 
-CameraActor::CameraActor(const Vector2f& _center, const Vector2f& _size) : Actor("Camera")
+CameraActor::CameraActor(const Vector2f& _center, const Vector2f& _size, const string& _name) : Actor(_name)
 {
 	camera = CreateComponent<CameraComponent>(_center, _size);
 	target = nullptr;

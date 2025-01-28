@@ -183,9 +183,6 @@
     <ClCompile Include="MovementComponent.cpp">
       <Filter>DuckHunt</Filter>
     </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>DuckHunt</Filter>
-    </ClCompile>
     <ClCompile Include="Duck.cpp">
       <Filter>DuckHunt</Filter>
     </ClCompile>
@@ -233,6 +230,9 @@
     </ClCompile>
     <ClCompile Include="Widget.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Scripts\GameLoop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -385,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="Widget.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderType.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

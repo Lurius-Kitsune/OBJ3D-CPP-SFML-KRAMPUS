@@ -13,6 +13,7 @@ namespace UI
 		FORCEINLINE Type* CreateWidget(Args... _args)
 		{
 			Type* _widget = new Type(_args...);
+			_widget->Construct();
 			RegisterWidget(_widget);
 
 			return _widget;
