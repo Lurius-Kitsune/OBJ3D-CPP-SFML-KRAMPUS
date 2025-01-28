@@ -3,23 +3,35 @@
 #include "CameraActor.h"
 #include "Level.h"
 
+enum RenderType
+{
+	WORLD,
+	WIDGET
+};
+
 class CameraManager : public Singleton<CameraManager>
 {
-	using OnRenderWindow = function<void(RenderWindow&)>;
-	map<u_int, OnRenderWindow> onRenderWindow;
+	using RenderCallback = function<void(RenderWindow&)>;
+	struct RenderData
+	{
+		RenderType type;
+		RenderCallback callback;
+	};
+	map<u_int, RenderData> allRendersData;
 	map<string, CameraActor*> allCameras;
 	CameraActor* current;
 
 public:
-	FORCEINLINE u_int BindOnRenderWindow(OnRenderWindow _callback)
+	FORCEINLINE u_int BindOnRenderWindow(const RenderData& _data)
 	{
 		u_int _id = GetUniqueID();
-		onRenderWindow.insert({ _id, _callback });
+		allRendersData.insert({ _id, _data });
 		return _id;
 	}
 	FORCEINLINE void UnbindOnRenderWindow(const u_int& _uniqueId)
 	{
-		onRenderWindow.erase(_uniqueId);
+		if(!allRendersData.contains(_uniqueId)) return;
+		allRendersData.erase(_uniqueId);
 	}
 	FORCEINLINE void SetCurrent(CameraActor* _camera)
 	{
