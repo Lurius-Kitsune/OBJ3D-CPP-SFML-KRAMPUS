@@ -25,6 +25,7 @@ class CollisionComponent : public Component
 {
 	LayerType layer;
 	CollisionType type;
+	MeshComponent* mesh;
 
 public:
 	FORCEINLINE CollisionType GetCollisionType() const
@@ -35,9 +36,9 @@ public:
 	{
 		type = _type;
 	}
-	FORCEINLINE FloatRect GetGlobalBound()
+	FORCEINLINE FloatRect GetGlobalBound() const
 	{
-		return Cast<MeshActor>(owner)->GetMesh()->GetGlobalBound();
+		return mesh->GetGlobalBound();
 	}
 
 public:
