@@ -26,6 +26,7 @@ class CollisionComponent : public Component
 	LayerType layer;
 	CollisionType type;
 	MeshComponent* mesh;
+	function<void(MeshActor* _meshActor)> onCollide;
 
 public:
 	FORCEINLINE CollisionType GetCollisionType() const
@@ -42,9 +43,9 @@ public:
 	}
 
 public:
-	CollisionComponent(MeshActor* _owner, LayerType _layer, CollisionType _type);
+	CollisionComponent(MeshActor* _owner, LayerType _layer, CollisionType _type,  const function<void(MeshActor* _meshActor)>& _onCollide = nullptr);
 	CollisionComponent(Actor* _owner, const CollisionComponent& _collision);
 
 public:
-	void OnCollide(const Vector2f& _normal, Vector2f& _velocity);
+	void OnCollide(MeshActor* _meshActor;
 };
