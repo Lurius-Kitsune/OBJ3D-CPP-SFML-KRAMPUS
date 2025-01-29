@@ -73,6 +73,5 @@ float Distance(const Vector2f& _first, const Vector2f& _second)
 Vector2f ComputeNormal(const FloatRect& _rect)
 {
     const Vector2f& _normal = Vector2f(-_rect.size.y, _rect.size.x);
-    const float _norme = Length(_normal);
-    return _normal / _norme;
+    return _normal.normalized();
 }

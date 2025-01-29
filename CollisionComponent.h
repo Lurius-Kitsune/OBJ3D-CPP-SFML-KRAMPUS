@@ -1,6 +1,9 @@
 #pragma once
 #include "Component.h"
 
+class MeshActor;
+class Actor;
+
 enum CollisionType
 {
 	CT_NONE,
@@ -21,4 +24,25 @@ enum LayerType
 class CollisionComponent : public Component
 {
 	LayerType layer;
+	CollisionType type;
+
+public:
+	FORCEINLINE CollisionType GetCollisionType() const
+	{
+		return type;
+	}
+	FORCEINLINE void SetCollisionType(CollisionType _type)
+	{
+		type = _type;
+	}
+	FORCEINLINE FloatRect GetGlobalBound()
+	{
+		return Cast<MeshActor>(owner)->GetMesh()->GetGlobalBound();
+	}
+
+public:
+	CollisionComponent(MeshActor* _owner, LayerType _layer, CollisionType _type);
+
+public:
+	void OnCollide(const Vector2f& _normal, Vector2f& _velocity);
 };
