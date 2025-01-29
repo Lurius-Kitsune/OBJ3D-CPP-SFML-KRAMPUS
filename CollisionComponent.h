@@ -43,6 +43,7 @@ public:
 
 public:
 	CollisionComponent(MeshActor* _owner, LayerType _layer, CollisionType _type);
+	CollisionComponent(Actor* _owner, const CollisionComponent& _collision);
 
 public:
 	void OnCollide(const Vector2f& _normal, Vector2f& _velocity);
