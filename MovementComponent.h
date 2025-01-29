@@ -23,7 +23,7 @@ public:
 	MovementComponent(Actor* _owner, const MovementComponent* _other);
 
 protected:
-	virtual void Tick(const float _deltaTime) override;
+	virtual void Update(const float _deltaTime) override;
 
 private:
 	void Move(const float _deltaTime);

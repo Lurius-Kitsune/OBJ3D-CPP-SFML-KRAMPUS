@@ -16,7 +16,7 @@ void Bird::BeginPlay()
 	Super::BeginPlay();
 }
 
-void Bird::Tick(const float _deltaTime)
+void Bird::Update(const float _deltaTime)
 {
-	Super::Tick(_deltaTime);
+	Super::Update(_deltaTime);
 }

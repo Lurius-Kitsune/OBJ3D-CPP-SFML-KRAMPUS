@@ -40,9 +40,9 @@ CameraActor::CameraActor(const CameraActor& _other) : Actor(_other)
 //	M_GAME.GetCurrent()->RemoveView();
 //}
 
-void CameraActor::Tick(const float _deltaTime)
+void CameraActor::Update(const float _deltaTime)
 {
-	Super::Tick(_deltaTime);
+	Super::Update(_deltaTime);
 
 	if (!target) return;
 	//SetPosition(target->GetPosition());

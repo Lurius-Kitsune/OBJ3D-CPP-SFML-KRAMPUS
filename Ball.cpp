@@ -34,35 +34,35 @@ void Ball::BeginPlay()
     }, seconds(2.0f), true);
 }
 
-void Ball::Tick(const float _deltaTime)
+void Ball::Update(const float _deltaTime)
 {
-    Super::Tick(_deltaTime);
+    Super::Update(_deltaTime);
 
-    LOG(Display, "X: " + to_string(line[0].position.x) + " Y: " + to_string(line[0].position.y));
+    //LOG(Display, "X: " + to_string(line[0].position.x) + " Y: " + to_string(line[0].position.y));
 
-    if (!canMove) return;
+    //if (!canMove) return;
 
-    // Appliquer la gravité
-    const float _downVelocity = gravity * mass * _deltaTime;
-    const Vector2f& _direction = Vector2f(velocity.x, velocity.y + _downVelocity);
-    line[1].position = _direction; // mal recalculé
-    HitInfo _info;
+    //// Appliquer la gravité
+    //const float _downVelocity = gravity * mass * _deltaTime;
+    //const Vector2f& _direction = Vector2f(velocity.x, velocity.y + _downVelocity);
+    //line[1].position = _direction; // mal recalculé
+    //HitInfo _info;
 
-    if (!Raycast(GetPosition(), _direction, _downVelocity, _info))
-    {
-        velocity.y += _downVelocity;
-        LOG(Display, "Gravity !");
-    }
-    else
-    {
-        LOG(Display, "Collision !");
-    }
+    //if (!Raycast(GetPosition(), _direction, _downVelocity, _info))
+    //{
+    //    velocity.y += _downVelocity;
+    //    LOG(Display, "Gravity !");
+    //}
+    //else
+    //{
+    //    LOG(Display, "Collision !");
+    //}
 
-    // Calculer le déplacement
-    const Vector2f& _displacement = velocity * _deltaTime;
+    //// Calculer le déplacement
+    //const Vector2f& _displacement = velocity * _deltaTime;
 
-    // Mettre à jour la position
-    Move(_displacement);
+    //// Mettre à jour la position
+    //Move(_displacement);
 }
 
 
