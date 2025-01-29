@@ -21,12 +21,16 @@ enum LayerType
 
 };
 
+
+
 class CollisionComponent : public Component
 {
 	bool generateHitEvent;
 	LayerType type;
 	map<LayerType, CollisionType> collisionResponse;
 	MeshComponent* mesh;
+
+	// Todo -> put it on MeshActor (I think?)
 	function<void(MeshActor* _meshActor)> onCollide;
 	function<void(MeshActor* _meshActor)> overlapEvent;
 

@@ -27,6 +27,7 @@ void CollisionComponent::OnCollide(MeshActor* _collider)
 		if (onCollide)
 		{
 			onCollide(_collider);
+			// Note : _owner->OnCollide(_collider); ?
 		}
 	}
 
@@ -41,6 +42,7 @@ void CollisionComponent::OnCollide(MeshActor* _collider)
 			{
 				overlapEvent(_collider);
 			}
+			// Note : _owner->OnOverlap(_collider); ?
 		}
 		else if (collisionResponse[_colliderCollision->GetCollisionType()] == CT_BLOCK)
 		{
