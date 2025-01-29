@@ -23,17 +23,19 @@ enum LayerType
 
 class CollisionComponent : public Component
 {
-	LayerType layer;
-	CollisionType type;
+	bool generateHitEvent;
+	LayerType type;
+	map<LayerType, CollisionType> collisionResponse;
 	MeshComponent* mesh;
 	function<void(MeshActor* _meshActor)> onCollide;
+	function<void(MeshActor* _meshActor)> overlapEvent;
 
 public:
-	FORCEINLINE CollisionType GetCollisionType() const
+	FORCEINLINE LayerType GetCollisionType() const
 	{
 		return type;
 	}
-	FORCEINLINE void SetCollisionType(CollisionType _type)
+	FORCEINLINE void SetCollisionType(LayerType _type)
 	{
 		type = _type;
 	}
@@ -43,9 +45,9 @@ public:
 	}
 
 public:
-	CollisionComponent(MeshActor* _owner, LayerType _layer, CollisionType _type,  const function<void(MeshActor* _meshActor)>& _onCollide = nullptr);
+	CollisionComponent(MeshActor* _owner, map<pair<LayerType, CollisionType>, bool> _collisionResponse,  const function<void(MeshActor* _meshActor)>& _onCollide = nullptr);
 	CollisionComponent(Actor* _owner, const CollisionComponent& _collision);
 
 public:
-	void OnCollide(MeshActor* _meshActor);
+	void OnCollide(MeshActor* _collider);
 };

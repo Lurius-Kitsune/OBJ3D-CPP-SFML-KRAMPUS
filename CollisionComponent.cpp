@@ -1,14 +1,11 @@
 #include "CollisionComponent.h"
 #include "MeshActor.h"
 
-
-CollisionComponent::CollisionComponent(MeshActor* _owner, LayerType _layer, CollisionType _type, const function<void(MeshActor* _meshActor)>& _onCollide)
+CollisionComponent::CollisionComponent(MeshActor* _owner, map<pair<LayerType, CollisionType>, bool> _collisionResponse, const function<void(MeshActor* _meshActor)>& _onCollide)
 	: Component(_owner)
 {
-	layer = _layer;
-	type = _type;
+	collisionResponse = _collisionResponse;
 	onCollide = _onCollide;
-	mesh = _owner->GetComponent<MeshComponent>();
 }
 
 CollisionComponent::CollisionComponent(Actor* _owner, const CollisionComponent& _collision)
@@ -21,7 +18,35 @@ CollisionComponent::CollisionComponent(Actor* _owner, const CollisionComponent& 
 }
 
 
-void CollisionComponent::OnCollide(MeshActor* _meshActor)
+void CollisionComponent::OnCollide(MeshActor* _collider)
 {
-	onCollide(_meshActor);
+	if (generateHitEvent)
+	{
+		if (onCollide)
+		{
+			onCollide(_collider);
+		}
+	}
+
+	CollisionComponent* _colliderCollision = _collider->GetComponent<CollisionComponent>();
+
+	if(_colliderCollision)
+	{
+		if (collisionResponse[_colliderCollision->GetCollisionType()] == CT_BLOCK)
+		{
+			// Overlap -> Fait passer à travers et appelle un overlapEvent si mit :
+			if(overlapEvent)
+			{
+				overlapEvent(_collider);
+			}
+		}
+		else if (collisionResponse[_colliderCollision->GetCollisionType()] == CT_BLOCK)
+		{
+			// Bloque -> empêche le mouvement à travers l'objet
+		}
+		else if (collisionResponse[_colliderCollision->GetCollisionType()] == CT_NONE)
+		{
+			// Passe à travers
+		}
+	}
 }
