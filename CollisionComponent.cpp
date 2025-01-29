@@ -1,7 +1,7 @@
 #include "CollisionComponent.h"
 #include "MeshActor.h"
 
-CollisionComponent::CollisionComponent(MeshActor* _owner, map<pair<LayerType, CollisionType>, bool> _collisionResponse, const function<void(MeshActor* _meshActor)>& _onCollide)
+CollisionComponent::CollisionComponent(MeshActor* _owner, map<LayerType, CollisionType> _collisionResponse, const function<void(MeshActor* _meshActor)>& _onCollide)
 	: Component(_owner)
 {
 	collisionResponse = _collisionResponse;

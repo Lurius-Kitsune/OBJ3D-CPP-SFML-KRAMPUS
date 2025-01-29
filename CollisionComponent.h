@@ -1,8 +1,8 @@
 #pragma once
 #include "Component.h"
+#include "MeshComponent.h"
 
 class MeshActor;
-class Actor;
 
 enum CollisionType
 {
@@ -49,7 +49,7 @@ public:
 	}
 
 public:
-	CollisionComponent(MeshActor* _owner, map<pair<LayerType, CollisionType>, bool> _collisionResponse,  const function<void(MeshActor* _meshActor)>& _onCollide = nullptr);
+	CollisionComponent(MeshActor* _owner, map<LayerType, CollisionType> _collisionResponse,  const function<void(MeshActor* _meshActor)>& _onCollide = nullptr);
 	CollisionComponent(Actor* _owner, const CollisionComponent& _collision);
 
 public:
