@@ -1,17 +1,15 @@
 #pragma once
 #include "Widget.h"
 #include "TextObject.h"
-#include "RenderType.h"
 
 namespace UI
 {
 	class Label : public Widget
 	{
 		TextObject* text;
-		u_int textMeshToken;
 
 	public:
-		#pragma region Modifier
+	#pragma region Modifier
 
 		FORCEINLINE virtual void SetPosition(const Vector2f& _position) override
 		{
@@ -49,10 +47,10 @@ namespace UI
 			text->Scale(_factor);
 		}
 
-		#pragma endregion
+	#pragma endregion
 
 	public:
-		Label(const string& _text,const RenderType& _type = Screen, const string& _path = "", const FontExtensionType& _fontType = OTF);
+		Label(const string& _text, const RenderType& _type = Screen, const string& _path = "", const FontExtensionType& _fontType = OTF);
 		~Label();
 
 	private:

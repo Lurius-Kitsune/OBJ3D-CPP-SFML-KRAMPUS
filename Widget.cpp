@@ -3,26 +3,18 @@
 
 using namespace Camera;
 
-UI::Widget::Widget(const string& _name, const RenderType& _type)
-	: Actor(_name)
+UI::Widget::Widget(const string& _name, const RenderType& _type) : Actor(_name)
 {
+	type = _type;
 	visibility = Visible;
 	renderToken = 0;
-	type = _type;
-}
-
-UI::Widget::Widget(const Widget& _other)
-	: Actor(_other)
-{
-	visibility = _other.visibility;
-	type = _other.type;
-	Construct();
+	zOrder = 0;
 }
 
 void UI::Widget::Construct()
 {
-	const RenderData& _renderData = RenderData(bind(&Widget::Render, this, _1), type);
-	renderToken = M_CAMERA.BindOnRenderWindow(_renderData);
+	const RenderData& _data = RenderData(bind(&Widget::Render, this, _1), type);
+	renderToken = M_CAMERA.BindOnRenderWindow(_data, zOrder);
 }
 
 void UI::Widget::Deconstruct()

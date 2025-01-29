@@ -22,11 +22,13 @@ MeshActor::MeshActor(const MeshActor& _other) : Actor(_other)
 	renderMeshToken = _other.renderMeshToken;
 }
 
+
 void MeshActor::Construct()
 {
 	Super::Construct();
-	const RenderData& _renderData = RenderData(bind(&MeshActor::RenderMesh, this, placeholders::_1));
-	renderMeshToken = M_CAMERA.BindOnRenderWindow(_renderData);
+
+	const RenderData& _data = RenderData(bind(&MeshActor::RenderMesh, this, placeholders::_1));
+	renderMeshToken = M_CAMERA.BindOnRenderWindow(_data);
 }
 
 void MeshActor::Deconstruct()
@@ -34,6 +36,7 @@ void MeshActor::Deconstruct()
 	Super::Deconstruct();
 	M_CAMERA.UnbindOnRenderWindow(renderMeshToken);
 }
+
 
 void MeshActor::RenderMesh(RenderWindow& _window)
 {

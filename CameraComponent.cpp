@@ -3,10 +3,8 @@
 
 CameraComponent::CameraComponent(Actor* _owner) : Component(_owner)
 {
-	
 	const Vector2f& _windowSize = CAST(Vector2f, M_GAME.GetCurrent()->GetWindowSize());
-	const Vector2f& _center = _windowSize / 2.f;
-	view = new View(_center, _windowSize);
+	view = new View(_windowSize / 2.0f, _windowSize);
 }
 
 CameraComponent::CameraComponent(Actor* _owner, const Vector2f& _center, const Vector2f& _size) : Component(_owner)

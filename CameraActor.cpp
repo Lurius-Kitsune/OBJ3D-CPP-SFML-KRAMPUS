@@ -15,7 +15,7 @@ CameraActor::CameraActor(const Vector2f& _center, const Vector2f& _size, const s
 	target = nullptr;
 }
 
-CameraActor::CameraActor(const FloatRect& _rect) : Actor("Camera")
+CameraActor::CameraActor(const FloatRect& _rect, const string& _name) : Actor(_name)
 {
 	camera = CreateComponent<CameraComponent>(_rect);
 	target = nullptr;
@@ -45,5 +45,5 @@ void CameraActor::Tick(const float _deltaTime)
 	Super::Tick(_deltaTime);
 
 	if (!target) return;
-	SetPosition(target->GetPosition());
+	//SetPosition(target->GetPosition());
 }

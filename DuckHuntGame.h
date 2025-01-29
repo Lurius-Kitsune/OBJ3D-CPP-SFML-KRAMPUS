@@ -4,6 +4,9 @@
 #include "MusicSample.h"
 #include "Duck.h"
 #include "Ball.h"
+#include "Label.h"
+
+using namespace UI;
 
 class DuckHuntGame : public Game
 {
@@ -13,7 +16,9 @@ class DuckHuntGame : public Game
 	// Ball
 	Ball* ball;
 	MeshActor* floor;
-	MeshActor* platforme;
+	MeshActor* wall1;
+	MeshActor* wall2;
+	Label* label;
 
 public:
 	DuckHuntGame();
@@ -22,7 +27,4 @@ public:
 	virtual void Start() override;
 	virtual bool Update() override;
 	virtual void Stop() override;
-
-	Vector2f ComputeNormal(const FloatRect& _rect);
-	float Lengh(const Vector2f& _vector);
 };

@@ -3,14 +3,21 @@
 #include "CameraManager.h"
 #include "TimerManager.h"
 
+using namespace Camera;
+
 Game::Game()
 {
 	window = RenderWindow();
 }
 
+
 void Game::Start()
 {
-    window.create(VideoMode({ 1200, 800 }), "SFML works!");
+    window.create(VideoMode({ 800, 400 }), "Angry Birds");
+
+    M_CAMERA.CreateCamera("DefaultCamera"); 
+    //M_CAMERA.CreateCamera(Vector2f(), Vector2f(300.0f, 300.0f), "DefaultCamera");
+    M_ACTOR.BeginPlay();
 };
 
 bool Game::Update()
@@ -25,7 +32,7 @@ bool Game::Update()
             window.close();
         }
     }
-
+    
     const float _deltaTime = _timer.GetDeltaTime().asSeconds();
     M_ACTOR.Tick(_deltaTime);
 

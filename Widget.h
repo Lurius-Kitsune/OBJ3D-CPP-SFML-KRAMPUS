@@ -1,6 +1,5 @@
 #pragma once
 #include "Actor.h"
-#include "CoreMinimal.h"
 #include "RenderType.h"
 
 namespace UI
@@ -15,28 +14,29 @@ namespace UI
 		Visible,
 	};
 
-
 	class Widget : public Actor
 	{
-		VisibilityType visibility;
+		int zOrder;
 		u_int renderToken;
 		RenderType type;
+	protected:
+		VisibilityType visibility;
 
 	public:
 		FORCEINLINE void SetVisibility(const VisibilityType& _visibility)
 		{
 			visibility = _visibility;
 		}
+		FORCEINLINE void SetZOrder(const int _zOrder)
+		{
+			zOrder = _zOrder;
+		}
 
 	public:
-		Widget(const string& _name = "Widget", const RenderType& _type = Screen);
-		Widget(const Widget& _other);
-		virtual ~Widget() = default;
+		Widget(const string& _name, const RenderType& _type = Screen);
 
-	public:
 		virtual void Construct() override;
 		virtual void Deconstruct() override;
 		virtual void Render(RenderWindow& _window) = 0;
 	};
 }
-

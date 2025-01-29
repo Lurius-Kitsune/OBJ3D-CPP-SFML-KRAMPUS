@@ -1,11 +1,12 @@
 #include "DuckHuntGame.h"
-#include "Level.h"
 #include "TimerManager.h"
 #include "AudioManager.h"
 #include "CameraManager.h"
-#include "HUD.h"
-#include "Label.h"
 
+#include "Level.h"
+#include "HUD.h"
+
+using namespace Camera;
 using namespace UI;
 
 DuckHuntGame::DuckHuntGame() : Game()
@@ -13,77 +14,80 @@ DuckHuntGame::DuckHuntGame() : Game()
 	background = nullptr;
     music = nullptr;
 	floor = nullptr;
+    wall1 = nullptr;
+    wall2 = nullptr;
 	ball = nullptr;
+    label = nullptr;
 }
 
 
 void DuckHuntGame::Start()
 {
-	Super::Start();
-
-    Level::SpawnActor(MeshActor(RectangleShapeData(Vector2f(463.0f, 260.0f) * 2.0f, "background", JPG)));
+    Super::Start();
+    
     //music = M_AUDIO.PlaySample<MusicSample>("Crab_Rave", MP3, seconds(50.0f));
+    MeshActor* _background = Level::SpawnActor(MeshActor(RectangleShapeData(Vector2f(window.getSize()), "Background_2", JPG)));
 
     const Vector2f& _floorSize = Vector2f(window.getSize().x, window.getSize().y * 0.2f);
-    floor = Level::SpawnActor(MeshActor(RectangleShapeData(_floorSize, "Floor", PNG, true)));
-    const float _posX = 0.0f;
-    const float _posY = window.getSize().y * 0.8f;
-    floor->SetPosition(Vector2f(_posX, _posY));
-    floor->SetTextureRect(IntRect(Vector2i(), Vector2i(512 * 3, 512)));
+    floor = Level::SpawnActor(MeshActor(RectangleShapeData(_floorSize, "Floor_2", JPG)));
+    floor->SetPosition(Vector2f(0.0f, window.getSize().y - _floorSize.y));
 
-    ball = Level::SpawnActor(Ball(50.0f));
+    const Vector2f& _wallSize = Vector2f(window.getSize().x * 0.05f, window.getSize().y * 0.6f - _floorSize.y);
+
+    wall1 = Level::SpawnActor(MeshActor(RectangleShapeData(_wallSize, "Wall", JPG)));
+    wall1->SetPosition(Vector2f(0.0f, window.getSize().y * 0.4f));
+    wall1->SetTextureRect(IntRect(Vector2i(), Vector2i(663, 663 * 2) / 2));
+        
+    wall2 = Level::SpawnActor(MeshActor(RectangleShapeData(_wallSize, "Wall", JPG)));
+    wall2->SetPosition(Vector2f(window.getSize().x - _wallSize.x, window.getSize().y * 0.4f));
+    wall2->SetTextureRect(IntRect(Vector2i(), Vector2i(663, 663 * 2) / 2));
+
+    ball = Level::SpawnActor(Ball(20.0f));
     ball->SetOriginAtMiddle();
-    ball->SetPosition(Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.2f));
+    ball->SetPosition(Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.3f));
+    M_CAMERA.GetCurrent()->SetTarget(ball);
 
-    platforme = Level::SpawnActor(MeshActor(RectangleShapeData(Vector2f(200.0f, 20.0f), "Platforme", PNG, true)));
-    platforme->SetPosition(Vector2f(window.getSize().x * 0.45f, window.getSize().y * 0.5f));
-    platforme->SetOriginAtMiddle();
-    platforme->Rotate(degrees(30.0f));
-    Shape* _platformeShape = platforme->GetMesh()->GetShape()->GetDrawable();
-    const FloatRect& _platformeRect = _platformeShape->getGlobalBounds();
+    /*
+    label = M_HUD.CreateWidget<Label>("Coucou", World);
+    label->SetZOrder(1);
+    M_HUD.AddToViewport(label);
+    ball->AddChild(label, AT_SNAP_TO_TARGET);
+    */
 
-    MeshActor* _platformHitbox = Level::SpawnActor(MeshActor(RectangleShapeData(Vector2f(_platformeRect.size.x, _platformeRect.size.y), "Platforme", PNG, true)));
-    _platformHitbox->SetPosition(Vector2f(window.getSize().x * 0.45f, window.getSize().y * 0.5f));
-    _platformHitbox->SetOriginAtMiddle();
-    _platformHitbox->Rotate(degrees(30.0f));
-    _platformHitbox->GetMesh()->GetShape()->GetDrawable()->setFillColor(Color(255, 0, 0, 50));
     ////TODO check
     //if (MovementComponent* _movement = duck->GetComponent<MovementComponent>())
     //{
     //    _movement->SetTarget(_target);
     //}
-
-    CameraActor* _camera = M_CAMERA.CreateCamera();
-    //M_CAMERA.CreateCamera(Vector2f(), Vector2f(1200, 800), "Camera::Main");
-    M_HUD.CreateWidget<Label>("Label", World);
-    _camera->SetTarget(ball);
-
 }
 
 bool DuckHuntGame::Update()
 {
 	Super::Update();
+
+    /*
     Shape* _ballShape = ball->GetMesh()->GetShape()->GetDrawable();
     const FloatRect& _ballRect = _ballShape->getGlobalBounds();
 
-    Shape* _floorShape = floor->GetMesh()->GetShape()->GetDrawable();
-    const FloatRect& _floorRect = _floorShape->getGlobalBounds();
-
-    if (const optional<FloatRect>& _intersectRect = _ballRect.findIntersection(_floorRect))
+    const vector<Shape*>& _shapes =
     {
-        /*const Vector2f& _normal = Vector2f(0.0f, -1.0f);*/
-        const Vector2f& _normal = ComputeNormal(_intersectRect.value());
-        ball->ApplyBounce(_normal);
+        floor->GetMesh()->GetShape()->GetDrawable(),
+        wall1->GetMesh()->GetShape()->GetDrawable(),
+        wall2->GetMesh()->GetShape()->GetDrawable(),
+    };
+
+    for (Shape* _shape : _shapes)
+    {
+        const FloatRect& _shapeRect = _shape->getGlobalBounds();
+
+        if (const optional<FloatRect>& _intersectRect = _ballRect.findIntersection(_shapeRect))
+        {
+            //const Vector2f& _normal = Vector2f(0.3f, 0.3f);
+            const Vector2f& _normal = ComputeNormal(*_intersectRect);
+            ball->ApplyBounce(_normal);
+        }
     }
-
-    Shape* _platformeShape = platforme->GetMesh()->GetShape()->GetDrawable();
-    const FloatRect& _platformeRect = _platformeShape->getGlobalBounds();
-
-    if(const optional<FloatRect> _intersectRect = _ballRect.findIntersection(_platformeRect))
-	{
-		const Vector2f& _normal = ComputeNormal(_intersectRect.value());
-		ball->ApplyBounce(_normal);
-	}
+    */
 
     return IsOver();
 }
@@ -91,16 +95,4 @@ bool DuckHuntGame::Update()
 void DuckHuntGame::Stop()
 {
 	Super::Stop();
-}
-
-Vector2f DuckHuntGame::ComputeNormal(const FloatRect& _rect)
-{
-    const Vector2f& _normal = { -_rect.size.y, _rect.size.x };
-    const float _norme = Lengh(_normal);
-    return _normal / _norme;
-}
-
-float DuckHuntGame::Lengh(const Vector2f& _vector)
-{
-    return sqrtf(pow(_vector.x, 2) + pow(_vector.y, 2));
 }
