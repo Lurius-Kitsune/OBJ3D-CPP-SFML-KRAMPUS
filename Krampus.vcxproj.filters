@@ -252,14 +252,23 @@
     <ClCompile Include="CameraComponent.cpp">
       <Filter>Scripts\Core\Components\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Kismet.cpp">
-      <Filter>Scripts\Resource Files\Kismet</Filter>
-    </ClCompile>
     <ClCompile Include="Widget.cpp">
       <Filter>Scripts\Core\Actors\Widgets</Filter>
     </ClCompile>
     <ClCompile Include="Bird.cpp">
       <Filter>AngryBird</Filter>
+    </ClCompile>
+    <ClCompile Include="Action.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Kismet.cpp">
+      <Filter>Scripts\Resource Files\Kismet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -407,9 +416,6 @@
     <ClInclude Include="CameraComponent.h">
       <Filter>Scripts\Core\Components\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Kismet.h">
-      <Filter>Scripts\Resource Files\Kismet</Filter>
-    </ClInclude>
     <ClInclude Include="Widget.h">
       <Filter>Scripts\Core\Actors\Widgets</Filter>
     </ClInclude>
@@ -418,6 +424,18 @@
     </ClInclude>
     <ClInclude Include="Bird.h">
       <Filter>AngryBird</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kismet.h">
+      <Filter>Scripts\Resource Files\Kismet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
