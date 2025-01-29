@@ -11,10 +11,12 @@ CollisionComponent::CollisionComponent(MeshActor* _owner, map<pair<LayerType, Co
 CollisionComponent::CollisionComponent(Actor* _owner, const CollisionComponent& _collision)
 	: Component(_owner)
 {
-	layer = _collision.layer;
+	generateHitEvent = _collision.generateHitEvent;
+	collisionResponse = _collision.collisionResponse;
 	type = _collision.type;
 	mesh = _collision.mesh;
 	onCollide = _collision.onCollide;
+	overlapEvent = _collision.overlapEvent;
 }
 
 
