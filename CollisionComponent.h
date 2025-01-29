@@ -47,5 +47,5 @@ public:
 	CollisionComponent(Actor* _owner, const CollisionComponent& _collision);
 
 public:
-	void OnCollide(MeshActor* _meshActor;
+	void OnCollide(MeshActor* _meshActor);
 };
