@@ -3,7 +3,7 @@
 namespace Input
 {
 
-	typedef optional<Event> Trigger;
+	typedef optional<Event> EventInfo;
 
 	enum ControllerButtonsType
 	{
@@ -39,20 +39,27 @@ namespace Input
 
 	struct ActionData
 	{
-		//ActionType type;
-		function<void()> callback;
-
-		int key;
-		ControllerButtonsType buttonType;
-		ControllerAxisType axisType;
+		ValueType value;
+		type_index trigger;
 	};
 
 	class Action
 	{
 		string name;
+		ActionData data;
 		vector<int> inputs;
 		function<void()> callback;
-		ActionData data;
+
+	public:
+
+		void TryToExecute(const EventInfo& _event)
+		{
+			type_index _type = typeid(_event.value());
+			if (data.trigger == _type)
+			{
+				callback();
+			}
+		}
 	};
 }
 

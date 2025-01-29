@@ -11,7 +11,7 @@ namespace Input
 	public:
 		void Update(RenderWindow& _window);
 	private:
-		void UpdateActionMap(const Trigger& _event);
+		void UpdateActionMap(const EventInfo& _event);
 	};
 }
 

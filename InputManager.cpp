@@ -3,7 +3,7 @@
 
 void Input::InputManager::Update(RenderWindow& _window)
 {
-    while (const Trigger& _event = _window.pollEvent())
+    while (const EventInfo& _event = _window.pollEvent())
     {
         if (_event->is<Event::Closed>())
         {
@@ -14,7 +14,7 @@ void Input::InputManager::Update(RenderWindow& _window)
     }
 }
 
-void Input::InputManager::UpdateActionMap(const Trigger& _event)
+void Input::InputManager::UpdateActionMap(const EventInfo& _event)
 {
 
     for(ActionMap* _map : actionMaps)
