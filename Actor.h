@@ -6,6 +6,8 @@
 #include "RootComponent.h"
 #include "TimerManager.h"
 
+class Level;
+
 class Actor : public Core, public ITransformableModifier, public ITransformableViewer
 {
 	bool isToDelete;
@@ -17,6 +19,8 @@ class Actor : public Core, public ITransformableModifier, public ITransformableV
 	Actor* parent;
 	AttachmentType attachment;
 	set<Actor*> children;
+	Level* level;
+
 protected:
 	float lifeSpan;
 

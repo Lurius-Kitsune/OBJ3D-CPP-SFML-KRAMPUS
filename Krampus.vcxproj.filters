@@ -130,6 +130,9 @@
     <Filter Include="Scripts\Managers\Input">
       <UniqueIdentifier>{01d00604-2a3f-4763-8f35-559c8e93299d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\Managers\Level">
+      <UniqueIdentifier>{9464d78b-96ba-47a9-8b1b-d0a9cf156e41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TextObject.cpp">
@@ -272,6 +275,9 @@
     </ClCompile>
     <ClCompile Include="Kismet.cpp">
       <Filter>Scripts\Resource Files\Kismet</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -439,6 +445,9 @@
     </ClInclude>
     <ClInclude Include="Kismet.h">
       <Filter>Scripts\Resource Files\Kismet</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,7 @@
 #pragma once
-#include "Singleton.h"
 #include "Actor.h"
 
-class ActorManager : public Singleton<ActorManager>
+class ActorManager
 {
 	set<Actor*> allActors;
 	multimap<string, Actor*> actorsID;

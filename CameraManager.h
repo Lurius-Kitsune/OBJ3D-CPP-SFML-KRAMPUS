@@ -21,7 +21,7 @@ namespace Camera
 		}
 	};
 
-	class CameraManager : public Singleton<CameraManager>
+	class CameraManager
 	{
 		multimap<int, u_int> allElements;
 		map<u_int, RenderData> allRendersData;
