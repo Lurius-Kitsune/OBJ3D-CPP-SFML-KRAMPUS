@@ -16,7 +16,7 @@ class Ball : public MeshActor
 public:
 	Ball(const float _radius);
 	virtual void BeginPlay() override;
-	virtual void Update(const float _deltaTime) override;
+	virtual void Tick(const float _deltaTime) override;
 
 protected:
 	virtual void RenderMesh(RenderWindow& _window) override;

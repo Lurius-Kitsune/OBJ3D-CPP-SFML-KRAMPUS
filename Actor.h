@@ -257,7 +257,7 @@ public:
 	virtual void Construct();
 	virtual void Deconstruct();
 	virtual void BeginPlay() override;
-	virtual void Update(const float _deltaTime) override;
+	virtual void Tick(const float _deltaTime) override;
 	virtual void BeginDestroy() override;
 
 	void Destroy();

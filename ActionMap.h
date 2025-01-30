@@ -11,18 +11,21 @@ namespace Input
 		map<string, Action*> actions;
 
 	public:
-		ActionMap();
+		FORCEINLINE void Enable()
+		{
+			isActive = true;
+		}
+		FORCEINLINE void Disable()
+		{
+			isActive = false;
+		}
 
 	public:
-		void Update(const EventInfo& _event);
+		ActionMap(const string& _name = "DefaultActionMap");
+		~ActionMap();
 
-		template <typename Type>
-		const Type* Retrieve(const EventInfo& _event)
-		{
-			return _event->getIf<Type>();
-		}
+		void AddAction(Action* _action);
+		void AddActions(const vector<Action*>& _actions);
+		void Update(const EventInfo& _event);
 	};
 }
-
-
-

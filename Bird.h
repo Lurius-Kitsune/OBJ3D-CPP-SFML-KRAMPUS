@@ -11,5 +11,5 @@ public:
 
 public:
 	virtual void BeginPlay() override;
-	virtual void Update(const float _deltaTime) override;
+	virtual void Tick(const float _deltaTime) override;
 };

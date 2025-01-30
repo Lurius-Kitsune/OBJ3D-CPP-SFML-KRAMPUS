@@ -23,7 +23,7 @@ void ActorManager::Update(const float _deltaTime)
 
 	for (Actor* _actor : allActors)
 	{
-		_actor->Update(_deltaTime);
+		_actor->Tick(_deltaTime);
 
 		if (_actor->IsToDelete())
 		{

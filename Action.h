@@ -1,27 +1,34 @@
 #pragma once
 #include "CoreMinimal.h"
+
 namespace Input
 {
-
 	typedef optional<Event> EventInfo;
+	using ActionType = type_index;
+	using Key = Keyboard::Key;
+
+	using KeyPressed = Event::KeyPressed;
+	using KeyReleased = Event::KeyReleased;
+	using MouseButtonPressed = Event::MouseButtonPressed;
+	using MouseButtonReleased = Event::MouseButtonReleased;
 
 	enum ControllerButtonsType
 	{
 		Start,
 		Select,
 		Cross,
-		Cricle,
-		Square,
+		Circle,
 		Triangle,
+		Square,
 		L1,
 		R1,
 		L2,
 		R2,
 		LeftStick,
-		RightStick,
+		RightStick
 	};
 
-	enum ControllerAxisType
+	enum ControllerAxesType
 	{
 		LeftStickX,
 		LeftStickY,
@@ -33,33 +40,46 @@ namespace Input
 	enum ValueType
 	{
 		Digital, // bool
-		Axis, // float
-		Axis2, // Vector2f
+		Axis,	 // float
+		Axis2,	 // Vector2f
 	};
 
 	struct ActionData
 	{
 		ValueType value;
-		type_index trigger;
+		ActionType type = typeid(Event::KeyPressed);
+		int key;
+
+		template <typename Type>
+		ActionData(const ActionType& _type, int _key)
+		{
+			value = Digital;
+			type = typeid(Type);
+			key = _key;
+		}
 	};
 
 	class Action
 	{
 		string name;
-		ActionData data;
-		vector<int> inputs;
+		multimap<ActionType, ActionData> allData;
 		function<void()> callback;
 
 	public:
-
-		void TryToExecute(const EventInfo& _event)
+		FORCEINLINE string GetName() const
 		{
-			type_index _type = typeid(_event.value());
-			if (data.trigger == _type)
-			{
-				callback();
-			}
+			return name;
 		}
+		template <typename Type>
+		FORCEINLINE void SetTrigger()
+		{
+			data.trigger = typeid(Type);
+		}
+
+	public:
+		Action(const string& _name, const ActionData& _data, const function<void()>& _callback);
+		Action(const string& _name, const set<ActionData>& _allData, const function<void()>& _callback);
+
+		void TryToExecute(const EventInfo& _event);
 	};
 }
-

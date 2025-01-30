@@ -66,5 +66,5 @@ public:
 	CameraActor(const CameraActor& _other);
 
 protected:
-	virtual void Update(const float _deltaTime) override;
+	virtual void Tick(const float _deltaTime) override;
 };

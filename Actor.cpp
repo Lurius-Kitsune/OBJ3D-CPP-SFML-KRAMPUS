@@ -54,11 +54,11 @@ void Actor::BeginPlay()
 	}
 }
 
-void Actor::Update(const float _deltaTime)
+void Actor::Tick(const float _deltaTime)
 {
 	for (Component* _component : components)
 	{
-		_component->Update(_deltaTime);
+		_component->Tick(_deltaTime);
 	}
 }
 

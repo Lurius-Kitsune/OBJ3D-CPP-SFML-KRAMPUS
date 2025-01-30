@@ -16,9 +16,9 @@ MovementComponent::MovementComponent(Actor* _owner, const MovementComponent* _ot
 }
 
 
-void MovementComponent::Update(const float _deltaTime)
+void MovementComponent::Tick(const float _deltaTime)
 {
-	Super::Update(_deltaTime);
+	Super::Tick(_deltaTime);
 
 	//Move(_deltaTime);
 	RotateAround(_deltaTime);

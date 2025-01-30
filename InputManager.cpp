@@ -1,5 +1,26 @@
 #include "InputManager.h"
 
+Input::InputManager::InputManager()
+{
+    actionsMaps = map<string, ActionMap*>();
+}
+
+Input::InputManager::~InputManager()
+{
+    for (const pair<string, ActionMap*>& _pair : actionsMaps)
+    {
+        delete _pair.second;
+    }
+}
+
+
+void Input::InputManager::UpdateActionMaps(const EventInfo& _event)
+{
+    for (const pair<string, ActionMap*>& _map : actionsMaps)
+    {
+        _map.second->Update(_event);
+    }
+}
 
 void Input::InputManager::Update(RenderWindow& _window)
 {
@@ -10,15 +31,7 @@ void Input::InputManager::Update(RenderWindow& _window)
             _window.close();
             return;
         }
-        UpdateActionMap(_event);
+
+        UpdateActionMaps(_event);
     }
-}
-
-void Input::InputManager::UpdateActionMap(const EventInfo& _event)
-{
-
-    for(ActionMap* _map : actionMaps)
-	{
-        _map->Update(_event);
-	}
 }
