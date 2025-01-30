@@ -2,11 +2,11 @@
 #include "CoreMinimal.h"
 #include "ActorManager.h"
 #include "CameraManager.h"
-
 using namespace Camera;
 
 class Level
 {
+	string name;
 	ActorManager actors;
 	CameraManager cameras;
 
@@ -37,27 +37,36 @@ public:
 		return _actor;
 	}
 
-	FORCEINLINE set<Actor*> GetAllActors() const
+	FORCEINLINE ActorManager& GetActorManager()
 	{
-		return actors.GetAllActors();
+		return actors;
 	}
 
 #pragma endregion
 
 #pragma region Cameras
 
-	FORCEINLINE CameraManager* GetCameraManager() const
+	FORCEINLINE CameraManager& GetCameraManager()
 	{
+		return cameras;
+	}
+
+	template <typename Type = CameraActor, typename ...Args, IS_BASE_OF(CameraActor, Type)>
+	FORCEINLINE Type* CreateCamera(Args... _args)
+	{
+		Type* _camera = SpawnActor(Type(this, _args...));
+		return cameras.AddCamera(_camera);
 	}
 
 #pragma endregion
 
 
-	Level();
+	Level(const string& _name);
 
 	// TODO move to PlayerController
 	//static void SetViewTarget()
 
+	virtual void Update(const float _deltaTime);
 	virtual void OnLoad();
 	virtual void OnExit();
 	virtual void OnDestroy();

@@ -2,15 +2,17 @@
 #include "TimerManager.h"
 #include "Level.h"
 
-Spawner::Spawner() : Actor("Spawner")
+Spawner::Spawner(Level* _level) : Actor(_level, "Spawner")
 {
+	level = _level;
 	spawnRate = 1.0f;
 	spawnRange = 200.0f;
-	ref = new SubclassOf<MeshActor>(MeshActor(20.0f, 30, "Charm"));
+	ref = new SubclassOf<MeshActor>(MeshActor(level, 20.0f, 30, "Charm"));
 }
 
 Spawner::Spawner(const Spawner& _other) : Actor(_other)
 {
+	level = _other.level;
 	spawnRate = _other.spawnRate;
 	spawnRange = _other.spawnRange;
 	ref = new SubclassOf<MeshActor>(*_other.ref);
@@ -39,5 +41,5 @@ void Spawner::Spawn()
 	};
 	ref->GetObject().SetPosition(_spawnPosition);
 
-	Level::SpawnActor<MeshActor>(*ref);
+	level->SpawnActor<MeshActor>(*ref);
 }

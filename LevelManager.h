@@ -13,15 +13,33 @@ public:
 	{
 		return currentLevel;
 	}
-
-	FORCEINLINE void SetLevel(const string& _name)
+	FORCEINLINE bool SetLevel(const string& _name)
 	{
-		currentLevel->
-	}
+		if (!allLevels.contains(_name))
+		{
+			LOG(Error, "Level \"" + _name + "\"  not found");
+			return false;
+		}
 
+		if(currentLevel) currentLevel->OnExit();
+		currentLevel = allLevels[_name];
+		currentLevel->OnLoad();
+
+		return true;
+	}
 	FORCEINLINE void RegisterLevel(const string& _name, Level* _level)
 	{
 		allLevels.emplace(_name, _level);
+	}
+
+	FORCEINLINE void Destroy()
+	{
+		for (auto _it = allLevels.begin(); _it != allLevels.end(); _it++)
+		{
+			_it->second->OnDestroy();
+			allLevels.erase(_it);
+			delete _it->second;
+		}
 	}
 };
 

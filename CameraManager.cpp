@@ -1,4 +1,5 @@
 #include "CameraManager.h"
+#include "Level.h"
 
 Camera::CameraManager::CameraManager()
 {

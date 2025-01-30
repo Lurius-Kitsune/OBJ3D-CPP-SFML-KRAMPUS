@@ -1,6 +1,7 @@
 #include "Kismet.h"
 #include "ActorManager.h"
 #include "MeshActor.h"
+#include "LevelManager.h"
 
 bool Raycast(const Vector2f& _origin, const Vector2f& _direction, const float _maxDistance,
 			 HitInfo& _hitInfo, const vector<Actor*>& _ignoredActors, const float _precision)
@@ -12,7 +13,7 @@ bool Raycast(const Vector2f& _origin, const Vector2f& _direction, const float _m
 
 	while (Distance(_origin, _currentPosition) < _maxDistance)
 	{
-		for (Actor* _actor : ActorManager::GetInstance().GetAllActors())
+		for (Actor* _actor : M_LEVEL.GetCurrentLevel()->GetActorManager().GetAllActors())
 		{
 			if (MeshActor* _meshActor = Cast<MeshActor>(_actor))
 			{

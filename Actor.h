@@ -19,10 +19,10 @@ class Actor : public Core, public ITransformableModifier, public ITransformableV
 	Actor* parent;
 	AttachmentType attachment;
 	set<Actor*> children;
-	Level* level;
 
 protected:
 	float lifeSpan;
+	Level* level;
 
 protected:
 	template <typename Type, typename ...Args, IS_BASE_OF(Component, Type)>
@@ -35,7 +35,7 @@ protected:
 	FORCEINLINE void CreateSocket(const string& _name, const TransformData& _transform = TransformData(),
 								  const AttachmentType& _type = AT_SNAP_TO_TARGET)
 	{
-		Actor* _socket = new Actor(_name, _transform);
+		Actor* _socket = new Actor(level, _name, _transform);
 		AddChild(_socket, _type);
 	}
 
@@ -253,7 +253,7 @@ public:
 	#pragma endregion
 
 public:
-	Actor(const string& _name = "Actor", const TransformData& _transform = TransformData());
+	Actor(Level* _level, const string& _name = "Actor", const TransformData& _transform = TransformData());
 	Actor(const Actor& _actor);
 	virtual ~Actor();
 

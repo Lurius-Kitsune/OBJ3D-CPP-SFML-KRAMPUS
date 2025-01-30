@@ -76,9 +76,6 @@
     <Filter Include="Scripts\Managers\Font">
       <UniqueIdentifier>{a27c8130-50ec-4ebf-bfa7-ed2ba11c894b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DuckHunt">
-      <UniqueIdentifier>{39046391-69cf-469b-8bbf-9ebc75c183dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scripts\Core\Components\Animation">
       <UniqueIdentifier>{486f8b75-db00-4b39-9f9f-f217ee614670}</UniqueIdentifier>
     </Filter>
@@ -123,9 +120,6 @@
     </Filter>
     <Filter Include="Scripts\Resource Files\Kismet">
       <UniqueIdentifier>{0bc6286f-101b-4f26-9634-22f0a9902e5e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AngryBird">
-      <UniqueIdentifier>{9b4cfc61-a9cf-46e1-ae81-c58ccdacc25c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scripts\Managers\Input">
       <UniqueIdentifier>{01d00604-2a3f-4763-8f35-559c8e93299d}</UniqueIdentifier>
@@ -198,9 +192,6 @@
     <ClCompile Include="Label.cpp">
       <Filter>Scripts\Core\Actors\Widgets\Texts</Filter>
     </ClCompile>
-    <ClCompile Include="Spawner.cpp">
-      <Filter>DuckHunt</Filter>
-    </ClCompile>
     <ClCompile Include="AudioManager.cpp">
       <Filter>Scripts\Managers\Audio</Filter>
     </ClCompile>
@@ -209,15 +200,6 @@
     </ClCompile>
     <ClCompile Include="MusicSample.cpp">
       <Filter>Scripts\Managers\Audio\Samples\Music</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementComponent.cpp">
-      <Filter>DuckHunt</Filter>
-    </ClCompile>
-    <ClCompile Include="Duck.cpp">
-      <Filter>DuckHunt</Filter>
-    </ClCompile>
-    <ClCompile Include="DuckHuntGame.cpp">
-      <Filter>DuckHunt</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Scripts\Core\Components\Animation</Filter>
@@ -246,9 +228,6 @@
     <ClCompile Include="HUD.cpp">
       <Filter>Scripts\Managers\HUD</Filter>
     </ClCompile>
-    <ClCompile Include="Ball.cpp">
-      <Filter>DuckHunt</Filter>
-    </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Scripts\GameLoop</Filter>
     </ClCompile>
@@ -260,9 +239,6 @@
     </ClCompile>
     <ClCompile Include="Widget.cpp">
       <Filter>Scripts\Core\Actors\Widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="Bird.cpp">
-      <Filter>AngryBird</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Scripts\Managers\Input</Filter>
@@ -353,9 +329,6 @@
     <ClInclude Include="Label.h">
       <Filter>Scripts\Core\Actors\Widgets\Texts</Filter>
     </ClInclude>
-    <ClInclude Include="Spawner.h">
-      <Filter>DuckHunt</Filter>
-    </ClInclude>
     <ClInclude Include="AudioManager.h">
       <Filter>Scripts\Managers\Audio</Filter>
     </ClInclude>
@@ -364,15 +337,6 @@
     </ClInclude>
     <ClInclude Include="MusicSample.h">
       <Filter>Scripts\Managers\Audio\Samples\Music</Filter>
-    </ClInclude>
-    <ClInclude Include="Duck.h">
-      <Filter>DuckHunt</Filter>
-    </ClInclude>
-    <ClInclude Include="DuckHuntGame.h">
-      <Filter>DuckHunt</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementComponent.h">
-      <Filter>DuckHunt</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Scripts\Core\Components\Animation</Filter>
@@ -416,9 +380,6 @@
     <ClInclude Include="HUD.h">
       <Filter>Scripts\Managers\HUD</Filter>
     </ClInclude>
-    <ClInclude Include="Ball.h">
-      <Filter>DuckHunt</Filter>
-    </ClInclude>
     <ClInclude Include="CameraActor.h">
       <Filter>Scripts\Core\Actors\Cameras</Filter>
     </ClInclude>
@@ -430,9 +391,6 @@
     </ClInclude>
     <ClInclude Include="RenderType.h">
       <Filter>Scripts\Core\Actors\Widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="Bird.h">
-      <Filter>AngryBird</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Scripts\Managers\Input</Filter>

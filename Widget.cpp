@@ -1,9 +1,10 @@
 #include "Widget.h"
 #include "CameraManager.h"
+#include "LevelManager.h"
 
 using namespace Camera;
 
-UI::Widget::Widget(const string& _name, const RenderType& _type) : Actor(_name)
+UI::Widget::Widget(const string& _name, const RenderType& _type) : Actor(M_LEVEL.GetCurrentLevel(), _name)
 {
 	type = _type;
 	visibility = Visible;
@@ -14,10 +15,10 @@ UI::Widget::Widget(const string& _name, const RenderType& _type) : Actor(_name)
 void UI::Widget::Construct()
 {
 	const RenderData& _data = RenderData(bind(&Widget::Render, this, _1), type);
-	renderToken = M_CAMERA.BindOnRenderWindow(_data, zOrder);
+	renderToken = M_LEVEL.GetCurrentLevel()->GetCameraManager().BindOnRenderWindow(_data, zOrder);
 }
 
 void UI::Widget::Deconstruct()
 {
-	M_CAMERA.UnbindOnRenderWindow(renderToken);
+	M_LEVEL.GetCurrentLevel()->GetCameraManager().UnbindOnRenderWindow(renderToken);
 }

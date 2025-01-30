@@ -9,7 +9,7 @@ class Spawner : public Actor
 	SubclassOf<MeshActor>* ref;
 
 public:
-	Spawner();
+	Spawner(Level* _level);
 	Spawner(const Spawner& _other);
 	~Spawner();
 
